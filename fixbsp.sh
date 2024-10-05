@@ -24,7 +24,7 @@ for file in "${bsp_files[@]}"; do
     echo "Restoring $file"
     git checkout -- "$file"
     osascript -e 'tell application "Godot" to activate'
-    sleep 2
+    sleep 3
     osascript -e 'tell application "Terminal" to activate'
     # read -p "Switch to GoDot and wait for the import to finish, then come back here and press enter."
 done

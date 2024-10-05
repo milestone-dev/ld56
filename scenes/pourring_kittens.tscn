@@ -1,0 +1,80 @@
+[gd_scene load_steps=11 format=3 uid="uid://bw1214ggf5pvs"]
+
+[ext_resource type="Texture2D" uid="uid://bp0bfra7eckxa" path="res://assets/sprites/kitten3.png" id="1_7kq6c"]
+[ext_resource type="Shader" path="res://scenes/pourring_kittens.gdshader" id="2_lrb25"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ylrd5"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_kxc6d"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cv3ku"]
+angle_min = 1.07288e-05
+angle_max = 720.0
+spread = 180.0
+initial_velocity_max = 2.87
+collision_mode = 1
+collision_friction = 0.09
+collision_bounce = 0.66
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cblec"]
+transparency = 1
+albedo_texture = ExtResource("1_7kq6c")
+texture_filter = 0
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_c4qu8"]
+material = SubResource("StandardMaterial3D_cblec")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_pb570"]
+noise_type = 3
+frequency = 0.0004
+offset = Vector3(152.17, 0, 0)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_c883e"]
+noise = SubResource("FastNoiseLite_pb570")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4afs3"]
+shader = ExtResource("2_lrb25")
+shader_parameter/target_position = Vector3(0, 0, 0)
+shader_parameter/attraction_strength = 0.0
+shader_parameter/noise_strength = 1.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_c883e")
+
+[node name="PourringKittens" type="Node3D"]
+
+[node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.50874, 1.01768, -3.92064)
+strength = 6.92
+attenuation = 6.49802
+directionality = 0.47
+size = Vector3(9.76, 2, 9.76)
+
+[node name="Node3D" type="StaticBody3D" parent="."]
+
+[node name="GPUParticlesCollisionSDF3D" type="GPUParticlesCollisionBox3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.612789, -0.0228153)
+size = Vector3(33.03, 1, 33.03)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D"]
+shape = SubResource("CylinderShape3D_ylrd5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+mesh = SubResource("CylinderMesh_kxc6d")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.00501, 0.258556)
+emitting = false
+amount = 10000
+lifetime = 600.0
+preprocess = 5.19
+explosiveness = 0.2
+process_material = SubResource("ParticleProcessMaterial_cv3ku")
+draw_pass_1 = SubResource("QuadMesh_c4qu8")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.00501, 0.258556)
+visible = false
+amount = 1000
+lifetime = 0.52
+process_material = SubResource("ShaderMaterial_4afs3")
+draw_pass_1 = SubResource("QuadMesh_c4qu8")
