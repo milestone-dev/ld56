@@ -14,7 +14,8 @@ env:
 
 
 jobs:
-  deploy-web:
+  deploy:
+    timeout-minutes: 5
     name: Godot Export
     runs-on: ubuntu-20.04
     container:
