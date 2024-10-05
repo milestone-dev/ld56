@@ -18,6 +18,7 @@ const JUMP_VELOCITY = 4.5
 
 @export var head : Node3D
 @export var interaction_ray : RayCast3D
+@export var interaction_shape : Area3D
 @export var mouse_sensitivity : float = 0.1
 @export var ui : UI
 
@@ -33,12 +34,12 @@ var tardigrade_count := 0;
 var kitten_detection_level := 0
 const KITTEN_DETECTION_LEVEL_MAX := 1000
 
-const SCAN_ENERGY_MAX := 100.0
+const SCAN_ENERGY_MAX := 20.0
 const SCAN_ENERGY_COST := 4.0
 var scan_energy := SCAN_ENERGY_MAX
 
 const SPRAY_ENERGY_MAX := 100.0
-const SPRAY_ENERGY_COST := 4.0
+const SPRAY_ENERGY_COST := SPRAY_ENERGY_MAX/6.0
 var spray_energy := SPRAY_ENERGY_MAX
 
 const KITTEN_DISAPPEAR_TIMER_MAX := 5.0
@@ -71,7 +72,7 @@ func _physics_process(delta: float) -> void:
 		kitten_pool += kittens_lost
 		kitten_count = max(0, kitten_count - kittens_lost)
 		tardigrade_count = max(0, tardigrade_count - tardigrades_lost)
-	scanner_showing = Input.is_action_pressed("tool_enable_scanner")
+
 
 	# fall, jump, interact
 	if not is_on_floor(): velocity += get_gravity() * delta
@@ -79,7 +80,13 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 
 	manage_tool_usage()
-	update_scanner()
+
+	# scanner
+	scanner_showing = Input.is_action_pressed("tool_enable_scanner")
+	if scanner_showing:
+		scan_energy -= delta
+		update_scanner()
+
 	ui.update(self)
 
 	# looking, walking
@@ -89,7 +96,6 @@ func _physics_process(delta: float) -> void:
 	mouse_input = Vector2.ZERO
 	var input_dir := Input.get_vector("left", "right", "forward", "backward")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-
 
 	# spriting
 	is_sprinting = Input.is_action_pressed("sprint") and sprint_energy > 0.0
@@ -108,16 +114,18 @@ func _physics_process(delta: float) -> void:
 func update_scanner():
 	kitten_detection_level = 0
 	for kitten_cluster : Node3D in get_tree().get_nodes_in_group("kitten_cluster"):
-		var distance = global_position.distance_to(kitten_cluster.global_position)
-		if distance < 1: kitten_detection_level += 100
-		elif distance < 2: kitten_detection_level += 75
-		elif distance < 3: kitten_detection_level += 33
-		elif distance < 5: kitten_detection_level += 15
-		elif distance < 10: kitten_detection_level += 5
+		if kitten_cluster.has_kittens():
+			var distance = global_position.distance_to(kitten_cluster.global_position)
+			if distance < 1: kitten_detection_level += 100
+			elif distance < 2: kitten_detection_level += 75
+			elif distance < 3: kitten_detection_level += 33
+			elif distance < 5: kitten_detection_level += 15
+			elif distance < 10: kitten_detection_level += 5
 
 	var collider = interaction_ray.get_collider()
 	if collider and collider is KittenCluster:
-		kitten_detection_level = KITTEN_DETECTION_LEVEL_MAX
+		if (collider as KittenCluster).has_kittens():
+			kitten_detection_level = KITTEN_DETECTION_LEVEL_MAX
 
 func manage_tool_usage():
 	var either_pressed = Input.is_action_just_pressed("tool_left") or Input.is_action_just_pressed("tool_right")
@@ -131,6 +139,17 @@ func manage_tool_usage():
 		return
 
 	# Check targeted objects
+	var colliders = interaction_shape.get_overlapping_bodies()
+	for c in colliders:
+		if c is KittenCluster:
+			var kitten_cluster := c as KittenCluster
+			if current_tool == Tool.SPRAYER:
+				if spray_energy > 0:
+					kitten_cluster.spray(self)
+			elif current_tool == Tool.PICKER:
+				if c is KittenCluster:
+					kitten_cluster.retrieve(self)
+
 	var collider = interaction_ray.get_collider()
 	if collider is KittenContainer:
 		var kitten_container := collider as KittenContainer
@@ -152,14 +171,6 @@ func manage_tool_usage():
 		var centrifuger := collider as Centrifuge
 		centrifuger.interact(self)
 		return
-	elif collider is KittenCluster:
-		var kitten_cluster := collider as KittenCluster
-		if current_tool == Tool.SPRAYER:
-			if spray_energy > 0:
-				kitten_cluster.spray(self)
-		elif current_tool == Tool.PICKER:
-			if collider is KittenCluster:
-				kitten_cluster.retrieve(self)
 
 func start_level():
 	print("Level start")
