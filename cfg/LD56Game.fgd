@@ -1,0 +1,6 @@
+@SolidClass color(204 204 204) = worldspawn : "" []
+@PointClass color(255 125 125) size(-8 -8 -8, 8 8 8) = Test_Entity : "" [
+	id(integer) : "Test Identifier"
+	entity_name(string) : "Name"
+]
+@SolidClass color(204 204 204) base() = func_detail_illusionary : "" []
