@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpoa4d7l5tsv8"]
+[gd_scene load_steps=5 format=3 uid="uid://cpoa4d7l5tsv8"]
 
+[ext_resource type="PackedScene" uid="uid://jqmhm7qjf7n5" path="res://scenes/ui.tscn" id="1_11mfm"]
 [ext_resource type="PackedScene" uid="uid://duwmfo2jg5r8k" path="res://assets/maps/test.bsp" id="1_fqery"]
 [ext_resource type="PackedScene" uid="uid://wtv1ym4laxh8" path="res://scenes/player.tscn" id="2_cfjsh"]
 
@@ -10,6 +11,8 @@ ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 
 [node name="Main" type="Node3D"]
+
+[node name="UI" parent="." instance=ExtResource("1_11mfm")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ohmgh")

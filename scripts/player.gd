@@ -7,16 +7,24 @@ const JUMP_VELOCITY = 4.5
 @export var head : Node3D
 @export var mouse_sensitivity : float = 0.1
 
+enum Tool {
+	SCANNER,
+	SPRAYER,
+	PICKER,
+	COUNT
+}
+
+var current_tool := Tool.SCANNER
 var mouse_input : Vector2
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		mouse_input.x += event.relative.x
-		mouse_input.y += event.relative.y
-
+func _input(event: InputEvent) -> void:
+	if event is not InputEventMouseMotion or Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
+		return
+	mouse_input.x += event.relative.x
+	mouse_input.y += event.relative.y
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -27,6 +35,14 @@ func _physics_process(delta: float) -> void:
 	head.rotation_degrees.x -= mouse_input.y * mouse_sensitivity
 	head.rotation.x = clamp(head.rotation.x, deg_to_rad(-90), deg_to_rad(90))
 	mouse_input = Vector2.ZERO
+
+	# Switch tools
+	if Input.is_action_just_pressed("next_tool"):
+		current_tool += 1
+		if (current_tool as int) >= (Tool.COUNT as int): current_tool = Tool.SCANNER
+	elif Input.is_action_just_pressed("prev_tool"):
+		current_tool -= 1
+		if (current_tool as int) < 0: current_tool = ((Tool.PICKER - 1 )as int) as Tool
 
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
