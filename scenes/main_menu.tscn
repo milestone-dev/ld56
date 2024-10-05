@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_6m8h0"]
 [ext_resource type="PackedScene" uid="uid://cpoa4d7l5tsv8" path="res://scenes/main_level.tscn" id="2_767qk"]
 [ext_resource type="PackedScene" uid="uid://rs4k12y5gess" path="res://scenes/test_level.tscn" id="3_ud258"]
-[ext_resource type="Texture2D" uid="uid://chhknbnbnulry" path="res://assets/icons/icon.svg" id="4_84jfj"]
+[ext_resource type="Texture2D" uid="uid://bggqlfri1ag7" path="res://assets/sprites/kitten1.png" id="4_xirh7"]
 [ext_resource type="Texture2D" uid="uid://depdjxb155j1x" path="res://assets/icons/dubpot.png" id="5_l0viq"]
 
 [sub_resource type="Gradient" id="Gradient_us6km"]
@@ -51,14 +51,11 @@ theme_override_constants/separation = 16
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
-texture = ExtResource("4_84jfj")
-stretch_mode = 3
-
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 32
-theme_override_styles/separator = SubResource("StyleBoxEmpty_6apkb")
+texture = ExtResource("4_xirh7")
+stretch_mode = 5
 
 [node name="StartGameButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -76,7 +73,7 @@ text = "Start test level"
 
 [node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 32
+theme_override_constants/separation = 16
 theme_override_styles/separator = SubResource("StyleBoxEmpty_6apkb")
 
 [node name="Label" type="Label" parent="VBoxContainer"]

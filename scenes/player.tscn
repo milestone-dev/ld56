@@ -1,6 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://wtv1ym4laxh8"]
+[gd_scene load_steps=8 format=3 uid="uid://wtv1ym4laxh8"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ab6ol"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gra72"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+gravity = Vector3(0, -9.8, -16)
+
+[sub_resource type="QuadMesh" id="QuadMesh_xi2un"]
+size = Vector2(0.1, 0.1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_pxv1l"]
 radius = 0.1
@@ -13,7 +24,7 @@ radius = 0.853455
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_287bv"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("head", "interaction_ray", "collision_shape", "scanner_point", "interaction_shape", "mesh_instance")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("head", "interaction_ray", "collision_shape", "scanner_point", "interaction_shape", "mesh_instance", "spray_particles")]
 collision_layer = 16
 script = ExtResource("1_ab6ol")
 head = NodePath("Head")
@@ -22,6 +33,7 @@ collision_shape = NodePath("BodyCollisionShape3D")
 scanner_point = NodePath("Head/ScannerPoint")
 interaction_shape = NodePath("Head/InteractArea3D")
 mesh_instance = NodePath("BodyCollisionShape3D/MeshInstance3D")
+spray_particles = NodePath("Head/ScannerPoint/SprayParticles")
 
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
@@ -30,6 +42,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 
 [node name="ScannerPoint" type="Marker3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.52646)
+
+[node name="SprayParticles" type="GPUParticles3D" parent="Head/ScannerPoint"]
+emitting = false
+amount = 32
+one_shot = true
+speed_scale = 2.0
+process_material = SubResource("ParticleProcessMaterial_gra72")
+draw_pass_1 = SubResource("QuadMesh_xi2un")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Head/ScannerPoint"]
 visible = false

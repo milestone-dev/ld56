@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://jqmhm7qjf7n5"]
+[gd_scene load_steps=6 format=3 uid="uid://jqmhm7qjf7n5"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_68hwl"]
 [ext_resource type="Texture2D" uid="uid://cya465556bqjx" path="res://assets/sprites/ui_catscan.png" id="2_f1ilk"]
+[ext_resource type="Texture2D" uid="uid://l7bo14mb54hn" path="res://assets/sprites/ui_spray.png" id="3_sordo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3cmu4"]
 bg_color = Color(1, 1, 1, 0.509804)
@@ -14,14 +15,14 @@ script = ExtResource("1_68hwl")
 crosshair = NodePath("Crosshair")
 kitten_count_label = NodePath("MarginContainer/VBoxContainer/KittenCountLabel")
 tardigrade_count_label = NodePath("MarginContainer/VBoxContainer/TardigradeCountLabel")
-current_tool_label = NodePath("CurrentToolLabel")
+current_tool_label = NodePath("MarginContainer3/VBoxContainer2/CurrentToolLabel")
 scan_energy_label = NodePath("MarginContainer2/VBoxContainer2/ScanEnergyLabel")
 spray_energy_label = NodePath("MarginContainer2/VBoxContainer2/SprayEnergyLabel")
 sprint_energy_label = NodePath("MarginContainer2/VBoxContainer2/SprintEnergyLabel")
 kitten_pool_label = NodePath("MarginContainer3/VBoxContainer2/KittenPoolLabel")
 time_label = NodePath("MarginContainer3/VBoxContainer2/TimeLabel")
-detection_progress_bar = NodePath("CastScannerTexture/KittenDetectionProgressBar")
-cat_scanner_texture = NodePath("CastScannerTexture")
+detection_progress_bar = NodePath("CatScannerTexture/KittenDetectionProgressBar")
+cat_scanner_texture = NodePath("CatScannerTexture")
 
 [node name="Crosshair" type="ColorRect" parent="."]
 anchors_preset = 8
@@ -36,53 +37,41 @@ offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -126.0
-offset_right = 215.0
-grow_vertical = 0
+[node name="MarginContainer3" type="MarginContainer" parent="."]
+offset_right = 233.0
+offset_bottom = 126.0
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer3"]
 layout_mode = 2
 
-[node name="KittenCountLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="TimeLabel" type="Label" parent="MarginContainer3/VBoxContainer2"]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 theme_override_constants/shadow_outline_size = 2
-theme_override_font_sizes/font_size = 32
-text = "Kittens: #"
+theme_override_font_sizes/font_size = 16
+text = "Time Played"
 
-[node name="TardigradeCountLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="KittenPoolLabel" type="Label" parent="MarginContainer3/VBoxContainer2"]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_font_sizes/font_size = 32
-text = "Tardigrades"
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 16
+text = "Kitten Pool"
 
-[node name="CurrentToolLabel" type="Label" parent="."]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 275.0
-offset_top = -67.0
-offset_right = 566.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="CurrentToolLabel" type="Label" parent="MarginContainer3/VBoxContainer2"]
+layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 16
 text = "Current Tool"
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
@@ -106,8 +95,9 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 theme_override_constants/shadow_outline_size = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 16
 text = "Scan Energy"
+horizontal_alignment = 2
 
 [node name="SprayEnergyLabel" type="Label" parent="MarginContainer2/VBoxContainer2"]
 layout_mode = 2
@@ -115,8 +105,9 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 theme_override_constants/shadow_outline_size = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 16
 text = "Spray Energy"
+horizontal_alignment = 2
 
 [node name="SprintEnergyLabel" type="Label" parent="MarginContainer2/VBoxContainer2"]
 layout_mode = 2
@@ -124,39 +115,43 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 theme_override_constants/shadow_outline_size = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 16
 text = "Sprint Energy"
+horizontal_alignment = 2
 
-[node name="MarginContainer3" type="MarginContainer" parent="."]
-offset_right = 233.0
-offset_bottom = 126.0
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -126.0
+offset_right = 215.0
+grow_vertical = 0
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer3"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="TimeLabel" type="Label" parent="MarginContainer3/VBoxContainer2"]
-layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
-theme_override_constants/shadow_outline_size = 2
-theme_override_font_sizes/font_size = 32
-text = "Time Played"
-
-[node name="KittenPoolLabel" type="Label" parent="MarginContainer3/VBoxContainer2"]
+[node name="KittenCountLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 theme_override_constants/shadow_outline_size = 2
-theme_override_font_sizes/font_size = 32
-text = "Kitten Pool"
+theme_override_font_sizes/font_size = 16
+text = "Kittens: #"
 
-[node name="CastScannerTexture" type="TextureRect" parent="."]
+[node name="TardigradeCountLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 16
+text = "Tardigrades"
+
+[node name="CatScannerTexture" type="TextureRect" parent="."]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -165,7 +160,7 @@ offset_right = 40.0
 grow_vertical = 0
 texture = ExtResource("2_f1ilk")
 
-[node name="KittenDetectionProgressBar" type="ProgressBar" parent="CastScannerTexture"]
+[node name="KittenDetectionProgressBar" type="ProgressBar" parent="CatScannerTexture"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -183,3 +178,15 @@ theme_override_styles/background = SubResource("StyleBoxFlat_3cmu4")
 theme_override_styles/fill = SubResource("StyleBoxFlat_j35pd")
 value = 50.0
 show_percentage = false
+
+[node name="SprayTexture" type="TextureRect" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -384.0
+offset_top = -358.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("3_sordo")
