@@ -1,15 +1,50 @@
-[gd_scene load_steps=2 format=3 uid="uid://jqmhm7qjf7n5"]
+[gd_scene load_steps=4 format=3 uid="uid://jqmhm7qjf7n5"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_68hwl"]
 
-[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("crosshair", "kitten_count_label", "tardigrade_count_label", "current_tool_label", "scan_energy_label", "spray_energy_label")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3cmu4"]
+bg_color = Color(0, 0, 0, 0.180392)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j35pd"]
+bg_color = Color(0.968627, 0.968627, 0.968627, 0.686275)
+
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("crosshair", "kitten_count_label", "tardigrade_count_label", "current_tool_label", "scan_energy_label", "spray_energy_label", "detection_progress_bar")]
 script = ExtResource("1_68hwl")
 crosshair = NodePath("Crosshair")
-kitten_count_label = NodePath("VBoxContainer/KittenCountLabel")
-tardigrade_count_label = NodePath("VBoxContainer/TardigradeCountLabel")
+kitten_count_label = NodePath("MarginContainer/VBoxContainer/KittenCountLabel")
+tardigrade_count_label = NodePath("MarginContainer/VBoxContainer/TardigradeCountLabel")
 current_tool_label = NodePath("CurrentToolLabel")
-scan_energy_label = NodePath("VBoxContainer2/ScanEnergyLabel")
-spray_energy_label = NodePath("VBoxContainer2/SprayEnergyLabel")
+scan_energy_label = NodePath("MarginContainer2/VBoxContainer2/ScanEnergyLabel")
+spray_energy_label = NodePath("MarginContainer2/VBoxContainer2/SprayEnergyLabel")
+detection_progress_bar = NodePath("KittenDetectionProgressBar")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 183.0
+offset_bottom = 94.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="KittenCountLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 32
+text = "Kittens: #"
+
+[node name="TardigradeCountLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 32
+text = "Tardigrades"
 
 [node name="Crosshair" type="ColorRect" parent="."]
 anchors_preset = 8
@@ -24,52 +59,22 @@ offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_right = 138.0
-offset_bottom = 72.0
-
-[node name="KittenCountLabel" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
-theme_override_constants/shadow_outline_size = 2
-theme_override_font_sizes/font_size = 24
-text = "Kittens: #"
-
-[node name="TardigradeCountLabel" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
-theme_override_font_sizes/font_size = 24
-text = "Tardigrades"
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="."]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -151.0
-offset_bottom = 72.0
-grow_horizontal = 0
-
-[node name="ScanEnergyLabel" type="Label" parent="VBoxContainer2"]
-layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
-theme_override_constants/shadow_outline_size = 2
-theme_override_font_sizes/font_size = 24
-text = "Scan Energy"
-
-[node name="SprayEnergyLabel" type="Label" parent="VBoxContainer2"]
-layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
-theme_override_constants/shadow_outline_size = 2
-theme_override_font_sizes/font_size = 24
-text = "Spray Energy"
+[node name="KittenDetectionProgressBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(150, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = 51.0
+offset_right = 2.0
+offset_bottom = 78.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_3cmu4")
+theme_override_styles/fill = SubResource("StyleBoxFlat_j35pd")
+value = 50.0
 
 [node name="CurrentToolLabel" type="Label" parent="."]
 anchors_preset = 7
@@ -85,5 +90,38 @@ grow_vertical = 0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 48
 text = "Current Tool"
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -201.0
+offset_bottom = 94.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+
+[node name="ScanEnergyLabel" type="Label" parent="MarginContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 32
+text = "Scan Energy"
+
+[node name="SprayEnergyLabel" type="Label" parent="MarginContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 32
+text = "Spray Energy"

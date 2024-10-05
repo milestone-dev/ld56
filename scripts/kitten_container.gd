@@ -1,5 +1,6 @@
 extends StaticBody3D
 class_name KittenContainer
+
 @export var label : Label3D
 
 var count := 0

@@ -7,6 +7,7 @@ class_name UI
 @export var current_tool_label : Label
 @export var scan_energy_label : Label
 @export var spray_energy_label : Label
+@export var detection_progress_bar : ProgressBar
 
 func update(player:Player):
 	kitten_count_label.text = "Kittens: %d" % player.kitten_count
@@ -16,3 +17,7 @@ func update(player:Player):
 	spray_energy_label.text = "Spray Energy: %d" % round(player.spray_energy)
 
 	current_tool_label.text = Player.Tool.keys()[player.current_tool]
+
+	detection_progress_bar.visible = player.current_tool == Player.Tool.SCANNER
+	detection_progress_bar.max_value = player.KITTEN_DETECTION_LEVEL_MAX
+	detection_progress_bar.value = player.kitten_detection_level

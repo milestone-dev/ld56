@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dbw8labowirnk"]
+
+[ext_resource type="Shader" uid="uid://bkwsgy5n73jcv" path="res://assets/models/shared/shaders/protoGlass.tres" id="1_nt1lx"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_nt1lx")
+shader_parameter/Opacity = 0.665
+shader_parameter/EmissiveStrength = 0.0

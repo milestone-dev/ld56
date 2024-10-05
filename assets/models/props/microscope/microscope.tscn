@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://b20cptcvcqfl7"]
+
+[ext_resource type="PackedScene" uid="uid://nwt61ma4cki1" path="res://assets/models/props/microscope/microscope.gltf" id="1_dow6c"]
+
+[node name="microscope" instance=ExtResource("1_dow6c")]
