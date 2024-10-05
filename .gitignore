@@ -16,6 +16,11 @@ assets/maps/autosave
 data_*/
 mono_crash.*.json
 .DS_Store
+
 *.log
 *.prt
 *.pts
+
+# build stuff
+build/
+export/

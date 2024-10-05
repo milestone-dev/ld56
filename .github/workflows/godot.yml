@@ -1,0 +1,95 @@
+name: "godot-ci export"
+on: 
+  push: 
+    branches: 
+      - "main"
+
+env:
+  GODOT_VERSION: 4.3
+  EXPORT_NAME: OneMillionKittens
+  # Set up these as Github Secrets:
+  ITCHIO_API_KEY: ${{ secrets.ITCHIO_API_KEY }}
+  ITCHIO_USERNAME: ${{ secrets.ITCHIO_USERNAME }}
+  ITCHIO_GAME: ${{ secrets.ITCHIO_GAME }}
+
+
+jobs:
+  deploy-web:
+    name: Godot Export
+    runs-on: ubuntu-20.04
+    container:
+      image: docker://barichello/godot-ci:4.3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+        with: 
+          lfs: 'true'
+        
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates/
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+
+      - name: Web Build
+        run: |
+            mkdir -v -p build/web
+            godot --headless -v --export-release "Web" build/web/index.html
+
+      - name: Mac Build
+        run: |
+          mkdir -v -p build/mac
+          godot --headless --verbose --export-release "MacOS" build/mac/$EXPORT_NAME.zip
+
+      - name: Windows Build
+        run: |
+          mkdir -v -p build/windows
+          godot --headless --verbose --export-release "Windows Desktop" build/windows/$EXPORT_NAME.zip
+
+      - name: Linux Build
+        run: |
+          mkdir -v -p build/linux
+          godot --headless --verbose --export-release "Linux/X11" build/linux/$EXPORT_NAME.zip
+
+      - name: Upload Artifact web
+        uses: actions/upload-artifact@v1
+        with:
+          name: Web
+          path: ./build/web/
+
+      - name: Upload Artifact Windows
+        uses: actions/upload-artifact@v1
+        with:
+          name: Windows
+          path: ./build/windows/
+
+      - name: Upload Artifact MacOS
+        uses: actions/upload-artifact@v1
+        with:
+          name: MacOS
+          path: ./build/mac/
+
+      - name: Upload Artifact Linux
+        uses: actions/upload-artifact@v1
+        with:
+          name: Linux
+          path: ./build/linux/
+  
+      - name: Itch.io web
+        env: 
+          BUTLER_API_KEY: ${ITCHIO_API_KEY}
+        run: butler push ./build/web ${ITCHIO_USERNAME}/${ITCHIO_GAME}:web
+
+      - name: Itch.io MacOS
+        env: 
+          BUTLER_API_KEY: ${ITCHIO_API_KEY}
+        run: butler push ./build/mac/$EXPORT_NAME.zip ${ITCHIO_USERNAME}/${ITCHIO_GAME}:mac
+
+      - name: Itch.io Windows
+        env: 
+          BUTLER_API_KEY: ${ITCHIO_API_KEY}
+        run: butler push ./build/windows/$EXPORT_NAME.zip ${ITCHIO_USERNAME}/${ITCHIO_GAME}:windows
+
+      - name: Itch.io Linux
+        env: 
+          BUTLER_API_KEY: ${ITCHIO_API_KEY}
+        run: butler push ./build/linux/$EXPORT_NAME.zip ${ITCHIO_USERNAME}/${ITCHIO_GAME}:linux
