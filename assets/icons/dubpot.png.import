@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nhp3s6tc2j1i"
-path="res://.godot/imported/icon.png-487276ed1e3a0c39cad0279d744ee560.ctex"
+uid="uid://depdjxb155j1x"
+path="res://.godot/imported/dubpot.png-725ec7c70d0c21a5e0f00d5818f78124.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icon.png"
-dest_files=["res://.godot/imported/icon.png-487276ed1e3a0c39cad0279d744ee560.ctex"]
+source_file="res://assets/icons/dubpot.png"
+dest_files=["res://.godot/imported/dubpot.png-725ec7c70d0c21a5e0f00d5818f78124.ctex"]
 
 [params]
 

@@ -1,10 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://4vinrd4h6yl2"]
+[gd_scene load_steps=9 format=3 uid="uid://4vinrd4h6yl2"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_6m8h0"]
 [ext_resource type="PackedScene" uid="uid://cpoa4d7l5tsv8" path="res://scenes/main_level.tscn" id="2_767qk"]
 [ext_resource type="PackedScene" uid="uid://rs4k12y5gess" path="res://scenes/test_level.tscn" id="3_ud258"]
+[ext_resource type="Texture2D" uid="uid://chhknbnbnulry" path="res://assets/icons/icon.svg" id="4_84jfj"]
+[ext_resource type="Texture2D" uid="uid://depdjxb155j1x" path="res://assets/icons/dubpot.png" id="5_l0viq"]
 
-[node name="MainMenu" type="Control"]
+[sub_resource type="Gradient" id="Gradient_us6km"]
+offsets = PackedFloat32Array(0, 0.401473, 0.793738, 0.992634)
+colors = PackedColorArray(0.3, 0.26345, 0.249, 1, 0.63135, 0.69, 0.5865, 1, 0.900535, 0.755793, 0.706239, 1, 1, 0.780392, 0.556863, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_p6ihf"]
+gradient = SubResource("Gradient_us6km")
+fill_from = Vector2(0.683761, 1)
+fill_to = Vector2(0.344017, 0.0534188)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6apkb"]
+
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("start_game_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,6 +27,16 @@ grow_vertical = 2
 script = ExtResource("1_6m8h0")
 level_scene = ExtResource("2_767qk")
 test_level_scene = ExtResource("3_ud258")
+start_game_button = NodePath("VBoxContainer/StartGameButton")
+
+[node name="BGGradient" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_p6ihf")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -24,15 +47,50 @@ offset_left = 404.0
 offset_right = -404.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 16
 alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_84jfj")
+stretch_mode = 3
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+theme_override_styles/separator = SubResource("StyleBoxEmpty_6apkb")
 
 [node name="StartGameButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+focus_next = NodePath("../TestLevelButton")
+theme_override_colors/font_focus_color = Color(1, 0.776471, 0.556863, 1)
+theme_override_font_sizes/font_size = 32
 text = "Start game"
 
 [node name="TestLevelButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+focus_previous = NodePath("../StartGameButton")
+theme_override_colors/font_focus_color = Color(1, 0.776471, 0.556863, 1)
+theme_override_font_sizes/font_size = 32
 text = "Start test level"
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+theme_override_styles/separator = SubResource("StyleBoxEmpty_6apkb")
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "A game by"
+horizontal_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+texture = ExtResource("5_l0viq")
+expand_mode = 2
+stretch_mode = 5
 
 [connection signal="pressed" from="VBoxContainer/StartGameButton" to="." method="start_game"]
 [connection signal="pressed" from="VBoxContainer/TestLevelButton" to="." method="start_test_level"]

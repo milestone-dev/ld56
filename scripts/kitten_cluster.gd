@@ -12,6 +12,8 @@ var kitten_respawn_timer := 0.0
 
 const FADED_OUT_COLOR = Color(1,1,1,0.0)
 
+func has_kittens() -> bool:	return kitten_count > 0
+
 func _ready() -> void:
 	sprite.modulate = FADED_OUT_COLOR;
 
@@ -35,6 +37,7 @@ func add_kittens(count:int) -> bool:
 	return true
 
 func spray(player:Player):
+	if !has_kittens(): return
 	if current_reveal_tween:
 		current_reveal_tween.stop()
 		current_reveal_tween = null
