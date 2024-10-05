@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cyow0ljkfxxap"]
+
+[ext_resource type="Texture2D" uid="uid://dpb2ieireyr4u" path="res://assets/textures/clr_14.png" id="1_hekhk"]
+
+[resource]
+diffuse_mode = 2
+albedo_texture = ExtResource("1_hekhk")
+texture_filter = 0
