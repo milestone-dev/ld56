@@ -2,13 +2,13 @@
 
 importer="bsp"
 type="PackedScene"
-uid="uid://br64wcsg8byiq"
-path="res://.godot/imported/sketch1.bsp-e5fbe6d98f2363fcfb134ea5b2462fab.scn"
+uid="uid://djevos1rc2g42"
+path="res://.godot/imported/apartment.bsp-07011ddc72283762d6a84ec558c8900f.scn"
 
 [deps]
 
-source_file="res://assets/maps/sketch1.bsp"
-dest_files=["res://.godot/imported/sketch1.bsp-e5fbe6d98f2363fcfb134ea5b2462fab.scn"]
+source_file="res://assets/maps/apartment.bsp"
+dest_files=["res://.godot/imported/apartment.bsp-07011ddc72283762d6a84ec558c8900f.scn"]
 
 [params]
 
