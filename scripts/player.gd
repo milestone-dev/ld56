@@ -102,7 +102,7 @@ func _physics_process(delta: float) -> void:
 	if is_sprinting: sprint_energy -= delta
 	else: sprint_energy = min(sprint_energy + delta, SPRINT_ENERGY_MAX)
 
-	var speed = SPRINT_SPEED if is_sprinting else WALK_SPEED
+	var speed = SPRINT_SPEED if is_sprinting and is_on_floor() else WALK_SPEED
 	if direction:
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
