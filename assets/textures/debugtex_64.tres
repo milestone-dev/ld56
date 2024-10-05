@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://beivl1hrtdpub"]
+
+[ext_resource type="Texture2D" uid="uid://b4mlat83y0eq7" path="res://assets/textures/debugtex_64.png" id="1_gse2s"]
+
+[resource]
+diffuse_mode = 2
+albedo_texture = ExtResource("1_gse2s")
+texture_filter = 0
