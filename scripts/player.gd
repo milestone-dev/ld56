@@ -141,10 +141,9 @@ func manage_interactions():
 	if Input.is_action_just_pressed("tool_left"): current_tool = Tool.PICKER
 	elif Input.is_action_just_pressed("tool_right"): current_tool = Tool.SPRAYER
 	if !either_pressed: return
-	# First check for no targeted objects and return early
-	if not interaction_ray.is_colliding():
-		if current_tool == Tool.SPRAYER:
-			spray_energy = max(0, spray_energy - SPRAY_ENERGY_COST)
+
+	# Always consume spray energy regardless of where you spray
+	if current_tool == Tool.SPRAYER: spray_energy = max(0, spray_energy - SPRAY_ENERGY_COST)
 
 	# Check targeted objects
 	var colliders = interaction_shape.get_overlapping_bodies()
