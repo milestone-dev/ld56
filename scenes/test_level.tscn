@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://rs4k12y5gess"]
+
+[ext_resource type="PackedScene" uid="uid://jqmhm7qjf7n5" path="res://scenes/ui.tscn" id="1_cfovc"]
+[ext_resource type="PackedScene" uid="uid://duwmfo2jg5r8k" path="res://assets/maps/test.bsp" id="2_317oy"]
+[ext_resource type="PackedScene" uid="uid://wtv1ym4laxh8" path="res://scenes/player.tscn" id="2_wcyih"]
+
+[sub_resource type="Environment" id="Environment_ohmgh"]
+background_mode = 1
+background_color = Color(0.792935, 0.934721, 1, 1)
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+
+[node name="Main" type="Node3D"]
+
+[node name="UI" parent="." instance=ExtResource("1_cfovc")]
+unique_name_in_owner = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ohmgh")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+sky_mode = 1
+
+[node name="test" parent="." instance=ExtResource("2_317oy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.077, -0.717175, -16.4167)
+
+[node name="Player" parent="." node_paths=PackedStringArray("ui") instance=ExtResource("2_wcyih")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.077, 0.898638, -16.4167)
+ui = NodePath("../UI")
