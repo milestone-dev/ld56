@@ -15,7 +15,7 @@ var current_speed : float = 0.0
 
 var default_knob_rotation : Vector3
 var knob_current_rotation : Vector3
-@export var max_emissive = 4.0
+@export var max_emissive = 8.0
 
 @onready var spinner := $centrifuge_spinner
 @onready var knob: StaticBody3D = $centrifuge_knob
