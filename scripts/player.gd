@@ -179,6 +179,10 @@ func manage_interactions():
 		var centrifuger := collider as Centrifuge
 		centrifuger.interact(self)
 		return
+	elif collider is Incubator:
+		var incubator := collider as Incubator
+		incubator.interact(self)
+		return
 
 func start_level():
 	print("Level start")
