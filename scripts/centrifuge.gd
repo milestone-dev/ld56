@@ -10,10 +10,11 @@ enum SpinnerSetting {
 	SPEED_TWO
 }
 
-var speedSetting := SpinnerSetting.SPEED_TWO #CHANGE THIS TO 'OFF' WHEN INTERACT WORKS
+var speed_setting := SpinnerSetting.OFF
 var current_speed : float = 0.0
 
-var default_knob_position : Vector3
+var default_knob_rotation : Vector3
+var knob_current_rotation : Vector3
 var max_emissive = 4.0
 
 @onready var spinner := $centrifuge_spinner
@@ -27,25 +28,28 @@ var material : Material
 func _ready() -> void:
 	material = centrifuge_base.get_surface_override_material(0)
 	
-	default_knob_position = knob.rotation_degrees
+	default_knob_rotation = knob.rotation_degrees
 	
 	print("There is a centrifuge in the scene")
 	
 	
 func interact(player : Player):
 	print("Centrifuge is interacted upon")
-	if speedSetting == SpinnerSetting.OFF:
-		speedSetting = SpinnerSetting.SPEED_ONE
-	elif speedSetting == SpinnerSetting.SPEED_ONE:
-		speedSetting = SpinnerSetting.SPEED_TWO
+	if speed_setting == SpinnerSetting.OFF:
+		speed_setting = SpinnerSetting.SPEED_ONE
+	elif speed_setting == SpinnerSetting.SPEED_ONE:
+		speed_setting = SpinnerSetting.SPEED_TWO
 	else:
-		speedSetting = SpinnerSetting.OFF
+		speed_setting = SpinnerSetting.OFF
 	
 	
 func _process(delta: float) -> void:
-	current_speed = lerp(current_speed,(speedSetting*SPEED),0.01)
-	if speedSetting != SpinnerSetting.OFF:
-		spinner.rotate_y(current_speed*delta)
 	
-	knob.rotation_degrees = default_knob_position + Vector3(0,0,(speedSetting * KNOB_INCREMENT)) # Put the knob in the correct speed setting
-	material.set_shader_parameter("EmissiveStrength", max_emissive * speedSetting)
+	current_speed = lerp(current_speed,(speed_setting*SPEED),0.01)
+	
+	spinner.rotate_y(current_speed*delta)
+	
+	knob_current_rotation = lerp(knob_current_rotation, Vector3(0,0,(speed_setting * -KNOB_INCREMENT)), 0.2)
+	
+	knob.rotation_degrees = default_knob_rotation + knob_current_rotation # Put the knob in the correct speed setting
+	material.set_shader_parameter("EmissiveStrength", max_emissive * speed_setting)

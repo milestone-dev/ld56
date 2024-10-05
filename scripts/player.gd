@@ -148,6 +148,10 @@ func manage_tool_usage():
 		var spray_recharger := collider as SprayRecharger
 		spray_recharger.interact(self)
 		return
+	elif collider is Centrifuge:
+		var centrifuger := collider as Centrifuge
+		centrifuger.interact(self)
+		return
 	elif collider is KittenCluster:
 		var kitten_cluster := collider as KittenCluster
 		if current_tool == Tool.SPRAYER:
