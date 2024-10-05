@@ -142,10 +142,6 @@ tool_4={
 3d_physics/layer_3="Container"
 3d_physics/layer_5="Player"
 
-[physics]
-
-3d/physics_engine="JoltPhysics3D"
-
 [rendering]
 
 textures/vram_compression/import_etc2_astc=true
