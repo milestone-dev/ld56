@@ -18,6 +18,6 @@ func update(player:Player):
 
 	current_tool_label.text = Player.Tool.keys()[player.current_tool]
 
-	detection_progress_bar.visible = player.current_tool == Player.Tool.SCANNER
+	detection_progress_bar.visible = player.scanner_showing
 	detection_progress_bar.max_value = player.KITTEN_DETECTION_LEVEL_MAX
 	detection_progress_bar.value = player.kitten_detection_level

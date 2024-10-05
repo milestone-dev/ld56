@@ -2,7 +2,6 @@ extends CharacterBody3D
 class_name Player
 
 enum Tool {
-	SCANNER,
 	SPRAYER,
 	PICKER,
 	COUNT
@@ -16,8 +15,9 @@ const JUMP_VELOCITY = 4.5
 @export var mouse_sensitivity : float = 0.1
 @export var ui : UI
 
-var current_tool := Tool.SCANNER
+var current_tool := Tool.PICKER
 var mouse_input : Vector2
+var scanner_showing := false
 
 var kitten_count := 0;
 var tardigrade_count := 0;
@@ -56,23 +56,13 @@ func _physics_process(delta: float) -> void:
 		kitten_count = max(0, kitten_count - 1)
 		tardigrade_count = max(0, tardigrade_count - 1)
 
-	# Switch tools
-	if Input.is_action_just_pressed("next_tool"):
-		current_tool = current_tool + 1 as Tool
-		if (current_tool as int) >= (Tool.COUNT as int): current_tool = Tool.SCANNER
-	elif Input.is_action_just_pressed("prev_tool"):
-		current_tool = current_tool - 1 as Tool
-		if (current_tool as int) < 0: current_tool = ((Tool.COUNT - 1 )as int) as Tool
-	elif Input.is_action_just_pressed("tool_1"): current_tool = Tool.SCANNER
-	elif Input.is_action_just_pressed("tool_2"): current_tool = Tool.SPRAYER
-	elif Input.is_action_just_pressed("tool_3"): current_tool = Tool.PICKER
+	scanner_showing =  Input.is_action_pressed("tool_enable_scanner")
 
 	# jump, interact
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	if Input.is_action_just_pressed("use_tool"):
-		use_tool()
+	use_tool()
 
 	update_scanner()
 	ui.update(self)
@@ -107,6 +97,10 @@ func update_scanner():
 		kitten_detection_level = KITTEN_DETECTION_LEVEL_MAX
 
 func use_tool():
+	var either_pressed = Input.is_action_just_pressed("tool_left") or Input.is_action_just_pressed("tool_right")
+	if Input.is_action_just_pressed("tool_left"): current_tool = Tool.PICKER
+	elif Input.is_action_just_pressed("tool_right"): current_tool = Tool.SPRAYER
+	if !either_pressed: return
 	# First check for no targeted objects and return early
 	if not interaction_ray.is_colliding():
 		if current_tool == Tool.SPRAYER:
