@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cpoa4d7l5tsv8"]
+[gd_scene load_steps=7 format=3 uid="uid://cpoa4d7l5tsv8"]
 
 [ext_resource type="PackedScene" uid="uid://jqmhm7qjf7n5" path="res://scenes/ui.tscn" id="1_11mfm"]
 [ext_resource type="PackedScene" uid="uid://wtv1ym4laxh8" path="res://scenes/player.tscn" id="2_cfjsh"]
 [ext_resource type="PackedScene" uid="uid://dwcy4yjjn8ia8" path="res://assets/maps/apartment.bsp" id="3_4u18w"]
 [ext_resource type="PackedScene" uid="uid://dtfeq3efdallg" path="res://assets/models/props/incubator/incubator.tscn" id="6_n72c3"]
 [ext_resource type="PackedScene" uid="uid://ctwdnitte857g" path="res://assets/models/props/centrifuge/centrifuge.tscn" id="7_ic2o6"]
-[ext_resource type="PackedScene" uid="uid://uv1docmaql2h" path="res://assets/models/props/cat_basket/cat_basket.tscn" id="8_ojlof"]
 
 [sub_resource type="Environment" id="Environment_ohmgh"]
 background_mode = 1
@@ -31,10 +30,7 @@ ui = NodePath("../UI")
 [node name="apartment" parent="." instance=ExtResource("3_4u18w")]
 
 [node name="incubator" parent="." instance=ExtResource("6_n72c3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.89736, 0.0682716, -16.1253)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.85475, 1.10042, -16.1253)
 
 [node name="centrifuge" parent="." instance=ExtResource("7_ic2o6")]
-transform = Transform3D(0.0137702, 0, 0.999905, 0, 1, 0, -0.999905, 0, 0.0137702, 1.00661, 0.0356181, -11.4689)
-
-[node name="cat_basket" parent="." instance=ExtResource("8_ojlof")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.30054, 0.200334, -15.8081)
+transform = Transform3D(0.999905, 0, -0.0137702, 0, 1, 0, 0.0137702, 0, 0.999905, 3.33287, 1.09713, -15.1262)
