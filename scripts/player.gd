@@ -7,6 +7,9 @@ enum Tool {
 	COUNT
 }
 
+var kitten_pool := 1000000
+var play_time := 0.0
+
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
@@ -47,6 +50,9 @@ func _input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+
+
+	play_time += delta
 
 	# make kittens and tardigrades fall out of your hand
 	# placeholder impl for now

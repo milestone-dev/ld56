@@ -8,7 +8,7 @@ bg_color = Color(0, 0, 0, 0.180392)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j35pd"]
 bg_color = Color(0.968627, 0.968627, 0.968627, 0.686275)
 
-[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("crosshair", "kitten_count_label", "tardigrade_count_label", "current_tool_label", "scan_energy_label", "spray_energy_label", "detection_progress_bar")]
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("crosshair", "kitten_count_label", "tardigrade_count_label", "current_tool_label", "scan_energy_label", "spray_energy_label", "kitten_pool_label", "time_label", "detection_progress_bar")]
 script = ExtResource("1_68hwl")
 crosshair = NodePath("Crosshair")
 kitten_count_label = NodePath("MarginContainer/VBoxContainer/KittenCountLabel")
@@ -16,6 +16,8 @@ tardigrade_count_label = NodePath("MarginContainer/VBoxContainer/TardigradeCount
 current_tool_label = NodePath("CurrentToolLabel")
 scan_energy_label = NodePath("MarginContainer2/VBoxContainer2/ScanEnergyLabel")
 spray_energy_label = NodePath("MarginContainer2/VBoxContainer2/SprayEnergyLabel")
+kitten_pool_label = NodePath("MarginContainer3/VBoxContainer2/KittenPoolLabel")
+time_label = NodePath("MarginContainer3/VBoxContainer2/TimeLabel")
 detection_progress_bar = NodePath("KittenDetectionProgressBar")
 
 [node name="Crosshair" type="ColorRect" parent="."]
@@ -129,3 +131,32 @@ theme_override_constants/shadow_offset_y = 2
 theme_override_constants/shadow_outline_size = 2
 theme_override_font_sizes/font_size = 32
 text = "Spray Energy"
+
+[node name="MarginContainer3" type="MarginContainer" parent="."]
+offset_right = 233.0
+offset_bottom = 126.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer3"]
+layout_mode = 2
+
+[node name="TimeLabel" type="Label" parent="MarginContainer3/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 32
+text = "Scan Energy"
+
+[node name="KittenPoolLabel" type="Label" parent="MarginContainer3/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 32
+text = "Scan Energy"
