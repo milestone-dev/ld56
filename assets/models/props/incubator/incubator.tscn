@@ -23,7 +23,8 @@ shader_parameter/EmissiveStrength = 1.0
 [node name="incubator" instance=ExtResource("1_hm2r6")]
 
 [node name="incubator" parent="." index="0"]
-transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0.10313, 0)
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
+collision_layer = 5
 script = ExtResource("2_5rel5")
 
 [node name="incubator" parent="incubator" index="0"]

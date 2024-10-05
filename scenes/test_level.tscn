@@ -79,6 +79,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21.475
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21.4013, 0.845325, -15.8023)
 
 [node name="incubator" parent="incubator/incubator" index="0"]
+transform = Transform3D(1, 0, -3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 1, 0, -0.086728, 0)
 surface_material_override/0 = SubResource("ShaderMaterial_rt77w")
 surface_material_override/1 = SubResource("ShaderMaterial_6y2q6")
 
