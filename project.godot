@@ -15,6 +15,10 @@ run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://assets/icons/icon.svg"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [dotnet]
 
 project/assembly_name="LD56"
@@ -50,7 +54,7 @@ bsp={
 "texture_name1": "res://material/texture_name1_material.tres"
 },
 "transparent_texture_prefix": "{",
-"use_entity_remap": true,
+"use_entity_remap": false,
 "use_triangle_collision": false,
 "water_scene_template": "res://addons/bsp_importer/water_example_template.tscn"
 }
