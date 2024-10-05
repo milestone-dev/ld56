@@ -145,6 +145,7 @@ func manage_interactions():
 
 	# Always consume spray energy regardless of where you spray
 	if current_tool == Tool.SPRAYER and spray_energy > 0:
+		ui.spray_sprite.play()
 		spray_particles.restart()
 		spray_particles.emitting = true
 		spray_energy = max(0, spray_energy - SPRAY_ENERGY_COST)

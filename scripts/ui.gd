@@ -12,7 +12,7 @@ class_name UI
 @export var time_label : Label
 @export var detection_progress_bar : ProgressBar
 @export var cat_scanner_texture : TextureRect
-@export var spray_texture : TextureRect
+@export var spray_sprite : AnimatedSprite2D
 
 func update(player:Player):
 	kitten_count_label.visible = !player.scanner_showing
