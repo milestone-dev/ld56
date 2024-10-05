@@ -75,21 +75,13 @@ jobs:
           path: ./build/linux/
   
       - name: Itch.io web
-        env: 
-          BUTLER_API_KEY: ${ITCHIO_API_KEY}
-        run: butler push ./build/web ${ITCHIO_USERNAME}/${ITCHIO_GAME}:web
+        run: BUTLER_API_KEY=${ITCHIO_API_KEY} butler push ./build/web ${ITCHIO_USERNAME}/${ITCHIO_GAME}:web
 
       - name: Itch.io MacOS
-        env: 
-          BUTLER_API_KEY: ${ITCHIO_API_KEY}
-        run: butler push ./build/mac/$EXPORT_NAME.zip ${ITCHIO_USERNAME}/${ITCHIO_GAME}:mac
+        run: BUTLER_API_KEY=${ITCHIO_API_KEY} butler push ./build/mac/$EXPORT_NAME.zip ${ITCHIO_USERNAME}/${ITCHIO_GAME}:mac
 
       - name: Itch.io Windows
-        env: 
-          BUTLER_API_KEY: ${ITCHIO_API_KEY}
-        run: butler push ./build/windows/$EXPORT_NAME.zip ${ITCHIO_USERNAME}/${ITCHIO_GAME}:windows
+        run: BUTLER_API_KEY=${ITCHIO_API_KEY} butler push ./build/windows/$EXPORT_NAME.zip ${ITCHIO_USERNAME}/${ITCHIO_GAME}:windows
 
       - name: Itch.io Linux
-        env: 
-          BUTLER_API_KEY: ${ITCHIO_API_KEY}
-        run: butler push ./build/linux/$EXPORT_NAME.zip ${ITCHIO_USERNAME}/${ITCHIO_GAME}:linux
+        run: BUTLER_API_KEY=${ITCHIO_API_KEY} butler push ./build/linux/$EXPORT_NAME.zip ${ITCHIO_USERNAME}/${ITCHIO_GAME}:linux
