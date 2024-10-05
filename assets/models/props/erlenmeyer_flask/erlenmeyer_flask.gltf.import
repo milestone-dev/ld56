@@ -1,0 +1,47 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://bjxc4b0cp6rr7"
+path="res://.godot/imported/erlenmeyer_flask.gltf-cc5dad1fe444260dfbfb1a6be0869f5a.scn"
+
+[deps]
+
+source_file="res://assets/models/props/erlenmeyer_flask/erlenmeyer_flask.gltf"
+dest_files=["res://.godot/imported/erlenmeyer_flask.gltf-cc5dad1fe444260dfbfb1a6be0869f5a.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+_subresources={
+"materials": {
+"ProtoMat": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/shared/materials/protoMat.tres"
+},
+"ProtoMatGlass": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/shared/materials/protoMatGlass.tres"
+}
+}
+}
+gltf/naming_version=1
+gltf/embedded_image_handling=1
