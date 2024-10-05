@@ -17,31 +17,61 @@
 }
 // entity 1
 {
-"classname" "Test_Entity"
-"origin" "-88 -136 24"
+"classname" "KittenContainer"
+"origin" "-232 216 24"
 }
 // entity 2
 {
-"classname" "Test_Entity"
-"origin" "-72 -184 24"
+"classname" "TardigradeContainer"
+"origin" "-72 184 24"
 }
 // entity 3
 {
-"classname" "Test_Entity"
-"origin" "-136 -168 24"
+"classname" "KittenCluster"
+"origin" "-40 -248 24"
 }
 // entity 4
 {
-"classname" "Test_Entity"
-"origin" "184 -184 24"
+"classname" "KittenCluster"
+"origin" "-88 -232 24"
 }
 // entity 5
 {
-"classname" "Test_Entity"
-"origin" "168 -136 24"
+"classname" "KittenCluster"
+"origin" "24 -216 24"
 }
 // entity 6
 {
-"classname" "Test_Entity"
-"origin" "120 -168 24"
+"classname" "KittenCluster"
+"origin" "-248 -168 24"
+}
+// entity 7
+{
+"classname" "KittenCluster"
+"origin" "-264 -200 24"
+}
+// entity 8
+{
+"classname" "KittenCluster"
+"origin" "-216 -216 24"
+}
+// entity 9
+{
+"classname" "KittenCluster"
+"origin" "-232 -264 24"
+}
+// entity 10
+{
+"classname" "KittenCluster"
+"origin" "-72 -168 24"
+}
+// entity 11
+{
+"classname" "KittenCluster"
+"origin" "328 -296 24"
+}
+// entity 12
+{
+"classname" "KittenCluster"
+"origin" "-88 -296 24"
 }

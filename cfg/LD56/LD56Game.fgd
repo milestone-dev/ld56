@@ -3,4 +3,9 @@
 	id(integer) : "Test Identifier"
 	entity_name(string) : "Name"
 ]
+@PointClass color(255 125 125) size(-8 -8 -8, 8 8 8) = KittenCluster : "" [
+	count(integer) : "Kitten Count"
+]
+@PointClass color(255 125 125) size(-8 -8 -8, 8 8 8) = KittenContainer : "" []
+@PointClass color(255 125 125) size(-8 -8 -8, 8 8 8) = TardigradeContainer : "" []
 @SolidClass color(204 204 204) base() = func_detail_illusionary : "" []

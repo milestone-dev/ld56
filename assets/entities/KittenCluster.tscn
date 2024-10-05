@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://ct2s8gsuxcuu3"]
+
+[ext_resource type="Texture2D" uid="uid://chhknbnbnulry" path="res://assets/icons/icon.svg" id="1_hoy1p"]
+
+[node name="KittenCluster" type="Node3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.658098, 0)
+billboard = 1
+texture = ExtResource("1_hoy1p")
