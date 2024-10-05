@@ -4,9 +4,13 @@ class_name TardigradeContainer
 
 var count := 0
 
-func update(c : int):
-	count += c
+func interact(player : Player):
+	count += player.tardigrade_count
+	player.tardigrade_count = 0
+	update_count()
+
+func update_count():
 	label.text = "Tardigrades: %d" % count
 
 func _ready() -> void:
-	update(0)
+	update_count()

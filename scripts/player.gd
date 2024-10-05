@@ -50,9 +50,14 @@ func _physics_process(delta: float) -> void:
 		if interaction_ray.is_colliding():
 			var collider = interaction_ray.get_collider()
 			if collider is KittenCluster:
-				kitten_count += 1
-				if (randf()) < 0.2: tardigrade_count += 1
-				collider.queue_free()
+				var kitten_cluster := collider as KittenCluster
+				kitten_cluster.interact(self)
+			elif  collider is KittenContainer:
+				var kitten_container := collider as KittenContainer
+				kitten_container.interact(self)
+			elif collider is TardigradeContainer:
+				var tardigrade_container := collider as TardigradeContainer
+				tardigrade_container.interact(self)
 
 	ui.update(self)
 
