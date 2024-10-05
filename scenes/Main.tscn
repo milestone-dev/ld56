@@ -1,7 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://cpoa4d7l5tsv8"]
+[gd_scene load_steps=3 format=3 uid="uid://cpoa4d7l5tsv8"]
 
 [ext_resource type="PackedScene" uid="uid://duwmfo2jg5r8k" path="res://assets/maps/test.bsp" id="1_x7bi4"]
 
+[sub_resource type="Environment" id="Environment_ohmgh"]
+background_mode = 1
+background_color = Color(0.792935, 0.934721, 1, 1)
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+
 [node name="Main" type="Node3D"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ohmgh")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+sky_mode = 1
+
 [node name="test" parent="." instance=ExtResource("1_x7bi4")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.0566936, 0.480215, -0.875317, 0, 0.876727, 0.480989, 0.998392, 0.027269, -0.0497048, -10.5921, 5.37349, -1.90958)
