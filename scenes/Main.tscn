@@ -13,6 +13,7 @@ ambient_light_color = Color(1, 1, 1, 1)
 [node name="Main" type="Node3D"]
 
 [node name="UI" parent="." instance=ExtResource("1_11mfm")]
+unique_name_in_owner = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ohmgh")
@@ -22,5 +23,6 @@ sky_mode = 1
 
 [node name="test" parent="." instance=ExtResource("1_fqery")]
 
-[node name="Player" parent="." instance=ExtResource("2_cfjsh")]
+[node name="Player" parent="." node_paths=PackedStringArray("ui") instance=ExtResource("2_cfjsh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.03066, 2.89176, 0)
+ui = NodePath("../UI")

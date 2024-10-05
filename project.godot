@@ -111,6 +111,13 @@ prev_tool={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="World"
+3d_physics/layer_2="Kitten"
+3d_physics/layer_3="Container"
+3d_physics/layer_5="Player"
+
 [rendering]
 
 textures/vram_compression/import_etc2_astc=true
