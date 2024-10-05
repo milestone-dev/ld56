@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://tgncwnnvpkq5"]
+
+[ext_resource type="Texture2D" uid="uid://ihhs8bioapme" path="res://assets/textures/counterleg.png" id="1_w1wsu"]
+
+[resource]
+diffuse_mode = 2
+albedo_texture = ExtResource("1_w1wsu")
+texture_filter = 0
