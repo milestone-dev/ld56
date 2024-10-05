@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://7cdloe2u8yiu"]
+
+[ext_resource type="Shader" uid="uid://gs7t5m382xmj" path="res://assets/models/shared/shaders/general_shader.tres" id="1_gmpb0"]
+[ext_resource type="Texture2D" uid="uid://ihhs8bioapme" path="res://assets/textures/counterleg.png" id="2_ehqc8"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_gmpb0")
+shader_parameter/Metallness = 1.0
+shader_parameter/Roughness = 0.535
+shader_parameter/albedo_texture = ExtResource("2_ehqc8")

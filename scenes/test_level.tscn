@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://rs4k12y5gess"]
+[gd_scene load_steps=16 format=3 uid="uid://rs4k12y5gess"]
 
 [ext_resource type="PackedScene" uid="uid://jqmhm7qjf7n5" path="res://scenes/ui.tscn" id="1_cfovc"]
 [ext_resource type="PackedScene" uid="uid://ddw7qw2y8g0au" path="res://assets/maps/test.bsp" id="2_317oy"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dtfeq3efdallg" path="res://assets/models/props/incubator/incubator.tscn" id="7_18doh"]
 [ext_resource type="Shader" uid="uid://rb0ou45ypa8b" path="res://assets/models/shared/shaders/protoShader.tres" id="8_006rw"]
 [ext_resource type="Shader" uid="uid://bkwsgy5n73jcv" path="res://assets/models/shared/shaders/protoGlass.tres" id="9_1f4ol"]
+[ext_resource type="PackedScene" uid="uid://vcw1lk4xv0us" path="res://assets/models/props/mascoll_table/mascoll_table.gltf" id="10_dmkfc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_no8fg"]
 sky_top_color = Color(0.471391, 0.662282, 0.959921, 1)
@@ -82,5 +83,8 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21.401
 transform = Transform3D(1, 0, -3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 1, 0, -0.086728, 0)
 surface_material_override/0 = SubResource("ShaderMaterial_rt77w")
 surface_material_override/1 = SubResource("ShaderMaterial_6y2q6")
+
+[node name="mascoll_table2" parent="." instance=ExtResource("10_dmkfc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.2031, -0.217175, -11.7693)
 
 [editable path="incubator"]

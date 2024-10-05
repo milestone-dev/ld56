@@ -23,6 +23,7 @@ const CROUCH_SIZE = 0.3
 @export var interaction_shape : Area3D
 @export var mesh_instance : MeshInstance3D
 @export var mouse_sensitivity : float = 0.1
+@export var spray_particles : GPUParticles3D
 @export var ui : UI
 
 var current_tool := Tool.PICKER
@@ -47,7 +48,7 @@ var scan_energy := SCAN_ENERGY_MAX
 const SCAN_RANGE_CUTOFF := 5.0
 
 const SPRAY_ENERGY_MAX := 100.0
-const SPRAY_ENERGY_COST := SPRAY_ENERGY_MAX/2.0
+const SPRAY_ENERGY_COST := SPRAY_ENERGY_MAX/100.0
 var spray_energy := SPRAY_ENERGY_MAX
 
 const KITTEN_DISAPPEAR_TIMER_MAX := 5.0
@@ -143,7 +144,11 @@ func manage_interactions():
 	if !either_pressed: return
 
 	# Always consume spray energy regardless of where you spray
-	if current_tool == Tool.SPRAYER: spray_energy = max(0, spray_energy - SPRAY_ENERGY_COST)
+	if current_tool == Tool.SPRAYER and spray_energy > 0:
+		ui.spray_sprite.play()
+		spray_particles.restart()
+		spray_particles.emitting = true
+		spray_energy = max(0, spray_energy - SPRAY_ENERGY_COST)
 
 	# Check targeted objects
 	var colliders = interaction_shape.get_overlapping_bodies()
