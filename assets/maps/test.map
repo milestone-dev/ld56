@@ -4,7 +4,7 @@
 {
 "mapversion" "220"
 "classname" "worldspawn"
-"_tb_textures" "textures"
+"_tb_textures" "assets/textures"
 // brush 0
 {
 ( -624 -64 -16 ) ( -624 -63 -16 ) ( -624 -64 -15 ) proto_blue_64 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
