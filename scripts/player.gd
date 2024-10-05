@@ -10,7 +10,10 @@ enum Tool {
 var kitten_pool := 1000000
 var play_time := 0.0
 
-const SPEED = 5.0
+const WALK_SPEED := 5.0
+const SPRINT_SPEED := 9.0
+const SPRINT_ENERGY_MAX := 5.0
+var sprint_energy := SPRINT_ENERGY_MAX
 const JUMP_VELOCITY = 4.5
 
 @export var head : Node3D
@@ -21,6 +24,7 @@ const JUMP_VELOCITY = 4.5
 var current_tool := Tool.PICKER
 var mouse_input : Vector2
 var scanner_showing := false
+var is_sprinting := false
 
 var debug_mode := false
 
@@ -67,7 +71,7 @@ func _physics_process(delta: float) -> void:
 		kitten_pool += kittens_lost
 		kitten_count = max(0, kitten_count - kittens_lost)
 		tardigrade_count = max(0, tardigrade_count - tardigrades_lost)
-	scanner_showing =  Input.is_action_pressed("tool_enable_scanner")
+	scanner_showing = Input.is_action_pressed("tool_enable_scanner")
 
 	# fall, jump, interact
 	if not is_on_floor(): velocity += get_gravity() * delta
@@ -85,12 +89,20 @@ func _physics_process(delta: float) -> void:
 	mouse_input = Vector2.ZERO
 	var input_dir := Input.get_vector("left", "right", "forward", "backward")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+
+
+	# spriting
+	is_sprinting = Input.is_action_pressed("sprint") and sprint_energy > 0.0
+	if is_sprinting: sprint_energy -= delta
+	else: sprint_energy = min(sprint_energy + delta, SPRINT_ENERGY_MAX)
+
+	var speed = SPRINT_SPEED if is_sprinting else WALK_SPEED
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.x = direction.x * speed
+		velocity.z = direction.z * speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.z = move_toward(velocity.z, 0, speed)
 	move_and_slide()
 
 func update_scanner():

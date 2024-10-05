@@ -7,6 +7,7 @@ class_name UI
 @export var current_tool_label : Label
 @export var scan_energy_label : Label
 @export var spray_energy_label : Label
+@export var sprint_energy_label : Label
 @export var kitten_pool_label : Label
 @export var time_label : Label
 @export var detection_progress_bar : ProgressBar
@@ -18,6 +19,7 @@ func update(player:Player):
 
 	scan_energy_label.text = "Scan Energy: %d" % round(player.scan_energy)
 	spray_energy_label.text = "Spray Energy: %d" % round(player.spray_energy)
+	sprint_energy_label.text = "Sprint Energy: %d" % round(player.sprint_energy)
 
 	current_tool_label.text = Player.Tool.keys()[player.current_tool]
 
