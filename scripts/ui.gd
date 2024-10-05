@@ -11,6 +11,7 @@ class_name UI
 @export var kitten_pool_label : Label
 @export var time_label : Label
 @export var detection_progress_bar : ProgressBar
+@export var cat_scanner_texture : TextureRect
 
 func update(player:Player):
 	kitten_count_label.text = "Kittens: %d" % player.kitten_count
@@ -23,9 +24,11 @@ func update(player:Player):
 
 	current_tool_label.text = Player.Tool.keys()[player.current_tool]
 
-	detection_progress_bar.visible = player.scanner_showing
+	cat_scanner_texture.visible = player.scanner_showing
 	detection_progress_bar.max_value = player.KITTEN_DETECTION_LEVEL_MAX
 	detection_progress_bar.value = player.kitten_detection_level
+	if player.kitten_detection_level < player.KITTEN_DETECTION_LEVEL_MAX:
+		detection_progress_bar.value = player.kitten_detection_level * randf_range(0.95,1.05)
 
 	kitten_pool_label.text = "Kitten Pool: %d" % player.kitten_pool
 	time_label.text = "Play Time: %d" % player.play_time

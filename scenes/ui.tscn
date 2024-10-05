@@ -1,14 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://jqmhm7qjf7n5"]
+[gd_scene load_steps=5 format=3 uid="uid://jqmhm7qjf7n5"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_68hwl"]
+[ext_resource type="Texture2D" uid="uid://cya465556bqjx" path="res://assets/sprites/ui_catscan.png" id="2_f1ilk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3cmu4"]
-bg_color = Color(0, 0, 0, 0.180392)
+bg_color = Color(1, 1, 1, 0.509804)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j35pd"]
-bg_color = Color(0.968627, 0.968627, 0.968627, 0.686275)
+bg_color = Color(0.97, 0, 0, 0.686275)
 
-[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("crosshair", "kitten_count_label", "tardigrade_count_label", "current_tool_label", "scan_energy_label", "spray_energy_label", "sprint_energy_label", "kitten_pool_label", "time_label", "detection_progress_bar")]
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("crosshair", "kitten_count_label", "tardigrade_count_label", "current_tool_label", "scan_energy_label", "spray_energy_label", "sprint_energy_label", "kitten_pool_label", "time_label", "detection_progress_bar", "cat_scanner_texture")]
 script = ExtResource("1_68hwl")
 crosshair = NodePath("Crosshair")
 kitten_count_label = NodePath("MarginContainer/VBoxContainer/KittenCountLabel")
@@ -19,7 +20,8 @@ spray_energy_label = NodePath("MarginContainer2/VBoxContainer2/SprayEnergyLabel"
 sprint_energy_label = NodePath("MarginContainer2/VBoxContainer2/SprintEnergyLabel")
 kitten_pool_label = NodePath("MarginContainer3/VBoxContainer2/KittenPoolLabel")
 time_label = NodePath("MarginContainer3/VBoxContainer2/TimeLabel")
-detection_progress_bar = NodePath("KittenDetectionProgressBar")
+detection_progress_bar = NodePath("CastScannerTexture/KittenDetectionProgressBar")
+cat_scanner_texture = NodePath("CastScannerTexture")
 
 [node name="Crosshair" type="ColorRect" parent="."]
 anchors_preset = 8
@@ -65,23 +67,6 @@ theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 theme_override_font_sizes/font_size = 32
 text = "Tardigrades"
-
-[node name="KittenDetectionProgressBar" type="ProgressBar" parent="."]
-custom_minimum_size = Vector2(150, 0)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -2.0
-offset_top = 51.0
-offset_right = 2.0
-offset_bottom = 78.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_3cmu4")
-theme_override_styles/fill = SubResource("StyleBoxFlat_j35pd")
-value = 50.0
 
 [node name="CurrentToolLabel" type="Label" parent="."]
 anchors_preset = 7
@@ -170,3 +155,31 @@ theme_override_constants/shadow_offset_y = 2
 theme_override_constants/shadow_outline_size = 2
 theme_override_font_sizes/font_size = 32
 text = "Kitten Pool"
+
+[node name="CastScannerTexture" type="TextureRect" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+texture = ExtResource("2_f1ilk")
+
+[node name="KittenDetectionProgressBar" type="ProgressBar" parent="CastScannerTexture"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 27.62
+offset_top = -88.21
+offset_right = 74.66
+offset_bottom = -80.21
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.37001
+theme_override_styles/background = SubResource("StyleBoxFlat_3cmu4")
+theme_override_styles/fill = SubResource("StyleBoxFlat_j35pd")
+value = 50.0
+show_percentage = false

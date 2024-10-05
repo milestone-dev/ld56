@@ -29,9 +29,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 [node name="Camera3D" type="Camera3D" parent="Head"]
 
 [node name="ScannerPoint" type="Marker3D" parent="Head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.64414)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.52646)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Head/ScannerPoint"]
+visible = false
 mesh = SubResource("SphereMesh_pxv1l")
 
 [node name="InteractArea3D" type="Area3D" parent="Head"]
