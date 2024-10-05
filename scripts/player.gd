@@ -22,6 +22,8 @@ var current_tool := Tool.PICKER
 var mouse_input : Vector2
 var scanner_showing := false
 
+var debug_mode := false
+
 var kitten_count := 0;
 var tardigrade_count := 0;
 var kitten_detection_level := 0
@@ -35,11 +37,12 @@ const SPRAY_ENERGY_MAX := 100.0
 const SPRAY_ENERGY_COST := 4.0
 var spray_energy := SPRAY_ENERGY_MAX
 
-const KITTEN_DISAPPEAR_TIMER_MAX := 20.0
+const KITTEN_DISAPPEAR_TIMER_MAX := 5.0
 var kitten_disappear_timer := KITTEN_DISAPPEAR_TIMER_MAX
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	start_level()
 
 func _input(event: InputEvent) -> void:
 	if event is not InputEventMouseMotion or Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
@@ -48,28 +51,30 @@ func _input(event: InputEvent) -> void:
 	mouse_input.y += event.relative.y
 
 func _physics_process(delta: float) -> void:
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
-
 	play_time += delta
+	manage_level()
+
+	#debug mode
+	if Input.is_action_just_pressed("toggle_debug"): debug_mode = !debug_mode
 
 	# make kittens and tardigrades fall out of your hand
 	# placeholder impl for now
 	kitten_disappear_timer -= delta
 	if kitten_disappear_timer <= 0:
 		kitten_disappear_timer = KITTEN_DISAPPEAR_TIMER_MAX
-		kitten_count = max(0, kitten_count - 1)
-		tardigrade_count = max(0, tardigrade_count - 1)
-
+		var kittens_lost := 1
+		var tardigrades_lost := 1
+		kitten_pool += kittens_lost
+		kitten_count = max(0, kitten_count - kittens_lost)
+		tardigrade_count = max(0, tardigrade_count - tardigrades_lost)
 	scanner_showing =  Input.is_action_pressed("tool_enable_scanner")
 
-	# jump, interact
+	# fall, jump, interact
+	if not is_on_floor(): velocity += get_gravity() * delta
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	use_tool()
-
+	manage_tool_usage()
 	update_scanner()
 	ui.update(self)
 
@@ -102,7 +107,7 @@ func update_scanner():
 	if collider and collider is KittenCluster:
 		kitten_detection_level = KITTEN_DETECTION_LEVEL_MAX
 
-func use_tool():
+func manage_tool_usage():
 	var either_pressed = Input.is_action_just_pressed("tool_left") or Input.is_action_just_pressed("tool_right")
 	if Input.is_action_just_pressed("tool_left"): current_tool = Tool.PICKER
 	elif Input.is_action_just_pressed("tool_right"): current_tool = Tool.SPRAYER
@@ -139,3 +144,22 @@ func use_tool():
 		elif current_tool == Tool.PICKER:
 			if collider is KittenCluster:
 				kitten_cluster.retrieve(self)
+
+func start_level():
+	print("Level start")
+	for kitten_cluster : KittenCluster in get_tree().get_nodes_in_group("kitten_cluster"):
+		distribute_random_kittens(kitten_cluster)
+
+func distribute_random_kittens(kitten_cluster: KittenCluster):
+	var kitten_min = 1
+	var kitten_max = 100
+	var kitten_distriution_count = min(kitten_pool, randi_range(kitten_min, kitten_max))
+	if kitten_cluster.add_kittens(kitten_distriution_count):
+		kitten_pool -= kitten_distriution_count
+
+func manage_level():
+	for kitten_cluster : KittenCluster in get_tree().get_nodes_in_group("kitten_cluster"):
+		kitten_cluster.label.visible = debug_mode
+		if kitten_cluster.kitten_count == 0 and kitten_cluster.kitten_respawn_timer <= 0:
+			prints("Refill", kitten_cluster.name)
+			distribute_random_kittens(kitten_cluster)

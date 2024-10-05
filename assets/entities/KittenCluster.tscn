@@ -6,11 +6,12 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_4uigm"]
 radius = 0.840449
 
-[node name="KittenCluster" type="StaticBody3D" node_paths=PackedStringArray("sprite") groups=["kitten_cluster"]]
+[node name="KittenCluster" type="StaticBody3D" node_paths=PackedStringArray("sprite", "label") groups=["kitten_cluster"]]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_1oip0")
 sprite = NodePath("Sprite3D")
+label = NodePath("Label3D")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.658098, 0)
@@ -20,3 +21,10 @@ texture = ExtResource("1_hoy1p")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.720545, 0)
 shape = SubResource("SphereShape3D_4uigm")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.718781, 0)
+billboard = 1
+alpha_cut = 1
+text = "0"
+font_size = 64
