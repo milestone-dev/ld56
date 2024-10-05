@@ -19,6 +19,7 @@ const CROUCH_SIZE = 0.3
 @export var head : Node3D
 @export var interaction_ray : RayCast3D
 @export var collision_shape : CollisionShape3D
+@export var scanner_point : Marker3D
 @export var interaction_shape : Area3D
 @export var mesh_instance : MeshInstance3D
 @export var mouse_sensitivity : float = 0.1
@@ -40,9 +41,10 @@ const KITTEN_DETECTION_LEVEL_MAX := 1000
 const SPRINT_ENERGY_MAX := 5.0
 var sprint_energy := SPRINT_ENERGY_MAX
 
-const SCAN_ENERGY_MAX := 20.0
+const SCAN_ENERGY_MAX := 180.0
 const SCAN_ENERGY_COST := 4.0
 var scan_energy := SCAN_ENERGY_MAX
+const SCAN_RANGE_CUTOFF := 5.0
 
 const SPRAY_ENERGY_MAX := 100.0
 const SPRAY_ENERGY_COST := SPRAY_ENERGY_MAX/6.0
@@ -90,9 +92,9 @@ func _physics_process(delta: float) -> void:
 
 	# interaction, tools, scanners
 	manage_interactions()
-	scanner_showing = Input.is_action_pressed("tool_enable_scanner")
+	scanner_showing = Input.is_action_pressed("tool_enable_scanner") and scan_energy > 0.0
 	if scanner_showing:
-		scan_energy -= delta
+		scan_energy = max(0.0, scan_energy - delta)
 		update_scanner()
 
 	# looking, walking
@@ -124,16 +126,14 @@ func update_scanner():
 	kitten_detection_level = 0
 	for kitten_cluster : Node3D in get_tree().get_nodes_in_group("kitten_cluster"):
 		if kitten_cluster.has_kittens():
-			var distance = global_position.distance_to(kitten_cluster.global_position)
-			if distance < 1: kitten_detection_level += 100
-			elif distance < 2: kitten_detection_level += 75
-			elif distance < 3: kitten_detection_level += 33
-			elif distance < 5: kitten_detection_level += 15
-			elif distance < 10: kitten_detection_level += 5
+			var marker_distance = scanner_point.global_position.distance_to(kitten_cluster.global_position)
+			var player_distance = global_position.distance_to(kitten_cluster.global_position)
+			var distance = min(marker_distance, player_distance)
+			if distance > SCAN_RANGE_CUTOFF: continue
+			kitten_detection_level += (SCAN_RANGE_CUTOFF - distance) * 150
 
-	var collider = interaction_ray.get_collider()
-	if collider and collider is KittenCluster:
-		if (collider as KittenCluster).has_kittens():
+	for collider : Node3D in interaction_shape.get_overlapping_bodies():
+		if collider and collider is KittenCluster and (collider as KittenCluster).has_kittens():
 			kitten_detection_level = KITTEN_DETECTION_LEVEL_MAX
 
 func manage_interactions():
@@ -145,7 +145,6 @@ func manage_interactions():
 	if not interaction_ray.is_colliding():
 		if current_tool == Tool.SPRAYER:
 			spray_energy = max(0, spray_energy - SPRAY_ENERGY_COST)
-		return
 
 	# Check targeted objects
 	var colliders = interaction_shape.get_overlapping_bodies()

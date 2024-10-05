@@ -1,19 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://wtv1ym4laxh8"]
+[gd_scene load_steps=6 format=3 uid="uid://wtv1ym4laxh8"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ab6ol"]
 
+[sub_resource type="SphereMesh" id="SphereMesh_pxv1l"]
+radius = 0.1
+height = 0.2
+
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_n233r"]
+radius = 0.853455
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8tfg5"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_287bv"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("head", "interaction_ray", "collision_shape", "interaction_shape", "mesh_instance")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("head", "interaction_ray", "collision_shape", "scanner_point", "interaction_shape", "mesh_instance")]
 collision_layer = 16
 script = ExtResource("1_ab6ol")
 head = NodePath("Head")
 interaction_ray = NodePath("Head/InteractRayCast3D")
 collision_shape = NodePath("BodyCollisionShape3D")
+scanner_point = NodePath("Head/ScannerPoint")
 interaction_shape = NodePath("Head/InteractArea3D")
 mesh_instance = NodePath("BodyCollisionShape3D/MeshInstance3D")
 
@@ -22,7 +28,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
 
+[node name="ScannerPoint" type="Marker3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.64414)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Head/ScannerPoint"]
+mesh = SubResource("SphereMesh_pxv1l")
+
 [node name="InteractArea3D" type="Area3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 collision_layer = 0
 collision_mask = 2
 
@@ -31,6 +44,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 
 shape = SubResource("CylinderShape3D_n233r")
 
 [node name="InteractRayCast3D" type="RayCast3D" parent="Head"]
+visible = false
 target_position = Vector3(0, 0, -2)
 collision_mask = 6
 
