@@ -30,6 +30,9 @@ const SPRAY_ENERGY_MAX := 100.0
 const SPRAY_ENERGY_COST := 4.0
 var spray_energy := SPRAY_ENERGY_MAX
 
+const KITTEN_DISAPPEAR_TIMER_MAX := 8.0
+var kitten_disappear_timer := KITTEN_DISAPPEAR_TIMER_MAX
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -42,6 +45,14 @@ func _input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+
+	# make kittens and tardigrades fall out of your hand
+	# placeholder impl for now
+	kitten_disappear_timer -= delta
+	if kitten_disappear_timer <= 0:
+		kitten_disappear_timer = KITTEN_DISAPPEAR_TIMER_MAX
+		kitten_count = max(0, kitten_count - 1)
+		tardigrade_count = max(0, tardigrade_count - 1)
 
 	# Switch tools
 	if Input.is_action_just_pressed("next_tool"):
