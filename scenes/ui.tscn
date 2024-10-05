@@ -2,12 +2,14 @@
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_68hwl"]
 
-[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("crosshair", "kitten_count_label", "tardigrade_count_label", "current_tool_label")]
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("crosshair", "kitten_count_label", "tardigrade_count_label", "current_tool_label", "scan_energy_label", "spray_energy_label")]
 script = ExtResource("1_68hwl")
 crosshair = NodePath("Crosshair")
-kitten_count_label = NodePath("KittenCountLabel")
-tardigrade_count_label = NodePath("TardigradeCountLabel")
+kitten_count_label = NodePath("VBoxContainer/KittenCountLabel")
+tardigrade_count_label = NodePath("VBoxContainer/TardigradeCountLabel")
 current_tool_label = NodePath("CurrentToolLabel")
+scan_energy_label = NodePath("VBoxContainer2/ScanEnergyLabel")
+spray_energy_label = NodePath("VBoxContainer2/SprayEnergyLabel")
 
 [node name="Crosshair" type="ColorRect" parent="."]
 anchors_preset = 8
@@ -22,14 +24,12 @@ offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="KittenCountLabel" type="Label" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -573.0
-offset_right = -463.0
-offset_bottom = 34.0
-grow_horizontal = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 138.0
+offset_bottom = 72.0
+
+[node name="KittenCountLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
@@ -37,15 +37,39 @@ theme_override_constants/shadow_outline_size = 2
 theme_override_font_sizes/font_size = 24
 text = "Kittens: #"
 
-[node name="TardigradeCountLabel" type="Label" parent="."]
-offset_top = 47.0
-offset_right = 145.0
-offset_bottom = 81.0
+[node name="TardigradeCountLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 theme_override_font_sizes/font_size = 24
 text = "Tardigrades"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -151.0
+offset_bottom = 72.0
+grow_horizontal = 0
+
+[node name="ScanEnergyLabel" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 24
+text = "Scan Energy"
+
+[node name="SprayEnergyLabel" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 24
+text = "Spray Energy"
 
 [node name="CurrentToolLabel" type="Label" parent="."]
 anchors_preset = 7

@@ -1,6 +1,13 @@
 extends CharacterBody3D
 class_name Player
 
+enum Tool {
+	SCANNER,
+	SPRAYER,
+	PICKER,
+	COUNT
+}
+
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
@@ -9,17 +16,19 @@ const JUMP_VELOCITY = 4.5
 @export var mouse_sensitivity : float = 0.1
 @export var ui : UI
 
-enum Tool {
-	SCANNER,
-	SPRAYER,
-	PICKER,
-	COUNT
-}
+var current_tool := Tool.SCANNER
+var mouse_input : Vector2
 
 var kitten_count = 0;
 var tardigrade_count = 0;
-var current_tool := Tool.SCANNER
-var mouse_input : Vector2
+
+const SCAN_ENERGY_MAX := 100.0
+const SCAN_ENERGY_COST := 4.0
+var scan_energy := SCAN_ENERGY_MAX
+
+const SPRAY_ENERGY_MAX := 100.0
+const SPRAY_ENERGY_COST := 4.0
+var spray_energy := SPRAY_ENERGY_MAX
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -37,27 +46,37 @@ func _physics_process(delta: float) -> void:
 	# Switch tools
 	if Input.is_action_just_pressed("next_tool"):
 		current_tool += 1
-		if (current_tool as int) >= (Tool.COUNT as int): current_tool = Tool.SCANNER
+		if (current_tool as int) > (Tool.COUNT as int): current_tool = Tool.SCANNER
 	elif Input.is_action_just_pressed("prev_tool"):
 		current_tool -= 1
-		if (current_tool as int) < 0: current_tool = ((Tool.PICKER - 1 )as int) as Tool
+		if (current_tool as int) < 0: current_tool = ((Tool.COUNT - 1 )as int) as Tool
 
 	# jump, interact
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	if Input.is_action_just_pressed("use_tool"):
-		if interaction_ray.is_colliding():
-			var collider = interaction_ray.get_collider()
-			if collider is KittenCluster:
-				var kitten_cluster := collider as KittenCluster
-				kitten_cluster.interact(self)
-			elif  collider is KittenContainer:
-				var kitten_container := collider as KittenContainer
-				kitten_container.interact(self)
-			elif collider is TardigradeContainer:
-				var tardigrade_container := collider as TardigradeContainer
-				tardigrade_container.interact(self)
+	if Input.is_action_just_pressed("use_tool") and interaction_ray.is_colliding():
+		var collider = interaction_ray.get_collider()
+		if collider is KittenContainer:
+			var kitten_container := collider as KittenContainer
+			kitten_container.interact(self)
+		elif collider is TardigradeContainer:
+			var tardigrade_container := collider as TardigradeContainer
+			tardigrade_container.interact(self)
+		elif collider is KittenCluster:
+			var kitten_cluster := collider as KittenCluster
+			match current_tool:
+				Tool.SPRAYER:
+					if spray_energy > 0 and collider is KittenCluster:
+						kitten_cluster.reveal(self)
+					spray_energy = max(0, spray_energy - SPRAY_ENERGY_COST)
+				Tool.PICKER:
+					if collider is KittenCluster:
+						kitten_cluster.interact(self)
+		if current_tool == Tool.SCANNER:
+			if scan_energy > 0:
+				pass #scan
+			scan_energy = max(0, scan_energy - SCAN_ENERGY_COST)
 
 	ui.update(self)
 
