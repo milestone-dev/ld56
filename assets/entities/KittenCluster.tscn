@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://chhknbnbnulry" path="res://assets/icons/icon.svg" id="1_hoy1p"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4uigm"]
-radius = 1.88628
+radius = 0.840449
 
-[node name="KittenCluster" type="StaticBody3D" node_paths=PackedStringArray("sprite")]
+[node name="KittenCluster" type="StaticBody3D" node_paths=PackedStringArray("sprite") groups=["kitten_cluster"]]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_1oip0")

@@ -19,8 +19,10 @@ const JUMP_VELOCITY = 4.5
 var current_tool := Tool.SCANNER
 var mouse_input : Vector2
 
-var kitten_count = 0;
-var tardigrade_count = 0;
+var kitten_count := 0;
+var tardigrade_count := 0;
+var kitten_detection_level := 0
+const KITTEN_DETECTION_LEVEL_MAX := 1000
 
 const SCAN_ENERGY_MAX := 100.0
 const SCAN_ENERGY_COST := 4.0
@@ -29,6 +31,9 @@ var scan_energy := SCAN_ENERGY_MAX
 const SPRAY_ENERGY_MAX := 100.0
 const SPRAY_ENERGY_COST := 4.0
 var spray_energy := SPRAY_ENERGY_MAX
+
+const KITTEN_DISAPPEAR_TIMER_MAX := 8.0
+var kitten_disappear_timer := KITTEN_DISAPPEAR_TIMER_MAX
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -43,13 +48,24 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
+	# make kittens and tardigrades fall out of your hand
+	# placeholder impl for now
+	kitten_disappear_timer -= delta
+	if kitten_disappear_timer <= 0:
+		kitten_disappear_timer = KITTEN_DISAPPEAR_TIMER_MAX
+		kitten_count = max(0, kitten_count - 1)
+		tardigrade_count = max(0, tardigrade_count - 1)
+
 	# Switch tools
 	if Input.is_action_just_pressed("next_tool"):
-		current_tool += 1
+		current_tool = current_tool + 1 as Tool
 		if (current_tool as int) >= (Tool.COUNT as int): current_tool = Tool.SCANNER
 	elif Input.is_action_just_pressed("prev_tool"):
-		current_tool -= 1
+		current_tool = current_tool - 1 as Tool
 		if (current_tool as int) < 0: current_tool = ((Tool.COUNT - 1 )as int) as Tool
+	elif Input.is_action_just_pressed("tool_1"): current_tool = Tool.SCANNER
+	elif Input.is_action_just_pressed("tool_2"): current_tool = Tool.SPRAYER
+	elif Input.is_action_just_pressed("tool_3"): current_tool = Tool.PICKER
 
 	# jump, interact
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -58,6 +74,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("use_tool"):
 		use_tool()
 
+	update_scanner()
 	ui.update(self)
 
 	# looking, walking
@@ -75,13 +92,24 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	move_and_slide()
 
+func update_scanner():
+	kitten_detection_level = 0
+	for kitten_cluster : Node3D in get_tree().get_nodes_in_group("kitten_cluster"):
+		var distance = global_position.distance_to(kitten_cluster.global_position)
+		if distance < 1: kitten_detection_level += 100
+		elif distance < 2: kitten_detection_level += 75
+		elif distance < 3: kitten_detection_level += 33
+		elif distance < 5: kitten_detection_level += 15
+		elif distance < 10: kitten_detection_level += 5
+
+	var collider = interaction_ray.get_collider()
+	if collider and collider is KittenCluster:
+		kitten_detection_level = KITTEN_DETECTION_LEVEL_MAX
 
 func use_tool():
 	# First check for no targeted objects and return early
 	if not interaction_ray.is_colliding():
-		if current_tool == Tool.SCANNER:
-			scan_energy = max(0, scan_energy - SCAN_ENERGY_COST)
-		elif current_tool == Tool.SPRAYER:
+		if current_tool == Tool.SPRAYER:
 			spray_energy = max(0, spray_energy - SPRAY_ENERGY_COST)
 		return
 
@@ -107,7 +135,7 @@ func use_tool():
 		var kitten_cluster := collider as KittenCluster
 		if current_tool == Tool.SPRAYER:
 			if spray_energy > 0:
-				kitten_cluster.reveal(self)
+				kitten_cluster.spray(self)
 		elif current_tool == Tool.PICKER:
 			if collider is KittenCluster:
-					kitten_cluster.interact(self)
+				kitten_cluster.retrieve(self)
