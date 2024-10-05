@@ -27,12 +27,12 @@ var material : Material
 
 func _ready() -> void:
 	material = centrifuge_base.get_surface_override_material(0)
-	
+
 	default_knob_rotation = knob.rotation_degrees
-	
+
 	print("There is a centrifuge in the scene")
-	
-	
+
+
 func interact(player : Player):
 	print("Centrifuge is interacted upon")
 	if speed_setting == SpinnerSetting.OFF:
@@ -41,15 +41,15 @@ func interact(player : Player):
 		speed_setting = SpinnerSetting.SPEED_TWO
 	else:
 		speed_setting = SpinnerSetting.OFF
-	
-	
+
+
 func _process(delta: float) -> void:
-	
+
 	current_speed = lerp(current_speed,(speed_setting*SPEED),0.01)
-	
+
 	spinner.rotate_y(current_speed*delta)
-	
+
 	knob_current_rotation = lerp(knob_current_rotation, Vector3(0,0,(speed_setting * -KNOB_INCREMENT)), 0.2)
-	
+
 	knob.rotation_degrees = default_knob_rotation + knob_current_rotation # Put the knob in the correct speed setting
 	material.set_shader_parameter("EmissiveStrength", max_emissive * speed_setting)

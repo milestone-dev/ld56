@@ -12,11 +12,13 @@ class_name UI
 @export var time_label : Label
 @export var detection_progress_bar : ProgressBar
 @export var cat_scanner_texture : TextureRect
+@export var spray_texture : TextureRect
 
 func update(player:Player):
+	kitten_count_label.visible = !player.scanner_showing
+	tardigrade_count_label.visible = !player.scanner_showing
 	kitten_count_label.text = "Kittens: %d" % player.kitten_count
 	tardigrade_count_label.text = "Tardigrades: %d" % player.tardigrade_count
-
 
 	scan_energy_label.text = "Scan Energy: %d" % round(player.scan_energy)
 	spray_energy_label.text = "Spray Energy: %d" % round(player.spray_energy)
@@ -31,4 +33,4 @@ func update(player:Player):
 		detection_progress_bar.value = player.kitten_detection_level * randf_range(0.95,1.05)
 
 	kitten_pool_label.text = "Kitten Pool: %d" % player.kitten_pool
-	time_label.text = "Play Time: %d" % player.play_time
+	time_label.text = "Time: %d" % player.play_time

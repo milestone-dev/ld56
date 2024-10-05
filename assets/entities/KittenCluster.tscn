@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ct2s8gsuxcuu3"]
 
 [ext_resource type="Script" path="res://scripts/kitten_cluster.gd" id="1_1oip0"]
-[ext_resource type="Texture2D" uid="uid://chhknbnbnulry" path="res://assets/icons/icon.svg" id="1_hoy1p"]
+[ext_resource type="Texture2D" uid="uid://bggqlfri1ag7" path="res://assets/sprites/kitten1.png" id="2_nfwxn"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4uigm"]
 radius = 0.840449
@@ -15,8 +15,10 @@ label = NodePath("Label3D")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.658098, 0)
+pixel_size = 0.05
 billboard = 1
-texture = ExtResource("1_hoy1p")
+texture_filter = 0
+texture = ExtResource("2_nfwxn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.720545, 0)
