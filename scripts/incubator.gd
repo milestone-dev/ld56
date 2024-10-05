@@ -12,7 +12,7 @@ var material : Material
 
 func _ready() -> void:
 	material = incubator.get_surface_override_material(0)
-	material.set_shader_parameter("EmissiveStrength", max_emissive * turned_on)
+	material.set_shader_parameter("EmissiveStrength", max_emissive * float(turned_on))
 	print("There is an incubator in the scene")
 	
 	
