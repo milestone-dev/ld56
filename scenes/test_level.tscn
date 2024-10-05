@@ -1,14 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://rs4k12y5gess"]
+[gd_scene load_steps=10 format=3 uid="uid://rs4k12y5gess"]
 
 [ext_resource type="PackedScene" uid="uid://jqmhm7qjf7n5" path="res://scenes/ui.tscn" id="1_cfovc"]
-[ext_resource type="PackedScene" uid="uid://duwmfo2jg5r8k" path="res://assets/maps/test.bsp" id="2_317oy"]
+[ext_resource type="PackedScene" uid="uid://ddw7qw2y8g0au" path="res://assets/maps/test.bsp" id="2_317oy"]
 [ext_resource type="PackedScene" uid="uid://wtv1ym4laxh8" path="res://scenes/player.tscn" id="2_wcyih"]
+[ext_resource type="PackedScene" uid="uid://b20cptcvcqfl7" path="res://assets/models/props/microscope/microscope.tscn" id="4_v2kpi"]
+[ext_resource type="PackedScene" uid="uid://bgrnp25f5tyyt" path="res://assets/models/props/petri_dish/petri_dish.tscn" id="5_acile"]
+[ext_resource type="PackedScene" uid="uid://ctwdnitte857g" path="res://assets/models/props/centrifuge/centrifuge.tscn" id="6_vnj2j"]
 
-[sub_resource type="Environment" id="Environment_ohmgh"]
-background_mode = 1
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_no8fg"]
+sky_top_color = Color(0.471391, 0.662282, 0.959921, 1)
+sky_horizon_color = Color(0.0946832, 0.303074, 0.461687, 1)
+ground_bottom_color = Color(0.329382, 0.300672, 0.177951, 1)
+ground_horizon_color = Color(0.0946832, 0.303074, 0.461687, 1)
+
+[sub_resource type="Sky" id="Sky_wdj48"]
+sky_material = SubResource("ProceduralSkyMaterial_no8fg")
+
+[sub_resource type="Environment" id="Environment_0eyp7"]
+background_mode = 2
 background_color = Color(0.792935, 0.934721, 1, 1)
-ambient_light_source = 2
-ambient_light_color = Color(1, 1, 1, 1)
+sky = SubResource("Sky_wdj48")
+ambient_light_source = 3
+reflected_light_source = 2
+ssr_enabled = true
+glow_enabled = true
 
 [node name="Main" type="Node3D"]
 
@@ -16,10 +31,12 @@ ambient_light_color = Color(1, 1, 1, 1)
 unique_name_in_owner = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_ohmgh")
+environment = SubResource("Environment_0eyp7")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-sky_mode = 1
+transform = Transform3D(0.771791, -0.527643, 0.354869, 0, 0.558078, 0.829788, -0.635876, -0.640423, 0.43072, 0, 0, 0)
+light_color = Color(1, 1, 0.960784, 1)
+shadow_enabled = true
 
 [node name="test" parent="." instance=ExtResource("2_317oy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.077, -0.717175, -16.4167)
@@ -27,3 +44,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.077, -0.717175, -16.4167)
 [node name="Player" parent="." node_paths=PackedStringArray("ui") instance=ExtResource("2_wcyih")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.077, 0.898638, -16.4167)
 ui = NodePath("../UI")
+
+[node name="microscope" parent="." instance=ExtResource("4_v2kpi")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21.5312, 0.845325, -18.4942)
+
+[node name="petri_dish" parent="." instance=ExtResource("5_acile")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.6487, 1.04406, -18.4915)
+
+[node name="petri_dish2" parent="." instance=ExtResource("5_acile")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.2352, 0.845325, -19.2146)
+
+[node name="centrifuge" parent="." instance=ExtResource("6_vnj2j")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21.475, 0.845325, -17.3962)
