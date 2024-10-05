@@ -18,9 +18,26 @@ scan_energy_label = NodePath("MarginContainer2/VBoxContainer2/ScanEnergyLabel")
 spray_energy_label = NodePath("MarginContainer2/VBoxContainer2/SprayEnergyLabel")
 detection_progress_bar = NodePath("KittenDetectionProgressBar")
 
+[node name="Crosshair" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
-offset_right = 183.0
-offset_bottom = 94.0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -126.0
+offset_right = 215.0
+grow_vertical = 0
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
@@ -46,19 +63,6 @@ theme_override_constants/shadow_offset_y = 2
 theme_override_font_sizes/font_size = 32
 text = "Tardigrades"
 
-[node name="Crosshair" type="ColorRect" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -8.0
-offset_top = -8.0
-offset_right = 8.0
-offset_bottom = 8.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="KittenDetectionProgressBar" type="ProgressBar" parent="."]
 custom_minimum_size = Vector2(150, 0)
 anchors_preset = 8
@@ -82,9 +86,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -59.0
-offset_top = -23.0
-offset_right = 59.0
+offset_left = 275.0
+offset_top = -67.0
+offset_right = 566.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
