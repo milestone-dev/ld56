@@ -10,7 +10,6 @@
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 collision_layer = 5
 script = ExtResource("2_juc0m")
-max_emissive = 8.0
 
 [node name="centrifuge_base" parent="centrifuge_base" index="0"]
 surface_material_override/0 = ExtResource("2_vwk3c")
