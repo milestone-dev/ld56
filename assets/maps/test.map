@@ -129,3 +129,13 @@
 "classname" "KittenCluster"
 "origin" "-88 -296 24"
 }
+// entity 13
+{
+"classname" "SprayRecharger"
+"origin" "-280 184 24"
+}
+// entity 14
+{
+"classname" "ScannerRecharger"
+"origin" "-344 168 24"
+}
