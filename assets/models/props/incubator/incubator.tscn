@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://dtfeq3efdallg"]
+
+[ext_resource type="PackedScene" uid="uid://06qup8i5ht5o" path="res://assets/models/props/incubator/incubator.gltf" id="1_hm2r6"]
+[ext_resource type="Script" path="res://scripts/incubator.gd" id="2_5rel5"]
+[ext_resource type="Shader" uid="uid://rb0ou45ypa8b" path="res://assets/models/shared/shaders/protoShader.tres" id="3_tq8ms"]
+[ext_resource type="Shader" uid="uid://bkwsgy5n73jcv" path="res://assets/models/shared/shaders/protoGlass.tres" id="4_4syjs"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qsjya"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("3_tq8ms")
+shader_parameter/EmissiveStrength = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wxkku"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("4_4syjs")
+shader_parameter/Refraction = 0.01
+shader_parameter/Opacity = 0.5
+shader_parameter/Fresnel = 0.5
+shader_parameter/EmissiveStrength = 1.0
+
+[node name="incubator" instance=ExtResource("1_hm2r6")]
+
+[node name="incubator" parent="." index="0"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0.10313, 0)
+script = ExtResource("2_5rel5")
+
+[node name="incubator" parent="incubator" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_qsjya")
+surface_material_override/1 = SubResource("ShaderMaterial_wxkku")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="incubator" index="2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.948845, 0)
+light_energy = 2.0
+shadow_enabled = true
+spot_range = 1.0
+spot_attenuation = 3.0
+spot_angle = 85.0

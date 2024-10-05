@@ -7,4 +7,5 @@ render_priority = 0
 shader = ExtResource("1_nt1lx")
 shader_parameter/Refraction = 0.029
 shader_parameter/Opacity = 0.665
+shader_parameter/Fresnel = 0.5
 shader_parameter/EmissiveStrength = 0.0
