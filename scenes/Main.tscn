@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cpoa4d7l5tsv8"]
 
 [ext_resource type="PackedScene" uid="uid://jqmhm7qjf7n5" path="res://scenes/ui.tscn" id="1_11mfm"]
-[ext_resource type="PackedScene" uid="uid://duwmfo2jg5r8k" path="res://assets/maps/test.bsp" id="1_fqery"]
 [ext_resource type="PackedScene" uid="uid://wtv1ym4laxh8" path="res://scenes/player.tscn" id="2_cfjsh"]
+[ext_resource type="PackedScene" uid="uid://br64wcsg8byiq" path="res://assets/maps/sketch1.bsp" id="3_mmvce"]
 
 [sub_resource type="Environment" id="Environment_ohmgh"]
 background_mode = 1
@@ -21,8 +21,8 @@ environment = SubResource("Environment_ohmgh")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 sky_mode = 1
 
-[node name="test" parent="." instance=ExtResource("1_fqery")]
-
 [node name="Player" parent="." node_paths=PackedStringArray("ui") instance=ExtResource("2_cfjsh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.03066, 2.89176, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.077, 0.898638, -16.4167)
 ui = NodePath("../UI")
+
+[node name="sketch1" parent="." instance=ExtResource("3_mmvce")]
