@@ -17,7 +17,7 @@ fill_to = Vector2(0.344017, 0.0534188)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6apkb"]
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("start_game_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,6 +27,7 @@ grow_vertical = 2
 script = ExtResource("1_6m8h0")
 level_scene = ExtResource("2_767qk")
 test_level_scene = ExtResource("3_ud258")
+start_game_button = NodePath("VBoxContainer/StartGameButton")
 
 [node name="BGGradient" type="TextureRect" parent="."]
 layout_mode = 1
@@ -61,11 +62,15 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_6apkb")
 
 [node name="StartGameButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+focus_next = NodePath("../TestLevelButton")
+theme_override_colors/font_focus_color = Color(1, 0.776471, 0.556863, 1)
 theme_override_font_sizes/font_size = 32
 text = "Start game"
 
 [node name="TestLevelButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+focus_previous = NodePath("../StartGameButton")
+theme_override_colors/font_focus_color = Color(1, 0.776471, 0.556863, 1)
 theme_override_font_sizes/font_size = 32
 text = "Start test level"
 

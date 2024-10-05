@@ -12,13 +12,15 @@ var play_time := 0.0
 
 const WALK_SPEED := 5.0
 const SPRINT_SPEED := 9.0
-const SPRINT_ENERGY_MAX := 5.0
-var sprint_energy := SPRINT_ENERGY_MAX
+const CROUCH_SPEED := 2.0
 const JUMP_VELOCITY = 4.5
+const CROUCH_SIZE = 0.3
 
 @export var head : Node3D
 @export var interaction_ray : RayCast3D
+@export var collision_shape : CollisionShape3D
 @export var interaction_shape : Area3D
+@export var mesh_instance : MeshInstance3D
 @export var mouse_sensitivity : float = 0.1
 @export var ui : UI
 
@@ -26,6 +28,7 @@ var current_tool := Tool.PICKER
 var mouse_input : Vector2
 var scanner_showing := false
 var is_sprinting := false
+var is_crouching := false
 
 var debug_mode := false
 
@@ -33,6 +36,9 @@ var kitten_count := 0;
 var tardigrade_count := 0;
 var kitten_detection_level := 0
 const KITTEN_DETECTION_LEVEL_MAX := 1000
+
+const SPRINT_ENERGY_MAX := 5.0
+var sprint_energy := SPRINT_ENERGY_MAX
 
 const SCAN_ENERGY_MAX := 20.0
 const SCAN_ENERGY_COST := 4.0
@@ -47,6 +53,7 @@ var kitten_disappear_timer := KITTEN_DISAPPEAR_TIMER_MAX
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	mesh_instance.hide()
 	start_level()
 
 func _input(event: InputEvent) -> void:
@@ -56,8 +63,8 @@ func _input(event: InputEvent) -> void:
 	mouse_input.y += event.relative.y
 
 func _physics_process(delta: float) -> void:
-	play_time += delta
-	manage_level()
+	# level management
+	manage_level(delta)
 
 	#debug mode
 	if Input.is_action_just_pressed("toggle_debug"): debug_mode = !debug_mode
@@ -73,21 +80,20 @@ func _physics_process(delta: float) -> void:
 		kitten_count = max(0, kitten_count - kittens_lost)
 		tardigrade_count = max(0, tardigrade_count - tardigrades_lost)
 
-
-	# fall, jump, interact
+	# fall, jump, crouch
 	if not is_on_floor(): velocity += get_gravity() * delta
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+	is_crouching = Input.is_action_pressed("crouch")
+	if is_crouching: collision_shape.scale = Vector3(1, CROUCH_SIZE, 1)
+	else: collision_shape.scale = Vector3.ONE
 
-	manage_tool_usage()
-
-	# scanner
+	# interaction, tools, scanners
+	manage_interactions()
 	scanner_showing = Input.is_action_pressed("tool_enable_scanner")
 	if scanner_showing:
 		scan_energy -= delta
 		update_scanner()
-
-	ui.update(self)
 
 	# looking, walking
 	rotation_degrees.y -= mouse_input.x * mouse_sensitivity
@@ -98,11 +104,13 @@ func _physics_process(delta: float) -> void:
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
 	# spriting
-	is_sprinting = Input.is_action_pressed("sprint") and sprint_energy > 0.0
+	is_sprinting = Input.is_action_pressed("sprint") and sprint_energy > 0.0 and !is_crouching
 	if is_sprinting: sprint_energy -= delta
 	else: sprint_energy = min(sprint_energy + delta, SPRINT_ENERGY_MAX)
 
-	var speed = SPRINT_SPEED if is_sprinting and is_on_floor() else WALK_SPEED
+	var speed = WALK_SPEED
+	if is_sprinting and is_on_floor(): speed = SPRINT_SPEED
+	elif is_crouching: speed = CROUCH_SPEED
 	if direction:
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
@@ -110,6 +118,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
 	move_and_slide()
+	ui.update(self)
 
 func update_scanner():
 	kitten_detection_level = 0
@@ -127,7 +136,7 @@ func update_scanner():
 		if (collider as KittenCluster).has_kittens():
 			kitten_detection_level = KITTEN_DETECTION_LEVEL_MAX
 
-func manage_tool_usage():
+func manage_interactions():
 	var either_pressed = Input.is_action_just_pressed("tool_left") or Input.is_action_just_pressed("tool_right")
 	if Input.is_action_just_pressed("tool_left"): current_tool = Tool.PICKER
 	elif Input.is_action_just_pressed("tool_right"): current_tool = Tool.SPRAYER
@@ -184,7 +193,8 @@ func distribute_random_kittens(kitten_cluster: KittenCluster):
 	if kitten_cluster.add_kittens(kitten_distriution_count):
 		kitten_pool -= kitten_distriution_count
 
-func manage_level():
+func manage_level(delta:float):
+	play_time += delta
 	for kitten_cluster : KittenCluster in get_tree().get_nodes_in_group("kitten_cluster"):
 		kitten_cluster.label.visible = debug_mode
 		if kitten_cluster.kitten_count == 0 and kitten_cluster.kitten_respawn_timer <= 0:
