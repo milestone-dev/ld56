@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://vs8p48v6ijg0"]
+
+[ext_resource type="Texture2D" uid="uid://dx18vynd7oqre" path="res://assets/textures/proto_gray_32.png" id="1_xw2ej"]
+
+[resource]
+diffuse_mode = 2
+albedo_texture = ExtResource("1_xw2ej")
+texture_filter = 0
