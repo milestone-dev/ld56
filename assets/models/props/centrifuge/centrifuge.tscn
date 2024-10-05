@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctwdnitte857g"]
+
+[ext_resource type="PackedScene" uid="uid://bn4n8psptgec1" path="res://assets/models/props/centrifuge/centrifuge.gltf" id="1_buamw"]
+[ext_resource type="Script" path="res://scripts/centrifuge.gd" id="2_juc0m"]
+[ext_resource type="Material" uid="uid://ccfhls0vqnwjv" path="res://assets/models/shared/materials/protoMat.tres" id="2_vwk3c"]
+
+[node name="centrifuge" instance=ExtResource("1_buamw")]
+
+[node name="centrifuge_base" parent="." index="0"]
+script = ExtResource("2_juc0m")
+
+[node name="centrifuge_base" parent="centrifuge_base" index="0"]
+surface_material_override/0 = ExtResource("2_vwk3c")

@@ -3,5 +3,7 @@
 [ext_resource type="Shader" uid="uid://rb0ou45ypa8b" path="res://assets/models/shared/shaders/protoShader.tres" id="1_3qmcn"]
 
 [resource]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_3qmcn")
+shader_parameter/EmissiveStrength = 4.0
