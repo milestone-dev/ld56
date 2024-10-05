@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgrnp25f5tyyt"]
+
+[ext_resource type="PackedScene" uid="uid://dawgmbn7l6u1s" path="res://assets/models/props/petri_dish/petri_dish.gltf" id="1_r6sgx"]
+[ext_resource type="Material" uid="uid://dbw8labowirnk" path="res://assets/models/shared/materials/protoMatGlass.tres" id="2_8mtab"]
+
+[node name="petri_dish" instance=ExtResource("1_r6sgx")]
+
+[node name="petri_dish" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_8mtab")
