@@ -25,7 +25,7 @@ entity_path_pattern="res://assets/entities/{classname}.tscn"
 entity_remap={
 "trigger_example": "res://triggers/trigger_example.tres"
 }
-use_entity_remap=true
+use_entity_remap=false
 entity_offsets_quake_units={
 "example_offset_entity": Vector3(16, 16, 0)
 }
