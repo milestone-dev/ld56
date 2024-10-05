@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpoa4d7l5tsv8"]
+
+[ext_resource type="PackedScene" uid="uid://duwmfo2jg5r8k" path="res://assets/maps/test.bsp" id="1_x7bi4"]
+
+[node name="Main" type="Node3D"]
+
+[node name="test" parent="." instance=ExtResource("1_x7bi4")]

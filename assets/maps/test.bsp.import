@@ -1,0 +1,41 @@
+[remap]
+
+importer="bsp"
+type="PackedScene"
+uid="uid://duwmfo2jg5r8k"
+path="res://.godot/imported/test.bsp-fb5ffc607b6635c76d7b491cb0ea64a5.scn"
+
+[deps]
+
+source_file="res://assets/maps/test.bsp"
+dest_files=["res://.godot/imported/test.bsp-fb5ffc607b6635c76d7b491cb0ea64a5.scn"]
+
+[params]
+
+inverse_scale_factor=32.0
+material_path_pattern="res://assets/textures/{texture_name}.tres"
+transparent_texture_prefix="{"
+texture_material_rename={
+"texture_name1": "res://material/texture_name1_material.tres"
+}
+water_scene_template="res://addons/bsp_importer/water_example_template.tscn"
+slime_scene_template="res://addons/bsp_importer/slime_example_template.tscn"
+lava_scene_template="res://addons/bsp_importer/lava_example_template.tscn"
+entity_path_pattern="res://assets/entities/{classname}.tscn"
+entity_remap={
+"trigger_example": "res://triggers/trigger_example.tres"
+}
+use_entity_remap=false
+entity_offsets_quake_units={
+"example_offset_entity": Vector3(16, 16, 0)
+}
+import_lights=true
+generate_occlusion_culling=true
+culling_textures_exclude=Array[StringName]([])
+separate_mesh_on_grid=false
+use_triangle_collision=false
+generate_texture_materials=true
+mesh_separation_grid_size=256.0
+post_import_script=""
+custom_foliage_configs=Array[Object]([])
+custom_import_script_behavior=false

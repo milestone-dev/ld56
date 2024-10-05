@@ -1,0 +1,55 @@
+// Game: LD56Game
+// Format: Valve
+// entity 0
+{
+"mapversion" "220"
+"classname" "worldspawn"
+// brush 0
+{
+( -208 -64 -16 ) ( -208 -63 -16 ) ( -208 -64 -15 ) proto_yellow_64 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -64 -224 -16 ) ( -64 -224 -15 ) ( -63 -224 -16 ) proto_yellow_64 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -64 -64 -16 ) ( -63 -64 -16 ) ( -64 -63 -16 ) proto_yellow_64 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 64 64 16 ) ( 64 65 16 ) ( 65 64 16 ) proto_yellow_64 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -64 0 -16 ) ( -63 0 -16 ) ( -64 0 -15 ) proto_yellow_64 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 320 64 16 ) ( 320 64 17 ) ( 320 65 16 ) proto_yellow_64 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 1
+{
+( -208 -64 -16 ) ( -208 -63 -16 ) ( -208 -64 -15 ) proto_blue_64 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -64 0 -16 ) ( -64 0 -15 ) ( -63 0 -16 ) proto_blue_64 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -64 -64 -16 ) ( -63 -64 -16 ) ( -64 -63 -16 ) proto_blue_64 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 64 64 16 ) ( 64 65 16 ) ( 65 64 16 ) proto_blue_64 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 64 288 16 ) ( 65 288 16 ) ( 64 288 17 ) proto_blue_64 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 320 64 16 ) ( 320 64 17 ) ( 320 65 16 ) proto_blue_64 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 1
+{
+"classname" "Test_Entity"
+"origin" "-88 -136 24"
+}
+// entity 2
+{
+"classname" "Test_Entity"
+"origin" "-72 -184 24"
+}
+// entity 3
+{
+"classname" "Test_Entity"
+"origin" "-136 -168 24"
+}
+// entity 4
+{
+"classname" "Test_Entity"
+"origin" "184 -184 24"
+}
+// entity 5
+{
+"classname" "Test_Entity"
+"origin" "168 -136 24"
+}
+// entity 6
+{
+"classname" "Test_Entity"
+"origin" "120 -168 24"
+}
