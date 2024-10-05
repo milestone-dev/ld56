@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://caq3e8ewfdx3q"]
+
+[ext_resource type="Shader" uid="uid://gs7t5m382xmj" path="res://assets/models/shared/shaders/general_shader.tres" id="1_78noj"]
+
+[resource]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_78noj")
+shader_parameter/Color = Color(0, 1, 0, 1)
+shader_parameter/Metallness = 0.0
+shader_parameter/Roughness = 0.1
+shader_parameter/Specular = 1.0
