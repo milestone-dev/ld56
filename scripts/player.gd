@@ -32,7 +32,7 @@ const SPRAY_ENERGY_MAX := 100.0
 const SPRAY_ENERGY_COST := 4.0
 var spray_energy := SPRAY_ENERGY_MAX
 
-const KITTEN_DISAPPEAR_TIMER_MAX := 8.0
+const KITTEN_DISAPPEAR_TIMER_MAX := 20.0
 var kitten_disappear_timer := KITTEN_DISAPPEAR_TIMER_MAX
 
 func _ready() -> void:
