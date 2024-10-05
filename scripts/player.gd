@@ -167,6 +167,10 @@ func manage_tool_usage():
 		var spray_recharger := collider as SprayRecharger
 		spray_recharger.interact(self)
 		return
+	elif collider is Centrifuge:
+		var centrifuger := collider as Centrifuge
+		centrifuger.interact(self)
+		return
 
 func start_level():
 	print("Level start")
