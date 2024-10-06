@@ -60,6 +60,7 @@ func _ready() -> void:
 	start_level()
 
 func _input(event: InputEvent) -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	if event is not InputEventMouseMotion or Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		return
 	mouse_input.x += event.relative.x
