@@ -1,25 +1,46 @@
-[gd_scene load_steps=4 format=3 uid="uid://dhug4d0oek6fo"]
+[gd_scene load_steps=10 format=3 uid="uid://dhug4d0oek6fo"]
 
 [ext_resource type="Script" path="res://scripts/roomba.gd" id="1_xpiuj"]
+[ext_resource type="Texture2D" uid="uid://wumnn5pg5asj" path="res://assets/sprites/roomba_sleeping.png" id="2_5rvep"]
+[ext_resource type="Texture2D" uid="uid://bggqlfri1ag7" path="res://assets/sprites/kitten1.png" id="2_fuc6n"]
+[ext_resource type="Texture2D" uid="uid://d2dncopgmamyn" path="res://assets/sprites/roomba_idle.png" id="3_jvok2"]
+[ext_resource type="Texture2D" uid="uid://dli0q31j78k7n" path="res://assets/sprites/roomba_returnhome.png" id="4_fhn4q"]
+[ext_resource type="Texture2D" uid="uid://csvuflukldvcq" path="res://assets/sprites/roomba_roam.png" id="4_h8mvv"]
+[ext_resource type="Texture2D" uid="uid://bqi4con2fiqwx" path="res://assets/sprites/roomba_chase.png" id="5_epchy"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ay03u"]
-height = 0.5
+height = 0.735399
 radius = 1.0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_va0bf"]
-top_radius = 1.0
-bottom_radius = 1.0
-height = 0.5
+bottom_radius = 0.6
+height = 0.2
 
-[node name="Roomba" type="RigidBody3D" node_paths=PackedStringArray("agent") groups=["roomba"]]
+[node name="Roomba" type="StaticBody3D" node_paths=PackedStringArray("navigation_agent", "sprite") groups=["roomba"]]
 collision_layer = 32
+collision_mask = 0
 script = ExtResource("1_xpiuj")
-agent = NodePath("NavigationAgent3D")
+navigation_agent = NodePath("NavigationAgent3D")
+sprite = NodePath("Sprite")
+sleeping_texture = ExtResource("2_5rvep")
+idle_texture = ExtResource("3_jvok2")
+roaming_texture = ExtResource("4_h8mvv")
+chasing_texture = ExtResource("5_epchy")
+returning_texture = ExtResource("4_fhn4q")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_postprocessing = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.214248, 0)
 shape = SubResource("CylinderShape3D_ay03u")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
 mesh = SubResource("CylinderMesh_va0bf")
+skeleton = NodePath("../..")
+
+[node name="Sprite" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.0772876, 0)
+pixel_size = 0.025
+texture_filter = 0
+texture = ExtResource("2_fuc6n")

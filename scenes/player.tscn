@@ -94,9 +94,8 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 
 shape = SubResource("CylinderShape3D_n233r")
 
 [node name="InteractRayCast3D" type="RayCast3D" parent="Head"]
-visible = false
 target_position = Vector3(0, 0, -2)
-collision_mask = 6
+collision_mask = 38
 
 [node name="BodyCollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_8tfg5")

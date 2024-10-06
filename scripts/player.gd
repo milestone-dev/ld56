@@ -103,17 +103,16 @@ func _physics_process(delta: float) -> void:
 
 	#debug mode
 	if Input.is_action_just_pressed("toggle_debug"): debug_mode = !debug_mode
+	if Input.is_action_just_pressed("debug_add_kittens"):
+		kitten_pool -= 1
+		kitten_count += 1
 
 	# make kittens and tardigrades fall out of your hand
 	# placeholder impl for now
 	kitten_disappear_timer -= delta
 	if kitten_disappear_timer <= 0:
+		drop_kittens()
 		kitten_disappear_timer = KITTEN_DISAPPEAR_TIMER_MAX
-		var kittens_lost := 1
-		var tardigrades_lost := 1
-		kitten_pool += kittens_lost
-		kitten_count = max(0, kitten_count - kittens_lost)
-		tardigrade_count = max(0, tardigrade_count - tardigrades_lost)
 
 	# fall, land, jump, crouch
 	if not is_on_floor(): velocity += get_gravity() * delta
@@ -169,6 +168,13 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	ui.update(self)
 
+func drop_kittens(count : int = 1):
+	var kittens_lost := count
+	var tardigrades_lost := count
+	kitten_pool += kittens_lost
+	kitten_count = max(0, kitten_count - kittens_lost)
+	tardigrade_count = max(0, tardigrade_count - tardigrades_lost)
+
 func update_scanner():
 	kitten_detection_level = 0
 	for kitten_cluster : Node3D in get_tree().get_nodes_in_group("kitten_cluster"):
@@ -213,7 +219,10 @@ func manage_interactions():
 					play_sfx(sfx_pick)
 
 	var collider = interaction_ray.get_collider()
-	if collider is KittenContainer:
+	if collider is Roomba:
+		var roomba := collider as Roomba
+		roomba.hit_reset()
+	elif collider is KittenContainer:
 		var kitten_container := collider as KittenContainer
 		kitten_container.interact(self)
 		return
