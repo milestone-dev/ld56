@@ -1,18 +1,34 @@
-[gd_scene load_steps=7 format=3 uid="uid://cpoa4d7l5tsv8"]
+[gd_scene load_steps=10 format=3 uid="uid://cpoa4d7l5tsv8"]
 
 [ext_resource type="PackedScene" uid="uid://jqmhm7qjf7n5" path="res://scenes/ui.tscn" id="1_11mfm"]
 [ext_resource type="PackedScene" uid="uid://wtv1ym4laxh8" path="res://scenes/player.tscn" id="2_cfjsh"]
 [ext_resource type="PackedScene" uid="uid://dwcy4yjjn8ia8" path="res://assets/maps/apartment.bsp" id="3_4u18w"]
+[ext_resource type="PackedScene" uid="uid://swxfu7ohj2gm" path="res://assets/maps/lighting.tscn" id="6_1gvqg"]
 [ext_resource type="PackedScene" uid="uid://dtfeq3efdallg" path="res://assets/models/props/incubator/incubator.tscn" id="6_n72c3"]
 [ext_resource type="PackedScene" uid="uid://ctwdnitte857g" path="res://assets/models/props/centrifuge/centrifuge.tscn" id="7_ic2o6"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x7yap"]
+
+[sub_resource type="Sky" id="Sky_8fxfh"]
+sky_material = SubResource("ProceduralSkyMaterial_x7yap")
+
 [sub_resource type="Environment" id="Environment_ohmgh"]
-background_mode = 1
+background_mode = 2
 background_color = Color(0.792935, 0.934721, 1, 1)
-ambient_light_source = 2
+sky = SubResource("Sky_8fxfh")
+ambient_light_source = 3
 ambient_light_color = Color(1, 1, 1, 1)
+reflected_light_source = 2
+tonemap_mode = 3
+ssr_enabled = true
 ssao_enabled = true
-fog_light_color = Color(0, 0, 0, 1)
+ssil_enabled = true
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.627442, 0.430255, 0.312566, 1)
+fog_density = 0.02
+fog_aerial_perspective = 1.0
+fog_height_density = 0.2879
 
 [node name="Main" type="Node3D"]
 
@@ -22,16 +38,17 @@ unique_name_in_owner = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ohmgh")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-
 [node name="Player" parent="." node_paths=PackedStringArray("ui") instance=ExtResource("2_cfjsh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.077, 0.898638, -16.4167)
 ui = NodePath("../UI")
 
 [node name="apartment" parent="." instance=ExtResource("3_4u18w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.76837e-07, -1.90735e-06)
 
 [node name="incubator" parent="." instance=ExtResource("6_n72c3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.85475, 1.10042, -16.1253)
 
 [node name="centrifuge" parent="." instance=ExtResource("7_ic2o6")]
 transform = Transform3D(0.999905, 0, -0.0137702, 0, 1, 0, 0.0137702, 0, 0.999905, 3.33287, 1.09713, -15.1262)
+
+[node name="Lighting" parent="." instance=ExtResource("6_1gvqg")]
