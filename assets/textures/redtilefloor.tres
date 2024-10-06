@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://62t3tsepu8ni"]
+
+[ext_resource type="Texture2D" uid="uid://ql0n2ts1n3l1" path="res://assets/textures/redtilefloor.png" id="1_h0ups"]
+
+[resource]
+diffuse_mode = 2
+albedo_texture = ExtResource("1_h0ups")
+texture_filter = 0
