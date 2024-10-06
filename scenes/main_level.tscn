@@ -65,14 +65,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.76837e-07, -1.90735e-06
 [node name="Roombas" type="Node3D" parent="."]
 
 [node name="RoombaHome1" parent="Roombas" instance=ExtResource("5_dmc0a")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.4017, 0.998979, -27.2656)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.4958, 0.998979, -24.4099)
 
 [node name="Roomba" parent="Roombas/RoombaHome1" instance=ExtResource("6_kfr7v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.539, 0)
 modulate_color = Color(4.23551e-05, 0.514706, 0.899688, 0.639216)
 
 [node name="RoombaHome2" parent="Roombas" instance=ExtResource("5_dmc0a")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 20.9264, 0.923827, -1.50049)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 18.9215, 0.923827, -1.39003)
 
 [node name="Roomba" parent="Roombas/RoombaHome2" instance=ExtResource("6_kfr7v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.539, 0)
@@ -83,7 +83,7 @@ kitten_destroy_timer = 0.25
 modulate_color = Color(0.847059, 0.490196, 0, 0.623529)
 
 [node name="RoombaHome3" parent="Roombas" instance=ExtResource("5_dmc0a")]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 19.9867, 0.923827, -15.4718)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 19.9967, 0.923827, -15.879)
 
 [node name="Roomba" parent="Roombas/RoombaHome3" instance=ExtResource("6_kfr7v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.539, 0)

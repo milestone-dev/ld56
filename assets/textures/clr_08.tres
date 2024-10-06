@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cs26h8bii333d"]
+
+[ext_resource type="Texture2D" uid="uid://cph6nbay5dwcf" path="res://assets/textures/clr_08.png" id="1_jv382"]
+
+[resource]
+diffuse_mode = 2
+albedo_texture = ExtResource("1_jv382")
+texture_filter = 0

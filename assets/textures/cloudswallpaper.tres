@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dsehvcicc51lc"]
+
+[ext_resource type="Texture2D" uid="uid://o557c23hm6p8" path="res://assets/textures/cloudswallpaper.png" id="1_te3xr"]
+
+[resource]
+diffuse_mode = 2
+albedo_texture = ExtResource("1_te3xr")
+texture_filter = 0
