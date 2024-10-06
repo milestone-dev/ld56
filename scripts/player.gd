@@ -84,7 +84,7 @@ var scan_energy := SCAN_ENERGY_MAX
 const SCAN_RANGE_CUTOFF := 5.0
 
 const SPRAY_ENERGY_MAX := 100.0
-const SPRAY_ENERGY_COST := SPRAY_ENERGY_MAX/100.0
+const SPRAY_ENERGY_COST := SPRAY_ENERGY_MAX/10.0
 var spray_energy := SPRAY_ENERGY_MAX
 
 var kitten_disappear_timer := Settings.kitten_drop_timer_max
@@ -109,6 +109,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("toggle_menu"):
 		ui.toggle_ingame_menu()
 		return
+
+	if ui.is_menu_open(): return
 
 	if kitten_saved_count >= 1000000:
 		get_tree().change_scene_to_file("res://scenes/win_screen.tscn")

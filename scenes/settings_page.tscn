@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cyeynw1jfwgjl"]
+[gd_scene load_steps=14 format=3 uid="uid://cyeynw1jfwgjl"]
 
 [ext_resource type="Script" path="res://scripts/settings_page.gd" id="1_136lr"]
 [ext_resource type="Texture2D" uid="uid://bggqlfri1ag7" path="res://assets/sprites/kitten1.png" id="5_5k1pv"]
@@ -9,7 +9,7 @@
 
 [sub_resource type="Gradient" id="Gradient_us6km"]
 offsets = PackedFloat32Array(0, 0.994709)
-colors = PackedColorArray(0.3, 0.26345, 0.249, 1, 0.8434, 0.611467, 0.409124, 1)
+colors = PackedColorArray(0.662526, 0.609311, 0.588344, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_p6ihf"]
 gradient = SubResource("Gradient_us6km")
@@ -17,6 +17,41 @@ fill_from = Vector2(0.683761, 1)
 fill_to = Vector2(0.344017, 0.0534188)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6apkb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q0f1e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gju87"]
+content_margin_left = 32.0
+content_margin_top = 16.0
+content_margin_right = 32.0
+content_margin_bottom = 16.0
+bg_color = Color(0.87451, 0.443137, 0.14902, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cgfhm"]
+content_margin_left = 32.0
+content_margin_top = 16.0
+content_margin_right = 32.0
+content_margin_bottom = 16.0
+bg_color = Color(1, 0.468, 0.16, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ouju"]
+content_margin_left = 32.0
+content_margin_top = 16.0
+content_margin_right = 32.0
+content_margin_bottom = 16.0
+bg_color = Color(0.843137, 0.482353, 0.729412, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [node name="SettingsPage" type="Control" node_paths=PackedStringArray("sens_slider", "gfx_slider", "sfx_slider", "music_slider", "back_button", "quit_game_button", "sfx_audio_stream_player")]
 layout_mode = 3
@@ -26,12 +61,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_136lr")
-sens_slider = NodePath("VBoxContainer2/HBoxContainer/SensHSlider")
-gfx_slider = NodePath("VBoxContainer2/HBoxContainer2/GFXHSlider")
-sfx_slider = NodePath("VBoxContainer2/HBoxContainer3/SFXHSlider")
-music_slider = NodePath("VBoxContainer2/HBoxContainer4/MusicHSlider")
-back_button = NodePath("VBoxContainer2/BackButton")
-quit_game_button = NodePath("VBoxContainer2/QuitButton")
+sens_slider = NodePath("VBoxContainer2/HBoxContainer11/VBoxContainer/HBoxContainer/SensHSlider")
+gfx_slider = NodePath("VBoxContainer2/HBoxContainer11/VBoxContainer/HBoxContainer2/GFXHSlider")
+sfx_slider = NodePath("VBoxContainer2/HBoxContainer11/VBoxContainer/HBoxContainer3/SFXHSlider")
+music_slider = NodePath("VBoxContainer2/HBoxContainer11/VBoxContainer/HBoxContainer4/MusicHSlider")
+back_button = NodePath("VBoxContainer2/MarginContainer/VBoxContainer/BackButton")
+quit_game_button = NodePath("VBoxContainer2/MarginContainer/VBoxContainer/QuitButton")
 sfx_audio_stream_player = NodePath("SFXAudioStreamPlayer")
 
 [node name="BGGradient" type="TextureRect" parent="."]
@@ -44,30 +79,186 @@ grow_vertical = 2
 texture = SubResource("GradientTexture2D_p6ihf")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
-layout_mode = 2
-offset_left = 343.0
-offset_right = 809.0
-offset_bottom = 648.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -233.0
+offset_top = -324.0
+offset_right = 233.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/separation = 16
 alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer2"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
 text = "Game Settings"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2"]
+[node name="HSeparator4" type="HSeparator" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 16
+theme_override_styles/separator = SubResource("StyleBoxEmpty_6apkb")
+
+[node name="HBoxContainer11" type="HBoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer2/HBoxContainer11"]
+layout_mode = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer11/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer2/HBoxContainer11/VBoxContainer2/HBoxContainer5"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.181798, 0.181798, 0.181798, 1)
+theme_override_font_sizes/font_size = 16
+text = "Press [Left Mouse Button]"
+horizontal_alignment = 2
+
+[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer11/VBoxContainer2/HBoxContainer5"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.181798, 0.181798, 0.181798, 1)
+theme_override_font_sizes/font_size = 12
+text = "Spray to reveal kittens in front of you"
+autowrap_mode = 2
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer11/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer2/HBoxContainer11/VBoxContainer2/HBoxContainer6"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.181798, 0.181798, 0.181798, 1)
+theme_override_font_sizes/font_size = 16
+text = "Hold [Right Mouse Button]"
+horizontal_alignment = 2
+
+[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer11/VBoxContainer2/HBoxContainer6"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.181798, 0.181798, 0.181798, 1)
+theme_override_font_sizes/font_size = 12
+text = "Scan for microscopic kitten clusters nearby"
+autowrap_mode = 2
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer11/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer2/HBoxContainer11/VBoxContainer2/HBoxContainer7"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.181798, 0.181798, 0.181798, 1)
+theme_override_font_sizes/font_size = 16
+text = "Press [E] Key"
+horizontal_alignment = 2
+
+[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer11/VBoxContainer2/HBoxContainer7"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.181798, 0.181798, 0.181798, 1)
+theme_override_font_sizes/font_size = 12
+text = "Pick up revealed kittens, and interact with objects"
+autowrap_mode = 2
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer11/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer2/HBoxContainer11/VBoxContainer2/HBoxContainer8"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.181798, 0.181798, 0.181798, 1)
+theme_override_font_sizes/font_size = 16
+text = "Hold [W] [A] [S] [D] Keys"
+horizontal_alignment = 2
+
+[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer11/VBoxContainer2/HBoxContainer8"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.181798, 0.181798, 0.181798, 1)
+theme_override_font_sizes/font_size = 12
+text = "Walk"
+autowrap_mode = 2
+
+[node name="HBoxContainer9" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer11/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer2/HBoxContainer11/VBoxContainer2/HBoxContainer9"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.181798, 0.181798, 0.181798, 1)
+theme_override_font_sizes/font_size = 16
+text = "Hold [Shift] Key"
+horizontal_alignment = 2
+
+[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer11/VBoxContainer2/HBoxContainer9"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.181798, 0.181798, 0.181798, 1)
+theme_override_font_sizes/font_size = 12
+text = "Sprint"
+autowrap_mode = 2
+
+[node name="HBoxContainer10" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer11/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer2/HBoxContainer11/VBoxContainer2/HBoxContainer10"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.181798, 0.181798, 0.181798, 1)
+theme_override_font_sizes/font_size = 16
+text = "Press [Space] Key"
+horizontal_alignment = 2
+
+[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer11/VBoxContainer2/HBoxContainer10"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.181798, 0.181798, 0.181798, 1)
+theme_override_font_sizes/font_size = 12
+text = "Jump"
+autowrap_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer2/HBoxContainer11"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_q0f1e")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/HBoxContainer11"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer11/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer11/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.181798, 0.181798, 0.181798, 1)
 text = "Mouse Sensitivity"
 horizontal_alignment = 2
 
-[node name="SensHSlider" type="HSlider" parent="VBoxContainer2/HBoxContainer"]
+[node name="SensHSlider" type="HSlider" parent="VBoxContainer2/HBoxContainer11/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_icons/grabber = ExtResource("5_5k1pv")
@@ -79,17 +270,18 @@ value = 0.2
 tick_count = 25
 ticks_on_borders = true
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer2"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer11/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer3"]
+[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer11/VBoxContainer/HBoxContainer3"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.181798, 0.181798, 0.181798, 1)
 text = "Sound Effects Volume"
 horizontal_alignment = 2
 
-[node name="SFXHSlider" type="HSlider" parent="VBoxContainer2/HBoxContainer3"]
+[node name="SFXHSlider" type="HSlider" parent="VBoxContainer2/HBoxContainer11/VBoxContainer/HBoxContainer3"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_icons/grabber = ExtResource("7_usxxq")
@@ -99,17 +291,18 @@ max_value = 0.0
 tick_count = 10
 ticks_on_borders = true
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer2"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer11/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer4"]
+[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer11/VBoxContainer/HBoxContainer4"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.181798, 0.181798, 0.181798, 1)
 text = "Music Volume"
 horizontal_alignment = 2
 
-[node name="MusicHSlider" type="HSlider" parent="VBoxContainer2/HBoxContainer4"]
+[node name="MusicHSlider" type="HSlider" parent="VBoxContainer2/HBoxContainer11/VBoxContainer/HBoxContainer4"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_icons/grabber = ExtResource("8_oj67b")
@@ -119,17 +312,18 @@ max_value = 0.0
 tick_count = 10
 ticks_on_borders = true
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer2"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer11/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer2"]
+[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer11/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.181798, 0.181798, 0.181798, 1)
 text = "Graphics Quality"
 horizontal_alignment = 2
 
-[node name="GFXHSlider" type="HSlider" parent="VBoxContainer2/HBoxContainer2"]
+[node name="GFXHSlider" type="HSlider" parent="VBoxContainer2/HBoxContainer11/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_icons/grabber = ExtResource("6_dvxnv")
@@ -140,30 +334,45 @@ value = 3.0
 tick_count = 4
 ticks_on_borders = true
 
-[node name="HSeparator2" type="HSeparator" parent="VBoxContainer2"]
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer2"]
 layout_mode = 2
 theme_override_constants/separation = 16
 theme_override_styles/separator = SubResource("StyleBoxEmpty_6apkb")
 
-[node name="QuitButton" type="Button" parent="VBoxContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="QuitButton" type="Button" parent="VBoxContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_focus_color = Color(1, 0.776471, 0.556863, 1)
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = SubResource("StyleBoxFlat_gju87")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cgfhm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_6ouju")
 text = "Exit to Main Menu"
 
-[node name="BackButton" type="Button" parent="VBoxContainer2"]
+[node name="BackButton" type="Button" parent="VBoxContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_focus_color = Color(1, 0.776471, 0.556863, 1)
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = SubResource("StyleBoxFlat_gju87")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cgfhm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_6ouju")
 text = "Back"
 
 [node name="SFXAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_4idhx")
 bus = &"SFX"
 
-[connection signal="value_changed" from="VBoxContainer2/HBoxContainer/SensHSlider" to="." method="mouse_sens_slider_value_changed"]
-[connection signal="value_changed" from="VBoxContainer2/HBoxContainer3/SFXHSlider" to="." method="sfx_volume_slider_value_changed"]
-[connection signal="value_changed" from="VBoxContainer2/HBoxContainer4/MusicHSlider" to="." method="music_volume_slider_value_changed"]
-[connection signal="value_changed" from="VBoxContainer2/HBoxContainer2/GFXHSlider" to="." method="gfx_slider_value_changed"]
-[connection signal="pressed" from="VBoxContainer2/QuitButton" to="." method="quit_to_main_menu"]
-[connection signal="pressed" from="VBoxContainer2/BackButton" to="." method="back"]
+[connection signal="value_changed" from="VBoxContainer2/HBoxContainer11/VBoxContainer/HBoxContainer/SensHSlider" to="." method="mouse_sens_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer2/HBoxContainer11/VBoxContainer/HBoxContainer3/SFXHSlider" to="." method="sfx_volume_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer2/HBoxContainer11/VBoxContainer/HBoxContainer4/MusicHSlider" to="." method="music_volume_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer2/HBoxContainer11/VBoxContainer/HBoxContainer2/GFXHSlider" to="." method="gfx_slider_value_changed"]
+[connection signal="pressed" from="VBoxContainer2/MarginContainer/VBoxContainer/QuitButton" to="." method="quit_to_main_menu"]
+[connection signal="pressed" from="VBoxContainer2/MarginContainer/VBoxContainer/BackButton" to="." method="back"]
