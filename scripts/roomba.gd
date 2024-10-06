@@ -10,20 +10,19 @@ enum State {
 	CHASING_PLAYER
 }
 
-#Start with State.SLEEPING
-var state: State = State.IDLE
-
 var player : Player
 var home : Node3D
 var movement_delta : float
-var returning_home := false
+var state: State = State.SLEEPING
 
-const HOME_REST_TIMER_MAX := 3.0
-var home_rest_timer := HOME_REST_TIMER_MAX
+var home_rest_timer := 0.0
+var attack_cooldown := 0.0
 
-const ATTACK_COOLDOWN_MAX := 0.3
-var attack_cooldown := ATTACK_COOLDOWN_MAX
-var movement_speed: float = 3.0
+@export var awake_kittens_saved : int = 10
+@export var movement_speed: float = 3.0
+@export var home_rest_timer_max : float = 30.0
+@export var kitten_destroy_timer: float = 0.3
+@export var modulate_color : Color = Color.WHITE
 
 @export var navigation_agent : NavigationAgent3D
 @export var sprite : Sprite3D
@@ -36,18 +35,21 @@ var movement_speed: float = 3.0
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player") as Player
-	home = get_tree().get_first_node_in_group("roomba_home") as Node3D
+	home = get_parent_node_3d() as Node3D
+	sprite.modulate = modulate_color
 
-func awake():
-	state = State.ROAMING
 func hit_reset():
-	state = State.RETURNING_HOME
+	if state != State.SLEEPING:
+		home_rest_timer = home_rest_timer_max
+		state = State.RETURNING_HOME
 
 func update_target(delta:float):
 	match state:
 		State.SLEEPING:
 			sprite.texture = sleeping_texture
 			audio_stream_player.stream_paused = true
+			if player.kitten_saved_count >= awake_kittens_saved:
+				state = State.IDLE
 		State.IDLE:
 			sprite.texture = idle_texture
 			audio_stream_player.stream_paused = true
@@ -69,9 +71,10 @@ func update_target(delta:float):
 			audio_stream_player.stream_paused = false
 			if global_position.distance_to(home.global_position) < 1:
 				home_rest_timer -= delta
+				sprite.texture = sleeping_texture
 				audio_stream_player.stream_paused = true
 				if home_rest_timer < 0:
-					home_rest_timer = HOME_REST_TIMER_MAX
+					home_rest_timer = home_rest_timer_max
 					state = State.IDLE
 			else:
 				navigation_agent.target_position = home.global_position
@@ -82,8 +85,8 @@ func update_target(delta:float):
 				navigation_agent.target_position = player.global_position
 				if global_position.distance_to(player.global_position) < 1:
 					if attack_cooldown < 0:
-						attack_cooldown = ATTACK_COOLDOWN_MAX
-						player.drop_kittens()
+						attack_cooldown = kitten_destroy_timer
+						player.drop_kittens(1)
 			else:
 				state = State.IDLE
 

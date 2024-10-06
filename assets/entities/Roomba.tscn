@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://dhug4d0oek6fo"]
+[gd_scene load_steps=10 format=3 uid="uid://dhug4d0oek6fo"]
 
 [ext_resource type="Script" path="res://scripts/roomba.gd" id="1_xpiuj"]
 [ext_resource type="Texture2D" uid="uid://wumnn5pg5asj" path="res://assets/sprites/roomba_sleeping.png" id="2_5rvep"]
-[ext_resource type="Texture2D" uid="uid://bggqlfri1ag7" path="res://assets/sprites/kitten1.png" id="2_fuc6n"]
 [ext_resource type="Texture2D" uid="uid://d2dncopgmamyn" path="res://assets/sprites/roomba_idle.png" id="3_jvok2"]
 [ext_resource type="Texture2D" uid="uid://dli0q31j78k7n" path="res://assets/sprites/roomba_returnhome.png" id="4_fhn4q"]
 [ext_resource type="Texture2D" uid="uid://csvuflukldvcq" path="res://assets/sprites/roomba_roam.png" id="4_h8mvv"]
@@ -22,7 +21,7 @@ collision_layer = 32
 collision_mask = 0
 script = ExtResource("1_xpiuj")
 navigation_agent = NodePath("NavigationAgent3D")
-sprite = NodePath("Sprite")
+sprite = NodePath("CollisionShape3D/MeshInstance3D/Sprite")
 sleeping_texture = ExtResource("2_5rvep")
 idle_texture = ExtResource("3_jvok2")
 roaming_texture = ExtResource("4_h8mvv")
@@ -38,14 +37,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.214248, 0)
 shape = SubResource("CylinderShape3D_ay03u")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.120825, 0)
 mesh = SubResource("CylinderMesh_va0bf")
 skeleton = NodePath("../..")
 
-[node name="Sprite" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.0772876, 0)
+[node name="Sprite" type="Sprite3D" parent="CollisionShape3D/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.799859, 0)
 pixel_size = 0.025
+billboard = 2
 texture_filter = 0
-texture = ExtResource("2_fuc6n")
+texture = ExtResource("2_5rvep")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("8_j51k5")

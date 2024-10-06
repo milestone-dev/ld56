@@ -1,9 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://bkfs3kykwx6hv"]
+[gd_scene load_steps=3 format=3 uid="uid://bkfs3kykwx6hv"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_vbep2"]
-size = Vector3(2, 2, 2)
+size = Vector3(2, 0.25, 0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tyqfr"]
+size = Vector3(0.25, 1.25, 0.25)
 
 [node name="RoombaHome" type="Node3D" groups=["roomba_home"]]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Roof" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0508891, -0.840537)
 mesh = SubResource("BoxMesh_vbep2")
+
+[node name="Leg1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.85, -0.521257, -0.85)
+mesh = SubResource("BoxMesh_tyqfr")
+
+[node name="Leg2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.85, -0.521257, -0.85)
+mesh = SubResource("BoxMesh_tyqfr")

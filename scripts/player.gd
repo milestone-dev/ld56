@@ -59,6 +59,7 @@ var step_sfx_timer := 0.0
 var SCAN_SFX_TIMER_MAX := 0.4
 var scan_sfx_timer := 0.0
 
+var kitten_saved_count := 0
 var kitten_count := 0;
 var tardigrade_count := 0;
 var kitten_detection_level := 0
