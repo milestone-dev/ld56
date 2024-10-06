@@ -16,6 +16,8 @@ resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("3_0x31i")
 shader_parameter/Tint = Color(1, 1, 1, 1)
+shader_parameter/Noise_Size = 200.0
+shader_parameter/Noise_Overlay = 0.0
 shader_parameter/EmissiveStrength = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bwlkq"]

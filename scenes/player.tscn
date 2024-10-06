@@ -132,8 +132,6 @@ autoplay = true
 bus = &"SFX"
 
 [node name="SFXMeowAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("13_s66td")
-autoplay = true
 bus = &"SFX"
 
 [node name="MusicAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
