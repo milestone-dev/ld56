@@ -62,7 +62,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.40398, 0)
 
 [node name="Particles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-amount = 100
+amount = 10000
+amount_ratio = 0.0
 lifetime = 2.51
 preprocess = 6.17
 process_material = SubResource("ParticleProcessMaterial_y7s7v")
