@@ -16,11 +16,22 @@ class_name UI
 @export var pick_sprite : AnimatedSprite2D
 @export var kittens_in_hand: KittensInHand
 @export var pain_flash_rect : TextureRect
+@export var settings_menu : SettingsPage
 
 var pain_flash_tween : Tween
 
+func is_menu_open(): return settings_menu.visible
+
+func toggle_ingame_menu():
+	settings_menu.visible = !settings_menu.visible
+	if settings_menu.visible:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
 func _ready() -> void:
 	pain_flash_rect.modulate = Color.TRANSPARENT
+	settings_menu.hide()
 
 func flash_pain():
 	var time := 0.15

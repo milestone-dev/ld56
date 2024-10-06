@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://jqmhm7qjf7n5"]
+[gd_scene load_steps=31 format=3 uid="uid://jqmhm7qjf7n5"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_68hwl"]
 [ext_resource type="Texture2D" uid="uid://cya465556bqjx" path="res://assets/sprites/ui_catscan.png" id="2_f1ilk"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" path="res://scenes/kittens_in_hand.tscn" id="5_cs22l"]
 [ext_resource type="Texture2D" uid="uid://duliddsehj0jx" path="res://assets/sprites/ui_pick1.png" id="6_c8owi"]
 [ext_resource type="Texture2D" uid="uid://dcsn03in83vpw" path="res://assets/sprites/ui_pick2.png" id="7_rriv4"]
+[ext_resource type="PackedScene" uid="uid://cyeynw1jfwgjl" path="res://scenes/settings_page.tscn" id="10_fqakn"]
 
 [sub_resource type="Gradient" id="Gradient_0pe74"]
 offsets = PackedFloat32Array(0.248134, 0.5, 1)
@@ -145,7 +146,7 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("crosshair", "kitten_count_label", "tardigrade_count_label", "sprint_energy_label", "kitten_pool_label", "time_label", "cat_scanner_texture", "cat_palm_texture", "scan_energy_bar", "spray_energy_bar", "spray_sprite", "detection_progress_sprite", "pick_sprite", "kittens_in_hand", "pain_flash_rect")]
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("crosshair", "kitten_count_label", "tardigrade_count_label", "sprint_energy_label", "kitten_pool_label", "time_label", "cat_scanner_texture", "cat_palm_texture", "scan_energy_bar", "spray_energy_bar", "spray_sprite", "detection_progress_sprite", "pick_sprite", "kittens_in_hand", "pain_flash_rect", "settings_menu")]
 script = ExtResource("1_68hwl")
 crosshair = NodePath("Crosshair")
 kitten_count_label = NodePath("HandsContainer/CatPalmTexture/KittenCountLabel")
@@ -162,6 +163,7 @@ detection_progress_sprite = NodePath("HandsContainer/CatScannerTexture/KittenDet
 pick_sprite = NodePath("HandsContainer/PickSprite")
 kittens_in_hand = NodePath("HandsContainer/CatPalmTexture/SubViewportContainer/SubViewport/Node3D")
 pain_flash_rect = NodePath("PainFlashRect")
+settings_menu = NodePath("SettingsPage")
 
 [node name="PainFlashRect" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -343,7 +345,7 @@ theme_override_font_sizes/font_size = 16
 text = "Tardigrades"
 
 [node name="SpraySprite" type="AnimatedSprite2D" parent="HandsContainer"]
-position = Vector2(895, 305)
+position = Vector2(1024, 458)
 sprite_frames = SubResource("SpriteFrames_27g81")
 centered = false
 
@@ -368,6 +370,10 @@ fill_mode = 3
 show_percentage = false
 
 [node name="PickSprite" type="AnimatedSprite2D" parent="HandsContainer"]
-position = Vector2(895, 305)
+position = Vector2(1025, 460)
 sprite_frames = SubResource("SpriteFrames_nwpjq")
 centered = false
+
+[node name="SettingsPage" parent="." instance=ExtResource("10_fqakn")]
+visible = false
+is_ingame_menu = true

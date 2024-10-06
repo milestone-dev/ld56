@@ -1,9 +1,14 @@
 extends Node3D
 
+class_name Level
+
 @export var env : WorldEnvironment
 @export var lightningNodes : Node3D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	update_gfx_settings()
+
+func update_gfx_settings():
 	#GFX Quality is 1-4
 	env.environment.ssao_enabled = Settings.gfx_quality > 3
 	env.environment.ssr_enabled = Settings.gfx_quality > 3

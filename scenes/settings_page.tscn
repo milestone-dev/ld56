@@ -1,0 +1,169 @@
+[gd_scene load_steps=10 format=3 uid="uid://cyeynw1jfwgjl"]
+
+[ext_resource type="Script" path="res://scripts/settings_page.gd" id="1_136lr"]
+[ext_resource type="Texture2D" uid="uid://bggqlfri1ag7" path="res://assets/sprites/kitten1.png" id="5_5k1pv"]
+[ext_resource type="Texture2D" uid="uid://b2a8mpk1u4ijd" path="res://assets/sprites/kitten2.png" id="6_dvxnv"]
+[ext_resource type="Texture2D" uid="uid://bp0bfra7eckxa" path="res://assets/sprites/kitten3.png" id="7_usxxq"]
+[ext_resource type="Texture2D" uid="uid://ukcaa2rr4i5m" path="res://assets/sprites/kitten4.png" id="8_oj67b"]
+[ext_resource type="AudioStream" uid="uid://t4uy58qil582" path="res://assets/sfx/meow2.ogg" id="11_4idhx"]
+
+[sub_resource type="Gradient" id="Gradient_us6km"]
+offsets = PackedFloat32Array(0, 0.401473, 0.793738, 0.992634)
+colors = PackedColorArray(0.3, 0.26345, 0.249, 1, 0.63135, 0.69, 0.5865, 1, 0.900535, 0.755793, 0.706239, 1, 1, 0.780392, 0.556863, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_p6ihf"]
+gradient = SubResource("Gradient_us6km")
+fill_from = Vector2(0.683761, 1)
+fill_to = Vector2(0.344017, 0.0534188)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6apkb"]
+
+[node name="SettingsPage" type="Control" node_paths=PackedStringArray("sens_slider", "gfx_slider", "sfx_slider", "music_slider", "back_button", "quit_game_button", "sfx_audio_stream_player")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_136lr")
+sens_slider = NodePath("VBoxContainer2/HBoxContainer/SensHSlider")
+gfx_slider = NodePath("VBoxContainer2/HBoxContainer2/GFXHSlider")
+sfx_slider = NodePath("VBoxContainer2/HBoxContainer3/SFXHSlider")
+music_slider = NodePath("VBoxContainer2/HBoxContainer4/MusicHSlider")
+back_button = NodePath("VBoxContainer2/BackButton")
+quit_game_button = NodePath("VBoxContainer2/QuitButton")
+sfx_audio_stream_player = NodePath("SFXAudioStreamPlayer")
+
+[node name="BGGradient" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_p6ihf")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 343.0
+offset_right = 809.0
+offset_bottom = 648.0
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Game Settings"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Mouse Sensitivity"
+horizontal_alignment = 2
+
+[node name="SensHSlider" type="HSlider" parent="VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("5_5k1pv")
+theme_override_icons/grabber_highlight = ExtResource("5_5k1pv")
+min_value = 0.05
+max_value = 1.0
+step = 0.01
+value = 0.2
+tick_count = 25
+ticks_on_borders = true
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer3"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Sound Effects Volume"
+horizontal_alignment = 2
+
+[node name="SFXHSlider" type="HSlider" parent="VBoxContainer2/HBoxContainer3"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("7_usxxq")
+theme_override_icons/grabber_highlight = ExtResource("7_usxxq")
+min_value = -80.0
+max_value = 0.0
+tick_count = 10
+ticks_on_borders = true
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer4"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Music Volume"
+horizontal_alignment = 2
+
+[node name="MusicHSlider" type="HSlider" parent="VBoxContainer2/HBoxContainer4"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("8_oj67b")
+theme_override_icons/grabber_highlight = ExtResource("8_oj67b")
+min_value = -80.0
+max_value = 0.0
+tick_count = 10
+ticks_on_borders = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Graphics Quality"
+horizontal_alignment = 2
+
+[node name="GFXHSlider" type="HSlider" parent="VBoxContainer2/HBoxContainer2"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("6_dvxnv")
+theme_override_icons/grabber_highlight = ExtResource("6_dvxnv")
+min_value = 1.0
+max_value = 4.0
+value = 3.0
+tick_count = 4
+ticks_on_borders = true
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 16
+theme_override_styles/separator = SubResource("StyleBoxEmpty_6apkb")
+
+[node name="QuitButton" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(1, 0.776471, 0.556863, 1)
+theme_override_font_sizes/font_size = 32
+text = "Exit to Main Menu"
+
+[node name="BackButton" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(1, 0.776471, 0.556863, 1)
+theme_override_font_sizes/font_size = 32
+text = "Back"
+
+[node name="SFXAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_4idhx")
+bus = &"SFX"
+
+[connection signal="value_changed" from="VBoxContainer2/HBoxContainer/SensHSlider" to="." method="mouse_sens_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer2/HBoxContainer3/SFXHSlider" to="." method="sfx_volume_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer2/HBoxContainer4/MusicHSlider" to="." method="music_volume_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer2/HBoxContainer2/GFXHSlider" to="." method="gfx_slider_value_changed"]
+[connection signal="pressed" from="VBoxContainer2/QuitButton" to="." method="quit_to_main_menu"]
+[connection signal="pressed" from="VBoxContainer2/BackButton" to="." method="back"]
