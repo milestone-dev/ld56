@@ -1,0 +1,166 @@
+[gd_scene load_steps=7 format=3 uid="uid://cfxinyypstccx"]
+
+[ext_resource type="PackedScene" uid="uid://duj1ff6yq6c1y" path="res://assets/models/props/dubious_potion/dubious_potion.gltf" id="1_ubyj8"]
+[ext_resource type="Material" uid="uid://hb066jrqj0ek" path="res://assets/models/props/dubious_potion/dubious_liquid.tres" id="2_rjdpl"]
+[ext_resource type="Shader" uid="uid://bkwsgy5n73jcv" path="res://assets/models/shared/shaders/protoGlass.tres" id="2_vq6wp"]
+[ext_resource type="PackedScene" uid="uid://cbh44kjo40g52" path="res://assets/decals/paw_print_decal.tscn" id="3_2nl0h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jxa4v"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_vq6wp")
+shader_parameter/Tint = Color(0.32549, 0.631373, 0.529412, 1)
+shader_parameter/Refraction = 0.1
+shader_parameter/Opacity = 1.0
+shader_parameter/Fresnel = 0.5
+shader_parameter/EmissiveStrength = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_14b1i"]
+
+[node name="dubious_potion" instance=ExtResource("1_ubyj8")]
+
+[node name="dubious_potion_flask" parent="dubious_potion_flask" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_jxa4v")
+
+[node name="dubious_potion_liquid" parent="dubious_potion_flask" index="1"]
+surface_material_override/0 = ExtResource("2_rjdpl")
+
+[node name="test_plane_for_placing_paws" type="MeshInstance3D" parent="." index="1"]
+transform = Transform3D(8.56162, 0, 0, 0, -3.7424e-07, 8.56162, 0, -8.56162, -3.7424e-07, 0, 0, 0)
+visible = false
+mesh = SubResource("QuadMesh_14b1i")
+
+[node name="paws01" type="Node3D" parent="." index="2"]
+transform = Transform3D(0.916845, 0, 0, 0, 0.916845, 0, 0, 0, 0.916845, 0, 0, 0)
+
+[node name="paw_print_decal" parent="paws01" index="0" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.0797403, 0, -0.026817, 0, 0.0841288, 0, 0.026817, 0, 0.0797403, -0.00296152, 0, -0.749071)
+
+[node name="paw_print_decal2" parent="paws01" index="1" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.0456379, 0, -0.0464269, 0, 0.065102, 0, 0.0464269, 0, 0.0456379, 0.242357, 5.96046e-08, -0.809144)
+
+[node name="paw_print_decal3" parent="paws01" index="2" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.0514723, 0, -0.0197068, 0, 0.0551158, 0, 0.0197068, 0, 0.0514723, 0.156512, 0.000421643, -1.04055)
+
+[node name="paw_print_decal4" parent="paws01" index="3" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.0352203, 0, -0.029524, 0, 0.045958, 0, 0.029524, 0, 0.0352203, 0.40352, 0.000421643, -1.09288)
+
+[node name="paw_print_decal5" parent="paws01" index="4" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.0370088, 0, -0.0123105, 0, 0.0390025, 0, 0.0123105, 0, 0.0370088, 0.368438, 0.000421643, -1.27973)
+
+[node name="paw_print_decal6" parent="paws01" index="5" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.0183119, 0, -0.023013, 0, 0.0294095, 0, 0.023013, 0, 0.0183119, 0.511684, 0.000421643, -1.29441)
+
+[node name="paw_print_decal7" parent="paws01" index="6" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.0181087, 0, -0.00937782, 0, 0.0203928, 0, 0.00937782, 0, 0.0181087, 0.501435, 0.000421643, -1.40351)
+
+[node name="paw_print_decal8" parent="paws01" index="7" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.00534423, 0, -0.0129225, 0, 0.013984, 0, 0.0129225, 0, 0.00534423, 0.615732, 0.000421643, -1.39393)
+
+[node name="paws02" type="Node3D" parent="." index="3"]
+transform = Transform3D(-0.0459303, 0, 0.967847, 0, 0.968936, 0, -0.967847, 0, -0.0459303, -0.361909, 0, -0.343259)
+
+[node name="paw_print_decal" parent="paws02" index="0" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.0797403, 0, -0.026817, 0, 0.0841288, 0, 0.026817, 0, 0.0797403, -0.00296152, 0, -0.749071)
+
+[node name="paw_print_decal2" parent="paws02" index="1" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.0456379, 0, -0.0464269, 0, 0.065102, 0, 0.0464269, 0, 0.0456379, 0.242357, 5.96046e-08, -0.809144)
+
+[node name="paw_print_decal3" parent="paws02" index="2" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.0514723, 0, -0.0197068, 0, 0.0551158, 0, 0.0197068, 0, 0.0514723, 0.156512, 0.000421643, -1.04055)
+
+[node name="paw_print_decal4" parent="paws02" index="3" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.0352203, 0, -0.029524, 0, 0.045958, 0, 0.029524, 0, 0.0352203, 0.40352, 0.000421643, -1.09288)
+
+[node name="paw_print_decal5" parent="paws02" index="4" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.0370088, 0, -0.0123105, 0, 0.0390025, 0, 0.0123105, 0, 0.0370088, 0.368438, 0.000421643, -1.27973)
+
+[node name="paw_print_decal6" parent="paws02" index="5" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.0183119, 0, -0.023013, 0, 0.0294095, 0, 0.023013, 0, 0.0183119, 0.511684, 0.000421643, -1.29441)
+
+[node name="paw_print_decal7" parent="paws02" index="6" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.0181087, 0, -0.00937782, 0, 0.0203928, 0, 0.00937782, 0, 0.0181087, 0.501435, 0.000421643, -1.40351)
+
+[node name="paw_print_decal8" parent="paws02" index="7" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.00534423, 0, -0.0129225, 0, 0.013984, 0, 0.0129225, 0, 0.00534423, 0.615732, 0.000421643, -1.39393)
+
+[node name="paws03" type="Node3D" parent="." index="4"]
+transform = Transform3D(-0.954329, 0, 0.0371287, 0, 0.955051, 0, -0.0371287, 0, -0.954329, -0.697909, 0, -0.0656957)
+
+[node name="paw_print_decal" parent="paws03" index="0" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.0797403, 0, -0.026817, 0, 0.0841288, 0, 0.026817, 0, 0.0797403, -0.00296152, 0, -0.749071)
+
+[node name="paw_print_decal2" parent="paws03" index="1" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.0456379, 0, -0.0464269, 0, 0.065102, 0, 0.0464269, 0, 0.0456379, 0.242357, 5.96046e-08, -0.809144)
+
+[node name="paw_print_decal3" parent="paws03" index="2" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.0514723, 0, -0.0197068, 0, 0.0551158, 0, 0.0197068, 0, 0.0514723, 0.156512, 0.000421643, -1.04055)
+
+[node name="paw_print_decal4" parent="paws03" index="3" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.0352203, 0, -0.029524, 0, 0.045958, 0, 0.029524, 0, 0.0352203, 0.40352, 0.000421643, -1.09288)
+
+[node name="paw_print_decal5" parent="paws03" index="4" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.0370088, 0, -0.0123105, 0, 0.0390025, 0, 0.0123105, 0, 0.0370088, 0.368438, 0.000421643, -1.27973)
+
+[node name="paw_print_decal6" parent="paws03" index="5" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.0183119, 0, -0.023013, 0, 0.0294095, 0, 0.023013, 0, 0.0183119, 0.511684, 0.000421643, -1.29441)
+
+[node name="paw_print_decal7" parent="paws03" index="6" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.0181087, 0, -0.00937782, 0, 0.0203928, 0, 0.00937782, 0, 0.0181087, 0.501435, 0.000421643, -1.40351)
+
+[node name="paw_print_decal8" parent="paws03" index="7" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.00534423, 0, -0.0129225, 0, 0.013984, 0, 0.0129225, 0, 0.00534423, 0.615732, 0.000421643, -1.39393)
+
+[node name="paws04" type="Node3D" parent="." index="5"]
+transform = Transform3D(-0.463453, 0, 0.588479, 0, 0.749064, 0, -0.588479, 0, -0.463453, -0.546891, 0, -0.0570397)
+
+[node name="paw_print_decal" parent="paws04" index="0" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.0797403, 0, -0.026817, 0, 0.0841288, 0, 0.026817, 0, 0.0797403, -0.00296152, 0, -0.749071)
+
+[node name="paw_print_decal2" parent="paws04" index="1" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.0456379, 0, -0.0464269, 0, 0.065102, 0, 0.0464269, 0, 0.0456379, 0.242357, 5.96046e-08, -0.809144)
+
+[node name="paw_print_decal3" parent="paws04" index="2" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.0514723, 0, -0.0197068, 0, 0.0551158, 0, 0.0197068, 0, 0.0514723, 0.156512, 0.000421643, -1.04055)
+
+[node name="paw_print_decal4" parent="paws04" index="3" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.0352203, 0, -0.029524, 0, 0.045958, 0, 0.029524, 0, 0.0352203, 0.40352, 0.000421643, -1.09288)
+
+[node name="paw_print_decal5" parent="paws04" index="4" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.0370088, 0, -0.0123105, 0, 0.0390025, 0, 0.0123105, 0, 0.0370088, 0.368438, 0.000421643, -1.27973)
+
+[node name="paw_print_decal6" parent="paws04" index="5" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.0183119, 0, -0.023013, 0, 0.0294095, 0, 0.023013, 0, 0.0183119, 0.511684, 0.000421643, -1.29441)
+
+[node name="paw_print_decal7" parent="paws04" index="6" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.0181087, 0, -0.00937782, 0, 0.0203928, 0, 0.00937782, 0, 0.0181087, 0.501435, 0.000421643, -1.40351)
+
+[node name="paw_print_decal8" parent="paws04" index="7" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.00534423, 0, -0.0129225, 0, 0.013984, 0, 0.0129225, 0, 0.00534423, 0.615732, 0.000421643, -1.39393)
+
+[node name="paws05" type="Node3D" parent="." index="6"]
+transform = Transform3D(-0.323117, 0, -0.67579, 0, 0.749064, 0, 0.67579, 0, -0.323117, -0.572494, 0, 0.149837)
+
+[node name="paw_print_decal" parent="paws05" index="0" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.0797403, 0, -0.026817, 0, 0.0841288, 0, 0.026817, 0, 0.0797403, -0.00296152, 0, -0.749071)
+
+[node name="paw_print_decal2" parent="paws05" index="1" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.0456379, 0, -0.0464269, 0, 0.065102, 0, 0.0464269, 0, 0.0456379, 0.242357, 5.96046e-08, -0.809144)
+
+[node name="paw_print_decal3" parent="paws05" index="2" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.0514723, 0, -0.0197068, 0, 0.0551158, 0, 0.0197068, 0, 0.0514723, 0.156512, 0.000421643, -1.04055)
+
+[node name="paw_print_decal4" parent="paws05" index="3" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.0352203, 0, -0.029524, 0, 0.045958, 0, 0.029524, 0, 0.0352203, 0.40352, 0.000421643, -1.09288)
+
+[node name="paw_print_decal5" parent="paws05" index="4" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.0370088, 0, -0.0123105, 0, 0.0390025, 0, 0.0123105, 0, 0.0370088, 0.368438, 0.000421643, -1.27973)
+
+[node name="paw_print_decal6" parent="paws05" index="5" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.0183119, 0, -0.023013, 0, 0.0294095, 0, 0.023013, 0, 0.0183119, 0.511684, 0.000421643, -1.29441)
+
+[node name="paw_print_decal7" parent="paws05" index="6" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.0181087, 0, -0.00937782, 0, 0.0203928, 0, 0.00937782, 0, 0.0181087, 0.501435, 0.000421643, -1.40351)
+
+[node name="paw_print_decal8" parent="paws05" index="7" instance=ExtResource("3_2nl0h")]
+transform = Transform3D(0.00534423, 0, -0.0129225, 0, 0.013984, 0, 0.0129225, 0, 0.00534423, 0.615732, 0.000421643, -1.39393)

@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbh44kjo40g52"]
+
+[ext_resource type="Texture2D" uid="uid://cjvoj5yww538l" path="res://assets/decals/paw_decal_dif.png" id="1_801yn"]
+[ext_resource type="Texture2D" uid="uid://clijymu57vitd" path="res://assets/decals/paw_decal_nrm.png" id="2_ty0d7"]
+[ext_resource type="Texture2D" uid="uid://bnhq6npovgirx" path="res://assets/decals/paw_decal_orm.png" id="3_wfron"]
+
+[node name="paw_print_decal" type="Decal"]
+texture_albedo = ExtResource("1_801yn")
+texture_normal = ExtResource("2_ty0d7")
+texture_orm = ExtResource("3_wfron")
+modulate = Color(0.392157, 0.109804, 0.282353, 1)

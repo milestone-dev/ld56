@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://rs4k12y5gess"]
+[gd_scene load_steps=14 format=3 uid="uid://rs4k12y5gess"]
 
 [ext_resource type="PackedScene" uid="uid://jqmhm7qjf7n5" path="res://scenes/ui.tscn" id="1_cfovc"]
 [ext_resource type="PackedScene" uid="uid://ddw7qw2y8g0au" path="res://assets/maps/test.bsp" id="2_317oy"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ctwdnitte857g" path="res://assets/models/props/centrifuge/centrifuge.tscn" id="6_vnj2j"]
 [ext_resource type="PackedScene" uid="uid://dtfeq3efdallg" path="res://assets/models/props/incubator/incubator.tscn" id="7_18doh"]
 [ext_resource type="PackedScene" uid="uid://vcw1lk4xv0us" path="res://assets/models/props/mascoll_table/mascoll_table.gltf" id="10_dmkfc"]
+[ext_resource type="PackedScene" uid="uid://cfxinyypstccx" path="res://assets/models/props/dubious_potion/dubious_potion.tscn" id="10_rwhcf"]
 [ext_resource type="PackedScene" uid="uid://c3gmui7jojnty" path="res://assets/models/props/erlenmeyer_flask/erlenmeyer_flask.tscn" id="11_4snwc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_no8fg"]
@@ -38,7 +39,6 @@ environment = SubResource("Environment_0eyp7")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.771791, -0.527643, 0.354869, 0, 0.558078, 0.829788, -0.635876, -0.640423, 0.43072, 0, 0, 0)
-visible = false
 light_color = Color(1, 1, 0.960784, 1)
 shadow_enabled = true
 
@@ -47,6 +47,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.077, -0.717175, -16.4167)
 
 [node name="Player" parent="." node_paths=PackedStringArray("ui") instance=ExtResource("2_wcyih")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.077, 0.898638, -16.4167)
+mouse_sensitivity = null
 ui = NodePath("../UI")
 
 [node name="mascoll_table2" parent="." instance=ExtResource("10_dmkfc")]
@@ -69,3 +70,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.8135
 
 [node name="incubator" parent="mascoll_table2" instance=ExtResource("7_18doh")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.64167, 1.0625, -0.0834265)
+
+[node name="dubious_potion" parent="." instance=ExtResource("10_rwhcf")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21.2293, 0.845325, -16.2687)
