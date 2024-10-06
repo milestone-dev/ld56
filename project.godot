@@ -18,6 +18,7 @@ config/icon="res://assets/icons/dubpot.png"
 [autoload]
 
 Settings="*res://scripts/settings.gd"
+Progress="*res://scripts/progress.gd"
 
 [display]
 

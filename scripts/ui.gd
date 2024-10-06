@@ -14,11 +14,13 @@ class_name UI
 @export var spray_sprite : AnimatedSprite2D
 @export var detection_progress_sprite : AnimatedSprite2D
 @export var pick_sprite : AnimatedSprite2D
+@export var kittens_in_hand: KittensInHand
 
 func update(player:Player):
 	cat_palm_texture.visible = !player.scanner_showing
 	kitten_count_label.text = "Kittens: %d" % player.kitten_count
 	tardigrade_count_label.text = "Tardigrades: %d" % player.tardigrade_count
+	kittens_in_hand.kitten_count = player.kitten_count
 
 	scan_energy_bar.value = player.scan_energy
 	scan_energy_bar.max_value = player.SCAN_ENERGY_MAX
@@ -43,4 +45,4 @@ func update(player:Player):
 	pick_sprite.visible = player.current_tool == Player.Tool.PICKER
 
 	kitten_pool_label.text = "Kitten Pool: %d" % player.kitten_pool
-	time_label.text = "Time: %d" % player.play_time
+	time_label.text = "Time: %d" % Progress.time_played

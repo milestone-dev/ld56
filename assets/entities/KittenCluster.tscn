@@ -1,9 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://ct2s8gsuxcuu3"]
+[gd_scene load_steps=14 format=3 uid="uid://ct2s8gsuxcuu3"]
 
 [ext_resource type="Script" path="res://scripts/kitten_cluster.gd" id="1_1oip0"]
 [ext_resource type="Texture2D" uid="uid://bggqlfri1ag7" path="res://assets/sprites/kitten1.png" id="2_nfwxn"]
 [ext_resource type="Texture2D" uid="uid://bp0bfra7eckxa" path="res://assets/sprites/kitten3.png" id="3_1ugke"]
+[ext_resource type="Texture2D" uid="uid://b2a8mpk1u4ijd" path="res://assets/sprites/kitten2.png" id="3_g5cbf"]
 [ext_resource type="Material" uid="uid://dkqsnxsajxc2c" path="res://assets/materials/KittenClusterParticleProcess.tres" id="3_g368t"]
+[ext_resource type="Texture2D" uid="uid://ukcaa2rr4i5m" path="res://assets/sprites/kitten4.png" id="5_4w56g"]
+[ext_resource type="Texture2D" uid="uid://bj5j4jhjpyovv" path="res://assets/sprites/kitten5.png" id="6_urjcb"]
+[ext_resource type="Texture2D" uid="uid://xagqri27rg4s" path="res://assets/sprites/kitten6.png" id="7_6cyhl"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4uigm"]
 radius = 0.840449
@@ -35,6 +39,7 @@ script = ExtResource("1_1oip0")
 sprite = NodePath("Sprite3D")
 label = NodePath("Label3D")
 particles = NodePath("Particles")
+kitten_textures = Array[Texture2D]([ExtResource("2_nfwxn"), ExtResource("3_g5cbf"), ExtResource("3_1ugke"), ExtResource("5_4w56g"), ExtResource("6_urjcb"), ExtResource("7_6cyhl")])
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 visible = false

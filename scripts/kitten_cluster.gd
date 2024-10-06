@@ -9,6 +9,8 @@ var fade_out_timer := 5.0
 
 @export var kitten_count := 0
 
+@export var kitten_textures: Array[Texture2D] = []
+
 var has_found_wall = false
 
 const KITTEN_RESPAWN_TIMER_MAX := 5.0
@@ -24,13 +26,12 @@ var is_visible: bool:
 func _ready() -> void:
 	sprite.modulate = FADED_OUT_COLOR;
 	particles.emitting = false
-	particles.draw_pass_1.material.texture = sprite.texture
 	particles.emitting = 0
 	particles.visible = false
 
 func _process(delta: float) -> void:
 	kitten_respawn_timer -= delta
-	particles.amount = kitten_count
+	particles.amount = 1 if kitten_count < 1 else kitten_count
 	if is_visible && particles.visible != is_visible:
 		particles.restart()
 	particles.emitting = is_visible

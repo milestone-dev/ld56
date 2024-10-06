@@ -8,7 +8,6 @@ enum Tool {
 }
 
 var kitten_pool := 1000000
-var play_time := 0.0
 
 const WALK_SPEED := 5.0
 const SPRINT_SPEED := 9.0
@@ -194,6 +193,17 @@ func update_scanner():
 	for collider : Node3D in interaction_shape.get_overlapping_bodies():
 		if collider and collider is KittenCluster and (collider as KittenCluster).has_kittens():
 			kitten_detection_level = KITTEN_DETECTION_LEVEL_MAX
+func spray():
+	var s = spray_particles.duplicate() as GPUParticles3D
+	get_tree().root.add_child(s)
+	s.global_transform = spray_particles.global_transform
+	s.one_shot=true
+	s.emitting=true
+	s.connect("finished", s.queue_free)
+	ui.spray_sprite.stop()
+	ui.spray_sprite.play()
+	spray_energy = max(0, spray_energy - SPRAY_ENERGY_COST)
+	play_sfx(sfx_spray)
 
 func manage_interactions():
 	var either_pressed = Input.is_action_just_pressed("tool_left") or Input.is_action_just_pressed("tool_right")
@@ -203,12 +213,8 @@ func manage_interactions():
 
 	# Always consume spray energy regardless of where you spray
 	if current_tool == Tool.SPRAYER and spray_energy > 0:
-		ui.spray_sprite.stop()
-		ui.spray_sprite.play()
-		spray_particles.restart()
-		spray_particles.emitting = true
-		spray_energy = max(0, spray_energy - SPRAY_ENERGY_COST)
-		play_sfx(sfx_spray)
+		spray()
+
 	# Check targeted objects
 	var colliders = interaction_shape.get_overlapping_bodies()
 	for c in colliders:
@@ -270,7 +276,7 @@ func distribute_random_kittens(kitten_cluster: KittenCluster):
 		kitten_pool -= kitten_distriution_count
 
 func manage_level(delta:float):
-	play_time += delta
+	Progress.time_played += delta
 	for kitten_cluster : KittenCluster in get_tree().get_nodes_in_group("kitten_cluster"):
 		kitten_cluster.label.visible = debug_mode
 		if kitten_cluster.kitten_count == 0 and kitten_cluster.kitten_respawn_timer <= 0:

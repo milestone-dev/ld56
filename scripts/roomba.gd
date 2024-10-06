@@ -32,7 +32,12 @@ var attack_cooldown := 0.0
 @export var roaming_texture : Texture2D
 @export var chasing_texture : Texture2D
 @export var returning_texture : Texture2D
-@export var audio_stream_player : AudioStreamPlayer3D
+@export_category("SFX")
+@export var motor_audio_stream_player : AudioStreamPlayer3D
+@export var sfx_audio_stream_player : AudioStreamPlayer3D
+@export var start_chasing_audio_stream : AudioStream
+@export var become_idle_audio_stream : AudioStream
+@export var fall_asleep_audio_stream : AudioStream
 
 @export var model : MeshInstance3D
 var material : Material
@@ -50,6 +55,7 @@ func _ready() -> void:
 
 func hit_reset():
 	if state != State.SLEEPING:
+		play_sfx(fall_asleep_audio_stream)
 		home_rest_timer = home_rest_timer_max
 		state = State.RETURNING_HOME
 
@@ -57,16 +63,17 @@ func update_target(delta:float):
 	match state:
 		State.SLEEPING:
 			state_sprite.texture = sleeping_texture
-			audio_stream_player.stream_paused = true
+			motor_audio_stream_player.stream_paused = true
 			if player.kitten_saved_count >= awake_kittens_saved:
 				state = State.IDLE
 			material.set_shader_parameter("EmissiveColor", Color(1.0,1.0,1.0))
 			decal.modulate = Color(1.0,0.0,0.0)
 		State.IDLE:
 			state_sprite.texture = idle_texture
-			audio_stream_player.stream_paused = true
+			motor_audio_stream_player.stream_paused = true
 			if player.kitten_count > 0:
 				state = State.CHASING_PLAYER
+				play_sfx(start_chasing_audio_stream)
 			else:
 				navigation_agent.target_position = NavigationServer3D.map_get_random_point(get_world_3d().navigation_map, 1, false)
 				state = State.ROAMING
@@ -74,9 +81,10 @@ func update_target(delta:float):
 			decal.modulate = Color(1.0,1.0,0.0)
 		State.ROAMING:
 			state_sprite.texture = roaming_texture
-			audio_stream_player.stream_paused = false
+			motor_audio_stream_player.stream_paused = false
 			if player.kitten_count > 0:
 				state = State.CHASING_PLAYER
+				play_sfx(start_chasing_audio_stream)
 			elif navigation_agent.is_navigation_finished():
 				navigation_agent.target_position = NavigationServer3D.map_get_random_point(get_world_3d().navigation_map, 1, false)
 				state = State.ROAMING
@@ -84,21 +92,22 @@ func update_target(delta:float):
 			decal.modulate = Color(0.5,1.0,0.5)
 		State.RETURNING_HOME:
 			state_sprite.texture = returning_texture
-			audio_stream_player.stream_paused = false
+			motor_audio_stream_player.stream_paused = false
 			if global_position.distance_to(home.global_position) < 1:
 				home_rest_timer -= delta
 				state_sprite.texture = sleeping_texture
-				audio_stream_player.stream_paused = true
+				motor_audio_stream_player.stream_paused = true
 				if home_rest_timer < 0:
 					home_rest_timer = home_rest_timer_max
 					state = State.IDLE
+					play_sfx(become_idle_audio_stream)
 			else:
 				navigation_agent.target_position = home.global_position
 			material.set_shader_parameter("EmissiveColor", Color(0.0,1.0,0.0))
 			decal.modulate = Color(0.0,1.0,0.0)
 		State.CHASING_PLAYER:
 			state_sprite.texture = chasing_texture
-			audio_stream_player.stream_paused = false
+			motor_audio_stream_player.stream_paused = false
 			if player.kitten_count > 0:
 				navigation_agent.target_position = player.global_position
 				if global_position.distance_to(player.global_position) < 1:
@@ -109,6 +118,7 @@ func update_target(delta:float):
 				state = State.IDLE
 			material.set_shader_parameter("EmissiveColor", Color(1.0,0.0,0.0))
 			decal.modulate = Color(1.0,0.0,0.0)
+
 
 func _physics_process(delta):
 	attack_cooldown -= delta
@@ -123,3 +133,8 @@ func _physics_process(delta):
 	var next_path_position: Vector3 = navigation_agent.get_next_path_position()
 	var new_velocity: Vector3 = global_position.direction_to(next_path_position) * movement_delta
 	global_position = global_position.move_toward(global_position + new_velocity, movement_delta)
+
+
+func play_sfx(sfx:AudioStream):
+	sfx_audio_stream_player.stream = sfx
+	sfx_audio_stream_player.play()
