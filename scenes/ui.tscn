@@ -378,6 +378,16 @@ theme_override_font_sizes/font_size = 16
 text = "Sprint Energy"
 horizontal_alignment = 2
 
+[node name="MenuHintLabel" type="Label" parent="MarginContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 16
+text = "(M) Open Menu"
+horizontal_alignment = 2
+
 [node name="HandsContainer" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15

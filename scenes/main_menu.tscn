@@ -24,6 +24,7 @@ start_game_button = NodePath("HBoxContainer/VBoxContainer/HBoxContainer/StartGam
 settings_page = NodePath("SettingsPage")
 
 [node name="BG" type="TextureRect" parent="."]
+texture_filter = 1
 layout_mode = 0
 offset_top = 3.0
 offset_right = 1282.0
@@ -68,8 +69,9 @@ layout_mode = 2
 alignment = 1
 
 [node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer5"]
+texture_filter = 1
 layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.760784, 0.254902, 0.4, 1)
 theme_override_font_sizes/font_size = 16
 text = "A game by Dubious Potions"
 horizontal_alignment = 1
