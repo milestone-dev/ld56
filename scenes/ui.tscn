@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://jqmhm7qjf7n5"]
+[gd_scene load_steps=24 format=3 uid="uid://jqmhm7qjf7n5"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_68hwl"]
 [ext_resource type="Texture2D" uid="uid://cya465556bqjx" path="res://assets/sprites/ui_catscan.png" id="2_f1ilk"]
+[ext_resource type="Texture2D" uid="uid://dq10spov2y434" path="res://assets/sprites/ui_catscan-meter.png" id="3_k8bxg"]
 [ext_resource type="Texture2D" uid="uid://dd4oifbmlgi34" path="res://assets/sprites/ui_palm.png" id="3_l2nx6"]
 [ext_resource type="Texture2D" uid="uid://l7bo14mb54hn" path="res://assets/sprites/ui_spray.png" id="3_sordo"]
 [ext_resource type="Texture2D" uid="uid://bvrygo11g5lqu" path="res://assets/sprites/ui_spray2.png" id="4_gtxci"]
@@ -13,6 +14,84 @@ bg_color = Color(1, 1, 1, 0.509804)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j35pd"]
 bg_color = Color(0.97, 0, 0, 0.686275)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vj72u"]
+atlas = ExtResource("3_k8bxg")
+region = Rect2(0, 0, 384, 358)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66txs"]
+atlas = ExtResource("3_k8bxg")
+region = Rect2(384, 0, 384, 358)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2pfao"]
+atlas = ExtResource("3_k8bxg")
+region = Rect2(768, 0, 384, 358)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uwxe0"]
+atlas = ExtResource("3_k8bxg")
+region = Rect2(1152, 0, 384, 358)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngo8a"]
+atlas = ExtResource("3_k8bxg")
+region = Rect2(1536, 0, 384, 358)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j0dq1"]
+atlas = ExtResource("3_k8bxg")
+region = Rect2(1920, 0, 384, 358)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hi58e"]
+atlas = ExtResource("3_k8bxg")
+region = Rect2(2304, 0, 384, 358)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4qdle"]
+atlas = ExtResource("3_k8bxg")
+region = Rect2(2688, 0, 384, 358)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6ky6"]
+atlas = ExtResource("3_k8bxg")
+region = Rect2(3072, 0, 384, 358)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j28ba"]
+atlas = ExtResource("3_k8bxg")
+region = Rect2(3456, 0, 384, 358)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q48xm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vj72u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66txs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2pfao")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uwxe0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngo8a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j0dq1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hi58e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4qdle")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s6ky6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j28ba")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_27g81"]
 animations = [{
@@ -48,7 +127,7 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("crosshair", "kitten_count_label", "tardigrade_count_label", "sprint_energy_label", "kitten_pool_label", "time_label", "detection_progress_bar", "cat_scanner_texture", "cat_palm_texture", "scan_energy_bar", "spray_energy_bar", "spray_sprite", "pick_sprite")]
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("crosshair", "kitten_count_label", "tardigrade_count_label", "sprint_energy_label", "kitten_pool_label", "time_label", "cat_scanner_texture", "cat_palm_texture", "scan_energy_bar", "spray_energy_bar", "spray_sprite", "detection_progress_sprite", "pick_sprite")]
 script = ExtResource("1_68hwl")
 crosshair = NodePath("Crosshair")
 kitten_count_label = NodePath("CatPalmTexture/KittenCountLabel")
@@ -56,12 +135,12 @@ tardigrade_count_label = NodePath("CatPalmTexture/TardigradeCountLabel")
 sprint_energy_label = NodePath("MarginContainer2/VBoxContainer2/SprintEnergyLabel")
 kitten_pool_label = NodePath("MarginContainer3/VBoxContainer2/KittenPoolLabel")
 time_label = NodePath("MarginContainer3/VBoxContainer2/TimeLabel")
-detection_progress_bar = NodePath("CatScannerTexture/KittenDetectionProgressBar")
 cat_scanner_texture = NodePath("CatScannerTexture")
 cat_palm_texture = NodePath("CatPalmTexture")
 scan_energy_bar = NodePath("CatScannerTexture/ScanEnergyBar")
 spray_energy_bar = NodePath("SpraySprite/SprayEnergyBar")
 spray_sprite = NodePath("SpraySprite")
+detection_progress_sprite = NodePath("CatScannerTexture/KittenDetectionSprite")
 pick_sprite = NodePath("PickSprite")
 
 [node name="Crosshair" type="ColorRect" parent="."]
@@ -151,6 +230,7 @@ grow_vertical = 0
 texture = ExtResource("2_f1ilk")
 
 [node name="KittenDetectionProgressBar" type="ProgressBar" parent="CatScannerTexture"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -170,6 +250,7 @@ value = 50.0
 show_percentage = false
 
 [node name="ScanEnergyBar" type="ProgressBar" parent="CatScannerTexture"]
+layout_mode = 0
 offset_left = 72.0
 offset_top = 281.0
 offset_right = 241.0
@@ -177,7 +258,12 @@ offset_bottom = 308.0
 theme_override_font_sizes/font_size = 16
 value = 50.0
 
+[node name="KittenDetectionSprite" type="AnimatedSprite2D" parent="CatScannerTexture"]
+position = Vector2(192, 179)
+sprite_frames = SubResource("SpriteFrames_q48xm")
+
 [node name="CatPalmTexture" type="TextureRect" parent="."]
+visible = false
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
