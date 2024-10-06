@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtweho2ri4gm6"]
+[gd_scene load_steps=9 format=3 uid="uid://dtweho2ri4gm6"]
 
 [ext_resource type="Script" path="res://scripts/kitten_container.gd" id="1_1c83c"]
 [ext_resource type="PackedScene" uid="uid://b20cptcvcqfl7" path="res://assets/models/props/microscope/microscope.tscn" id="2_m22ti"]
@@ -10,6 +10,32 @@ height = 1.0
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_hm21g"]
 height = 1.35667
 radius = 0.755475
+
+[sub_resource type="Animation" id="Animation_0drgx"]
+resource_name = "interact"
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("petri_dish")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.24, 1, 1.25, 1, 1.25, 0.766667, 1, 0.75, 2, 0.75, 1, 1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_cy8mp"]
+length = 0.001
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("petri_dish")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6b3rl"]
+_data = {
+"RESET": SubResource("Animation_cy8mp"),
+"interact": SubResource("Animation_0drgx")
+}
 
 [node name="KittenContainer" type="StaticBody3D" node_paths=PackedStringArray("label")]
 collision_layer = 5
@@ -39,3 +65,9 @@ text = "0 of
 1 000 000
 Kittens
 Saved"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6b3rl")
+}
+speed_scale = 3.25
