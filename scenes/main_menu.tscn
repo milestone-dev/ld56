@@ -147,7 +147,9 @@ custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_icons/grabber = ExtResource("6_o4r6p")
 theme_override_icons/grabber_highlight = ExtResource("6_o4r6p")
-max_value = 3.0
+min_value = 1.0
+max_value = 4.0
+value = 3.0
 tick_count = 4
 ticks_on_borders = true
 
