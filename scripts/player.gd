@@ -269,9 +269,7 @@ func start_level():
 		distribute_random_kittens(kitten_cluster)
 
 func distribute_random_kittens(kitten_cluster: KittenCluster):
-	var kitten_min = 1
-	var kitten_max = 100
-	var kitten_distriution_count = min(kitten_pool, randi_range(kitten_min, kitten_max))
+	var kitten_distriution_count = min(kitten_pool, randi_range(Settings.kitten_spawn_min, Settings.kitten_spawn_max))
 	if kitten_cluster.add_kittens(kitten_distriution_count):
 		kitten_pool -= kitten_distriution_count
 
