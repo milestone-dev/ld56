@@ -33,6 +33,7 @@ jobs:
 
       - name: Run the bsp unfucker that also reimport any borked stuff
         run: |
+          git config --global --add safe.directory '*' # workaround for 'fatal: detected dubious ownership in repository'
           bash fixbsp.sh
 
       - name: Web Build
