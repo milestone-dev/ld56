@@ -51,7 +51,8 @@ var is_crouching := false
 
 var debug_mode := false
 
-var STEP_SFX_TIMER_MAX := 0.3
+const STEP_SFX_TIMER_MAX := 0.3
+const STEP_SRPING_SFX_TIMER_MAX := 0.15
 var step_sfx_timer := 0.0
 
 var SCAN_SFX_TIMER_MAX := 0.4
@@ -150,9 +151,10 @@ func _physics_process(delta: float) -> void:
 	if direction:
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
-		if step_sfx_timer <= 0.0:
+		if step_sfx_timer <= 0.0 and is_on_floor():
 			#print("step")
-			step_sfx_timer = STEP_SFX_TIMER_MAX
+			if is_sprinting: step_sfx_timer = STEP_SRPING_SFX_TIMER_MAX
+			else: step_sfx_timer = STEP_SFX_TIMER_MAX
 			sfx_step_audio_player.stream = sfx_steps.pick_random()
 			sfx_step_audio_player.pitch_scale = randf_range(0.5, 1.5)
 			sfx_step_audio_player.play()
