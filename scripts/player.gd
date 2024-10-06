@@ -48,6 +48,7 @@ var mouse_input : Vector2
 var scanner_showing := false
 var is_sprinting := false
 var is_crouching := false
+var is_jumping := false
 
 var debug_mode := false
 
@@ -114,10 +115,14 @@ func _physics_process(delta: float) -> void:
 		kitten_count = max(0, kitten_count - kittens_lost)
 		tardigrade_count = max(0, tardigrade_count - tardigrades_lost)
 
-	# fall, jump, crouch
+	# fall, jump, land, crouch
 	if not is_on_floor(): velocity += get_gravity() * delta
+	if is_jumping and is_on_floor():
+		is_jumping = false
+		play_sfx(sfx_land)
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		is_jumping = true
 		play_sfx(sfx_jump)
 	is_crouching = Input.is_action_pressed("crouch")
 	if is_crouching: collision_shape.scale = Vector3(1, CROUCH_SIZE, 1)
