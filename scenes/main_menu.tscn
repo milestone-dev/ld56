@@ -23,11 +23,11 @@ test_level_scene = ExtResource("3_ud258")
 start_game_button = NodePath("HBoxContainer/VBoxContainer/HBoxContainer/StartGameButton")
 settings_page = NodePath("SettingsPage")
 
-[node name="BGGradient" type="TextureRect" parent="."]
+[node name="BG" type="TextureRect" parent="."]
 layout_mode = 0
-offset_top = -85.0
+offset_top = 3.0
 offset_right = 1282.0
-offset_bottom = 803.0
+offset_bottom = 891.0
 texture = ExtResource("4_yjne6")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -81,7 +81,7 @@ texture = ExtResource("5_l0viq")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 64
 theme_override_styles/separator = SubResource("StyleBoxEmpty_3k10t")
