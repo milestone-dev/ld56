@@ -48,6 +48,7 @@ var projection_material : Material
 
 @onready var animation_player: AnimationPlayer = $CollisionShape3D/doomba2/AnimationPlayer
 
+func can_be_reset(): return state != State.SLEEPING
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player") as Player
@@ -60,7 +61,7 @@ func _ready() -> void:
 
 
 func hit_reset():
-	if state != State.SLEEPING:
+	if can_be_reset():
 		play_sfx(fall_asleep_audio_stream)
 		home_rest_timer = home_rest_timer_max
 		state = State.RETURNING_HOME

@@ -146,7 +146,7 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("crosshair", "kitten_count_label", "tardigrade_count_label", "sprint_energy_label", "kitten_pool_label", "time_label", "cat_scanner_texture", "cat_palm_texture", "scan_energy_bar", "spray_energy_bar", "spray_sprite", "detection_progress_sprite", "pick_sprite", "kittens_in_hand", "pain_flash_rect", "settings_menu")]
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("crosshair", "kitten_count_label", "tardigrade_count_label", "sprint_energy_label", "kitten_pool_label", "time_label", "cat_scanner_texture", "cat_palm_texture", "scan_energy_bar", "spray_energy_bar", "spray_sprite", "detection_progress_sprite", "pick_sprite", "kittens_in_hand", "pain_flash_rect", "settings_menu", "interact_pick_label", "interact_deposit_label", "interact_charge_spray_label", "interact_reset_roomba_label", "inteact_use_label")]
 script = ExtResource("1_68hwl")
 crosshair = NodePath("Crosshair")
 kitten_count_label = NodePath("HandsContainer/CatPalmTexture/KittenCountLabel")
@@ -164,6 +164,11 @@ pick_sprite = NodePath("HandsContainer/PickSprite")
 kittens_in_hand = NodePath("HandsContainer/CatPalmTexture/SubViewportContainer/SubViewport/Node3D")
 pain_flash_rect = NodePath("PainFlashRect")
 settings_menu = NodePath("SettingsPage")
+interact_pick_label = NodePath("InteractionLabelContainer/InteractPickLabel")
+interact_deposit_label = NodePath("InteractionLabelContainer/InteractDepositLabel")
+interact_charge_spray_label = NodePath("InteractionLabelContainer/InteractChargeSprayLabel")
+interact_reset_roomba_label = NodePath("InteractionLabelContainer/InteractResetRoomba")
+inteact_use_label = NodePath("InteractionLabelContainer/InteractUseLabel")
 
 [node name="PainFlashRect" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -187,6 +192,125 @@ offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="InteractionLabelContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 33.0
+offset_right = 20.0
+offset_bottom = 73.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InteractPickLabel" type="Label" parent="InteractionLabelContainer"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = -11.5
+offset_right = 69.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "(E) Pick up Kittens"
+horizontal_alignment = 1
+
+[node name="InteractDepositLabel" type="Label" parent="InteractionLabelContainer"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = -11.5
+offset_right = 69.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "(E) Deposit Kittens"
+horizontal_alignment = 1
+
+[node name="InteractChargeSprayLabel" type="Label" parent="InteractionLabelContainer"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = -11.5
+offset_right = 69.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "(E) Refill Spray"
+horizontal_alignment = 1
+
+[node name="InteractResetRoomba" type="Label" parent="InteractionLabelContainer"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = -11.5
+offset_right = 69.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "(E) Reset Roomba"
+horizontal_alignment = 1
+
+[node name="InteractUseLabel" type="Label" parent="InteractionLabelContainer"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = -11.5
+offset_right = 69.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "(E) Interact"
+horizontal_alignment = 1
+
 [node name="MarginContainer3" type="MarginContainer" parent="."]
 offset_right = 233.0
 offset_bottom = 126.0
@@ -208,6 +332,7 @@ theme_override_font_sizes/font_size = 16
 text = "Time Played"
 
 [node name="KittenPoolLabel" type="Label" parent="MarginContainer3/VBoxContainer2"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
@@ -232,6 +357,7 @@ theme_override_constants/margin_bottom = 16
 layout_mode = 2
 
 [node name="ScanEnergyLabel" type="Label" parent="MarginContainer2/VBoxContainer2"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
@@ -242,6 +368,7 @@ text = "Scan Energy"
 horizontal_alignment = 2
 
 [node name="SprintEnergyLabel" type="Label" parent="MarginContainer2/VBoxContainer2"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2

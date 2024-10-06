@@ -18,6 +18,12 @@ class_name UI
 @export var pain_flash_rect : TextureRect
 @export var settings_menu : SettingsPage
 
+@export var interact_pick_label : Label
+@export var interact_deposit_label : Label
+@export var interact_charge_spray_label : Label
+@export var interact_reset_roomba_label : Label
+@export var inteact_use_label : Label
+
 var pain_flash_tween : Tween
 
 func is_menu_open(): return settings_menu.visible
@@ -41,6 +47,26 @@ func flash_pain():
 	pain_flash_tween.tween_property(pain_flash_rect, "modulate", Color.TRANSPARENT, time)
 
 func update(player:Player):
+	if !player.current_focused_object:
+		interact_pick_label.hide()
+		interact_deposit_label.hide()
+		interact_charge_spray_label.hide()
+		interact_reset_roomba_label.hide()
+		inteact_use_label.hide()
+	else:
+		if player.current_focused_object is KittenCluster:
+			interact_pick_label.show()
+		elif player.current_focused_object is KittenContainer:
+			interact_deposit_label.show()
+		elif player.current_focused_object is SprayRecharger:
+			interact_charge_spray_label.show()
+		elif player.current_focused_object is Roomba:
+			interact_reset_roomba_label.show()
+		else:
+			inteact_use_label.show()
+
+
+
 	kittens_in_hand.visible = player.kitten_count > 0
 	cat_palm_texture.visible = !player.scanner_showing
 	kitten_count_label.visible = player.kitten_count > 0
@@ -70,5 +96,10 @@ func update(player:Player):
 	spray_sprite.visible = player.current_tool == Player.Tool.SPRAYER
 	pick_sprite.visible = player.current_tool == Player.Tool.PICKER
 
-	kitten_pool_label.text = "Kitten Pool: %d Kittens Saved %d" % [player.kitten_pool, player.kitten_saved_count]
-	time_label.text = "Time: %d. Drop timer: %d" % [Progress.time_played, player.kitten_disappear_timer]
+	kitten_pool_label.text = "Kitten Pool: %d Kittens Saved %d Drop timer: %d" % [player.kitten_pool, player.kitten_saved_count,  player.kitten_disappear_timer]
+
+	var time_in_sec : int = Progress.time_played as int
+	var seconds = time_in_sec%60
+	var minutes = (time_in_sec/60)%60
+	var hours = (time_in_sec/60)/60
+	time_label.text =  "%02dh %02dm %02ds" % [hours, minutes, seconds]

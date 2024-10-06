@@ -54,6 +54,7 @@ var scanner_showing := false
 var is_sprinting := false
 var is_crouching := false
 var is_jumping := false
+var current_focused_object = null
 
 var debug_mode := false
 
@@ -223,6 +224,7 @@ func update_scanner():
 	for collider : Node3D in interaction_shape.get_overlapping_bodies():
 		if collider and collider is KittenCluster and (collider as KittenCluster).has_kittens():
 			kitten_detection_level = KITTEN_DETECTION_LEVEL_MAX
+
 func spray():
 	var s = spray_particles.duplicate() as GPUParticles3D
 	get_tree().root.add_child(s)
@@ -236,26 +238,32 @@ func spray():
 	play_sfx(sfx_spray)
 
 func manage_interactions():
-	var either_pressed = Input.is_action_just_pressed("tool_left") or Input.is_action_just_pressed("tool_right")
-	if Input.is_action_just_pressed("tool_left"): current_tool = Tool.PICKER
-	elif Input.is_action_just_pressed("tool_right"): current_tool = Tool.SPRAYER
-	if !either_pressed: return
+	var either_pressed = Input.is_action_just_pressed("tool_interact") or Input.is_action_just_pressed("tool_spray")
+	if Input.is_action_just_pressed("tool_interact"): current_tool = Tool.PICKER
+	elif Input.is_action_just_pressed("tool_spray"): current_tool = Tool.SPRAYER
+	#if !either_pressed: return
+
+	var is_interact_pressed := Input.is_action_just_pressed("tool_interact")
+	var is_spray_pressed := Input.is_action_just_pressed("tool_spray")
 
 	# Always consume spray energy regardless of where you spray
-	if current_tool == Tool.SPRAYER and spray_energy > 0:
+	if is_spray_pressed and current_tool == Tool.SPRAYER and spray_energy > 0:
 		spray()
+
+	current_focused_object = null
 
 	# Check targeted objects
 	var colliders = interaction_shape.get_overlapping_bodies()
 	for c in colliders:
 		if c is KittenCluster:
 			var kitten_cluster := c as KittenCluster
-			if current_tool == Tool.SPRAYER:
+			if is_spray_pressed:
 				if spray_energy > 0:
 					kitten_cluster.spray(self)
-			elif current_tool == Tool.PICKER:
+			elif is_interact_pressed:
 				if c is KittenCluster:
 					if kitten_cluster.is_sprayed():
+						current_focused_object = kitten_cluster
 						kitten_cluster.retrieve(self)
 						kitten_disappear_timer = (kitten_disappear_timer + Settings.kitten_drop_timer_max) / 2.0
 						ui.pick_sprite.stop()
@@ -265,40 +273,57 @@ func manage_interactions():
 	var collider = interaction_ray.get_collider()
 	if collider is Roomba:
 		var roomba := collider as Roomba
-		roomba.hit_reset()
+		if roomba.can_be_reset():
+			current_focused_object = roomba
+			if is_interact_pressed:
+				roomba.hit_reset()
+				return
 	elif collider is KittenContainer:
 		var kitten_container := collider as KittenContainer
-		kitten_container.interact(self)
-		play_sfx(sfx_use)
-		return
+		current_focused_object = kitten_container
+		if is_interact_pressed:
+			kitten_container.interact(self)
+			play_sfx(sfx_use)
+			return
 	elif collider is TardigradeContainer:
 		var tardigrade_container := collider as TardigradeContainer
-		tardigrade_container.interact(self)
-		play_sfx(sfx_use)
-		return
+		current_focused_object = tardigrade_container
+		if is_interact_pressed:
+			tardigrade_container.interact(self)
+			play_sfx(sfx_use)
+			return
 	elif collider is ScannerRecharger:
 		var scanner_recharger := collider as ScannerRecharger
-		scanner_recharger.interact(self)
-		play_sfx(sfx_recharge_scanner)
-		return
+		current_focused_object = scanner_recharger
+		if is_interact_pressed:
+			scanner_recharger.interact(self)
+			play_sfx(sfx_recharge_scanner)
+			return
 	elif collider is SprayRecharger:
 		var spray_recharger := collider as SprayRecharger
-		spray_recharger.interact(self)
-		play_sfx(sfx_refill)
-		return
+		current_focused_object = spray_recharger
+		if is_interact_pressed:
+			spray_recharger.interact(self)
+			play_sfx(sfx_refill)
+			return
 	elif collider is Centrifuge:
 		var centrifuger := collider as Centrifuge
-		centrifuger.interact(self)
-		play_sfx(sfx_use)
-		return
+		current_focused_object = centrifuger
+		if is_interact_pressed:
+			centrifuger.interact(self)
+			play_sfx(sfx_use)
+			return
 	elif collider is Incubator:
 		var incubator := collider as Incubator
-		incubator.interact(self)
-		return
+		current_focused_object = incubator
+		if is_interact_pressed:
+			incubator.interact(self)
+			return
 	elif current_tool == Tool.PICKER:
 		# Pick randomly in the air without effect
-		ui.pick_sprite.stop()
-		ui.pick_sprite.play()
+		if is_interact_pressed:
+			ui.pick_sprite.stop()
+			ui.pick_sprite.play()
 
 func start_level():
 	for kitten_cluster : KittenCluster in get_tree().get_nodes_in_group("kitten_cluster"):

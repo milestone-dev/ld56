@@ -8,8 +8,8 @@
 [ext_resource type="AudioStream" uid="uid://t4uy58qil582" path="res://assets/sfx/meow2.ogg" id="11_4idhx"]
 
 [sub_resource type="Gradient" id="Gradient_us6km"]
-offsets = PackedFloat32Array(0, 0.401473, 0.793738, 0.992634)
-colors = PackedColorArray(0.3, 0.26345, 0.249, 1, 0.63135, 0.69, 0.5865, 1, 0.900535, 0.755793, 0.706239, 1, 1, 0.780392, 0.556863, 1)
+offsets = PackedFloat32Array(0, 0.994709)
+colors = PackedColorArray(0.3, 0.26345, 0.249, 1, 0.8434, 0.611467, 0.409124, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_p6ihf"]
 gradient = SubResource("Gradient_us6km")
