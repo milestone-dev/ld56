@@ -1,18 +1,45 @@
-[gd_resource type="ParticleProcessMaterial" load_steps=3 format=3 uid="uid://crcawhw4okp4e"]
+[gd_resource type="ParticleProcessMaterial" load_steps=7 format=3 uid="uid://crcawhw4okp4e"]
 
-[sub_resource type="Curve" id="Curve_xxnn2"]
-max_value = 3.0
-_data = [Vector2(0, 0.346803), 0.0, 2.86855, 0, 0, Vector2(0.534535, 0.296931), 1.60072, 1.60072, 0, 0, Vector2(1, 3), 0.0, 0.0, 0, 0]
-point_count = 3
+[sub_resource type="Curve" id="Curve_dwutw"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.237237, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_axaj8"]
-curve = SubResource("Curve_xxnn2")
+[sub_resource type="CurveTexture" id="CurveTexture_xttti"]
+curve = SubResource("Curve_dwutw")
+
+[sub_resource type="Curve" id="Curve_xf1l7"]
+_data = [Vector2(0, 0.0657289), 0.0, 1.4, 0, 0, Vector2(0.177177, 0.358312), 0.0461317, 0.0461317, 0, 0, Vector2(0.753754, 0.285166), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.276791, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_m5p25"]
+curve = SubResource("Curve_xf1l7")
+
+[sub_resource type="Curve" id="Curve_rdv8d"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.630252, 0.0152453), 0.0, 0.0, 0, 0, Vector2(0.661064, 0.622201), 1.24201, 1.24201, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_4ep4c"]
+curve = SubResource("Curve_rdv8d")
 
 [resource]
-direction = Vector3(0, 0, -1)
-spread = 18.074
+inherit_velocity_ratio = 0.5
+direction = Vector3(-0.32, 0.16, -1)
+spread = 20.872
 initial_velocity_min = 1.0
 initial_velocity_max = 3.0
 gravity = Vector3(0, -3, 0)
-scale_over_velocity_max = 240.73
-scale_over_velocity_curve = SubResource("CurveTexture_axaj8")
+damping_min = 1.737
+damping_max = 2.0
+scale_min = 0.0
+scale_curve = SubResource("CurveTexture_m5p25")
+alpha_curve = SubResource("CurveTexture_xttti")
+turbulence_enabled = true
+turbulence_noise_strength = 0.32
+turbulence_noise_scale = 0.0
+turbulence_noise_speed = Vector3(0, -1, -1)
+turbulence_noise_speed_random = 1.0
+turbulence_influence_min = 0.037
+turbulence_influence_max = 0.037
+turbulence_initial_displacement_min = 1.49012e-06
+turbulence_initial_displacement_max = 1.49012e-06
+turbulence_influence_over_life = SubResource("CurveTexture_4ep4c")
