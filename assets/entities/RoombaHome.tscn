@@ -27,3 +27,8 @@ mesh = SubResource("BoxMesh_tyqfr")
 
 [node name="doomba_charge_station2" parent="." instance=ExtResource("1_18agf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000377297, -1.14571, -0.00131559)
+
+[node name="doomba_charge_station" parent="doomba_charge_station2" index="0"]
+layers = 32
+
+[editable path="doomba_charge_station2"]

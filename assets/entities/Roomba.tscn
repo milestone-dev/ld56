@@ -61,6 +61,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.
 
 [node name="doomba" parent="CollisionShape3D/doomba2" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000831604, -0.227617, 0.000615358)
+layers = 8
 surface_material_override/1 = ExtResource("8_j7t4d")
 
 [node name="StateSprite" type="Sprite3D" parent="CollisionShape3D/doomba2/doomba" index="0"]
