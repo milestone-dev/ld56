@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cj50eeg58sc2m"]
+[gd_scene load_steps=18 format=3 uid="uid://cj50eeg58sc2m"]
 
 [ext_resource type="Script" path="res://scripts/roomba.gd" id="1_xpiuj"]
 [ext_resource type="Texture2D" uid="uid://wumnn5pg5asj" path="res://assets/sprites/roomba_sleeping.png" id="2_5rvep"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://xpk88xodxmy1" path="res://assets/sprites/roomba_ring.png" id="7_6wknp"]
 [ext_resource type="AudioStream" uid="uid://dk5ht6cwe8n12" path="res://assets/sfx/roomba_aggro.ogg" id="7_bnk24"]
 [ext_resource type="AudioStream" uid="uid://q4d424lrnfl" path="res://assets/sfx/roombadrive.ogg" id="8_0rw2p"]
+[ext_resource type="Material" uid="uid://d2hb3ysveae2i" path="res://assets/models/props/doomba/doomba_lights.tres" id="8_j7t4d"]
 [ext_resource type="AudioStream" uid="uid://b7o03p0qfd4wi" path="res://assets/sfx/roomba_active.ogg" id="8_j51k5"]
 [ext_resource type="AudioStream" uid="uid://bha5qujr4ju0h" path="res://assets/sfx/roomba_inactive.ogg" id="9_kmjjo"]
 [ext_resource type="PackedScene" uid="uid://c5jjqt82mtagd" path="res://assets/models/props/doomba/doomba.gltf" id="9_ml8um"]
@@ -59,6 +60,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.
 
 [node name="doomba" parent="CollisionShape3D/doomba2" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000831604, -0.227617, 0.000615358)
+surface_material_override/1 = ExtResource("8_j7t4d")
 
 [node name="StateSprite" type="Sprite3D" parent="CollisionShape3D/doomba2/doomba" index="0"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.766563, 0)

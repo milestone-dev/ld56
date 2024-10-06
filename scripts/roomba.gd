@@ -40,7 +40,7 @@ var attack_cooldown := 0.0
 @export var fall_asleep_audio_stream : AudioStream
 
 
-@onready var model: MeshInstance3D = $CollisionShape3D/doomba2/doomba/doomba
+@onready var model: MeshInstance3D = $CollisionShape3D/doomba2/doomba
 var material : Material
 @onready var decal: Decal = $CollisionShape3D/doomba2/Decal
 
