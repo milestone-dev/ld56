@@ -28,6 +28,7 @@ shape = SubResource("CylinderShape3D_hm21g")
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.871452, 0)
+visible = false
 billboard = 1
 text = "Recharge
 CAT

@@ -11,16 +11,6 @@ height = 1.0
 height = 1.35667
 radius = 0.755475
 
-[sub_resource type="Animation" id="Animation_0drgx"]
-resource_name = "interact"
-tracks/0/type = "scale_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("petri_dish")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.24, 1, 1.25, 1, 1.25, 0.766667, 1, 0.75, 2, 0.75, 1, 1, 1, 1, 1)
-
 [sub_resource type="Animation" id="Animation_cy8mp"]
 length = 0.001
 tracks/0/type = "scale_3d"
@@ -30,6 +20,16 @@ tracks/0/path = NodePath("petri_dish")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_0drgx"]
+resource_name = "interact"
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("petri_dish")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.24, 1, 1.25, 1, 1.25, 0.766667, 1, 0.75, 2, 0.75, 1, 1, 1, 1, 1)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6b3rl"]
 _data = {

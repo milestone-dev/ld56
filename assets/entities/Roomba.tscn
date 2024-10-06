@@ -22,6 +22,16 @@
 height = 0.735399
 radius = 1.0
 
+[sub_resource type="Animation" id="Animation_fm46r"]
+length = 0.001
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("doomba")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+
 [sub_resource type="Animation" id="Animation_ominw"]
 resource_name = "running"
 loop_mode = 1
@@ -32,16 +42,6 @@ tracks/0/path = NodePath("doomba")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.25, 1, 1, 1.25, 1, 0.5, 1, 1, 1, 1, 0.75, 1, 1, 1.25, 1, 1, 1, 1, 1, 1)
-
-[sub_resource type="Animation" id="Animation_fm46r"]
-length = 0.001
-tracks/0/type = "scale_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("doomba")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3wq62"]
 _data = {

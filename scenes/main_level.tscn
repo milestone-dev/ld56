@@ -79,6 +79,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.495
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.11655, 0)
 awake_kittens_saved = 0
 movement_speed = 2.0
+home_rest_timer_max = 10.0
 modulate_color = Color(0.3192, 0.76, 0.370627, 1)
 
 [node name="RoombaHome2" parent="Roombas" instance=ExtResource("5_dmc0a")]
@@ -88,7 +89,7 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 18.921
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.11146, 0)
 awake_kittens_saved = 100000
 movement_speed = 4.0
-home_rest_timer_max = 20.0
+home_rest_timer_max = 5.0
 kitten_destroy_timer = 0.25
 modulate_color = Color(0.45887, 0.731596, 0.895192, 1)
 
@@ -97,7 +98,7 @@ transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 19.9967,
 
 [node name="Roomba" parent="Roombas/RoombaHome3" instance=ExtResource("6_kfr7v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1181, 0)
-awake_kittens_saved = 750000
+awake_kittens_saved = 500000
 movement_speed = 5.0
 home_rest_timer_max = 3.0
 kitten_destroy_timer = 0.15
