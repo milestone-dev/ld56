@@ -49,7 +49,7 @@ radius = 0.853455
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_287bv"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("head", "interaction_ray", "collision_shape", "scanner_point", "interaction_shape", "mesh_instance", "spray_particles", "sfx_audio_player", "sfx_step_audio_player", "sfx_scan_audio_player", "sfx_meow_audio_player", "music_audio_player") groups=["player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("head", "interaction_ray", "collision_shape", "scanner_point", "interaction_shape", "mesh_instance", "spray_particles", "sfx_audio_player", "sfx_step_audio_player", "sfx_scan_audio_player", "sfx_meow_audio_player", "sfx_crash_audio_player", "music_audio_player") groups=["player"]]
 collision_layer = 16
 script = ExtResource("1_ab6ol")
 head = NodePath("Head")
@@ -63,6 +63,7 @@ sfx_audio_player = NodePath("SFXAudioStreamPlayer")
 sfx_step_audio_player = NodePath("SFXStepAudioStreamPlayer")
 sfx_scan_audio_player = NodePath("SFXScanAudioStreamPlayer")
 sfx_meow_audio_player = NodePath("SFXMeowAudioStreamPlayer")
+sfx_crash_audio_player = NodePath("SFXCrashAudioStreamPlayer")
 sfx_spray = ExtResource("2_fiknb")
 sfx_pick = ExtResource("3_qhxb2")
 sfx_switch = ExtResource("4_6lj0x")
@@ -72,7 +73,6 @@ sfx_use = ExtResource("3_qhxb2")
 sfx_refill = ExtResource("7_l4n2t")
 sfx_scan_beep = ExtResource("8_vp6su")
 sfx_drop_kittens = ExtResource("9_ljjhu")
-sfx_roomba_crash = ExtResource("10_uqv5g")
 sfx_steps = Array[AudioStream]([ExtResource("2_dlq0r"), ExtResource("3_s1eir"), ExtResource("4_68vwn"), ExtResource("12_18gtq")])
 sfx_meows = Array[AudioStream]([ExtResource("13_7p1c5"), ExtResource("14_rtrn8"), ExtResource("15_qmjwt")])
 music_audio_player = NodePath("MusicAudioStreamPlayer")
@@ -133,6 +133,10 @@ stream = ExtResource("13_s66td")
 bus = &"SFX"
 
 [node name="SFXMeowAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[node name="SFXCrashAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_uqv5g")
 bus = &"SFX"
 
 [node name="MusicAudioStreamPlayer" type="AudioStreamPlayer" parent="."]

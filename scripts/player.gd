@@ -30,6 +30,7 @@ var mouse_sensitivity : float = 0.1
 @export var sfx_step_audio_player : AudioStreamPlayer
 @export var sfx_scan_audio_player : AudioStreamPlayer
 @export var sfx_meow_audio_player : AudioStreamPlayer
+@export var sfx_crash_audio_player : AudioStreamPlayer
 @export var sfx_spray : AudioStream
 @export var sfx_pick : AudioStream
 @export var sfx_switch : AudioStream
@@ -40,7 +41,6 @@ var mouse_sensitivity : float = 0.1
 @export var sfx_recharge_scanner : AudioStream
 @export var sfx_scan_beep : AudioStream
 @export var sfx_drop_kittens : AudioStream
-@export var sfx_roomba_crash : AudioStream
 @export var sfx_steps : Array[AudioStream]
 @export var sfx_meows : Array[AudioStream]
 
@@ -144,7 +144,6 @@ func _physics_process(delta: float) -> void:
 			meow_sfx_timer = MEOW_SFX_TIMER_MAX * randf_range(0.7, 1.5)
 	if kitten_disappear_timer <= 0:
 		drop_all_kittens()
-		play_sfx(sfx_drop_kittens)
 		kitten_disappear_timer = Settings.kitten_drop_timer_max
 
 	# fall, land, jump, crouch
@@ -210,6 +209,7 @@ func drop_all_kittens():
 	kitten_pool += kittens_lost
 	kitten_count = max(0, kitten_count - kittens_lost)
 	tardigrade_count = 0
+	play_sfx(sfx_drop_kittens)
 
 func update_scanner():
 	kitten_detection_level = 0
@@ -334,6 +334,6 @@ func update_music():
 		music_audio_player.play(pos)
 
 func roomba_hit():
-	play_sfx(sfx_roomba_crash)
+	sfx_crash_audio_player.play()
 	ui.flash_pain()
 	drop_all_kittens()
