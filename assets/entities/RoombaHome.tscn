@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkfs3kykwx6hv"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_vbep2"]
+size = Vector3(2, 2, 2)
+
+[node name="RoombaHome" type="Node3D" groups=["roomba_home"]]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_vbep2")
