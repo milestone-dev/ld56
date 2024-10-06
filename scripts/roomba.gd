@@ -36,7 +36,6 @@ var attack_cooldown := ATTACK_COOLDOWN_MAX
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player") as Player
 	home = get_tree().get_first_node_in_group("roomba_home") as Node3D
-	navigation_agent.velocity_computed.connect(Callable(_on_velocity_computed))
 
 func awake():
 	state = State.ROAMING
@@ -93,10 +92,4 @@ func _physics_process(delta):
 	movement_delta = movement_speed * delta
 	var next_path_position: Vector3 = navigation_agent.get_next_path_position()
 	var new_velocity: Vector3 = global_position.direction_to(next_path_position) * movement_delta
-	if navigation_agent.avoidance_enabled:
-		navigation_agent.set_velocity(new_velocity)
-	else:
-		_on_velocity_computed(new_velocity)
-
-func _on_velocity_computed(safe_velocity: Vector3) -> void:
-	global_position = global_position.move_toward(global_position + safe_velocity, movement_delta)
+	global_position = global_position.move_toward(global_position + new_velocity, movement_delta)
