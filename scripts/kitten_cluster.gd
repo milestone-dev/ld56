@@ -18,7 +18,7 @@ const FADED_OUT_COLOR = Color(1,1,1,0.0)
 
 func has_kittens() -> bool:	return kitten_count > 0
 
-var is_visible: bool: 
+var is_visible: bool:
 	get: return sprite.modulate.a > 0
 
 func _ready() -> void:
@@ -35,11 +35,11 @@ func _process(delta: float) -> void:
 		particles.restart()
 	particles.emitting = is_visible
 	particles.visible = is_visible
-		
+
 func _physics_process(delta: float) -> void:
 	if is_visible && !has_found_wall:
 		find_a_wall()
-	
+
 ## call me from _physics_process
 func find_a_wall():
 	const directions = [
@@ -50,7 +50,7 @@ func find_a_wall():
 	var state = get_world_3d().direct_space_state
 	var target = global_position + transform * Vector3.FORWARD * 0.1
 	var query = PhysicsRayQueryParameters3D.create(global_position, target, 1)
-	
+
 	for dir in directions:
 		query.to = global_position + dir * 1;
 		var ray = state.intersect_ray(query)
@@ -62,7 +62,7 @@ func find_a_wall():
 			var mat = $Particles.process_material as ParticleProcessMaterial
 			mat.gravity = global_transform.basis * Vector3.BACK
 			break
-			
+
 	self.has_found_wall = true
 
 func retrieve(player:Player):
