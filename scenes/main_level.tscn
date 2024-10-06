@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cpoa4d7l5tsv8"]
+[gd_scene load_steps=24 format=3 uid="uid://cpoa4d7l5tsv8"]
 
 [ext_resource type="PackedScene" uid="uid://jqmhm7qjf7n5" path="res://scenes/ui.tscn" id="1_11mfm"]
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_quftm"]
@@ -17,6 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://brcfwkc7uch8s" path="res://assets/models/props/flask_stand/flask_stand.tscn" id="15_344xc"]
 [ext_resource type="PackedScene" uid="uid://bgvxblqn4d8lc" path="res://assets/models/props/volumetric_flask/volumetric_flask.tscn" id="16_g8k7b"]
 [ext_resource type="PackedScene" uid="uid://bu4kegs7xjfjm" path="res://assets/models/props/gas_canister/gas_canister.gltf" id="17_jrpkp"]
+[ext_resource type="PackedScene" uid="uid://cfxinyypstccx" path="res://assets/models/props/dubious_potion/dubious_potion.tscn" id="18_74vnd"]
+[ext_resource type="PackedScene" uid="uid://dmmw6xmjrnkn2" path="res://assets/models/props/test_tubes/test_tubes.tscn" id="19_eutsm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x7yap"]
 
@@ -49,7 +51,7 @@ agent_radius = 0.75
 [node name="Main" type="Node3D" node_paths=PackedStringArray("env", "lightningNodes")]
 script = ExtResource("1_quftm")
 env = NodePath("WorldEnvironment")
-lightningNodes = NodePath("Lighting")
+lightningNodes = NodePath("Lab_Stuff/Lighting")
 
 [node name="UI" parent="." instance=ExtResource("1_11mfm")]
 unique_name_in_owner = true
@@ -58,7 +60,7 @@ unique_name_in_owner = true
 environment = SubResource("Environment_ohmgh")
 
 [node name="Player" parent="." node_paths=PackedStringArray("ui") instance=ExtResource("2_cfjsh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.077, 0.898638, -16.4167)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.61122, 0.898637, -8.44065)
 ui = NodePath("../UI")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
@@ -98,32 +100,50 @@ home_rest_timer_max = 3.0
 kitten_destroy_timer = 0.15
 modulate_color = Color(0.736281, 0.438501, 0.767616, 1)
 
-[node name="centrifuge" parent="." instance=ExtResource("7_ic2o6")]
-transform = Transform3D(0.0137702, 0, 0.999905, 0, 1, 0, -0.999905, 0, 0.0137702, 2.21256, 1.09713, -11.9452)
-
-[node name="Lighting" parent="." instance=ExtResource("6_1gvqg")]
-
-[node name="KittenContainer" parent="." instance=ExtResource("7_t26vx")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.21033, 1.05893, -15.0925)
-
-[node name="TardigradeContainer" parent="." instance=ExtResource("8_iwxt8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.15539, 1.05157, -15.2248)
-
-[node name="ScannerRecharger" parent="." instance=ExtResource("7_r7pip")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6414, 0.0992382, -7.91336)
-
-[node name="SprayRecharger" parent="." instance=ExtResource("9_1wdfb")]
+[node name="Lab_Stuff" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.85284, 1.11221, -15.0854)
 
-[node name="mascoll_table2" parent="." instance=ExtResource("13_kxtch")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.7019, -7.15256e-07, -10.6559)
+[node name="mascoll_table2" parent="Lab_Stuff" instance=ExtResource("13_kxtch")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.15094, -1.11221, 4.4295)
 
-[node name="bunsen_burner" parent="mascoll_table2" instance=ExtResource("14_g6svy")]
+[node name="bunsen_burner" parent="Lab_Stuff/mascoll_table2" instance=ExtResource("14_g6svy")]
 transform = Transform3D(0.102081, 0, -0.994776, 0, 1, 0, 0.994776, 0, 0.102081, -1.72693, 1.06976, 0.306909)
 
-[node name="flask_stand" parent="mascoll_table2/bunsen_burner" instance=ExtResource("15_344xc")]
+[node name="flask_stand" parent="Lab_Stuff/mascoll_table2/bunsen_burner" instance=ExtResource("15_344xc")]
 
-[node name="volumetric_flask" parent="mascoll_table2/bunsen_burner/flask_stand" instance=ExtResource("16_g8k7b")]
+[node name="volumetric_flask" parent="Lab_Stuff/mascoll_table2/bunsen_burner/flask_stand" instance=ExtResource("16_g8k7b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.654396, 0)
 
-[node name="gas_canister2" parent="mascoll_table2/bunsen_burner" instance=ExtResource("17_jrpkp")]
+[node name="gas_canister2" parent="Lab_Stuff/mascoll_table2/bunsen_burner" instance=ExtResource("17_jrpkp")]
+
+[node name="mascoll_table3" parent="Lab_Stuff" instance=ExtResource("13_kxtch")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.15094, -1.11221, 9.93773)
+
+[node name="dubious_potion" parent="Lab_Stuff/mascoll_table3" instance=ExtResource("18_74vnd")]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0.17748, 0.00067687, 1.00657)
+
+[node name="flask_stand" parent="Lab_Stuff/mascoll_table3" instance=ExtResource("15_344xc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45451, 1.06805, -0.0650922)
+
+[node name="flask_stand2" parent="Lab_Stuff/mascoll_table3" instance=ExtResource("15_344xc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.38564, 1.06805, -0.0650924)
+
+[node name="test_tubes" parent="Lab_Stuff/mascoll_table3" instance=ExtResource("19_eutsm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0686, 0)
+
+[node name="KittenContainer" parent="Lab_Stuff" instance=ExtResource("7_t26vx")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.35749, -0.05328, -0.00710011)
+
+[node name="TardigradeContainer" parent="Lab_Stuff" instance=ExtResource("8_iwxt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.69745, -0.06064, -0.1394)
+
+[node name="ScannerRecharger" parent="Lab_Stuff" instance=ExtResource("7_r7pip")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.7886, -1.01297, 7.17204)
+
+[node name="SprayRecharger" parent="Lab_Stuff" instance=ExtResource("9_1wdfb")]
+
+[node name="centrifuge" parent="Lab_Stuff" instance=ExtResource("7_ic2o6")]
+transform = Transform3D(0.0137702, 0, 0.999905, 0, 1, 0, -0.999905, 0, 0.0137702, -2.64028, -0.0150801, 3.1402)
+
+[node name="Lighting" parent="Lab_Stuff" instance=ExtResource("6_1gvqg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.85284, -1.11221, 15.0854)

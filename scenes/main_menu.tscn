@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://4vinrd4h6yl2"]
+[gd_scene load_steps=15 format=3 uid="uid://4vinrd4h6yl2"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_6m8h0"]
 [ext_resource type="PackedScene" uid="uid://cpoa4d7l5tsv8" path="res://scenes/main_level.tscn" id="2_767qk"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://b2a8mpk1u4ijd" path="res://assets/sprites/kitten2.png" id="6_o4r6p"]
 [ext_resource type="Texture2D" uid="uid://bp0bfra7eckxa" path="res://assets/sprites/kitten3.png" id="7_t6wvm"]
 [ext_resource type="Texture2D" uid="uid://ukcaa2rr4i5m" path="res://assets/sprites/kitten4.png" id="8_80nlr"]
+[ext_resource type="AudioStream" uid="uid://darpxaybsy7me" path="res://assets/music/track02.ogg" id="9_w57oc"]
+[ext_resource type="AudioStream" uid="uid://t4uy58qil582" path="res://assets/sfx/meow2.ogg" id="10_jtwqt"]
 
 [sub_resource type="Gradient" id="Gradient_us6km"]
 offsets = PackedFloat32Array(0, 0.401473, 0.793738, 0.992634)
@@ -22,7 +24,7 @@ fill_to = Vector2(0.344017, 0.0534188)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3k10t"]
 
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("start_game_button", "sens_slider", "gfx_slider", "sfx_slider", "music_slider")]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("start_game_button", "sens_slider", "gfx_slider", "sfx_slider", "music_slider", "sfx_audio_stream_player")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,6 +39,7 @@ sens_slider = NodePath("HBoxContainer/VBoxContainer2/HBoxContainer/SensHSlider")
 gfx_slider = NodePath("HBoxContainer/VBoxContainer2/HBoxContainer2/GFXHSlider")
 sfx_slider = NodePath("HBoxContainer/VBoxContainer2/HBoxContainer3/SFXHSlider")
 music_slider = NodePath("HBoxContainer/VBoxContainer2/HBoxContainer4/MusicHSlider")
+sfx_audio_stream_player = NodePath("SFXAudioStreamPlayer")
 
 [node name="BGGradient" type="TextureRect" parent="."]
 layout_mode = 1
@@ -192,6 +195,15 @@ min_value = -80.0
 max_value = 0.0
 tick_count = 10
 ticks_on_borders = true
+
+[node name="MusicAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_w57oc")
+autoplay = true
+bus = &"Music"
+
+[node name="SFXAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_jtwqt")
+bus = &"SFX"
 
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/StartGameButton" to="." method="start_game"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/TestLevelButton" to="." method="start_test_level"]

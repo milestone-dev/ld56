@@ -61,3 +61,4 @@ texture = ExtResource("7_6wknp")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("8_j51k5")
 autoplay = true
+bus = &"SFX"
