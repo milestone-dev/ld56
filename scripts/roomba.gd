@@ -69,7 +69,7 @@ func update_target(delta:float):
 			if player.kitten_saved_count >= awake_kittens_saved:
 				state = State.IDLE
 			material.set_shader_parameter("EmissiveColor", Color(1.0,1.0,1.0))
-			decal.modulate = Color(1.0,0.0,0.0)
+			decal.modulate = Color(0.0,0.0,0.0)
 		State.IDLE:
 			state_sprite.texture = idle_texture
 			motor_audio_stream_player.stream_paused = true
