@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=7 format=3 uid="uid://dq7sh7s6a2oe8"]
+[gd_resource type="VisualShader" load_steps=7 format=3 uid="uid://dmbhvopxk201t"]
 
 [ext_resource type="Texture2D" uid="uid://n6f2j11tqae8" path="res://assets/decals/gradient_map.png" id="1_vfbmx"]
 
