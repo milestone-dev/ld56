@@ -43,6 +43,8 @@ var attack_cooldown := 0.0
 @onready var model: MeshInstance3D = $CollisionShape3D/doomba2/doomba
 var material : Material
 @onready var decal: Decal = $CollisionShape3D/doomba2/Decal
+@onready var doomba_projection_glow: MeshInstance3D = $CollisionShape3D/doomba2/doomba/doomba_projection_glow
+var projection_material : Material
 
 
 func _ready() -> void:
@@ -52,6 +54,7 @@ func _ready() -> void:
 	ring_sprite.modulate = modulate_color
 
 	material = model.get_surface_override_material(1)
+	projection_material = doomba_projection_glow.get_surface_override_material(0)
 
 
 func hit_reset():
@@ -69,6 +72,7 @@ func update_target(delta:float):
 			if player.kitten_saved_count >= awake_kittens_saved:
 				state = State.IDLE
 			material.set_shader_parameter("EmissiveColor", Color(1.0,1.0,1.0))
+			projection_material.set_shader_parameter("Color", Color(1.0,1.0,1.0))
 			decal.modulate = Color(0.0,0.0,0.0)
 		State.IDLE:
 			state_sprite.texture = idle_texture
@@ -80,6 +84,7 @@ func update_target(delta:float):
 				navigation_agent.target_position = NavigationServer3D.map_get_random_point(get_world_3d().navigation_map, 1, false)
 				state = State.ROAMING
 			material.set_shader_parameter("EmissiveColor", Color(1.0,1.0,0.0))
+			projection_material.set_shader_parameter("Color", Color(1.0,1.0,0.0))
 			decal.modulate = Color(1.0,1.0,0.0)
 		State.ROAMING:
 			state_sprite.texture = roaming_texture
@@ -91,6 +96,7 @@ func update_target(delta:float):
 				navigation_agent.target_position = NavigationServer3D.map_get_random_point(get_world_3d().navigation_map, 1, false)
 				state = State.ROAMING
 			material.set_shader_parameter("EmissiveColor", Color(0.5,1.0,0.5))
+			projection_material.set_shader_parameter("Color", Color(0.5,1.0,0.5))
 			decal.modulate = Color(0.5,1.0,0.5)
 		State.RETURNING_HOME:
 			state_sprite.texture = returning_texture
@@ -106,6 +112,7 @@ func update_target(delta:float):
 			else:
 				navigation_agent.target_position = home.global_position
 			material.set_shader_parameter("EmissiveColor", Color(0.0,1.0,0.0))
+			projection_material.set_shader_parameter("Color", Color(0.0,1.0,0.0))
 			decal.modulate = Color(0.0,1.0,0.0)
 		State.CHASING_PLAYER:
 			state_sprite.texture = chasing_texture
@@ -119,6 +126,7 @@ func update_target(delta:float):
 			else:
 				state = State.IDLE
 			material.set_shader_parameter("EmissiveColor", Color(1.0,0.0,0.0))
+			projection_material.set_shader_parameter("Color", Color(1.0,0.0,0.0))
 			decal.modulate = Color(1.0,0.0,0.0)
 
 

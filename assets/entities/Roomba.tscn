@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cj50eeg58sc2m"]
+[gd_scene load_steps=19 format=3 uid="uid://cj50eeg58sc2m"]
 
 [ext_resource type="Script" path="res://scripts/roomba.gd" id="1_xpiuj"]
 [ext_resource type="Texture2D" uid="uid://wumnn5pg5asj" path="res://assets/sprites/roomba_sleeping.png" id="2_5rvep"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://c5jjqt82mtagd" path="res://assets/models/props/doomba/doomba.gltf" id="9_ml8um"]
 [ext_resource type="Texture2D" uid="uid://dn46x1y2giemp" path="res://assets/decals/glow_dif.png" id="10_knfoj"]
 [ext_resource type="Texture2D" uid="uid://c5xmautu1bt1k" path="res://assets/decals/glow_ems.png" id="11_5152t"]
+[ext_resource type="Material" uid="uid://vai2ns3nmir1" path="res://assets/models/props/doomba/projector_beam_mat.tres" id="13_0khf3"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ay03u"]
 height = 0.735399
@@ -76,6 +77,9 @@ pixel_size = 0.025
 billboard = 2
 texture_filter = 0
 texture = ExtResource("7_6wknp")
+
+[node name="doomba_projection_glow" parent="CollisionShape3D/doomba2/doomba" index="2"]
+surface_material_override/0 = ExtResource("13_0khf3")
 
 [node name="Decal" type="Decal" parent="CollisionShape3D/doomba2"]
 transform = Transform3D(0.611682, 0, 0, 0, 0.611682, 0, 0, 0, 0.611682, 0, -0.373426, 0)
