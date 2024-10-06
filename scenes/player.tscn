@@ -13,19 +13,20 @@
 [ext_resource type="AudioStream" uid="uid://cabst272jhkg1" path="res://assets/sfx/beep.ogg" id="8_vp6su"]
 [ext_resource type="AudioStream" uid="uid://jrb4tfhrae2y" path="res://assets/sfx/step4.ogg" id="12_18gtq"]
 [ext_resource type="AudioStream" uid="uid://cw4214w2383r1" path="res://assets/sfx/purr4.ogg" id="13_s66td"]
+[ext_resource type="Material" uid="uid://crcawhw4okp4e" path="res://assets/materials/SprayBottleParticleProcess.tres" id="13_8j23l"]
 [ext_resource type="AudioStream" uid="uid://d2ohsyg4unmtn" path="res://assets/music/track01.ogg" id="13_u0svo"]
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gra72"]
-emission_shape = 6
-emission_ring_axis = Vector3(0, 0, 1)
-emission_ring_height = 1.0
-emission_ring_radius = 1.0
-emission_ring_inner_radius = 0.0
-gravity = Vector3(0, -9.8, -16)
+[ext_resource type="Texture2D" uid="uid://b501mo1j6qiuh" path="res://assets/materials/sphere_gradient.tres" id="13_uy7il"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ybktn"]
+blend_mode = 1
 shading_mode = 0
-albedo_color = Color(0.188235, 0.556863, 0.815686, 1)
+albedo_color = Color(1.34766e-06, 0.775954, 0.776501, 1)
+albedo_texture = ExtResource("13_uy7il")
+texture_filter = 0
+texture_repeat = false
+billboard_mode = 1
+billboard_keep_scale = true
+grow_amount = 1.787
 
 [sub_resource type="QuadMesh" id="QuadMesh_xi2un"]
 material = SubResource("StandardMaterial3D_ybktn")
@@ -75,11 +76,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.52646)
 
 [node name="SprayParticles" type="GPUParticles3D" parent="Head/ScannerPoint"]
+transform = Transform3D(0.963755, 0.225549, 0.14249, -0.141267, 0.884511, -0.444616, -0.226317, 0.408372, 0.884315, 0.55835, -0.0997152, 1.98662)
 emitting = false
-amount = 32
+amount = 600
+lifetime = 2.0
 one_shot = true
-speed_scale = 2.0
-process_material = SubResource("ParticleProcessMaterial_gra72")
+explosiveness = 0.95
+process_material = ExtResource("13_8j23l")
 draw_pass_1 = SubResource("QuadMesh_xi2un")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Head/ScannerPoint"]
