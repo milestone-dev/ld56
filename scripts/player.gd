@@ -96,6 +96,7 @@ func _ready() -> void:
 	music_audio_player.stream = music_track2
 	music_audio_player.play()
 	sfx_scan_audio_player.play()
+	ui.pick_sprite.animation_finished.connect(switch_to_spray_tool)
 
 func _input(event: InputEvent) -> void:
 	if !ui.is_menu_open():
@@ -163,9 +164,8 @@ func _physics_process(delta: float) -> void:
 
 	# interaction, tools, scanners
 	manage_interactions()
-	scanner_showing = Input.is_action_pressed("tool_enable_scanner") and scan_energy > 0.0
+	scanner_showing = Input.is_action_pressed("tool_enable_scanner")
 	if scanner_showing:
-		scan_energy = max(0.0, scan_energy - delta)
 		update_scanner()
 	sfx_scan_audio_player.stream_paused = !scanner_showing
 	var val := linear_to_db((kitten_detection_level as float / KITTEN_DETECTION_LEVEL_MAX as float))
@@ -240,10 +240,8 @@ func spray():
 	play_sfx(sfx_spray)
 
 func manage_interactions():
-	var either_pressed = Input.is_action_just_pressed("tool_interact") or Input.is_action_just_pressed("tool_spray")
 	if Input.is_action_just_pressed("tool_interact"): current_tool = Tool.PICKER
 	elif Input.is_action_just_pressed("tool_spray"): current_tool = Tool.SPRAYER
-	#if !either_pressed: return
 
 	var is_interact_pressed := Input.is_action_just_pressed("tool_interact")
 	var is_spray_pressed := Input.is_action_just_pressed("tool_spray")
@@ -259,13 +257,14 @@ func manage_interactions():
 	for c in colliders:
 		if c is KittenCluster:
 			var kitten_cluster := c as KittenCluster
+			if kitten_cluster.is_sprayed():
+				current_focused_object = kitten_cluster
 			if is_spray_pressed:
 				if spray_energy > 0:
 					kitten_cluster.spray(self)
 			elif is_interact_pressed:
 				if c is KittenCluster:
 					if kitten_cluster.is_sprayed():
-						current_focused_object = kitten_cluster
 						kitten_cluster.retrieve(self)
 						kitten_disappear_timer = (kitten_disappear_timer + Settings.kitten_drop_timer_max) / 2.0
 						ui.pick_sprite.stop()
@@ -306,6 +305,7 @@ func manage_interactions():
 		current_focused_object = spray_recharger
 		if is_interact_pressed:
 			spray_recharger.interact(self)
+			current_tool = Tool.SPRAYER
 			play_sfx(sfx_refill)
 			return
 	elif collider is Centrifuge:
@@ -326,6 +326,9 @@ func manage_interactions():
 		if is_interact_pressed:
 			ui.pick_sprite.stop()
 			ui.pick_sprite.play()
+
+func switch_to_spray_tool():
+	current_tool = Tool.SPRAYER
 
 func start_level():
 	for kitten_cluster : KittenCluster in get_tree().get_nodes_in_group("kitten_cluster"):
