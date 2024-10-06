@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b1shqh7c2xpag"]
+
+[ext_resource type="Texture2D" uid="uid://gos300m4uvyv" path="res://assets/textures/batlowpostr.png" id="1_l5tuy"]
+
+[resource]
+diffuse_mode = 2
+albedo_texture = ExtResource("1_l5tuy")
+texture_filter = 0
