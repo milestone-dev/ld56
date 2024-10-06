@@ -4,9 +4,9 @@
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_quftm"]
 [ext_resource type="PackedScene" uid="uid://wtv1ym4laxh8" path="res://scenes/player.tscn" id="2_cfjsh"]
 [ext_resource type="PackedScene" uid="uid://dwcy4yjjn8ia8" path="res://assets/maps/apartment.bsp" id="3_4u18w"]
-[ext_resource type="PackedScene" uid="uid://bkfs3kykwx6hv" path="res://assets/entities/RoombaHome.tscn" id="5_dmc0a"]
-[ext_resource type="PackedScene" uid="uid://c6yb23cvtkeft" path="res://assets/maps/lighting.tscn" id="6_1gvqg"]
-[ext_resource type="PackedScene" uid="uid://dhug4d0oek6fo" path="res://assets/entities/Roomba.tscn" id="6_kfr7v"]
+[ext_resource type="PackedScene" path="res://assets/entities/RoombaHome.tscn" id="5_dmc0a"]
+[ext_resource type="PackedScene" uid="uid://swxfu7ohj2gm" path="res://assets/maps/lighting.tscn" id="6_1gvqg"]
+[ext_resource type="PackedScene" uid="uid://cj50eeg58sc2m" path="res://assets/entities/Roomba.tscn" id="6_kfr7v"]
 [ext_resource type="PackedScene" uid="uid://ctwdnitte857g" path="res://assets/models/props/centrifuge/centrifuge.tscn" id="7_ic2o6"]
 [ext_resource type="PackedScene" uid="uid://cln0hwkcj8a8t" path="res://assets/entities/ScannerRecharger.tscn" id="7_r7pip"]
 [ext_resource type="PackedScene" uid="uid://dtweho2ri4gm6" path="res://assets/entities/KittenContainer.tscn" id="7_t26vx"]
@@ -64,10 +64,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.61122, 0.898637, -8.44065)
 ui = NodePath("../UI")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.442858, 0)
 navigation_mesh = SubResource("NavigationMesh_w3pkp")
 
 [node name="apartment" parent="NavigationRegion3D" instance=ExtResource("3_4u18w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.76837e-07, -1.90735e-06)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.442858, -1.90735e-06)
 
 [node name="Roombas" type="Node3D" parent="."]
 
@@ -75,7 +76,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.76837e-07, -1.90735e-06
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.4958, 0.998979, -24.4099)
 
 [node name="Roomba" parent="Roombas/RoombaHome1" instance=ExtResource("6_kfr7v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.539, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.977932, 0)
 awake_kittens_saved = 0
 movement_speed = 2.0
 modulate_color = Color(0.3192, 0.76, 0.370627, 1)
@@ -84,7 +85,7 @@ modulate_color = Color(0.3192, 0.76, 0.370627, 1)
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 18.9215, 0.923827, -1.39003)
 
 [node name="Roomba" parent="Roombas/RoombaHome2" instance=ExtResource("6_kfr7v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.539, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.912405, 0)
 awake_kittens_saved = 50
 movement_speed = 4.0
 home_rest_timer_max = 20.0
@@ -95,7 +96,7 @@ modulate_color = Color(0.45887, 0.731596, 0.895192, 1)
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 19.9967, 0.923827, -15.879)
 
 [node name="Roomba" parent="Roombas/RoombaHome3" instance=ExtResource("6_kfr7v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.539, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.899834, 0)
 awake_kittens_saved = 100
 movement_speed = 5.0
 home_rest_timer_max = 3.0

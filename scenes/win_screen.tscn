@@ -1,0 +1,212 @@
+[gd_scene load_steps=10 format=3 uid="uid://qa3wsxoecsqd"]
+
+[ext_resource type="Script" path="res://scripts/win_screen.gd" id="1_oipbh"]
+[ext_resource type="Texture2D" uid="uid://xagqri27rg4s" path="res://assets/sprites/kitten6.png" id="3_yesi7"]
+[ext_resource type="Texture2D" uid="uid://depdjxb155j1x" path="res://assets/icons/dubpot.png" id="5_kgkui"]
+[ext_resource type="AudioStream" uid="uid://darpxaybsy7me" path="res://assets/music/track02.ogg" id="9_b1if1"]
+[ext_resource type="AudioStream" uid="uid://t4uy58qil582" path="res://assets/sfx/meow2.ogg" id="10_e0lpc"]
+
+[sub_resource type="Gradient" id="Gradient_us6km"]
+offsets = PackedFloat32Array(0, 0.401473, 0.793738, 0.992634)
+colors = PackedColorArray(0.3, 0.26345, 0.249, 1, 0.63135, 0.69, 0.5865, 1, 0.900535, 0.755793, 0.706239, 1, 1, 0.780392, 0.556863, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_p6ihf"]
+gradient = SubResource("Gradient_us6km")
+fill_from = Vector2(0.683761, 1)
+fill_to = Vector2(0.344017, 0.0534188)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6apkb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3k10t"]
+
+[node name="WinScreen" type="Control" node_paths=PackedStringArray("stat_1_t", "stat_1_d", "stat_2_t", "stat_2_d", "stat_3_t", "stat_3_d", "stat_4_t", "stat_4_d", "stat_5_t", "stat_5_d", "stat_6_t", "stat_6_d")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oipbh")
+stat_1_t = NodePath("HBoxContainer/VBoxContainer/StatsTable/Row/Label")
+stat_1_d = NodePath("HBoxContainer/VBoxContainer/StatsTable/Row/Label2")
+stat_2_t = NodePath("HBoxContainer/VBoxContainer/StatsTable/Row2/Label")
+stat_2_d = NodePath("HBoxContainer/VBoxContainer/StatsTable/Row2/Label2")
+stat_3_t = NodePath("HBoxContainer/VBoxContainer/StatsTable/Row3/Label")
+stat_3_d = NodePath("HBoxContainer/VBoxContainer/StatsTable/Row3/Label2")
+stat_4_t = NodePath("HBoxContainer/VBoxContainer/StatsTable/Row4/Label")
+stat_4_d = NodePath("HBoxContainer/VBoxContainer/StatsTable/Row4/Label2")
+stat_5_t = NodePath("HBoxContainer/VBoxContainer/StatsTable/Row5/Label")
+stat_5_d = NodePath("HBoxContainer/VBoxContainer/StatsTable/Row4/Label2")
+stat_6_t = NodePath("HBoxContainer/VBoxContainer/StatsTable/Row6/Label")
+stat_6_d = NodePath("HBoxContainer/VBoxContainer/StatsTable/Row6/Label2")
+
+[node name="BGGradient" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_p6ihf")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Congrats!"
+horizontal_alignment = 1
+
+[node name="StatsTable" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Row" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/StatsTable"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/StatsTable/Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+text = "Stat"
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/StatsTable/Row"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "2"
+horizontal_alignment = 1
+
+[node name="Row2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/StatsTable"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/StatsTable/Row2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+text = "Stat"
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/StatsTable/Row2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "2"
+horizontal_alignment = 1
+
+[node name="Row3" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/StatsTable"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/StatsTable/Row3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+text = "Stat"
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/StatsTable/Row3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "2"
+horizontal_alignment = 1
+
+[node name="Row4" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/StatsTable"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/StatsTable/Row4"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+text = "Stat"
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/StatsTable/Row4"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "2"
+horizontal_alignment = 1
+
+[node name="Row5" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/StatsTable"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/StatsTable/Row5"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+text = "Stat"
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/StatsTable/Row5"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "2"
+horizontal_alignment = 1
+
+[node name="Row6" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/StatsTable"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/StatsTable/Row6"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+text = "Stat"
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/StatsTable/Row6"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "2"
+horizontal_alignment = 1
+
+[node name="StartGameButton" type="Button" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(1, 0.776471, 0.556863, 1)
+theme_override_font_sizes/font_size = 32
+text = "New Game"
+
+[node name="HSeparator2" type="HSeparator" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+theme_override_styles/separator = SubResource("StyleBoxEmpty_6apkb")
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "A game by"
+horizontal_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+texture = ExtResource("5_kgkui")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+theme_override_styles/separator = SubResource("StyleBoxEmpty_3k10t")
+
+[node name="WinTexture" type="TextureRect" parent="HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("3_yesi7")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="MusicAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_b1if1")
+autoplay = true
+bus = &"Music"
+
+[node name="SFXAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_e0lpc")
+bus = &"SFX"
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/StartGameButton" to="." method="continue_clicked"]
