@@ -37,6 +37,7 @@ var mouse_sensitivity : float = 0.1
 @export var sfx_use : AudioStream
 @export var sfx_refill : AudioStream
 @export var sfx_scan_beep : AudioStream
+@export var sfx_drop_kittens : AudioStream
 @export var sfx_steps : Array[AudioStream]
 
 @export_category("Music")
@@ -106,7 +107,10 @@ func _physics_process(delta: float) -> void:
 	manage_level(delta)
 
 	#debug mode
-	if Input.is_action_just_pressed("toggle_debug"): debug_mode = !debug_mode
+	if Input.is_action_just_pressed("toggle_debug"):
+		debug_mode = !debug_mode
+		for kitten_cluster : KittenCluster in get_tree().get_nodes_in_group("kitten_cluster"):
+			kitten_cluster.debug_label.visible = debug_mode
 	if Input.is_action_just_pressed("debug_add_kittens"):
 		for kitten_cluster : KittenCluster in get_tree().get_nodes_in_group("kitten_cluster"):
 			kitten_cluster.spray(self)
@@ -185,6 +189,7 @@ func drop_all_kittens():
 	kitten_pool += kittens_lost
 	kitten_count = max(0, kitten_count - kittens_lost)
 	tardigrade_count = 0
+	play_sfx(sfx_drop_kittens)
 
 func update_scanner():
 	kitten_detection_level = 0
@@ -276,7 +281,6 @@ func manage_interactions():
 		ui.pick_sprite.play()
 
 func start_level():
-	print("Level start")
 	for kitten_cluster : KittenCluster in get_tree().get_nodes_in_group("kitten_cluster"):
 		distribute_random_kittens(kitten_cluster)
 
@@ -289,9 +293,8 @@ func manage_level(delta:float):
 	Progress.time_played += delta
 	if kitten_pool <= 0: return
 	for kitten_cluster : KittenCluster in get_tree().get_nodes_in_group("kitten_cluster"):
-		kitten_cluster.label.visible = debug_mode
+		kitten_cluster.debug_label.visible = debug_mode
 		if kitten_cluster.kitten_count == 0 and kitten_cluster.kitten_respawn_timer <= 0:
-			prints("Refill", kitten_cluster.name)
 			distribute_random_kittens(kitten_cluster)
 
 func play_sfx(sfx:AudioStream):
