@@ -109,10 +109,11 @@ func _physics_process(delta: float) -> void:
 	#debug mode
 	if Input.is_action_just_pressed("toggle_debug"): debug_mode = !debug_mode
 	if Input.is_action_just_pressed("debug_add_kittens"):
-		var count = min(kitten_pool, 100000)
-		kitten_pool -= count
-		kitten_count += count
-		Progress.kittens_picked_up += count
+		for kitten_cluster : KittenCluster in get_tree().get_nodes_in_group("kitten_cluster"):
+			kitten_cluster.spray(self)
+			kitten_cluster.retrieve(self)
+			kitten_cluster.kitten_respawn_timer = 0.5
+			play_sfx(sfx_pick)
 
 	# make kittens and tardigrades fall out of your hand
 	# placeholder impl for now
@@ -231,10 +232,11 @@ func manage_interactions():
 					kitten_cluster.spray(self)
 			elif current_tool == Tool.PICKER:
 				if c is KittenCluster:
-					kitten_cluster.retrieve(self)
-					ui.pick_sprite.stop()
-					ui.pick_sprite.play()
-					play_sfx(sfx_pick)
+					if kitten_cluster.is_sprayed():
+						kitten_cluster.retrieve(self)
+						ui.pick_sprite.stop()
+						ui.pick_sprite.play()
+						play_sfx(sfx_pick)
 
 	var collider = interaction_ray.get_collider()
 	if collider is Roomba:

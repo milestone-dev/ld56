@@ -13,12 +13,14 @@ var fade_out_timer := 5.0
 
 var has_found_wall = false
 
+
 const KITTEN_RESPAWN_TIMER_MAX := 5.0
 var kitten_respawn_timer := 0.0
 
 const FADED_OUT_COLOR = Color(1,1,1,0.0)
 
 func has_kittens() -> bool:	return kitten_count > 0
+func is_sprayed() -> bool:	return sprite.modulate.a > 0
 
 var is_visible: bool:
 	get: return sprite.modulate.a > 0
