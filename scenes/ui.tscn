@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://jqmhm7qjf7n5"]
+[gd_scene load_steps=28 format=3 uid="uid://jqmhm7qjf7n5"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_68hwl"]
 [ext_resource type="Texture2D" uid="uid://cya465556bqjx" path="res://assets/sprites/ui_catscan.png" id="2_f1ilk"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dd4oifbmlgi34" path="res://assets/sprites/ui_palm.png" id="3_l2nx6"]
 [ext_resource type="Texture2D" uid="uid://l7bo14mb54hn" path="res://assets/sprites/ui_spray.png" id="3_sordo"]
 [ext_resource type="Texture2D" uid="uid://bvrygo11g5lqu" path="res://assets/sprites/ui_spray2.png" id="4_gtxci"]
+[ext_resource type="PackedScene" uid="uid://dvf0hoh1qm1qx" path="res://scenes/kittens_in_hand.tscn" id="5_cs22l"]
 [ext_resource type="Texture2D" uid="uid://duliddsehj0jx" path="res://assets/sprites/ui_pick1.png" id="6_c8owi"]
 [ext_resource type="Texture2D" uid="uid://dcsn03in83vpw" path="res://assets/sprites/ui_pick2.png" id="7_rriv4"]
 
@@ -93,6 +94,8 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="World3D" id="World3D_cavir"]
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_27g81"]
 animations = [{
 "frames": [{
@@ -133,7 +136,7 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("crosshair", "kitten_count_label", "tardigrade_count_label", "sprint_energy_label", "kitten_pool_label", "time_label", "cat_scanner_texture", "cat_palm_texture", "scan_energy_bar", "spray_energy_bar", "spray_sprite", "detection_progress_sprite", "pick_sprite")]
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("crosshair", "kitten_count_label", "tardigrade_count_label", "sprint_energy_label", "kitten_pool_label", "time_label", "cat_scanner_texture", "cat_palm_texture", "scan_energy_bar", "spray_energy_bar", "spray_sprite", "detection_progress_sprite", "pick_sprite", "kittens_in_hand")]
 script = ExtResource("1_68hwl")
 crosshair = NodePath("Crosshair")
 kitten_count_label = NodePath("CatPalmTexture/KittenCountLabel")
@@ -148,6 +151,7 @@ spray_energy_bar = NodePath("SpraySprite/SprayEnergyBar")
 spray_sprite = NodePath("SpraySprite")
 detection_progress_sprite = NodePath("CatScannerTexture/KittenDetectionSprite")
 pick_sprite = NodePath("PickSprite")
+kittens_in_hand = NodePath("CatPalmTexture/SubViewportContainer/SubViewport/Node3D")
 
 [node name="Crosshair" type="ColorRect" parent="."]
 anchors_preset = 8
@@ -227,6 +231,7 @@ text = "Sprint Energy"
 horizontal_alignment = 2
 
 [node name="CatScannerTexture" type="TextureRect" parent="."]
+visible = false
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -253,7 +258,6 @@ position = Vector2(192, 179)
 sprite_frames = SubResource("SpriteFrames_q48xm")
 
 [node name="CatPalmTexture" type="TextureRect" parent="."]
-visible = false
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -261,6 +265,25 @@ offset_top = -40.0
 offset_right = 40.0
 grow_vertical = 0
 texture = ExtResource("3_l2nx6")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CatPalmTexture"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.328
+anchor_bottom = 0.353
+offset_left = 52.0
+offset_top = 130.0
+offset_right = 96.032
+offset_bottom = 137.98
+
+[node name="SubViewport" type="SubViewport" parent="CatPalmTexture/SubViewportContainer"]
+world_3d = SubResource("World3D_cavir")
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(128, 128)
+render_target_update_mode = 4
+
+[node name="Node3D" parent="CatPalmTexture/SubViewportContainer/SubViewport" instance=ExtResource("5_cs22l")]
 
 [node name="KittenCountLabel" type="Label" parent="CatPalmTexture"]
 layout_mode = 2

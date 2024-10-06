@@ -31,7 +31,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	kitten_respawn_timer -= delta
-	particles.amount = kitten_count
+	particles.amount = 1 if kitten_count < 1 else kitten_count
 	if is_visible && particles.visible != is_visible:
 		particles.restart()
 	particles.emitting = is_visible

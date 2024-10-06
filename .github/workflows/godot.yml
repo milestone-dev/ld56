@@ -11,6 +11,7 @@ env:
   ITCHIO_API_KEY: ${{ secrets.ITCHIO_API_KEY }}
   ITCHIO_USERNAME: ${{ secrets.ITCHIO_USERNAME }}
   ITCHIO_GAME: ${{ secrets.ITCHIO_GAME }}
+  LOG: 2>&1 | tee -a build.log
 
 
 jobs:
@@ -34,27 +35,27 @@ jobs:
       - name: Run the bsp unfucker that also reimport any borked stuff
         run: |
           git config --global --add safe.directory '*' # workaround for 'fatal: detected dubious ownership in repository'
-          bash fixbsp.sh
+          bash fixbsp.sh $LOG
 
       - name: Web Build
         run: |
             mkdir -v -p build/web
-            godot --headless -v --export-release "Web" build/web/index.html
+            godot --headless -v --export-release "Web" build/web/index.html $LOG
 
       - name: Mac Build
         run: |
           mkdir -v -p build/mac
-          godot --headless --verbose --export-release "MacOS" build/mac/$EXPORT_NAME.zip
+          godot --headless --verbose --export-release "MacOS" build/mac/$EXPORT_NAME.zip $LOG
 
       - name: Windows Build
         run: |
           mkdir -v -p build/windows
-          godot --headless --verbose --export-release "Windows Desktop" build/windows/$EXPORT_NAME.zip
+          godot --headless --verbose --export-release "Windows Desktop" build/windows/$EXPORT_NAME.zip $LOG
 
       - name: Linux Build
         run: |
           mkdir -v -p build/linux
-          godot --headless --verbose --export-release "Linux" build/linux/$EXPORT_NAME.zip
+          godot --headless --verbose --export-release "Linux" build/linux/$EXPORT_NAME.zip $LOG
 
       - name: Upload Artifact web
         uses: actions/upload-artifact@v4
@@ -101,3 +102,17 @@ jobs:
           embeds="[{\"title\": \"Build Failed\", \"description\": \"See details here: ${run_url}\", \"url\": \"${run_url}\", \"color\": 10038562}]"
           data="{\"content\": \"$msg\", \"username\": \"Buildbot\", \"embeds\": $embeds}"
           curl -X POST -H 'Content-Type: application/json' --data "$data" "${{ secrets.DISCORD_WEBHOOK_URL }}"
+      
+      - name: Grep log for errors and send to discord
+        if: always()
+        continue-on-error: true
+        run: |
+          ERRORS=$(grep "ERROR" build.log | sort -u)
+          if [ -n "$ERRORS" ]; then
+            run_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            commit_url="${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}"
+            msg="The build succeeded, but Godot printed $count errors suring export.\n\n$ERRORS"
+            embeds="[{\"title\": \"Build error report\", \"description\": \"See details here: ${run_url}\", \"url\": \"${run_url}\", \"color\": 10038562}]"
+            data="{\"content\": \"$msg\", \"username\": \"Buildbot\", \"embeds\": $embeds}"
+            curl -X POST -H 'Content-Type: application/json' --data "$data" "${{ secrets.DISCORD_WEBHOOK_URL }}"
+          fi
