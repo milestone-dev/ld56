@@ -6,8 +6,6 @@ if [ -z "$godotapp" ]; then
     echo "Error: Godot application not found."
     exit 1
 fi
-
-# Set the path to the Godot executable
 godot="$godotapp/Contents/MacOS/Godot"
 echo "Godot app at: $godot"
 
@@ -15,6 +13,10 @@ ALL=(web mac windows linux)
 
 # Check if any arguments are provided
 if [ $# -eq 0 ]; then
+    echo "Usage: ./export.sh [export_type1 export_type2 ...]"
+    echo "export_type: web, mac, windows, linux"
+    exit 0
+elif [ "$1" = "all" ]; then
     # No arguments provided, use the default list
     export_list=("${ALL[@]}")
 else
