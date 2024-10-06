@@ -35,4 +35,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.073
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50742, 0)
 billboard = 1
-text = "Store cats here"
+text = "0 of
+1 000 000
+Kittens
+Saved"

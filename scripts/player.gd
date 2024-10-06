@@ -36,6 +36,7 @@ var mouse_sensitivity : float = 0.1
 @export var sfx_land : AudioStream
 @export var sfx_use : AudioStream
 @export var sfx_refill : AudioStream
+@export var sfx_recharge_scanner : AudioStream
 @export var sfx_scan_beep : AudioStream
 @export var sfx_drop_kittens : AudioStream
 @export var sfx_steps : Array[AudioStream]
@@ -265,6 +266,7 @@ func manage_interactions():
 	elif collider is ScannerRecharger:
 		var scanner_recharger := collider as ScannerRecharger
 		scanner_recharger.interact(self)
+		play_sfx(sfx_recharge_scanner)
 		return
 	elif collider is SprayRecharger:
 		var spray_recharger := collider as SprayRecharger
@@ -303,6 +305,7 @@ func manage_level(delta:float):
 			distribute_random_kittens(kitten_cluster)
 
 func play_sfx(sfx:AudioStream):
+	if sfx == null: return
 	sfx_audio_player.stream = sfx
 	sfx_audio_player.play()
 
