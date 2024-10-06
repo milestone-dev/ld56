@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpmog10s01vsi"]
+
+[ext_resource type="PackedScene" uid="uid://ra2knouaqhss" path="res://assets/models/props/bunsen_burner/bunsen_burner.gltf" id="1_x0qoo"]
+
+[node name="bunsen_burner" instance=ExtResource("1_x0qoo")]

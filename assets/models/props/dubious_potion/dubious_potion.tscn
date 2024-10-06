@@ -11,8 +11,8 @@ render_priority = 0
 shader = ExtResource("2_vq6wp")
 shader_parameter/Tint = Color(0.32549, 0.631373, 0.529412, 1)
 shader_parameter/Refraction = 0.1
-shader_parameter/Opacity = 1.0
-shader_parameter/Fresnel = 0.5
+shader_parameter/Opacity = 1.39
+shader_parameter/Fresnel = -22.16
 shader_parameter/EmissiveStrength = 1.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_14b1i"]

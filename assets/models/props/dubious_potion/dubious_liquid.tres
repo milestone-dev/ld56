@@ -8,6 +8,7 @@ resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_4pic7")
 shader_parameter/Color = Color(0.392157, 0.109804, 0.282353, 1)
+shader_parameter/Bubbles_Strength = 0.0
 shader_parameter/Metallness = 0.0
 shader_parameter/Roughness = 0.125
 shader_parameter/Specular = 0.5
