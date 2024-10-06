@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://rs4k12y5gess"]
+[gd_scene load_steps=19 format=3 uid="uid://rs4k12y5gess"]
 
 [ext_resource type="PackedScene" uid="uid://jqmhm7qjf7n5" path="res://scenes/ui.tscn" id="1_cfovc"]
 [ext_resource type="PackedScene" uid="uid://ddw7qw2y8g0au" path="res://assets/maps/test.bsp" id="2_317oy"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dpmog10s01vsi" path="res://assets/models/props/bunsen_burner/bunsen_burner.tscn" id="12_fpie3"]
 [ext_resource type="PackedScene" uid="uid://brcfwkc7uch8s" path="res://assets/models/props/flask_stand/flask_stand.tscn" id="12_pcyxr"]
 [ext_resource type="PackedScene" uid="uid://bu4kegs7xjfjm" path="res://assets/models/props/gas_canister/gas_canister.gltf" id="14_8snst"]
+[ext_resource type="PackedScene" uid="uid://dmmw6xmjrnkn2" path="res://assets/models/props/test_tubes/test_tubes.tscn" id="15_y2rkm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_no8fg"]
 sky_top_color = Color(0.471391, 0.662282, 0.959921, 1)
@@ -86,3 +87,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21.365
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.654396, 0)
 
 [node name="gas_canister2" parent="bunsen_burner" instance=ExtResource("14_8snst")]
+
+[node name="test_tubes" parent="." instance=ExtResource("15_y2rkm")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21.3177, 0.845549, -17.3399)

@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://b25cnyr17xvx7"]
+
+[ext_resource type="Shader" uid="uid://dec48pevfba4x" path="res://assets/models/shared/shaders/liquid_shader.tres" id="1_lm1xp"]
+[ext_resource type="Texture2D" uid="uid://cak42ost5vpgd" path="res://assets/models/shared/textures/bubbles.png" id="2_051j0"]
+
+[resource]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_lm1xp")
+shader_parameter/Color = Color(0, 1, 0, 1)
+shader_parameter/Bubbles_Strength = 1.0
+shader_parameter/Metallness = 0.0
+shader_parameter/Roughness = 0.1
+shader_parameter/Specular = 1.0
+shader_parameter/Bubbles = ExtResource("2_051j0")
