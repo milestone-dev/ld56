@@ -1,17 +1,22 @@
-[gd_scene load_steps=17 format=3 uid="uid://cpoa4d7l5tsv8"]
+[gd_scene load_steps=22 format=3 uid="uid://cpoa4d7l5tsv8"]
 
 [ext_resource type="PackedScene" uid="uid://jqmhm7qjf7n5" path="res://scenes/ui.tscn" id="1_11mfm"]
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_quftm"]
 [ext_resource type="PackedScene" uid="uid://wtv1ym4laxh8" path="res://scenes/player.tscn" id="2_cfjsh"]
 [ext_resource type="PackedScene" uid="uid://dwcy4yjjn8ia8" path="res://assets/maps/apartment.bsp" id="3_4u18w"]
-[ext_resource type="PackedScene" uid="uid://bkfs3kykwx6hv" path="res://assets/entities/RoombaHome.tscn" id="5_dmc0a"]
-[ext_resource type="PackedScene" uid="uid://c6yb23cvtkeft" path="res://assets/maps/lighting.tscn" id="6_1gvqg"]
-[ext_resource type="PackedScene" uid="uid://dhug4d0oek6fo" path="res://assets/entities/Roomba.tscn" id="6_kfr7v"]
+[ext_resource type="PackedScene" path="res://assets/entities/RoombaHome.tscn" id="5_dmc0a"]
+[ext_resource type="PackedScene" uid="uid://swxfu7ohj2gm" path="res://assets/maps/lighting.tscn" id="6_1gvqg"]
+[ext_resource type="PackedScene" path="res://assets/entities/Roomba.tscn" id="6_kfr7v"]
 [ext_resource type="PackedScene" uid="uid://ctwdnitte857g" path="res://assets/models/props/centrifuge/centrifuge.tscn" id="7_ic2o6"]
 [ext_resource type="PackedScene" uid="uid://cln0hwkcj8a8t" path="res://assets/entities/ScannerRecharger.tscn" id="7_r7pip"]
 [ext_resource type="PackedScene" uid="uid://dtweho2ri4gm6" path="res://assets/entities/KittenContainer.tscn" id="7_t26vx"]
 [ext_resource type="PackedScene" uid="uid://beu1dtde37opb" path="res://assets/entities/TardigradeContainer.tscn" id="8_iwxt8"]
 [ext_resource type="PackedScene" uid="uid://dq4q6xr62djhk" path="res://assets/entities/SprayRecharger.tscn" id="9_1wdfb"]
+[ext_resource type="PackedScene" uid="uid://vcw1lk4xv0us" path="res://assets/models/props/mascoll_table/mascoll_table.gltf" id="13_kxtch"]
+[ext_resource type="PackedScene" uid="uid://dpmog10s01vsi" path="res://assets/models/props/bunsen_burner/bunsen_burner.tscn" id="14_g6svy"]
+[ext_resource type="PackedScene" uid="uid://brcfwkc7uch8s" path="res://assets/models/props/flask_stand/flask_stand.tscn" id="15_344xc"]
+[ext_resource type="PackedScene" uid="uid://bgvxblqn4d8lc" path="res://assets/models/props/volumetric_flask/volumetric_flask.tscn" id="16_g8k7b"]
+[ext_resource type="PackedScene" uid="uid://bu4kegs7xjfjm" path="res://assets/models/props/gas_canister/gas_canister.gltf" id="17_jrpkp"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x7yap"]
 
@@ -109,3 +114,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6414, 0.0992382, -7.91336)
 
 [node name="SprayRecharger" parent="." instance=ExtResource("9_1wdfb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.85284, 1.11221, -15.0854)
+
+[node name="mascoll_table2" parent="." instance=ExtResource("13_kxtch")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.7019, -7.15256e-07, -10.6559)
+
+[node name="bunsen_burner" parent="mascoll_table2" instance=ExtResource("14_g6svy")]
+transform = Transform3D(0.102081, 0, -0.994776, 0, 1, 0, 0.994776, 0, 0.102081, -1.72693, 1.06976, 0.306909)
+
+[node name="flask_stand" parent="mascoll_table2/bunsen_burner" instance=ExtResource("15_344xc")]
+
+[node name="volumetric_flask" parent="mascoll_table2/bunsen_burner/flask_stand" instance=ExtResource("16_g8k7b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.654396, 0)
+
+[node name="gas_canister2" parent="mascoll_table2/bunsen_burner" instance=ExtResource("17_jrpkp")]
