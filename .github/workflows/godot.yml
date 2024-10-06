@@ -91,3 +91,13 @@ jobs:
 
       - name: Itch.io Linux
         run: BUTLER_API_KEY=${ITCHIO_API_KEY} butler push ./build/linux/$EXPORT_NAME.zip ${ITCHIO_USERNAME}/${ITCHIO_GAME}:linux
+
+      - name: Notify Discord of failure
+        if: failure()
+        run: |
+          run_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          commit_url="${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}"
+          msg="There was a problem with the build for $commit_url."
+          embeds="[{\"title\": \"Build Failed\", \"description\": \"See details here: ${run_url}\", \"url\": \"${run_url}\", \"color\": 10038562}]"
+          data="{\"content\": \"$msg\", \"username\": \"Buildbot\", \"embeds\": $embeds}"
+          curl -X POST -H 'Content-Type: application/json' --data "$data" "${{ secrets.DISCORD_WEBHOOK_URL }}"
