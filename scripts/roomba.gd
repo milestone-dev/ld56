@@ -50,9 +50,9 @@ func _ready() -> void:
 	home = get_parent_node_3d() as Node3D
 	modulate_color.a = 0.5
 	ring_sprite.modulate = modulate_color
-	
+
 	material = model.get_surface_override_material(1)
-	
+
 
 func hit_reset():
 	if state != State.SLEEPING:

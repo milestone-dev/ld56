@@ -15,7 +15,7 @@
 [ext_resource type="Material" uid="uid://crcawhw4okp4e" path="res://assets/materials/SprayBottleParticleProcess.tres" id="13_8j23l"]
 [ext_resource type="AudioStream" uid="uid://cw4214w2383r1" path="res://assets/sfx/purr4.ogg" id="13_s66td"]
 [ext_resource type="AudioStream" uid="uid://d2ohsyg4unmtn" path="res://assets/music/track01.ogg" id="13_u0svo"]
-[ext_resource type="Texture2D" uid="uid://b501mo1j6qiuh" path="res://assets/materials/sphere_gradient.tres" id="13_uy7il"]
+[ext_resource type="Texture2D" uid="uid://bsv7vyba7sykh" path="res://assets/materials/sphere_gradient.tres" id="13_uy7il"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ybktn"]
 blend_mode = 1

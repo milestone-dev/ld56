@@ -78,8 +78,7 @@ const SPRAY_ENERGY_MAX := 100.0
 const SPRAY_ENERGY_COST := SPRAY_ENERGY_MAX/100.0
 var spray_energy := SPRAY_ENERGY_MAX
 
-const KITTEN_DISAPPEAR_TIMER_MAX := 1.0
-var kitten_disappear_timer := KITTEN_DISAPPEAR_TIMER_MAX
+var kitten_disappear_timer := Settings.kitten_drop_timer_max
 
 func _ready() -> void:
 	mouse_sensitivity = Settings.mouse_sensitivity
@@ -117,10 +116,11 @@ func _physics_process(delta: float) -> void:
 
 	# make kittens and tardigrades fall out of your hand
 	# placeholder impl for now
-	kitten_disappear_timer -= delta
+	if kitten_count > 0:
+		kitten_disappear_timer -= delta
 	if kitten_disappear_timer <= 0:
-		drop_kittens()
-		kitten_disappear_timer = KITTEN_DISAPPEAR_TIMER_MAX
+		drop_all_kittens()
+		kitten_disappear_timer = Settings.kitten_drop_timer_max
 
 	# fall, land, jump, crouch
 	if not is_on_floor(): velocity += get_gravity() * delta
@@ -179,13 +179,12 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	ui.update(self)
 
-func drop_kittens(count : int = 1):
-	var kittens_lost : int = min(kitten_count, count)
-	var tardigrades_lost := count
+func drop_all_kittens():
+	var kittens_lost := kitten_count
 	Progress.kittens_leaked += kittens_lost
 	kitten_pool += kittens_lost
 	kitten_count = max(0, kitten_count - kittens_lost)
-	tardigrade_count = max(0, tardigrade_count - tardigrades_lost)
+	tardigrade_count = 0
 
 func update_scanner():
 	kitten_detection_level = 0
@@ -234,6 +233,7 @@ func manage_interactions():
 				if c is KittenCluster:
 					if kitten_cluster.is_sprayed():
 						kitten_cluster.retrieve(self)
+						kitten_disappear_timer = (kitten_disappear_timer + Settings.kitten_drop_timer_max) / 2.0
 						ui.pick_sprite.stop()
 						ui.pick_sprite.play()
 						play_sfx(sfx_pick)
@@ -245,10 +245,12 @@ func manage_interactions():
 	elif collider is KittenContainer:
 		var kitten_container := collider as KittenContainer
 		kitten_container.interact(self)
+		play_sfx(sfx_use)
 		return
 	elif collider is TardigradeContainer:
 		var tardigrade_container := collider as TardigradeContainer
 		tardigrade_container.interact(self)
+		play_sfx(sfx_use)
 		return
 	elif collider is ScannerRecharger:
 		var scanner_recharger := collider as ScannerRecharger
@@ -257,10 +259,12 @@ func manage_interactions():
 	elif collider is SprayRecharger:
 		var spray_recharger := collider as SprayRecharger
 		spray_recharger.interact(self)
+		play_sfx(sfx_refill)
 		return
 	elif collider is Centrifuge:
 		var centrifuger := collider as Centrifuge
 		centrifuger.interact(self)
+		play_sfx(sfx_use)
 		return
 	elif collider is Incubator:
 		var incubator := collider as Incubator
