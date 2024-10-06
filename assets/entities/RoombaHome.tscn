@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c8s20xlrsxydo"]
+[gd_scene load_steps=3 format=3 uid="uid://c8s20xlrsxydo"]
 
 [ext_resource type="PackedScene" uid="uid://c52jkl633nwm0" path="res://assets/models/props/doomba/doomba_charge_station.gltf" id="1_18agf"]
+[ext_resource type="Material" uid="uid://ccfhls0vqnwjv" path="res://assets/models/shared/materials/protoMat.tres" id="2_o07b2"]
 
 [node name="RoombaHome" type="Node3D" groups=["roomba_home"]]
 
@@ -9,5 +10,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000377297, -1.14571, -0.001
 
 [node name="doomba_charge_station" parent="doomba_charge_station2" index="0"]
 layers = 32768
+surface_material_override/0 = ExtResource("2_o07b2")
 
 [editable path="doomba_charge_station2"]

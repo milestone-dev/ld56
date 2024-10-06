@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cj50eeg58sc2m"]
+[gd_scene load_steps=19 format=3 uid="uid://cj50eeg58sc2m"]
 
 [ext_resource type="Script" path="res://scripts/roomba.gd" id="1_xpiuj"]
 [ext_resource type="Texture2D" uid="uid://wumnn5pg5asj" path="res://assets/sprites/roomba_sleeping.png" id="2_5rvep"]
@@ -52,6 +52,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.
 [node name="doomba" parent="CollisionShape3D/doomba2" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000831604, -0.227617, 0.000615358)
 layers = 1024
+surface_material_override/0 = ExtResource("11_qrmd8")
 surface_material_override/1 = ExtResource("8_j7t4d")
 
 [node name="StateSprite" type="Sprite3D" parent="CollisionShape3D/doomba2/doomba" index="0"]

@@ -1,10 +1,14 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ccfhls0vqnwjv"]
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://ccfhls0vqnwjv"]
 
 [ext_resource type="Shader" uid="uid://rb0ou45ypa8b" path="res://assets/models/shared/shaders/protoShader.tres" id="1_3qmcn"]
+[ext_resource type="Texture2D" uid="uid://bunl5duo71v4b" path="res://assets/decals/noise_map.png" id="2_y8y8w"]
 
 [resource]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_3qmcn")
 shader_parameter/Tint = Color(0.637843, 0.637843, 0.637843, 1)
+shader_parameter/Noise_Size = 200.0
+shader_parameter/Noise_Overlay = 0.2
 shader_parameter/EmissiveStrength = 4.0
+shader_parameter/Noise = ExtResource("2_y8y8w")
