@@ -46,6 +46,8 @@ var material : Material
 @onready var doomba_projection_glow: MeshInstance3D = $CollisionShape3D/doomba2/doomba/doomba_projection_glow
 var projection_material : Material
 
+@onready var animation_player: AnimationPlayer = $CollisionShape3D/doomba2/AnimationPlayer
+
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player") as Player
@@ -75,6 +77,7 @@ func update_target(delta:float):
 			material.set_shader_parameter("EmissiveColor", Color(1.0,1.0,1.0))
 			projection_material.set_shader_parameter("Color", Color(1.0,1.0,1.0))
 			decal.modulate = Color(0.0,0.0,0.0)
+			animation_player.stop()
 		State.IDLE:
 			state_sprite.texture = idle_texture
 			motor_audio_stream_player.stream_paused = true
@@ -87,6 +90,7 @@ func update_target(delta:float):
 			material.set_shader_parameter("EmissiveColor", Color(1.0,1.0,0.0))
 			projection_material.set_shader_parameter("Color", Color(1.0,1.0,0.0))
 			decal.modulate = Color(1.0,1.0,0.0)
+			animation_player.play("running",-1,1)
 		State.ROAMING:
 			state_sprite.texture = roaming_texture
 			motor_audio_stream_player.stream_paused = false
@@ -99,6 +103,7 @@ func update_target(delta:float):
 			material.set_shader_parameter("EmissiveColor", Color(0.5,1.0,0.5))
 			projection_material.set_shader_parameter("Color", Color(0.5,1.0,0.5))
 			decal.modulate = Color(0.5,1.0,0.5)
+			animation_player.play("running",-1,1.5)
 		State.RETURNING_HOME:
 			state_sprite.texture = returning_texture
 			motor_audio_stream_player.stream_paused = false
@@ -115,6 +120,7 @@ func update_target(delta:float):
 			material.set_shader_parameter("EmissiveColor", Color(0.0,1.0,0.0))
 			projection_material.set_shader_parameter("Color", Color(0.0,1.0,0.0))
 			decal.modulate = Color(0.0,1.0,0.0)
+			animation_player.play("running",-1,1)
 		State.CHASING_PLAYER:
 			state_sprite.texture = chasing_texture
 			motor_audio_stream_player.stream_paused = false
@@ -129,6 +135,7 @@ func update_target(delta:float):
 			material.set_shader_parameter("EmissiveColor", Color(1.0,0.0,0.0))
 			projection_material.set_shader_parameter("Color", Color(1.0,0.0,0.0))
 			decal.modulate = Color(1.0,0.0,0.0)
+			animation_player.play("running",-1,2)
 
 
 func _physics_process(delta):
