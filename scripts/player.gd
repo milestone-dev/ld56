@@ -110,6 +110,8 @@ func _physics_process(delta: float) -> void:
 		ui.toggle_ingame_menu()
 		return
 
+	if ui.is_menu_open(): return
+
 	if kitten_saved_count >= 1000000:
 		get_tree().change_scene_to_file("res://scenes/win_screen.tscn")
 		return

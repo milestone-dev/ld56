@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cyeynw1jfwgjl"]
+[gd_scene load_steps=14 format=3 uid="uid://cyeynw1jfwgjl"]
 
 [ext_resource type="Script" path="res://scripts/settings_page.gd" id="1_136lr"]
 [ext_resource type="Texture2D" uid="uid://bggqlfri1ag7" path="res://assets/sprites/kitten1.png" id="5_5k1pv"]
@@ -19,6 +19,39 @@ fill_to = Vector2(0.344017, 0.0534188)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6apkb"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q0f1e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gju87"]
+content_margin_left = 32.0
+content_margin_top = 16.0
+content_margin_right = 32.0
+content_margin_bottom = 16.0
+bg_color = Color(0.87451, 0.443137, 0.14902, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cgfhm"]
+content_margin_left = 32.0
+content_margin_top = 16.0
+content_margin_right = 32.0
+content_margin_bottom = 16.0
+bg_color = Color(1, 0.468, 0.16, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ouju"]
+content_margin_left = 32.0
+content_margin_top = 16.0
+content_margin_right = 32.0
+content_margin_bottom = 16.0
+bg_color = Color(0.843137, 0.482353, 0.729412, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [node name="SettingsPage" type="Control" node_paths=PackedStringArray("sens_slider", "gfx_slider", "sfx_slider", "music_slider", "back_button", "quit_game_button", "sfx_audio_stream_player")]
 layout_mode = 3
@@ -319,12 +352,18 @@ theme_override_constants/separation = 16
 layout_mode = 2
 theme_override_colors/font_focus_color = Color(1, 0.776471, 0.556863, 1)
 theme_override_font_sizes/font_size = 32
+theme_override_styles/hover = SubResource("StyleBoxFlat_gju87")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cgfhm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_6ouju")
 text = "Exit to Main Menu"
 
 [node name="BackButton" type="Button" parent="VBoxContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_focus_color = Color(1, 0.776471, 0.556863, 1)
 theme_override_font_sizes/font_size = 32
+theme_override_styles/hover = SubResource("StyleBoxFlat_gju87")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cgfhm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_6ouju")
 text = "Back"
 
 [node name="SFXAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
