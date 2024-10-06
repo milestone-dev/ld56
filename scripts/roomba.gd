@@ -25,7 +25,8 @@ var attack_cooldown := 0.0
 @export var modulate_color : Color = Color.WHITE
 
 @export var navigation_agent : NavigationAgent3D
-@export var sprite : Sprite3D
+@export var state_sprite : Sprite3D
+@export var ring_sprite : Sprite3D
 @export var sleeping_texture : Texture2D
 @export var idle_texture : Texture2D
 @export var roaming_texture : Texture2D
@@ -36,7 +37,8 @@ var attack_cooldown := 0.0
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player") as Player
 	home = get_parent_node_3d() as Node3D
-	sprite.modulate = modulate_color
+	modulate_color.a = 0.5
+	ring_sprite.modulate = modulate_color
 
 func hit_reset():
 	if state != State.SLEEPING:
@@ -46,12 +48,12 @@ func hit_reset():
 func update_target(delta:float):
 	match state:
 		State.SLEEPING:
-			sprite.texture = sleeping_texture
+			state_sprite.texture = sleeping_texture
 			audio_stream_player.stream_paused = true
 			if player.kitten_saved_count >= awake_kittens_saved:
 				state = State.IDLE
 		State.IDLE:
-			sprite.texture = idle_texture
+			state_sprite.texture = idle_texture
 			audio_stream_player.stream_paused = true
 			if player.kitten_count > 0:
 				state = State.CHASING_PLAYER
@@ -59,7 +61,7 @@ func update_target(delta:float):
 				navigation_agent.target_position = NavigationServer3D.map_get_random_point(get_world_3d().navigation_map, 1, false)
 				state = State.ROAMING
 		State.ROAMING:
-			sprite.texture = roaming_texture
+			state_sprite.texture = roaming_texture
 			audio_stream_player.stream_paused = false
 			if player.kitten_count > 0:
 				state = State.CHASING_PLAYER
@@ -67,11 +69,11 @@ func update_target(delta:float):
 				navigation_agent.target_position = NavigationServer3D.map_get_random_point(get_world_3d().navigation_map, 1, false)
 				state = State.ROAMING
 		State.RETURNING_HOME:
-			sprite.texture = returning_texture
+			state_sprite.texture = returning_texture
 			audio_stream_player.stream_paused = false
 			if global_position.distance_to(home.global_position) < 1:
 				home_rest_timer -= delta
-				sprite.texture = sleeping_texture
+				state_sprite.texture = sleeping_texture
 				audio_stream_player.stream_paused = true
 				if home_rest_timer < 0:
 					home_rest_timer = home_rest_timer_max
@@ -79,7 +81,7 @@ func update_target(delta:float):
 			else:
 				navigation_agent.target_position = home.global_position
 		State.CHASING_PLAYER:
-			sprite.texture = chasing_texture
+			state_sprite.texture = chasing_texture
 			audio_stream_player.stream_paused = false
 			if player.kitten_count > 0:
 				navigation_agent.target_position = player.global_position
