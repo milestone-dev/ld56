@@ -84,7 +84,7 @@ var scan_energy := SCAN_ENERGY_MAX
 const SCAN_RANGE_CUTOFF := 5.0
 
 const SPRAY_ENERGY_MAX := 100.0
-const SPRAY_ENERGY_COST := SPRAY_ENERGY_MAX/100.0
+const SPRAY_ENERGY_COST := SPRAY_ENERGY_MAX/10.0
 var spray_energy := SPRAY_ENERGY_MAX
 
 var kitten_disappear_timer := Settings.kitten_drop_timer_max
