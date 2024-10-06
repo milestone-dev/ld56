@@ -1,7 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://wtv1ym4laxh8"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ab6ol"]
-[ext_resource type="PackedScene" uid="uid://4vinrd4h6yl2" path="res://scenes/main_menu.tscn" id="2_b1ken"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gra72"]
 emission_shape = 6
@@ -35,7 +34,6 @@ scanner_point = NodePath("Head/ScannerPoint")
 interaction_shape = NodePath("Head/InteractArea3D")
 mesh_instance = NodePath("BodyCollisionShape3D/MeshInstance3D")
 spray_particles = NodePath("Head/ScannerPoint/SprayParticles")
-main_menu_scene = ExtResource("2_b1ken")
 
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)

@@ -25,7 +25,6 @@ const CROUCH_SIZE = 0.3
 var mouse_sensitivity : float = 0.1
 @export var spray_particles : GPUParticles3D
 @export var ui : UI
-@export var main_menu_scene : PackedScene
 
 var current_tool := Tool.PICKER
 var mouse_input : Vector2
