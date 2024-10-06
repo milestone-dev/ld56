@@ -29,6 +29,7 @@ var mouse_sensitivity : float = 0.1
 @export var sfx_audio_player : AudioStreamPlayer
 @export var sfx_step_audio_player : AudioStreamPlayer
 @export var sfx_scan_audio_player : AudioStreamPlayer
+@export var sfx_meow_audio_player : AudioStreamPlayer
 @export var sfx_spray : AudioStream
 @export var sfx_pick : AudioStream
 @export var sfx_switch : AudioStream
@@ -40,6 +41,7 @@ var mouse_sensitivity : float = 0.1
 @export var sfx_scan_beep : AudioStream
 @export var sfx_drop_kittens : AudioStream
 @export var sfx_steps : Array[AudioStream]
+@export var sfx_meows : Array[AudioStream]
 
 @export_category("Music")
 @export var music_audio_player : AudioStreamPlayer
@@ -58,6 +60,9 @@ var debug_mode := false
 const STEP_SFX_TIMER_MAX := 0.3
 const STEP_SRPING_SFX_TIMER_MAX := 0.15
 var step_sfx_timer := 0.0
+
+const MEOW_SFX_TIMER_MAX := 1.0
+var meow_sfx_timer := 0.0
 
 const SCAN_SFX_TIMER_MAX := 0.4
 var scan_sfx_timer := 0.0
@@ -126,8 +131,15 @@ func _physics_process(delta: float) -> void:
 
 	# make kittens and tardigrades fall out of your hand
 	# placeholder impl for now
+	meow_sfx_timer-=delta
 	if kitten_count > 0:
 		kitten_disappear_timer -= delta
+		if meow_sfx_timer <= 0:
+			sfx_meow_audio_player.stream = sfx_meows.pick_random()
+			sfx_meow_audio_player.pitch_scale = randf_range(0.9, 1.1)
+			sfx_meow_audio_player.volume_db = min(0, linear_to_db(kitten_disappear_timer/MEOW_SFX_TIMER_MAX))
+			sfx_meow_audio_player.play()
+			meow_sfx_timer = MEOW_SFX_TIMER_MAX * randf_range(0.7, 1.5)
 	if kitten_disappear_timer <= 0:
 		drop_all_kittens()
 		kitten_disappear_timer = Settings.kitten_drop_timer_max
