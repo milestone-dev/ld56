@@ -9,6 +9,7 @@
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("3_tq8ms")
+shader_parameter/Tint = Color(1, 1, 1, 1)
 shader_parameter/EmissiveStrength = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wxkku"]

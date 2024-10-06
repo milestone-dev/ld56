@@ -1,5 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://drqd1us8wq6p2"]
+[gd_scene load_steps=3 format=3 uid="uid://drqd1us8wq6p2"]
 
 [ext_resource type="PackedScene" uid="uid://bu4kegs7xjfjm" path="res://assets/models/props/gas_canister/gas_canister.gltf" id="1_7yjlb"]
+[ext_resource type="Material" uid="uid://ccfhls0vqnwjv" path="res://assets/models/shared/materials/protoMat.tres" id="2_tgtgv"]
 
 [node name="gas_canister" instance=ExtResource("1_7yjlb")]
+
+[node name="gas_canister" parent="gas_canister" index="0"]
+surface_material_override/0 = ExtResource("2_tgtgv")

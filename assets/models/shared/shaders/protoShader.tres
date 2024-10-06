@@ -1,8 +1,12 @@
-[gd_resource type="VisualShader" load_steps=9 format=3 uid="uid://rb0ou45ypa8b"]
+[gd_resource type="VisualShader" load_steps=13 format=3 uid="uid://rb0ou45ypa8b"]
 
 [ext_resource type="Texture2D" uid="uid://1gucyiy4adky" path="res://assets/models/shared/textures/prototex_dif.png" id="1_45lbd"]
 [ext_resource type="Texture2D" uid="uid://ctwt7d3s5aftk" path="res://assets/models/shared/textures/prototex_ems.png" id="2_elxqd"]
 [ext_resource type="Texture2D" uid="uid://h4bsj16cj3fx" path="res://assets/models/shared/textures/prototex_orm.png" id="3_l7wo4"]
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_y44rp"]
+parameter_name = "Tint"
+default_value_enabled = true
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_7kewb"]
 texture = ExtResource("1_45lbd")
@@ -22,10 +26,20 @@ parameter_name = "EmissiveStrength"
 default_value_enabled = true
 default_value = 1.0
 
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_x4yrq"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_gwutx"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_knkfc"]
+operator = 2
+
 [resource]
 code = "shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
 
+uniform vec4 Tint : source_color = vec4(1.000000, 1.000000, 1.000000, 1.000000);
 uniform sampler2D tex_frg_2;
 uniform sampler2D tex_frg_4;
 uniform sampler2D tex_frg_3;
@@ -34,8 +48,16 @@ uniform float EmissiveStrength = 1;
 
 
 void fragment() {
+// ColorParameter:10
+	vec4 n_out10p0 = Tint;
+
+
 // Texture2D:2
 	vec4 n_out2p0 = texture(tex_frg_2, UV);
+
+
+// VectorOp:8
+	vec3 n_out8p0 = vec3(n_out10p0.xyz) * vec3(n_out2p0.xyz);
 
 
 // Texture2D:4
@@ -48,23 +70,32 @@ void fragment() {
 	vec4 n_out3p0 = texture(tex_frg_3, UV);
 
 
+// VectorOp:9
+	vec3 n_out9p0 = vec3(n_out10p0.xyz) * vec3(n_out3p0.xyz);
+
+
 // FloatParameter:6
 	float n_out6p0 = EmissiveStrength;
 
 
 // VectorOp:5
-	vec3 n_out5p0 = vec3(n_out3p0.xyz) * vec3(n_out6p0);
+	vec3 n_out5p0 = n_out9p0 * vec3(n_out6p0);
+
+
+// VectorOp:7
+	vec3 n_out7p0 = n_out8p0 * n_out5p0;
 
 
 // Output:0
-	ALBEDO = vec3(n_out2p0.xyz);
+	ALBEDO = n_out8p0;
 	METALLIC = n_out4p3;
 	ROUGHNESS = n_out4p2;
-	EMISSION = n_out5p0;
+	EMISSION = n_out7p0;
 
 
 }
 "
+graph_offset = Vector2(-1330.12, -108.832)
 nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_7kewb")
 nodes/fragment/2/position = Vector2(-1560, 160)
 nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_px0xn")
@@ -72,7 +103,15 @@ nodes/fragment/3/position = Vector2(-1560, 820)
 nodes/fragment/4/node = SubResource("VisualShaderNodeTexture_74nya")
 nodes/fragment/4/position = Vector2(-1560, 460)
 nodes/fragment/5/node = SubResource("VisualShaderNodeVectorOp_ywjij")
-nodes/fragment/5/position = Vector2(-160, 560)
+nodes/fragment/5/position = Vector2(-340, 640)
 nodes/fragment/6/node = SubResource("VisualShaderNodeFloatParameter_hjrvg")
 nodes/fragment/6/position = Vector2(-540, 860)
-nodes/fragment/connections = PackedInt32Array(4, 2, 0, 3, 4, 3, 0, 2, 2, 0, 0, 0, 3, 0, 5, 0, 6, 0, 5, 1, 5, 0, 0, 5)
+nodes/fragment/7/node = SubResource("VisualShaderNodeVectorOp_x4yrq")
+nodes/fragment/7/position = Vector2(-60, 500)
+nodes/fragment/8/node = SubResource("VisualShaderNodeVectorOp_gwutx")
+nodes/fragment/8/position = Vector2(-660, -20)
+nodes/fragment/9/node = SubResource("VisualShaderNodeVectorOp_knkfc")
+nodes/fragment/9/position = Vector2(-660, 260)
+nodes/fragment/10/node = SubResource("VisualShaderNodeColorParameter_y44rp")
+nodes/fragment/10/position = Vector2(-1600, -80)
+nodes/fragment/connections = PackedInt32Array(4, 2, 0, 3, 4, 3, 0, 2, 6, 0, 5, 1, 5, 0, 7, 1, 7, 0, 0, 5, 8, 0, 0, 0, 2, 0, 8, 1, 8, 0, 7, 0, 3, 0, 9, 1, 9, 0, 5, 0, 10, 0, 8, 0, 10, 0, 9, 0)
