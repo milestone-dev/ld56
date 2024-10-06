@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cj50eeg58sc2m"]
+[gd_scene load_steps=18 format=3 uid="uid://cj50eeg58sc2m"]
 
 [ext_resource type="Script" path="res://scripts/roomba.gd" id="1_xpiuj"]
 [ext_resource type="Texture2D" uid="uid://wumnn5pg5asj" path="res://assets/sprites/roomba_sleeping.png" id="2_5rvep"]
@@ -7,15 +7,14 @@
 [ext_resource type="Texture2D" uid="uid://csvuflukldvcq" path="res://assets/sprites/roomba_roam.png" id="4_h8mvv"]
 [ext_resource type="Texture2D" uid="uid://bqi4con2fiqwx" path="res://assets/sprites/roomba_chase.png" id="5_epchy"]
 [ext_resource type="Texture2D" uid="uid://xpk88xodxmy1" path="res://assets/sprites/roomba_ring.png" id="7_6wknp"]
+[ext_resource type="AudioStream" uid="uid://dk5ht6cwe8n12" path="res://assets/sfx/roomba_aggro.ogg" id="7_bnk24"]
+[ext_resource type="AudioStream" uid="uid://q4d424lrnfl" path="res://assets/sfx/roombadrive.ogg" id="8_0rw2p"]
 [ext_resource type="Material" uid="uid://d2hb3ysveae2i" path="res://assets/models/props/doomba/doomba_lights.tres" id="8_j7t4d"]
 [ext_resource type="AudioStream" uid="uid://b7o03p0qfd4wi" path="res://assets/sfx/roomba_active.ogg" id="8_j51k5"]
+[ext_resource type="AudioStream" uid="uid://bha5qujr4ju0h" path="res://assets/sfx/roomba_inactive.ogg" id="9_kmjjo"]
 [ext_resource type="PackedScene" uid="uid://c5jjqt82mtagd" path="res://assets/models/props/doomba/doomba.gltf" id="9_ml8um"]
 [ext_resource type="Texture2D" uid="uid://dn46x1y2giemp" path="res://assets/decals/glow_dif.png" id="10_knfoj"]
 [ext_resource type="Texture2D" uid="uid://c5xmautu1bt1k" path="res://assets/decals/glow_ems.png" id="11_5152t"]
-[ext_resource type="AudioStream" uid="uid://dk5ht6cwe8n12" path="res://assets/sfx/roomba_aggro.ogg" id="7_bnk24"]
-[ext_resource type="AudioStream" uid="uid://q4d424lrnfl" path="res://assets/sfx/roombadrive.ogg" id="8_0rw2p"]
-[ext_resource type="AudioStream" uid="uid://b7o03p0qfd4wi" path="res://assets/sfx/roomba_active.ogg" id="8_j51k5"]
-[ext_resource type="AudioStream" uid="uid://bha5qujr4ju0h" path="res://assets/sfx/roomba_inactive.ogg" id="9_kmjjo"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ay03u"]
 height = 0.735399
@@ -37,8 +36,6 @@ idle_texture = ExtResource("3_jvok2")
 roaming_texture = ExtResource("4_h8mvv")
 chasing_texture = ExtResource("5_epchy")
 returning_texture = ExtResource("4_fhn4q")
-audio_stream_player = NodePath("AudioStreamPlayer3D")
-model = NodePath("CollisionShape3D/doomba2/doomba/doomba")
 motor_audio_stream_player = NodePath("MotorAudioStreamPlayer3D")
 sfx_audio_stream_player = NodePath("AlertAudioStreamPlayer3D")
 start_chasing_audio_stream = ExtResource("7_bnk24")
@@ -83,21 +80,21 @@ texture_filter = 0
 texture = ExtResource("7_6wknp")
 
 [node name="Decal" type="Decal" parent="CollisionShape3D/doomba2"]
-transform = Transform3D(0.599267, 0, 0, 0, 0.599267, 0, 0, 0, 0.599267, 0, -0.373426, 0)
+transform = Transform3D(0.611682, 0, 0, 0, 0.611682, 0, 0, 0, 0.611682, 0, -0.373426, 0)
 size = Vector3(2, 0.646784, 2)
 texture_albedo = ExtResource("10_knfoj")
 texture_emission = ExtResource("11_5152t")
+modulate = Color(0, 0, 0, 1)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("8_j51k5")
 autoplay = true
 
-[editable path="CollisionShape3D/doomba2"]
 [node name="MotorAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("8_0rw2p")
 autoplay = true
-bus = &"SFX"
 
 [node name="AlertAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("8_j51k5")
-bus = &"SFX"
+
+[editable path="CollisionShape3D/doomba2"]
