@@ -1,0 +1,102 @@
+[gd_scene load_steps=10 format=3 uid="uid://dvf0hoh1qm1qx"]
+
+[ext_resource type="Script" path="res://scripts/kittens_in_hand.gd" id="1_rg5u7"]
+[ext_resource type="Texture2D" uid="uid://bp0bfra7eckxa" path="res://assets/sprites/kitten3.png" id="2_6ekkh"]
+
+[sub_resource type="Curve" id="Curve_n8u8d"]
+_data = [Vector2(0.00600602, 0.64757), 0.0, 0.855476, 0, 0, Vector2(1, 1.01509), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_i7a6i"]
+curve = SubResource("Curve_n8u8d")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y7s7v"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 0.0
+emission_ring_radius = 0.4
+emission_ring_inner_radius = 0.0
+direction = Vector3(0, 0, 1)
+spread = 0.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.1
+scale_over_velocity_max = 1.0
+scale_over_velocity_curve = SubResource("CurveTexture_i7a6i")
+turbulence_noise_strength = 4.83
+turbulence_noise_scale = 8.042
+collision_mode = 1
+collision_friction = 0.09
+collision_bounce = 0.66
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cblec"]
+transparency = 1
+shading_mode = 0
+diffuse_mode = 3
+albedo_texture = ExtResource("2_6ekkh")
+texture_filter = 0
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_dn307"]
+material = SubResource("StandardMaterial3D_cblec")
+
+[sub_resource type="BoxMesh" id="BoxMesh_peqfi"]
+size = Vector3(2, 2, 0.1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3ektm"]
+top_radius = 0.0
+bottom_radius = 0.1
+height = 1.0
+
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("particles")]
+script = ExtResource("1_rg5u7")
+particles = NodePath("Particles")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.223862, 0.974621, 0, -0.974621, 0.223862, 0, 0.798887, 0.217464)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.40398, 0)
+
+[node name="Particles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+amount = 100
+lifetime = 2.51
+preprocess = 6.17
+process_material = SubResource("ParticleProcessMaterial_y7s7v")
+draw_pass_1 = SubResource("QuadMesh_dn307")
+
+[node name="collider" type="GPUParticlesCollisionBox3D" parent="Particles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.146419)
+size = Vector3(2, 2, 0.1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Particles/collider"]
+visible = false
+mesh = SubResource("BoxMesh_peqfi")
+
+[node name="extractor" type="GPUParticlesAttractorSphere3D" parent="Particles/collider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0428438)
+strength = -1.0
+attenuation = 0.25
+
+[node name="attractor" type="GPUParticlesAttractorSphere3D" parent="Particles/collider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.118134)
+attenuation = 0.00222861
+directionality = 0.36
+radius = 1.5
+
+[node name="GPUParticlesAttractorBox3D" type="GPUParticlesAttractorBox3D" parent="Particles/collider"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -0.342053)
+strength = 10.0
+directionality = 1.0
+size = Vector3(2, 2, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Particles"]
+transform = Transform3D(-0.999991, 0.00422364, -2.69069e-05, 0, -0.00637043, -0.99998, -0.00422372, -0.999971, 0.00637037, 0, 0, 0)
+visible = false
+mesh = SubResource("CylinderMesh_3ektm")
+
+[node name="RayCast3D" type="RayCast3D" parent="Particles"]
+target_position = Vector3(0, 0, -1)
