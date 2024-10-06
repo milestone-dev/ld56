@@ -32,14 +32,14 @@ top_radius = 0.0
 bottom_radius = 0.1
 height = 1.0
 
-[node name="KittenCluster" type="StaticBody3D" node_paths=PackedStringArray("sprite", "label", "particles") groups=["kitten_cluster"]]
+[node name="KittenCluster" type="StaticBody3D" node_paths=PackedStringArray("sprite", "debug_label", "particles") groups=["kitten_cluster"]]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_1oip0")
-kitten_textures = Array[Texture2D]([ExtResource("2_nfwxn"), ExtResource("3_g5cbf"), ExtResource("3_1ugke"), ExtResource("5_4w56g"), ExtResource("6_urjcb"), ExtResource("7_6cyhl")])
 sprite = NodePath("Sprite3D")
-label = NodePath("Label3D")
+debug_label = NodePath("DebugLabel")
 particles = NodePath("Particles")
+kitten_textures = Array[Texture2D]([ExtResource("2_nfwxn"), ExtResource("3_g5cbf"), ExtResource("3_1ugke"), ExtResource("5_4w56g"), ExtResource("6_urjcb"), ExtResource("7_6cyhl")])
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 visible = false
@@ -51,9 +51,11 @@ texture = ExtResource("2_nfwxn")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_4uigm")
 
-[node name="Label3D" type="Label3D" parent="."]
+[node name="DebugLabel" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.29198, 0)
+visible = false
 billboard = 1
+no_depth_test = true
 alpha_cut = 1
 text = "0"
 font_size = 64
