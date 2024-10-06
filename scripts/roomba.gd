@@ -23,7 +23,8 @@ var home_rest_timer := HOME_REST_TIMER_MAX
 
 const ATTACK_COOLDOWN_MAX := 0.3
 var attack_cooldown := ATTACK_COOLDOWN_MAX
-@export var movement_speed: float = 2.0
+var movement_speed: float = 3.0
+
 @export var navigation_agent : NavigationAgent3D
 @export var sprite : Sprite3D
 @export var sleeping_texture : Texture2D
@@ -31,7 +32,7 @@ var attack_cooldown := ATTACK_COOLDOWN_MAX
 @export var roaming_texture : Texture2D
 @export var chasing_texture : Texture2D
 @export var returning_texture : Texture2D
-
+@export var audio_stream_player : AudioStreamPlayer3D
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player") as Player
@@ -46,8 +47,10 @@ func update_target(delta:float):
 	match state:
 		State.SLEEPING:
 			sprite.texture = sleeping_texture
+			audio_stream_player.stream_paused = true
 		State.IDLE:
 			sprite.texture = idle_texture
+			audio_stream_player.stream_paused = true
 			if player.kitten_count > 0:
 				state = State.CHASING_PLAYER
 			else:
@@ -55,6 +58,7 @@ func update_target(delta:float):
 				state = State.ROAMING
 		State.ROAMING:
 			sprite.texture = roaming_texture
+			audio_stream_player.stream_paused = false
 			if player.kitten_count > 0:
 				state = State.CHASING_PLAYER
 			elif navigation_agent.is_navigation_finished():
@@ -62,8 +66,10 @@ func update_target(delta:float):
 				state = State.ROAMING
 		State.RETURNING_HOME:
 			sprite.texture = returning_texture
+			audio_stream_player.stream_paused = false
 			if global_position.distance_to(home.global_position) < 1:
 				home_rest_timer -= delta
+				audio_stream_player.stream_paused = true
 				if home_rest_timer < 0:
 					home_rest_timer = HOME_REST_TIMER_MAX
 					state = State.IDLE
@@ -71,6 +77,7 @@ func update_target(delta:float):
 				navigation_agent.target_position = home.global_position
 		State.CHASING_PLAYER:
 			sprite.texture = chasing_texture
+			audio_stream_player.stream_paused = false
 			if player.kitten_count > 0:
 				navigation_agent.target_position = player.global_position
 				if global_position.distance_to(player.global_position) < 1:
