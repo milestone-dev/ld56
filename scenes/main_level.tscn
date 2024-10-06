@@ -113,16 +113,16 @@ modulate_color = Color(0.736281, 0.438501, 0.767616, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.85284, 1.11221, -15.0854)
 
 [node name="dubious_potion" parent="Lab_Stuff" instance=ExtResource("18_74vnd")]
-transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, -2.88511, -1.11153, 8.84211)
+transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, -2.88511, -1.1128, 8.84211)
 
 [node name="flask_stand2" parent="Lab_Stuff" instance=ExtResource("15_344xc")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.21603, -1.07161, 8.7953)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.21603, -1.10114, 8.7953)
 
 [node name="test_tubes" parent="Lab_Stuff" instance=ExtResource("19_eutsm")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.72049, -0.04361, 4.04093)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.72049, -0.0912309, 4.04093)
 
 [node name="test_tubes2" parent="Lab_Stuff" instance=ExtResource("19_eutsm")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.72049, -0.04361, 6.18326)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.72049, -0.0869669, 6.18326)
 
 [node name="mascoll_table2" parent="Lab_Stuff" instance=ExtResource("13_kxtch")]
 transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -0.36764, -1.12549, -0.337806)
@@ -134,16 +134,16 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.3574
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.289269, -0.06064, -0.1394)
 
 [node name="ScannerRecharger" parent="Lab_Stuff" instance=ExtResource("7_r7pip")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.7886, -1.01297, 7.17204)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.7886, -1.09658, 7.17204)
 
 [node name="SprayRecharger" parent="Lab_Stuff" instance=ExtResource("9_1wdfb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.81403, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.81403, -0.0676473, 0)
 
 [node name="centrifuge" parent="Lab_Stuff" instance=ExtResource("7_ic2o6")]
-transform = Transform3D(0.0137702, 0, 0.999905, 0, 1, 0, -0.999905, 0, 0.0137702, -3.5987, -0.0150801, 2.60754)
+transform = Transform3D(0.0137702, 0, 0.999905, 0, 1, 0, -0.999905, 0, 0.0137702, -3.5987, -0.0810858, 2.60754)
 
 [node name="bunsen_burner" parent="Lab_Stuff" instance=ExtResource("14_g6svy")]
-transform = Transform3D(0.102081, 0, -0.994776, 0, 1, 0, 0.994776, 0, 0.102081, 3.30862, 0.0104259, 13.991)
+transform = Transform3D(0.102081, 0, -0.994776, 0, 1, 0, 0.994776, 0, 0.102081, 3.30862, -0.0733669, 13.991)
 
 [node name="flask_stand" parent="Lab_Stuff/bunsen_burner" instance=ExtResource("15_344xc")]
 

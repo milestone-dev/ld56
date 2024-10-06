@@ -9,6 +9,6 @@ render_priority = 0
 shader = ExtResource("1_3qmcn")
 shader_parameter/Tint = Color(0.637843, 0.637843, 0.637843, 1)
 shader_parameter/Noise_Size = 200.0
-shader_parameter/Noise_Overlay = 0.2
+shader_parameter/Noise_Overlay = 0.1
 shader_parameter/EmissiveStrength = 4.0
 shader_parameter/Noise = ExtResource("2_y8y8w")
