@@ -115,7 +115,7 @@ func _physics_process(delta: float) -> void:
 		kitten_count = max(0, kitten_count - kittens_lost)
 		tardigrade_count = max(0, tardigrade_count - tardigrades_lost)
 
-	# fall, jump, land, crouch
+	# fall, land, jump, crouch
 	if not is_on_floor(): velocity += get_gravity() * delta
 	if is_jumping and is_on_floor():
 		is_jumping = false
@@ -197,10 +197,6 @@ func manage_interactions():
 		spray_particles.emitting = true
 		spray_energy = max(0, spray_energy - SPRAY_ENERGY_COST)
 		play_sfx(sfx_spray)
-	elif current_tool == Tool.PICKER:
-		ui.pick_sprite.stop()
-		ui.pick_sprite.play()
-		play_sfx(sfx_pick)
 	# Check targeted objects
 	var colliders = interaction_shape.get_overlapping_bodies()
 	for c in colliders:
@@ -212,6 +208,9 @@ func manage_interactions():
 			elif current_tool == Tool.PICKER:
 				if c is KittenCluster:
 					kitten_cluster.retrieve(self)
+					ui.pick_sprite.stop()
+					ui.pick_sprite.play()
+					play_sfx(sfx_pick)
 
 	var collider = interaction_ray.get_collider()
 	if collider is KittenContainer:
@@ -238,6 +237,11 @@ func manage_interactions():
 		var incubator := collider as Incubator
 		incubator.interact(self)
 		return
+	elif current_tool == Tool.PICKER:
+		# Pick randomly in the air without effect
+		ui.pick_sprite.stop()
+		ui.pick_sprite.play()
+		play_sfx(sfx_pick)
 
 func start_level():
 	print("Level start")
