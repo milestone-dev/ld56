@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmmw6xmjrnkn2"]
+
+[ext_resource type="PackedScene" uid="uid://cx6i0v1n5v2ow" path="res://assets/models/props/test_tubes/test_tubes.gltf" id="1_3rh0i"]
+[ext_resource type="Material" uid="uid://b25cnyr17xvx7" path="res://assets/models/props/test_tubes/test_tube_liquid_001.tres" id="2_5u6tn"]
+[ext_resource type="Material" uid="uid://dilnvlxp2gdwj" path="res://assets/models/props/test_tubes/test_tube_liquid_002.tres" id="3_bbn23"]
+[ext_resource type="Material" uid="uid://dpntgcd1er3ky" path="res://assets/models/props/test_tubes/test_tube_liquid_003.tres" id="4_bm3lo"]
+
+[node name="test_tubes" instance=ExtResource("1_3rh0i")]
+
+[node name="test_tube_001_liquid" parent="test_tube_stand/test_tube_stand/test_tube_001" index="0"]
+surface_material_override/0 = ExtResource("2_5u6tn")
+
+[node name="test_tube_002_liquid" parent="test_tube_stand/test_tube_stand/test_tube_002" index="0"]
+surface_material_override/0 = ExtResource("3_bbn23")
+
+[node name="test_tube_003_liquid" parent="test_tube_stand/test_tube_stand/test_tube_003" index="0"]
+surface_material_override/0 = ExtResource("4_bm3lo")
