@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://cpoa4d7l5tsv8"]
+[gd_scene load_steps=14 format=3 uid="uid://cpoa4d7l5tsv8"]
 
 [ext_resource type="PackedScene" uid="uid://jqmhm7qjf7n5" path="res://scenes/ui.tscn" id="1_11mfm"]
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_quftm"]
 [ext_resource type="PackedScene" uid="uid://wtv1ym4laxh8" path="res://scenes/player.tscn" id="2_cfjsh"]
 [ext_resource type="PackedScene" uid="uid://dwcy4yjjn8ia8" path="res://assets/maps/apartment.bsp" id="3_4u18w"]
-[ext_resource type="PackedScene" path="res://assets/maps/lighting.tscn" id="6_1gvqg"]
+[ext_resource type="PackedScene" uid="uid://c6yb23cvtkeft" path="res://assets/maps/lighting.tscn" id="6_1gvqg"]
 [ext_resource type="PackedScene" uid="uid://ctwdnitte857g" path="res://assets/models/props/centrifuge/centrifuge.tscn" id="7_ic2o6"]
 [ext_resource type="PackedScene" uid="uid://cln0hwkcj8a8t" path="res://assets/entities/ScannerRecharger.tscn" id="7_r7pip"]
 [ext_resource type="PackedScene" uid="uid://dtweho2ri4gm6" path="res://assets/entities/KittenContainer.tscn" id="7_t26vx"]
@@ -33,7 +34,10 @@ fog_density = 0.02
 fog_aerial_perspective = 1.0
 fog_height_density = 0.2879
 
-[node name="Main" type="Node3D"]
+[node name="Main" type="Node3D" node_paths=PackedStringArray("env", "lightningNodes")]
+script = ExtResource("1_quftm")
+env = NodePath("WorldEnvironment")
+lightningNodes = NodePath("Lighting")
 
 [node name="UI" parent="." instance=ExtResource("1_11mfm")]
 unique_name_in_owner = true
