@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dedckr32ikomh"]
+
+[ext_resource type="Texture2D" uid="uid://dgl3nexyfxb3a" path="res://assets/textures/webrowser.png" id="1_2qvig"]
+
+[resource]
+diffuse_mode = 2
+albedo_texture = ExtResource("1_2qvig")
+texture_filter = 0

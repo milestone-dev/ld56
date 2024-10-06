@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cc371igwx0h0a"]
+
+[ext_resource type="Texture2D" uid="uid://dbyvhhv6h65xk" path="res://assets/textures/bluprint.png" id="1_cjfpe"]
+
+[resource]
+diffuse_mode = 2
+albedo_texture = ExtResource("1_cjfpe")
+texture_filter = 0
