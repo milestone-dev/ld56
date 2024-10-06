@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://d2hb3ysveae2i"]
+
+[ext_resource type="Shader" uid="uid://gs7t5m382xmj" path="res://assets/models/shared/shaders/general_shader.tres" id="1_lrkqm"]
+
+[resource]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_lrkqm")
+shader_parameter/Color = Color(0, 0, 0, 1)
+shader_parameter/Metallness = 0.0
+shader_parameter/Roughness = 0.29
+shader_parameter/Specular = 0.5
+shader_parameter/EmissiveColor = Color(1, 1, 1, 1)
+shader_parameter/EmissiveStrength = 1.0
