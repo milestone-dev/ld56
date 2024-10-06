@@ -29,6 +29,7 @@ var mouse_sensitivity : float = 0.1
 @export_category("SFX")
 @export var sfx_audio_player : AudioStreamPlayer
 @export var sfx_step_audio_player : AudioStreamPlayer
+@export var sfx_scan_audio_player : AudioStreamPlayer
 @export var sfx_spray : AudioStream
 @export var sfx_pick : AudioStream
 @export var sfx_switch : AudioStream
@@ -56,8 +57,9 @@ const STEP_SFX_TIMER_MAX := 0.3
 const STEP_SRPING_SFX_TIMER_MAX := 0.15
 var step_sfx_timer := 0.0
 
-var SCAN_SFX_TIMER_MAX := 0.4
+const SCAN_SFX_TIMER_MAX := 0.4
 var scan_sfx_timer := 0.0
+const SCAN_MAX_PITCH := 2.0
 
 var kitten_saved_count := 0
 var kitten_count := 0;
@@ -134,6 +136,9 @@ func _physics_process(delta: float) -> void:
 	if scanner_showing:
 		scan_energy = max(0.0, scan_energy - delta)
 		update_scanner()
+	sfx_scan_audio_player.stream_paused = !scanner_showing
+	var val := linear_to_db((kitten_detection_level as float / KITTEN_DETECTION_LEVEL_MAX as float))
+	sfx_scan_audio_player.volume_db = clampf(val, -80, 0)
 
 	# looking, walking
 	rotation_degrees.y -= mouse_input.x * mouse_sensitivity

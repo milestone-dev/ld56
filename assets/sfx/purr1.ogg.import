@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/purr1.ogg-72341181be81415c67f8dd0eda2b9871.og
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0
