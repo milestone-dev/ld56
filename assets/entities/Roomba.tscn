@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhug4d0oek6fo"]
+
+[ext_resource type="Script" path="res://scripts/roomba.gd" id="1_xpiuj"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ay03u"]
+height = 0.5
+radius = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_va0bf"]
+top_radius = 1.0
+bottom_radius = 1.0
+height = 0.5
+
+[node name="Roomba" type="RigidBody3D" node_paths=PackedStringArray("agent") groups=["roomba"]]
+collision_layer = 32
+script = ExtResource("1_xpiuj")
+agent = NodePath("NavigationAgent3D")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_ay03u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_va0bf")

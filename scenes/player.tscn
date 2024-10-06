@@ -41,7 +41,7 @@ radius = 0.853455
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_287bv"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("head", "interaction_ray", "collision_shape", "scanner_point", "interaction_shape", "mesh_instance", "spray_particles", "sfx_audio_player", "sfx_step_audio_player", "music_audio_player")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("head", "interaction_ray", "collision_shape", "scanner_point", "interaction_shape", "mesh_instance", "spray_particles", "sfx_audio_player", "sfx_step_audio_player", "music_audio_player") groups=["player"]]
 collision_layer = 16
 script = ExtResource("1_ab6ol")
 head = NodePath("Head")

@@ -241,7 +241,6 @@ func manage_interactions():
 		# Pick randomly in the air without effect
 		ui.pick_sprite.stop()
 		ui.pick_sprite.play()
-		play_sfx(sfx_pick)
 
 func start_level():
 	print("Level start")
