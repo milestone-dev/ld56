@@ -36,13 +36,15 @@ var mouse_sensitivity : float = 0.1
 @export var sfx_land : AudioStream
 @export var sfx_use : AudioStream
 @export var sfx_refill : AudioStream
+@export var sfx_recharge_scanner : AudioStream
 @export var sfx_scan_beep : AudioStream
 @export var sfx_drop_kittens : AudioStream
 @export var sfx_steps : Array[AudioStream]
 
 @export_category("Music")
 @export var music_audio_player : AudioStreamPlayer
-@export var music_track : AudioStream
+@export var music_track1 : AudioStream
+@export var music_track2 : AudioStream
 
 var current_tool := Tool.PICKER
 var mouse_input : Vector2
@@ -86,6 +88,8 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	mesh_instance.hide()
 	start_level()
+	music_audio_player.stream = music_track2
+	music_audio_player.play()
 
 func _input(event: InputEvent) -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -105,6 +109,8 @@ func _physics_process(delta: float) -> void:
 
 	# level management
 	manage_level(delta)
+
+	update_music()
 
 	#debug mode
 	if Input.is_action_just_pressed("toggle_debug"):
@@ -260,6 +266,7 @@ func manage_interactions():
 	elif collider is ScannerRecharger:
 		var scanner_recharger := collider as ScannerRecharger
 		scanner_recharger.interact(self)
+		play_sfx(sfx_recharge_scanner)
 		return
 	elif collider is SprayRecharger:
 		var spray_recharger := collider as SprayRecharger
@@ -298,5 +305,16 @@ func manage_level(delta:float):
 			distribute_random_kittens(kitten_cluster)
 
 func play_sfx(sfx:AudioStream):
+	if sfx == null: return
 	sfx_audio_player.stream = sfx
 	sfx_audio_player.play()
+
+func update_music():
+	if kitten_count == 0 and music_audio_player.stream == music_track1:
+		var pos = music_audio_player.get_playback_position()
+		music_audio_player.stream = music_track2
+		music_audio_player.play(pos)
+	elif kitten_count > 0 and music_audio_player.stream == music_track2:
+		var pos = music_audio_player.get_playback_position()
+		music_audio_player.stream = music_track1
+		music_audio_player.play(pos)

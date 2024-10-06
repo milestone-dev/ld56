@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b2a8mpk1u4ijd" path="res://assets/sprites/kitten2.png" id="6_o4r6p"]
 [ext_resource type="Texture2D" uid="uid://bp0bfra7eckxa" path="res://assets/sprites/kitten3.png" id="7_t6wvm"]
 [ext_resource type="Texture2D" uid="uid://ukcaa2rr4i5m" path="res://assets/sprites/kitten4.png" id="8_80nlr"]
-[ext_resource type="AudioStream" uid="uid://darpxaybsy7me" path="res://assets/music/track02.ogg" id="9_w57oc"]
+[ext_resource type="AudioStream" uid="uid://dk7bwwvbxpxoa" path="res://assets/music/menu.ogg" id="9_qkbnx"]
 [ext_resource type="AudioStream" uid="uid://t4uy58qil582" path="res://assets/sfx/meow2.ogg" id="10_jtwqt"]
 
 [sub_resource type="Gradient" id="Gradient_us6km"]
@@ -197,7 +197,7 @@ tick_count = 10
 ticks_on_borders = true
 
 [node name="MusicAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_w57oc")
+stream = ExtResource("9_qkbnx")
 autoplay = true
 bus = &"Music"
 

@@ -12,7 +12,7 @@ func interact(player : Player):
 	update_count(player.kitten_saved_count)
 
 func update_count(count:int):
-	label.text = "Kittens: %d / 1 000 000" % count
+	label.text = "%d of\n1 000 000\nKittens\nSaved" % count
 
 func _ready() -> void:
 	update_count(0)
