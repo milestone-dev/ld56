@@ -30,6 +30,7 @@ func flash_pain():
 	pain_flash_tween.tween_property(pain_flash_rect, "modulate", Color.TRANSPARENT, time)
 
 func update(player:Player):
+	kittens_in_hand.visible = player.kitten_count > 0
 	cat_palm_texture.visible = !player.scanner_showing
 	kitten_count_label.visible = player.kitten_count > 0
 	kitten_count_label.text = "%d" % player.kitten_count
