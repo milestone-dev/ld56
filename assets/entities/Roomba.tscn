@@ -56,7 +56,7 @@ mesh = SubResource("CylinderMesh_va0bf")
 skeleton = NodePath("../..")
 
 [node name="doomba2" parent="CollisionShape3D" instance=ExtResource("9_ml8um")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0277002, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.0277002, 0)
 
 [node name="doomba" parent="CollisionShape3D/doomba2" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.231001, 0)

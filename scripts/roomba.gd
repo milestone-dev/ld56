@@ -130,10 +130,11 @@ func _physics_process(delta):
 		return
 	if navigation_agent.is_navigation_finished():
 		return
-
 	movement_delta = movement_speed * delta
 	var next_path_position: Vector3 = navigation_agent.get_next_path_position()
 	var new_velocity: Vector3 = global_position.direction_to(next_path_position) * movement_delta
+	
+	look_at(next_path_position, Vector3.UP)
 	global_position = global_position.move_toward(global_position + new_velocity, movement_delta)
 
 
