@@ -36,10 +36,10 @@ height = 1.0
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_1oip0")
+kitten_textures = Array[Texture2D]([ExtResource("2_nfwxn"), ExtResource("3_g5cbf"), ExtResource("3_1ugke"), ExtResource("5_4w56g"), ExtResource("6_urjcb"), ExtResource("7_6cyhl")])
 sprite = NodePath("Sprite3D")
 label = NodePath("Label3D")
 particles = NodePath("Particles")
-kitten_textures = Array[Texture2D]([ExtResource("2_nfwxn"), ExtResource("3_g5cbf"), ExtResource("3_1ugke"), ExtResource("5_4w56g"), ExtResource("6_urjcb"), ExtResource("7_6cyhl")])
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 visible = false

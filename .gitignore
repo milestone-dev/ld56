@@ -9,6 +9,8 @@ assets/maps/autosave
 # Imported translations (automatically generated from CSV files)
 *.translation
 
+.rawAssets/
+
 # Mono-specific ignores
 .mono/
 data_*/
@@ -22,3 +24,4 @@ mono_crash.*.json
 # build stuff
 build/
 export/
+addons/godot-jolt/windows/~godot-jolt_windows-x64_editor.dll

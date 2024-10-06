@@ -40,7 +40,7 @@ var attack_cooldown := 0.0
 @export var fall_asleep_audio_stream : AudioStream
 
 
-@onready var model: MeshInstance3D = $CollisionShape3D/doomba2/doomba/doomba
+@onready var model: MeshInstance3D = $CollisionShape3D/doomba2/doomba
 var material : Material
 @onready var decal: Decal = $CollisionShape3D/doomba2/Decal
 
@@ -50,9 +50,9 @@ func _ready() -> void:
 	home = get_parent_node_3d() as Node3D
 	modulate_color.a = 0.5
 	ring_sprite.modulate = modulate_color
-	
+
 	material = model.get_surface_override_material(1)
-	
+
 
 func hit_reset():
 	if state != State.SLEEPING:

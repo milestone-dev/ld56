@@ -18,7 +18,8 @@ class_name UI
 
 func update(player:Player):
 	cat_palm_texture.visible = !player.scanner_showing
-	kitten_count_label.text = "Kittens: %d" % player.kitten_count
+	kitten_count_label.visible = player.kitten_count > 0
+	kitten_count_label.text = "%d" % player.kitten_count
 	tardigrade_count_label.text = "Tardigrades: %d" % player.tardigrade_count
 	kittens_in_hand.kitten_count = player.kitten_count
 
@@ -45,4 +46,4 @@ func update(player:Player):
 	pick_sprite.visible = player.current_tool == Player.Tool.PICKER
 
 	kitten_pool_label.text = "Kitten Pool: %d Kittens Saved %d" % [player.kitten_pool, player.kitten_saved_count]
-	time_label.text = "Time: %d" % Progress.time_played
+	time_label.text = "Time: %d. Drop timer: %d" % [Progress.time_played, player.kitten_disappear_timer]
