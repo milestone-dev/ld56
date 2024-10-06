@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://rs4k12y5gess"]
+[gd_scene load_steps=18 format=3 uid="uid://rs4k12y5gess"]
 
 [ext_resource type="PackedScene" uid="uid://jqmhm7qjf7n5" path="res://scenes/ui.tscn" id="1_cfovc"]
 [ext_resource type="PackedScene" uid="uid://ddw7qw2y8g0au" path="res://assets/maps/test.bsp" id="2_317oy"]
@@ -10,6 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://vcw1lk4xv0us" path="res://assets/models/props/mascoll_table/mascoll_table.gltf" id="10_dmkfc"]
 [ext_resource type="PackedScene" uid="uid://cfxinyypstccx" path="res://assets/models/props/dubious_potion/dubious_potion.tscn" id="10_rwhcf"]
 [ext_resource type="PackedScene" uid="uid://c3gmui7jojnty" path="res://assets/models/props/erlenmeyer_flask/erlenmeyer_flask.tscn" id="11_4snwc"]
+[ext_resource type="PackedScene" uid="uid://bgvxblqn4d8lc" path="res://assets/models/props/volumetric_flask/volumetric_flask.tscn" id="11_jw4xv"]
+[ext_resource type="PackedScene" uid="uid://dpmog10s01vsi" path="res://assets/models/props/bunsen_burner/bunsen_burner.tscn" id="12_fpie3"]
+[ext_resource type="PackedScene" uid="uid://brcfwkc7uch8s" path="res://assets/models/props/flask_stand/flask_stand.tscn" id="12_pcyxr"]
+[ext_resource type="PackedScene" uid="uid://bu4kegs7xjfjm" path="res://assets/models/props/gas_canister/gas_canister.gltf" id="14_8snst"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_no8fg"]
 sky_top_color = Color(0.471391, 0.662282, 0.959921, 1)
@@ -47,7 +51,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.077, -0.717175, -16.4167)
 
 [node name="Player" parent="." node_paths=PackedStringArray("ui") instance=ExtResource("2_wcyih")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.077, 0.898638, -16.4167)
-mouse_sensitivity = null
 ui = NodePath("../UI")
 
 [node name="mascoll_table2" parent="." instance=ExtResource("10_dmkfc")]
@@ -73,3 +76,13 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.6416
 
 [node name="dubious_potion" parent="." instance=ExtResource("10_rwhcf")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21.2293, 0.845325, -16.2687)
+
+[node name="bunsen_burner" parent="." instance=ExtResource("12_fpie3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21.3659, 0.844875, -14.2784)
+
+[node name="flask_stand" parent="bunsen_burner" instance=ExtResource("12_pcyxr")]
+
+[node name="volumetric_flask" parent="bunsen_burner/flask_stand" instance=ExtResource("11_jw4xv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.654396, 0)
+
+[node name="gas_canister2" parent="bunsen_burner" instance=ExtResource("14_8snst")]

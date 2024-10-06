@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://brcfwkc7uch8s"]
+
+[ext_resource type="PackedScene" uid="uid://nrh5rkxocbhw" path="res://assets/models/props/flask_stand/flask_stand.gltf" id="1_6bary"]
+
+[node name="flask_stand" instance=ExtResource("1_6bary")]

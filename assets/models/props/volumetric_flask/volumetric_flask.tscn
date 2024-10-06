@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgvxblqn4d8lc"]
+
+[ext_resource type="PackedScene" uid="uid://d0k2dxl24wj1t" path="res://assets/models/props/volumetric_flask/volumetric_flask.gltf" id="1_yheje"]
+[ext_resource type="Material" uid="uid://byy1mxbpo70jt" path="res://assets/models/props/volumetric_flask/volumetric_flask_liquid.tres" id="2_14fkq"]
+[ext_resource type="Material" uid="uid://dbw8labowirnk" path="res://assets/models/shared/materials/protoMatGlass.tres" id="2_e004c"]
+
+[node name="volumetric_flask" instance=ExtResource("1_yheje")]
+
+[node name="volumetric_flask" parent="volumetric_flask" index="0"]
+surface_material_override/0 = ExtResource("2_e004c")
+
+[node name="volumetric_flask_liquid" parent="volumetric_flask" index="1"]
+surface_material_override/0 = ExtResource("2_14fkq")
