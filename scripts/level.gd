@@ -7,6 +7,9 @@ class_name Level
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	update_gfx_settings()
+	NavigationServer3D.map_set_cell_size(get_world_3d().navigation_map,0.03)
+	
+	
 
 func update_gfx_settings():
 	#GFX Quality is 1-4
