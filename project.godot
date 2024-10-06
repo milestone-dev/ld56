@@ -13,7 +13,8 @@ config_version=5
 config/name="LD56"
 run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://assets/icons/dubpot.png"
+boot_splash/image="res://assets/textures/logo_free.png"
+config/icon="res://assets/sprites/kitten1.png"
 
 [autoload]
 
@@ -22,6 +23,8 @@ Progress="*res://scripts/progress.gd"
 
 [display]
 
+window/size/viewport_width=1280
+window/size/viewport_height=800
 window/stretch/mode="canvas_items"
 
 [dotnet]
@@ -37,6 +40,7 @@ enabled=PackedStringArray("res://addons/bsp_importer/plugin.cfg")
 player=""
 roomba=""
 roomba_home=""
+level=""
 
 [importer_defaults]
 

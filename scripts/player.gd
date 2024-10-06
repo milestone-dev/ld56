@@ -21,7 +21,6 @@ const CROUCH_SIZE = 0.3
 @export var scanner_point : Marker3D
 @export var interaction_shape : Area3D
 @export var mesh_instance : MeshInstance3D
-var mouse_sensitivity : float = 0.1
 @export var spray_particles : GPUParticles3D
 @export var ui : UI
 
@@ -90,7 +89,6 @@ var spray_energy := SPRAY_ENERGY_MAX
 var kitten_disappear_timer := Settings.kitten_drop_timer_max
 
 func _ready() -> void:
-	mouse_sensitivity = Settings.mouse_sensitivity
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	mesh_instance.hide()
 	start_level()
@@ -99,7 +97,8 @@ func _ready() -> void:
 	sfx_scan_audio_player.play()
 
 func _input(event: InputEvent) -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	if !ui.is_menu_open():
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	if event is not InputEventMouseMotion or Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		return
 	mouse_input.x += event.relative.x
@@ -107,7 +106,7 @@ func _input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("toggle_menu"):
-		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+		ui.toggle_ingame_menu()
 		return
 
 	if kitten_saved_count >= 1000000:
@@ -170,8 +169,8 @@ func _physics_process(delta: float) -> void:
 	sfx_scan_audio_player.volume_db = clampf(val, -80, 0)
 
 	# looking, walking
-	rotation_degrees.y -= mouse_input.x * mouse_sensitivity
-	head.rotation_degrees.x -= mouse_input.y * mouse_sensitivity
+	rotation_degrees.y -= mouse_input.x * Settings.mouse_sensitivity
+	head.rotation_degrees.x -= mouse_input.y * Settings.mouse_sensitivity
 	head.rotation.x = clamp(head.rotation.x, deg_to_rad(-90), deg_to_rad(90))
 	mouse_input = Vector2.ZERO
 	var input_dir := Input.get_vector("left", "right", "forward", "backward")

@@ -35,6 +35,8 @@ func _process(delta: float) -> void:
 	kitten_respawn_timer -= delta
 	particles.amount = 1 if kitten_count < 1 else kitten_count
 	if is_visible && particles.visible != is_visible:
+		particles.lifetime = fade_out_timer
+		particles.one_shot = true
 		particles.restart()
 	particles.emitting = is_visible
 	particles.visible = is_visible
@@ -62,8 +64,8 @@ func find_a_wall():
 			look_at(point, Vector3.UP if dir.y == 0 else Vector3.LEFT)
 			var collider = $Particles/collider
 			collider.position = to_local(ray.position)
-			var mat = $Particles.process_material as ParticleProcessMaterial
-			mat.gravity = global_transform.basis * Vector3.BACK
+			#var mat = $Particles.process_material as ParticleProcessMaterial
+			#mat.gravity = global_transform.basis * Vector3.BACK
 			break
 
 	self.has_found_wall = true
