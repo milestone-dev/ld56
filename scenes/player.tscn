@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://wtv1ym4laxh8"]
+[gd_scene load_steps=23 format=3 uid="uid://wtv1ym4laxh8"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ab6ol"]
 [ext_resource type="AudioStream" uid="uid://curqsbajr0u0l" path="res://assets/sfx/step1.ogg" id="2_dlq0r"]
@@ -12,8 +12,8 @@
 [ext_resource type="AudioStream" uid="uid://cb11degij1q8g" path="res://assets/sfx/refill.ogg" id="7_l4n2t"]
 [ext_resource type="AudioStream" uid="uid://cabst272jhkg1" path="res://assets/sfx/beep.ogg" id="8_vp6su"]
 [ext_resource type="AudioStream" uid="uid://jrb4tfhrae2y" path="res://assets/sfx/step4.ogg" id="12_18gtq"]
-[ext_resource type="AudioStream" uid="uid://cw4214w2383r1" path="res://assets/sfx/purr4.ogg" id="13_s66td"]
 [ext_resource type="Material" uid="uid://crcawhw4okp4e" path="res://assets/materials/SprayBottleParticleProcess.tres" id="13_8j23l"]
+[ext_resource type="AudioStream" uid="uid://cw4214w2383r1" path="res://assets/sfx/purr4.ogg" id="13_s66td"]
 [ext_resource type="AudioStream" uid="uid://d2ohsyg4unmtn" path="res://assets/music/track01.ogg" id="13_u0svo"]
 [ext_resource type="Texture2D" uid="uid://b501mo1j6qiuh" path="res://assets/materials/sphere_gradient.tres" id="13_uy7il"]
 
