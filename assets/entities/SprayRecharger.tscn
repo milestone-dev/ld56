@@ -9,6 +9,16 @@ height = 1.0
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_hm21g"]
 height = 1.0
 
+[sub_resource type="Animation" id="Animation_c0r4y"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+
 [sub_resource type="Animation" id="Animation_4j0uw"]
 resource_name = "test"
 tracks/0/type = "position_3d"
@@ -25,16 +35,6 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.1, 1, 0.0950025, -0.016467, 0.16999, 0.980717, 0.266667, 1, -0.0181867, -0.603849, 0.134699, 0.785425, 0.5, 1, 0.0826579, 0.990545, -0.0329079, -0.104427, 0.733333, 1, 0.119273, 0.652161, -0.115752, 0.739636, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="Animation" id="Animation_c0r4y"]
-length = 0.001
-tracks/0/type = "rotation_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_24r1y"]
 _data = {
@@ -57,7 +57,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.489601, 0)
 shape = SubResource("CylinderShape3D_hm21g")
 
 [node name="erlenmeyer_flask" parent="." instance=ExtResource("2_tsnye")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16053, 0)
