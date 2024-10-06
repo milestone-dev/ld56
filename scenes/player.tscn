@@ -1,6 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://wtv1ym4laxh8"]
+[gd_scene load_steps=19 format=3 uid="uid://wtv1ym4laxh8"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ab6ol"]
+[ext_resource type="AudioStream" uid="uid://curqsbajr0u0l" path="res://assets/sfx/step1.ogg" id="2_dlq0r"]
+[ext_resource type="AudioStream" uid="uid://cet766pcpsh5u" path="res://assets/sfx/spray.ogg" id="2_fiknb"]
+[ext_resource type="AudioStream" uid="uid://c2h7rapm3g88i" path="res://assets/sfx/pick.ogg" id="3_qhxb2"]
+[ext_resource type="AudioStream" uid="uid://b67dnihf2emsq" path="res://assets/sfx/step2.ogg" id="3_s1eir"]
+[ext_resource type="AudioStream" uid="uid://dm8o13aww2tpa" path="res://assets/sfx/switch.ogg" id="4_6lj0x"]
+[ext_resource type="AudioStream" uid="uid://cio82sco8drie" path="res://assets/sfx/step3.ogg" id="4_68vwn"]
+[ext_resource type="AudioStream" uid="uid://dxtx2xo8gf5js" path="res://assets/sfx/jump.ogg" id="5_vts3l"]
+[ext_resource type="AudioStream" uid="uid://dun21yvbqce08" path="res://assets/sfx/land.ogg" id="6_re1vp"]
+[ext_resource type="AudioStream" uid="uid://cb11degij1q8g" path="res://assets/sfx/refill.ogg" id="7_l4n2t"]
+[ext_resource type="AudioStream" uid="uid://cabst272jhkg1" path="res://assets/sfx/beep.ogg" id="8_vp6su"]
+[ext_resource type="AudioStream" uid="uid://jrb4tfhrae2y" path="res://assets/sfx/step4.ogg" id="12_18gtq"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gra72"]
 emission_shape = 6
@@ -24,7 +35,7 @@ radius = 0.853455
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_287bv"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("head", "interaction_ray", "collision_shape", "scanner_point", "interaction_shape", "mesh_instance", "spray_particles")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("head", "interaction_ray", "collision_shape", "scanner_point", "interaction_shape", "mesh_instance", "spray_particles", "sfx_audio_player", "sfx_step_audio_player", "music_audio_player")]
 collision_layer = 16
 script = ExtResource("1_ab6ol")
 head = NodePath("Head")
@@ -34,6 +45,18 @@ scanner_point = NodePath("Head/ScannerPoint")
 interaction_shape = NodePath("Head/InteractArea3D")
 mesh_instance = NodePath("BodyCollisionShape3D/MeshInstance3D")
 spray_particles = NodePath("Head/ScannerPoint/SprayParticles")
+sfx_audio_player = NodePath("SFXAudioStreamPlayer")
+sfx_step_audio_player = NodePath("SFXStepAudioStreamPlayer")
+sfx_spray = ExtResource("2_fiknb")
+sfx_pick = ExtResource("3_qhxb2")
+sfx_switch = ExtResource("4_6lj0x")
+sfx_jump = ExtResource("5_vts3l")
+sfx_land = ExtResource("6_re1vp")
+sfx_use = ExtResource("3_qhxb2")
+sfx_refill = ExtResource("7_l4n2t")
+sfx_scan_beep = ExtResource("8_vp6su")
+sfx_steps = Array[AudioStream]([ExtResource("2_dlq0r"), ExtResource("3_s1eir"), ExtResource("4_68vwn"), ExtResource("12_18gtq")])
+music_audio_player = NodePath("MusicAudioStreamPlayer")
 
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
@@ -75,3 +98,13 @@ shape = SubResource("CapsuleShape3D_8tfg5")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="BodyCollisionShape3D"]
 mesh = SubResource("CapsuleMesh_287bv")
 skeleton = NodePath("../..")
+
+[node name="SFXAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[node name="SFXStepAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -10.62
+bus = &"SFX"
+
+[node name="MusicAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Music"

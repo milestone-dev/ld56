@@ -26,6 +26,23 @@ var mouse_sensitivity : float = 0.1
 @export var spray_particles : GPUParticles3D
 @export var ui : UI
 
+@export_category("SFX")
+@export var sfx_audio_player : AudioStreamPlayer
+@export var sfx_step_audio_player : AudioStreamPlayer
+@export var sfx_spray : AudioStream
+@export var sfx_pick : AudioStream
+@export var sfx_switch : AudioStream
+@export var sfx_jump : AudioStream
+@export var sfx_land : AudioStream
+@export var sfx_use : AudioStream
+@export var sfx_refill : AudioStream
+@export var sfx_scan_beep : AudioStream
+@export var sfx_steps : Array[AudioStream]
+
+@export_category("Music")
+@export var music_audio_player : AudioStreamPlayer
+@export var music_track : AudioStream
+
 var current_tool := Tool.PICKER
 var mouse_input : Vector2
 var scanner_showing := false
@@ -33,6 +50,12 @@ var is_sprinting := false
 var is_crouching := false
 
 var debug_mode := false
+
+var STEP_SFX_TIMER_MAX := 0.3
+var step_sfx_timer := 0.0
+
+var SCAN_SFX_TIMER_MAX := 0.4
+var scan_sfx_timer := 0.0
 
 var kitten_count := 0;
 var tardigrade_count := 0;
@@ -94,6 +117,7 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor(): velocity += get_gravity() * delta
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		play_sfx(sfx_jump)
 	is_crouching = Input.is_action_pressed("crouch")
 	if is_crouching: collision_shape.scale = Vector3(1, CROUCH_SIZE, 1)
 	else: collision_shape.scale = Vector3.ONE
@@ -118,12 +142,20 @@ func _physics_process(delta: float) -> void:
 	if is_sprinting: sprint_energy -= delta
 	else: sprint_energy = min(sprint_energy + delta, SPRINT_ENERGY_MAX)
 
+	# walking
+	step_sfx_timer -= delta
 	var speed = WALK_SPEED
 	if is_sprinting and is_on_floor(): speed = SPRINT_SPEED
 	elif is_crouching: speed = CROUCH_SPEED
 	if direction:
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
+		if step_sfx_timer <= 0.0:
+			#print("step")
+			step_sfx_timer = STEP_SFX_TIMER_MAX
+			sfx_step_audio_player.stream = sfx_steps.pick_random()
+			sfx_step_audio_player.pitch_scale = randf_range(0.5, 1.5)
+			sfx_step_audio_player.play()
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
@@ -157,9 +189,11 @@ func manage_interactions():
 		spray_particles.restart()
 		spray_particles.emitting = true
 		spray_energy = max(0, spray_energy - SPRAY_ENERGY_COST)
+		play_sfx(sfx_spray)
 	elif current_tool == Tool.PICKER:
 		ui.pick_sprite.stop()
 		ui.pick_sprite.play()
+		play_sfx(sfx_pick)
 	# Check targeted objects
 	var colliders = interaction_shape.get_overlapping_bodies()
 	for c in colliders:
@@ -217,3 +251,7 @@ func manage_level(delta:float):
 		if kitten_cluster.kitten_count == 0 and kitten_cluster.kitten_respawn_timer <= 0:
 			prints("Refill", kitten_cluster.name)
 			distribute_random_kittens(kitten_cluster)
+
+func play_sfx(sfx:AudioStream):
+	sfx_audio_player.stream = sfx
+	sfx_audio_player.play()
