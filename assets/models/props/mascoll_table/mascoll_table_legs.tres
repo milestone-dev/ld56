@@ -6,6 +6,10 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_gmpb0")
+shader_parameter/Color = Color(1, 1, 1, 1)
 shader_parameter/Metallness = 1.0
 shader_parameter/Roughness = 0.535
+shader_parameter/Specular = 0.5
+shader_parameter/EmissiveColor = Color(0, 0, 0, 1)
+shader_parameter/EmissiveStrength = 1.0
 shader_parameter/albedo_texture = ExtResource("2_ehqc8")

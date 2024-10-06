@@ -9,4 +9,7 @@ shader = ExtResource("1_nlsy0")
 shader_parameter/Color = Color(0.817521, 0.817521, 0.817521, 1)
 shader_parameter/Metallness = 0.0
 shader_parameter/Roughness = 1.0
+shader_parameter/Specular = 0.5
+shader_parameter/EmissiveColor = Color(0, 0, 0, 1)
+shader_parameter/EmissiveStrength = 1.0
 shader_parameter/albedo_texture = ExtResource("2_67rbo")
