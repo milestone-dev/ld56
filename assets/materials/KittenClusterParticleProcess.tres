@@ -17,6 +17,8 @@ curve = SubResource("Curve_n8u8d")
 [resource]
 emission_shape = 1
 emission_sphere_radius = 2.0
+angle_min = -139.4
+angle_max = 132.2
 direction = Vector3(0, -1, 0)
 spread = 180.0
 initial_velocity_max = 0.1
