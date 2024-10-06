@@ -7,7 +7,8 @@
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_3oypq")
-shader_parameter/Color = Color(5.77569e-07, 0.819818, 0.915337, 1)
+shader_parameter/Color = Color(1, 0.633333, 0, 1)
+shader_parameter/Bubbles_Strength = 1.0
 shader_parameter/Metallness = 0.0
 shader_parameter/Roughness = 0.1
 shader_parameter/Specular = 1.0
