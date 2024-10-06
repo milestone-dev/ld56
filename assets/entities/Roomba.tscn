@@ -86,5 +86,6 @@ autoplay = true
 
 [node name="AlertAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("8_j51k5")
+volume_db = -20.0
 
 [editable path="CollisionShape3D/doomba2"]
