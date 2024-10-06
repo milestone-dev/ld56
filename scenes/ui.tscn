@@ -258,7 +258,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="CatScannerTexture" type="TextureRect" parent="HandsContainer"]
-visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -269,6 +268,7 @@ grow_vertical = 0
 texture = ExtResource("2_f1ilk")
 
 [node name="ScanEnergyBar" type="ProgressBar" parent="HandsContainer/CatScannerTexture"]
+visible = false
 layout_mode = 0
 offset_left = 173.0
 offset_top = 211.0
