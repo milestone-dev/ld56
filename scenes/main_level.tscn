@@ -76,6 +76,8 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.495
 
 [node name="Roomba" parent="Roombas/RoombaHome1" instance=ExtResource("6_kfr7v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.539, 0)
+awake_kittens_saved = 0
+movement_speed = 2.0
 modulate_color = Color(0.3192, 0.76, 0.370627, 1)
 
 [node name="RoombaHome2" parent="Roombas" instance=ExtResource("5_dmc0a")]

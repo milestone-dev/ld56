@@ -8,7 +8,6 @@ enum Tool {
 }
 
 var kitten_pool := 1000000
-var play_time := 0.0
 
 const WALK_SPEED := 5.0
 const SPRINT_SPEED := 9.0
@@ -270,7 +269,7 @@ func distribute_random_kittens(kitten_cluster: KittenCluster):
 		kitten_pool -= kitten_distriution_count
 
 func manage_level(delta:float):
-	play_time += delta
+	Progress.time_played += delta
 	for kitten_cluster : KittenCluster in get_tree().get_nodes_in_group("kitten_cluster"):
 		kitten_cluster.label.visible = debug_mode
 		if kitten_cluster.kitten_count == 0 and kitten_cluster.kitten_respawn_timer <= 0:

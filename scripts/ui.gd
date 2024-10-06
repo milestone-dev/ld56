@@ -43,4 +43,4 @@ func update(player:Player):
 	pick_sprite.visible = player.current_tool == Player.Tool.PICKER
 
 	kitten_pool_label.text = "Kitten Pool: %d" % player.kitten_pool
-	time_label.text = "Time: %d" % player.play_time
+	time_label.text = "Time: %d" % Progress.time_played
