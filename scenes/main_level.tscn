@@ -1,11 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://cpoa4d7l5tsv8"]
+[gd_scene load_steps=13 format=3 uid="uid://cpoa4d7l5tsv8"]
 
 [ext_resource type="PackedScene" uid="uid://jqmhm7qjf7n5" path="res://scenes/ui.tscn" id="1_11mfm"]
 [ext_resource type="PackedScene" uid="uid://wtv1ym4laxh8" path="res://scenes/player.tscn" id="2_cfjsh"]
 [ext_resource type="PackedScene" uid="uid://dwcy4yjjn8ia8" path="res://assets/maps/apartment.bsp" id="3_4u18w"]
-[ext_resource type="PackedScene" uid="uid://swxfu7ohj2gm" path="res://assets/maps/lighting.tscn" id="6_1gvqg"]
-[ext_resource type="PackedScene" uid="uid://dtfeq3efdallg" path="res://assets/models/props/incubator/incubator.tscn" id="6_n72c3"]
+[ext_resource type="PackedScene" path="res://assets/maps/lighting.tscn" id="6_1gvqg"]
 [ext_resource type="PackedScene" uid="uid://ctwdnitte857g" path="res://assets/models/props/centrifuge/centrifuge.tscn" id="7_ic2o6"]
+[ext_resource type="PackedScene" uid="uid://cln0hwkcj8a8t" path="res://assets/entities/ScannerRecharger.tscn" id="7_r7pip"]
+[ext_resource type="PackedScene" uid="uid://dtweho2ri4gm6" path="res://assets/entities/KittenContainer.tscn" id="7_t26vx"]
+[ext_resource type="PackedScene" uid="uid://beu1dtde37opb" path="res://assets/entities/TardigradeContainer.tscn" id="8_iwxt8"]
+[ext_resource type="PackedScene" uid="uid://dq4q6xr62djhk" path="res://assets/entities/SprayRecharger.tscn" id="9_1wdfb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x7yap"]
 
@@ -45,10 +48,19 @@ ui = NodePath("../UI")
 [node name="apartment" parent="." instance=ExtResource("3_4u18w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.76837e-07, -1.90735e-06)
 
-[node name="incubator" parent="." instance=ExtResource("6_n72c3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.85475, 1.10042, -16.1253)
-
 [node name="centrifuge" parent="." instance=ExtResource("7_ic2o6")]
-transform = Transform3D(0.999905, 0, -0.0137702, 0, 1, 0, 0.0137702, 0, 0.999905, 3.33287, 1.09713, -15.1262)
+transform = Transform3D(0.0137702, 0, 0.999905, 0, 1, 0, -0.999905, 0, 0.0137702, 2.21256, 1.09713, -11.9452)
 
 [node name="Lighting" parent="." instance=ExtResource("6_1gvqg")]
+
+[node name="KittenContainer" parent="." instance=ExtResource("7_t26vx")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.21033, 1.05893, -15.0925)
+
+[node name="TardigradeContainer" parent="." instance=ExtResource("8_iwxt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.15539, 1.05157, -15.2248)
+
+[node name="ScannerRecharger" parent="." instance=ExtResource("7_r7pip")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6414, 0.0992382, -7.91336)
+
+[node name="SprayRecharger" parent="." instance=ExtResource("9_1wdfb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.85284, 1.11221, -15.0854)

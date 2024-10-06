@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dq4q6xr62djhk"]
+[gd_scene load_steps=5 format=3 uid="uid://dq4q6xr62djhk"]
 
 [ext_resource type="Script" path="res://scripts/spray_recharger.gd" id="1_qp0ey"]
+[ext_resource type="PackedScene" uid="uid://c3gmui7jojnty" path="res://assets/models/props/erlenmeyer_flask/erlenmeyer_flask.tscn" id="2_tsnye"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_nurbt"]
 height = 1.0
@@ -15,11 +16,14 @@ script = ExtResource("1_qp0ey")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.489601, 0)
+visible = false
 mesh = SubResource("CylinderMesh_nurbt")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.489601, 0)
 shape = SubResource("CylinderShape3D_hm21g")
+
+[node name="erlenmeyer_flask" parent="." instance=ExtResource("2_tsnye")]
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50742, 0)

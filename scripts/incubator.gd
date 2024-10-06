@@ -18,7 +18,7 @@ func _ready() -> void:
 func interact(player : Player):
 	print("Incubator is interacted upon")
 	turned_on = !turned_on
-	
+
 	material.set_shader_parameter("EmissiveStrength", max_emissive * float(turned_on))
 	light.visible = turned_on
 

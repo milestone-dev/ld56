@@ -22,9 +22,10 @@ const CROUCH_SIZE = 0.3
 @export var scanner_point : Marker3D
 @export var interaction_shape : Area3D
 @export var mesh_instance : MeshInstance3D
-@export var mouse_sensitivity : float = 0.1
+var mouse_sensitivity : float = 0.1
 @export var spray_particles : GPUParticles3D
 @export var ui : UI
+@export var main_menu_scene : PackedScene
 
 var current_tool := Tool.PICKER
 var mouse_input : Vector2
@@ -55,6 +56,7 @@ const KITTEN_DISAPPEAR_TIMER_MAX := 5.0
 var kitten_disappear_timer := KITTEN_DISAPPEAR_TIMER_MAX
 
 func _ready() -> void:
+	mouse_sensitivity = Settings.mouse_sensitivity
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	mesh_instance.hide()
 	start_level()
@@ -67,6 +69,11 @@ func _input(event: InputEvent) -> void:
 	mouse_input.y += event.relative.y
 
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("toggle_menu"):
+		#get_tree().unload_current_scene()
+		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+		return
+
 	# level management
 	manage_level(delta)
 
