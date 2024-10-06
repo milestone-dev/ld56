@@ -2,7 +2,7 @@ extends StaticBody3D
 class_name KittenCluster
 
 @export var sprite : Sprite3D
-@export var label : Label3D
+@export var debug_label : Label3D
 @export var particles: GPUParticles3D
 var current_reveal_tween : Tween
 var fade_out_timer := 5.0
@@ -74,7 +74,7 @@ func retrieve(player:Player):
 		Progress.kittens_picked_up += kitten_count
 		if (randf()) < 0.2: player.tardigrade_count += 1
 		kitten_count = 0
-		label.text = "%d" % kitten_count
+		debug_label.text = "%d" % kitten_count
 		if current_reveal_tween: current_reveal_tween.stop()
 		sprite.modulate = FADED_OUT_COLOR;
 		kitten_respawn_timer = KITTEN_RESPAWN_TIMER_MAX;
@@ -82,7 +82,7 @@ func retrieve(player:Player):
 func add_kittens(count:int) -> bool:
 	if kitten_respawn_timer > 0: return false
 	kitten_count += count
-	label.text = "%d" % kitten_count
+	debug_label.text = "%d" % kitten_count
 	return true
 
 func spray(player:Player):

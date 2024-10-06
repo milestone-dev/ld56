@@ -115,7 +115,7 @@ func update_target(delta:float):
 				if global_position.distance_to(player.global_position) < 1:
 					if attack_cooldown < 0:
 						attack_cooldown = kitten_destroy_timer
-						player.drop_kittens(1)
+						player.drop_all_kittens()
 			else:
 				state = State.IDLE
 			material.set_shader_parameter("EmissiveColor", Color(1.0,0.0,0.0))
@@ -133,7 +133,7 @@ func _physics_process(delta):
 	movement_delta = movement_speed * delta
 	var next_path_position: Vector3 = navigation_agent.get_next_path_position()
 	var new_velocity: Vector3 = global_position.direction_to(next_path_position) * movement_delta
-	
+
 	look_at(next_path_position, Vector3.UP)
 	global_position = global_position.move_toward(global_position + new_velocity, movement_delta)
 

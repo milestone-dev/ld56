@@ -34,9 +34,8 @@ func _ready() -> void:
 	stat_3_t.text = "Kittens Leaked"
 	stat_3_d.text = "%d" % Progress.kittens_leaked
 
-	stat_4_t.text = "Roombas Sent Home"
+	stat_4_t.text = "Roombas Reset"
 	stat_4_d.text = "%d" % Progress.roombas_sent_home
-
 
 func continue_clicked():
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

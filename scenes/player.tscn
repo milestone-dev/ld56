@@ -64,6 +64,7 @@ sfx_land = ExtResource("6_re1vp")
 sfx_use = ExtResource("3_qhxb2")
 sfx_refill = ExtResource("7_l4n2t")
 sfx_scan_beep = ExtResource("8_vp6su")
+sfx_drop_kittens = ExtResource("3_qhxb2")
 sfx_steps = Array[AudioStream]([ExtResource("2_dlq0r"), ExtResource("3_s1eir"), ExtResource("4_68vwn"), ExtResource("12_18gtq")])
 music_audio_player = NodePath("MusicAudioStreamPlayer")
 
