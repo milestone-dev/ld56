@@ -145,11 +145,14 @@ func manage_interactions():
 
 	# Always consume spray energy regardless of where you spray
 	if current_tool == Tool.SPRAYER and spray_energy > 0:
+		ui.spray_sprite.stop()
 		ui.spray_sprite.play()
 		spray_particles.restart()
 		spray_particles.emitting = true
 		spray_energy = max(0, spray_energy - SPRAY_ENERGY_COST)
-
+	elif current_tool == Tool.PICKER:
+		ui.pick_sprite.stop()
+		ui.pick_sprite.play()
 	# Check targeted objects
 	var colliders = interaction_shape.get_overlapping_bodies()
 	for c in colliders:

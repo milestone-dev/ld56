@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dhlic6h8xoofp"]
+
+[ext_resource type="Texture2D" uid="uid://bh5wq4luwyfo3" path="res://assets/textures/fishbonefloor.png" id="1_3s102"]
+
+[resource]
+diffuse_mode = 2
+albedo_texture = ExtResource("1_3s102")
+texture_filter = 0
