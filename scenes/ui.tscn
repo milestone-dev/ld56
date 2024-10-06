@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://jqmhm7qjf7n5"]
+[gd_scene load_steps=30 format=3 uid="uid://jqmhm7qjf7n5"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_68hwl"]
 [ext_resource type="Texture2D" uid="uid://cya465556bqjx" path="res://assets/sprites/ui_catscan.png" id="2_f1ilk"]
@@ -9,6 +9,15 @@
 [ext_resource type="PackedScene" path="res://scenes/kittens_in_hand.tscn" id="5_cs22l"]
 [ext_resource type="Texture2D" uid="uid://duliddsehj0jx" path="res://assets/sprites/ui_pick1.png" id="6_c8owi"]
 [ext_resource type="Texture2D" uid="uid://dcsn03in83vpw" path="res://assets/sprites/ui_pick2.png" id="7_rriv4"]
+
+[sub_resource type="Gradient" id="Gradient_0pe74"]
+offsets = PackedFloat32Array(0.248134, 0.5, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 0, 0, 0.0235294, 1, 0, 0, 0.45098)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7rc8u"]
+gradient = SubResource("Gradient_0pe74")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y178i"]
 bg_color = Color(0, 0, 0, 0.666667)
@@ -136,22 +145,32 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("crosshair", "kitten_count_label", "tardigrade_count_label", "sprint_energy_label", "kitten_pool_label", "time_label", "cat_scanner_texture", "cat_palm_texture", "scan_energy_bar", "spray_energy_bar", "spray_sprite", "detection_progress_sprite", "pick_sprite", "kittens_in_hand")]
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("crosshair", "kitten_count_label", "tardigrade_count_label", "sprint_energy_label", "kitten_pool_label", "time_label", "cat_scanner_texture", "cat_palm_texture", "scan_energy_bar", "spray_energy_bar", "spray_sprite", "detection_progress_sprite", "pick_sprite", "kittens_in_hand", "pain_flash_rect")]
 script = ExtResource("1_68hwl")
 crosshair = NodePath("Crosshair")
-kitten_count_label = NodePath("CatPalmTexture/KittenCountLabel")
-tardigrade_count_label = NodePath("CatPalmTexture/TardigradeCountLabel")
+kitten_count_label = NodePath("HandsContainer/CatPalmTexture/KittenCountLabel")
+tardigrade_count_label = NodePath("HandsContainer/CatPalmTexture/TardigradeCountLabel")
 sprint_energy_label = NodePath("MarginContainer2/VBoxContainer2/SprintEnergyLabel")
 kitten_pool_label = NodePath("MarginContainer3/VBoxContainer2/KittenPoolLabel")
 time_label = NodePath("MarginContainer3/VBoxContainer2/TimeLabel")
-cat_scanner_texture = NodePath("CatScannerTexture")
-cat_palm_texture = NodePath("CatPalmTexture")
-scan_energy_bar = NodePath("CatScannerTexture/ScanEnergyBar")
-spray_energy_bar = NodePath("SpraySprite/SprayEnergyBar")
-spray_sprite = NodePath("SpraySprite")
-detection_progress_sprite = NodePath("CatScannerTexture/KittenDetectionSprite")
-pick_sprite = NodePath("PickSprite")
-kittens_in_hand = NodePath("CatPalmTexture/SubViewportContainer/SubViewport/Node3D")
+cat_scanner_texture = NodePath("HandsContainer/CatScannerTexture")
+cat_palm_texture = NodePath("HandsContainer/CatPalmTexture")
+scan_energy_bar = NodePath("HandsContainer/CatScannerTexture/ScanEnergyBar")
+spray_energy_bar = NodePath("HandsContainer/SpraySprite/SprayEnergyBar")
+spray_sprite = NodePath("HandsContainer/SpraySprite")
+detection_progress_sprite = NodePath("HandsContainer/CatScannerTexture/KittenDetectionSprite")
+pick_sprite = NodePath("HandsContainer/PickSprite")
+kittens_in_hand = NodePath("HandsContainer/CatPalmTexture/SubViewportContainer/SubViewport/Node3D")
+pain_flash_rect = NodePath("PainFlashRect")
+
+[node name="PainFlashRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_7rc8u")
 
 [node name="Crosshair" type="ColorRect" parent="."]
 anchors_preset = 8
@@ -230,17 +249,26 @@ theme_override_font_sizes/font_size = 16
 text = "Sprint Energy"
 horizontal_alignment = 2
 
-[node name="CatScannerTexture" type="TextureRect" parent="."]
+[node name="HandsContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CatScannerTexture" type="TextureRect" parent="HandsContainer"]
 visible = false
+layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 40.0
+offset_top = -358.0
+offset_right = 384.0
 grow_vertical = 0
 texture = ExtResource("2_f1ilk")
 
-[node name="ScanEnergyBar" type="ProgressBar" parent="CatScannerTexture"]
+[node name="ScanEnergyBar" type="ProgressBar" parent="HandsContainer/CatScannerTexture"]
 layout_mode = 0
 offset_left = 173.0
 offset_top = 211.0
@@ -253,20 +281,21 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_ca4ib")
 value = 50.0
 show_percentage = false
 
-[node name="KittenDetectionSprite" type="AnimatedSprite2D" parent="CatScannerTexture"]
+[node name="KittenDetectionSprite" type="AnimatedSprite2D" parent="HandsContainer/CatScannerTexture"]
 position = Vector2(192, 179)
 sprite_frames = SubResource("SpriteFrames_q48xm")
 
-[node name="CatPalmTexture" type="TextureRect" parent="."]
+[node name="CatPalmTexture" type="TextureRect" parent="HandsContainer"]
+layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 40.0
+offset_top = -340.0
+offset_right = 256.0
 grow_vertical = 0
 texture = ExtResource("3_l2nx6")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="CatPalmTexture"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="HandsContainer/CatPalmTexture"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.328
@@ -276,16 +305,16 @@ offset_top = 130.0
 offset_right = 96.032
 offset_bottom = 137.98
 
-[node name="SubViewport" type="SubViewport" parent="CatPalmTexture/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="HandsContainer/CatPalmTexture/SubViewportContainer"]
 world_3d = SubResource("World3D_cavir")
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(128, 128)
 render_target_update_mode = 4
 
-[node name="Node3D" parent="CatPalmTexture/SubViewportContainer/SubViewport" instance=ExtResource("5_cs22l")]
+[node name="Node3D" parent="HandsContainer/CatPalmTexture/SubViewportContainer/SubViewport" instance=ExtResource("5_cs22l")]
 
-[node name="KittenCountLabel" type="Label" parent="CatPalmTexture"]
+[node name="KittenCountLabel" type="Label" parent="HandsContainer/CatPalmTexture"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 offset_left = 56.0
@@ -300,7 +329,7 @@ text = "100000"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TardigradeCountLabel" type="Label" parent="CatPalmTexture"]
+[node name="TardigradeCountLabel" type="Label" parent="HandsContainer/CatPalmTexture"]
 visible = false
 layout_mode = 2
 offset_left = 78.0
@@ -313,12 +342,12 @@ theme_override_constants/shadow_offset_y = 2
 theme_override_font_sizes/font_size = 16
 text = "Tardigrades"
 
-[node name="SpraySprite" type="AnimatedSprite2D" parent="."]
+[node name="SpraySprite" type="AnimatedSprite2D" parent="HandsContainer"]
 position = Vector2(895, 305)
 sprite_frames = SubResource("SpriteFrames_27g81")
 centered = false
 
-[node name="SprayEnergyBar" type="ProgressBar" parent="SpraySprite"]
+[node name="SprayEnergyBar" type="ProgressBar" parent="HandsContainer/SpraySprite"]
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
@@ -338,7 +367,7 @@ value = 60.0
 fill_mode = 3
 show_percentage = false
 
-[node name="PickSprite" type="AnimatedSprite2D" parent="."]
+[node name="PickSprite" type="AnimatedSprite2D" parent="HandsContainer"]
 position = Vector2(895, 305)
 sprite_frames = SubResource("SpriteFrames_nwpjq")
 centered = false

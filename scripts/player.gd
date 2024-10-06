@@ -30,6 +30,7 @@ var mouse_sensitivity : float = 0.1
 @export var sfx_step_audio_player : AudioStreamPlayer
 @export var sfx_scan_audio_player : AudioStreamPlayer
 @export var sfx_meow_audio_player : AudioStreamPlayer
+@export var sfx_crash_audio_player : AudioStreamPlayer
 @export var sfx_spray : AudioStream
 @export var sfx_pick : AudioStream
 @export var sfx_switch : AudioStream
@@ -95,6 +96,7 @@ func _ready() -> void:
 	start_level()
 	music_audio_player.stream = music_track2
 	music_audio_player.play()
+	sfx_scan_audio_player.play()
 
 func _input(event: InputEvent) -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -330,3 +332,8 @@ func update_music():
 		var pos = music_audio_player.get_playback_position()
 		music_audio_player.stream = music_track1
 		music_audio_player.play(pos)
+
+func roomba_hit():
+	sfx_crash_audio_player.play()
+	ui.flash_pain()
+	drop_all_kittens()
