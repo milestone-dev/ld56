@@ -78,7 +78,7 @@ const SPRAY_ENERGY_MAX := 100.0
 const SPRAY_ENERGY_COST := SPRAY_ENERGY_MAX/100.0
 var spray_energy := SPRAY_ENERGY_MAX
 
-const KITTEN_DISAPPEAR_TIMER_MAX := 5.0
+const KITTEN_DISAPPEAR_TIMER_MAX := 1.0
 var kitten_disappear_timer := KITTEN_DISAPPEAR_TIMER_MAX
 
 func _ready() -> void:
@@ -96,8 +96,11 @@ func _input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("toggle_menu"):
-		#get_tree().unload_current_scene()
 		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+		return
+
+	if kitten_saved_count >= 1000000:
+		get_tree().change_scene_to_file("res://scenes/win_screen.tscn")
 		return
 
 	# level management
@@ -106,8 +109,10 @@ func _physics_process(delta: float) -> void:
 	#debug mode
 	if Input.is_action_just_pressed("toggle_debug"): debug_mode = !debug_mode
 	if Input.is_action_just_pressed("debug_add_kittens"):
-		kitten_pool -= 1
-		kitten_count += 1
+		var count = min(kitten_pool, 100000)
+		kitten_pool -= count
+		kitten_count += count
+		Progress.kittens_picked_up += count
 
 	# make kittens and tardigrades fall out of your hand
 	# placeholder impl for now
@@ -174,8 +179,9 @@ func _physics_process(delta: float) -> void:
 	ui.update(self)
 
 func drop_kittens(count : int = 1):
-	var kittens_lost := count
+	var kittens_lost : int = min(kitten_count, count)
 	var tardigrades_lost := count
+	Progress.kittens_leaked += kittens_lost
 	kitten_pool += kittens_lost
 	kitten_count = max(0, kitten_count - kittens_lost)
 	tardigrade_count = max(0, tardigrade_count - tardigrades_lost)
@@ -275,6 +281,7 @@ func distribute_random_kittens(kitten_cluster: KittenCluster):
 
 func manage_level(delta:float):
 	Progress.time_played += delta
+	if kitten_pool <= 0: return
 	for kitten_cluster : KittenCluster in get_tree().get_nodes_in_group("kitten_cluster"):
 		kitten_cluster.label.visible = debug_mode
 		if kitten_cluster.kitten_count == 0 and kitten_cluster.kitten_respawn_timer <= 0:

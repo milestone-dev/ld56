@@ -13,8 +13,13 @@ const SFX_PREVIEW_TIMER_MAX := 0.15
 var sfx_preview_timer := SFX_PREVIEW_TIMER_MAX
 @export var sfx_audio_stream_player : AudioStreamPlayer
 
-func start_game(): get_tree().change_scene_to_packed(level_scene)
-func start_test_level(): get_tree().change_scene_to_packed(test_level_scene)
+func start_game():
+	Progress.reset()
+	get_tree().change_scene_to_packed(level_scene)
+
+func start_test_level():
+	Progress.reset()
+	get_tree().change_scene_to_packed(test_level_scene)
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

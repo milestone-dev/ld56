@@ -42,5 +42,5 @@ func update(player:Player):
 	spray_sprite.visible = player.current_tool == Player.Tool.SPRAYER
 	pick_sprite.visible = player.current_tool == Player.Tool.PICKER
 
-	kitten_pool_label.text = "Kitten Pool: %d" % player.kitten_pool
+	kitten_pool_label.text = "Kitten Pool: %d Kittens Saved %d" % [player.kitten_pool, player.kitten_saved_count]
 	time_label.text = "Time: %d" % Progress.time_played

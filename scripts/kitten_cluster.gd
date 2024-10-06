@@ -69,6 +69,7 @@ func find_a_wall():
 func retrieve(player:Player):
 	if sprite.modulate.a > FADED_OUT_COLOR.a:
 		player.kitten_count += kitten_count
+		Progress.kittens_picked_up += kitten_count
 		if (randf()) < 0.2: player.tardigrade_count += 1
 		kitten_count = 0
 		label.text = "%d" % kitten_count
