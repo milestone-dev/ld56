@@ -19,7 +19,7 @@ func _ready() -> void:
 	timer.connect("timeout", Callable(self, "_turn_off"))
 	add_child(timer)
 
-func interact(player : Player):
+func interact(player:Player):
 	turned_on = true
 
 	material.set_shader_parameter("EmissiveStrength", max_emissive * float(turned_on))

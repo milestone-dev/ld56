@@ -26,6 +26,8 @@ shape = SubResource("CylinderShape3D_hm21g")
 [node name="erlenmeyer_flask" parent="." instance=ExtResource("2_tsnye")]
 
 [node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50742, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16053, 0)
 billboard = 1
-text = "Spray Recharger"
+text = "Recharge
+Meowgnifying
+Spray"

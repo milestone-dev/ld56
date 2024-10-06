@@ -28,11 +28,10 @@ shader_parameter/Opacity = 0.5
 shader_parameter/Fresnel = 0.5
 shader_parameter/EmissiveStrength = 1.0
 
-[node name="TardigradeContainer" type="StaticBody3D" node_paths=PackedStringArray("label")]
+[node name="TardigradeContainer" type="StaticBody3D"]
 collision_layer = 5
 collision_mask = 0
 script = ExtResource("1_hhhe4")
-label = NodePath("Label3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.489601, 0)
@@ -42,11 +41,6 @@ mesh = SubResource("CylinderMesh_nurbt")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.626381, 0)
 shape = SubResource("BoxShape3D_mda86")
-
-[node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50742, 0)
-billboard = 1
-text = "Research Jar"
 
 [node name="incubator" parent="." instance=ExtResource("2_c02ar")]
 
