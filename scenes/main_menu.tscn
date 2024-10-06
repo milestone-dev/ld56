@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://4vinrd4h6yl2"]
+[gd_scene load_steps=12 format=3 uid="uid://4vinrd4h6yl2"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_6m8h0"]
 [ext_resource type="PackedScene" uid="uid://cpoa4d7l5tsv8" path="res://scenes/main_level.tscn" id="2_767qk"]
@@ -7,6 +7,39 @@
 [ext_resource type="Texture2D" uid="uid://depdjxb155j1x" path="res://assets/icons/dubpot.png" id="5_l0viq"]
 [ext_resource type="PackedScene" uid="uid://cyeynw1jfwgjl" path="res://scenes/settings_page.tscn" id="7_en5m6"]
 [ext_resource type="AudioStream" uid="uid://dk7bwwvbxpxoa" path="res://assets/music/menu.ogg" id="9_qkbnx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gju87"]
+content_margin_left = 32.0
+content_margin_top = 16.0
+content_margin_right = 32.0
+content_margin_bottom = 16.0
+bg_color = Color(0.87451, 0.443137, 0.14902, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cgfhm"]
+content_margin_left = 32.0
+content_margin_top = 16.0
+content_margin_right = 32.0
+content_margin_bottom = 16.0
+bg_color = Color(1, 0.468, 0.16, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ouju"]
+content_margin_left = 32.0
+content_margin_top = 16.0
+content_margin_right = 32.0
+content_margin_bottom = 16.0
+bg_color = Color(0.843137, 0.482353, 0.729412, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3k10t"]
 
@@ -55,6 +88,9 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme_override_colors/font_focus_color = Color(1, 0.776471, 0.556863, 1)
 theme_override_font_sizes/font_size = 32
+theme_override_styles/hover = SubResource("StyleBoxFlat_gju87")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cgfhm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_6ouju")
 text = "Start game"
 
 [node name="SettingsButton" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
@@ -62,22 +98,24 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme_override_colors/font_focus_color = Color(1, 0.776471, 0.556863, 1)
 theme_override_font_sizes/font_size = 32
-text = "Settings"
+theme_override_styles/hover = SubResource("StyleBoxFlat_gju87")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cgfhm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_6ouju")
+text = "Settings & Controls"
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
 [node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer5"]
-texture_filter = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0.760784, 0.254902, 0.4, 1)
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 24
 text = "A game by Dubious Potions"
 horizontal_alignment = 1
 
 [node name="TextureRect2" type="TextureRect" parent="HBoxContainer/VBoxContainer/HBoxContainer5"]
-custom_minimum_size = Vector2(0, 32)
+custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
 texture = ExtResource("5_l0viq")
 expand_mode = 2
