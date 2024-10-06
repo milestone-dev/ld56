@@ -122,7 +122,7 @@ func update_target(delta:float):
 				if global_position.distance_to(player.global_position) < 1:
 					if attack_cooldown < 0:
 						attack_cooldown = kitten_destroy_timer
-						player.drop_all_kittens()
+						player.roomba_hit()
 			else:
 				state = State.IDLE
 			material.set_shader_parameter("EmissiveColor", Color(1.0,0.0,0.0))

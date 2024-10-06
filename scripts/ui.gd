@@ -15,6 +15,19 @@ class_name UI
 @export var detection_progress_sprite : AnimatedSprite2D
 @export var pick_sprite : AnimatedSprite2D
 @export var kittens_in_hand: KittensInHand
+@export var pain_flash_rect : TextureRect
+
+var pain_flash_tween : Tween
+
+func _ready() -> void:
+	pain_flash_rect.modulate = Color.TRANSPARENT
+
+func flash_pain():
+	var time := 0.15
+	if pain_flash_tween: pain_flash_tween.stop()
+	pain_flash_rect.modulate = Color.WHITE
+	pain_flash_tween = get_tree().create_tween()
+	pain_flash_tween.tween_property(pain_flash_rect, "modulate", Color.TRANSPARENT, time)
 
 func update(player:Player):
 	cat_palm_texture.visible = !player.scanner_showing

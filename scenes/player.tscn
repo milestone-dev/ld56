@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://wtv1ym4laxh8"]
+[gd_scene load_steps=29 format=3 uid="uid://wtv1ym4laxh8"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ab6ol"]
 [ext_resource type="AudioStream" uid="uid://curqsbajr0u0l" path="res://assets/sfx/step1.ogg" id="2_dlq0r"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://cb11degij1q8g" path="res://assets/sfx/refill.ogg" id="7_l4n2t"]
 [ext_resource type="AudioStream" uid="uid://cabst272jhkg1" path="res://assets/sfx/beep.ogg" id="8_vp6su"]
 [ext_resource type="AudioStream" uid="uid://dkkpddy3cltui" path="res://assets/sfx/dropcat.ogg" id="9_ljjhu"]
+[ext_resource type="AudioStream" uid="uid://cdt1qkcy846bv" path="res://assets/sfx/roomba_bump.ogg" id="10_uqv5g"]
 [ext_resource type="AudioStream" uid="uid://jrb4tfhrae2y" path="res://assets/sfx/step4.ogg" id="12_18gtq"]
 [ext_resource type="AudioStream" uid="uid://cchd11bxy33h2" path="res://assets/sfx/meow1.ogg" id="13_7p1c5"]
 [ext_resource type="Material" uid="uid://crcawhw4okp4e" path="res://assets/materials/SprayBottleParticleProcess.tres" id="13_8j23l"]
@@ -71,6 +72,7 @@ sfx_use = ExtResource("3_qhxb2")
 sfx_refill = ExtResource("7_l4n2t")
 sfx_scan_beep = ExtResource("8_vp6su")
 sfx_drop_kittens = ExtResource("9_ljjhu")
+sfx_roomba_crash = ExtResource("10_uqv5g")
 sfx_steps = Array[AudioStream]([ExtResource("2_dlq0r"), ExtResource("3_s1eir"), ExtResource("4_68vwn"), ExtResource("12_18gtq")])
 sfx_meows = Array[AudioStream]([ExtResource("13_7p1c5"), ExtResource("14_rtrn8"), ExtResource("15_qmjwt")])
 music_audio_player = NodePath("MusicAudioStreamPlayer")
@@ -128,7 +130,6 @@ bus = &"SFX"
 
 [node name="SFXScanAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_s66td")
-autoplay = true
 bus = &"SFX"
 
 [node name="SFXMeowAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
