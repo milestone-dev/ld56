@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://wtv1ym4laxh8"]
+[gd_scene load_steps=20 format=3 uid="uid://wtv1ym4laxh8"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ab6ol"]
 [ext_resource type="AudioStream" uid="uid://curqsbajr0u0l" path="res://assets/sfx/step1.ogg" id="2_dlq0r"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://cb11degij1q8g" path="res://assets/sfx/refill.ogg" id="7_l4n2t"]
 [ext_resource type="AudioStream" uid="uid://cabst272jhkg1" path="res://assets/sfx/beep.ogg" id="8_vp6su"]
 [ext_resource type="AudioStream" uid="uid://jrb4tfhrae2y" path="res://assets/sfx/step4.ogg" id="12_18gtq"]
+[ext_resource type="AudioStream" uid="uid://d2ohsyg4unmtn" path="res://assets/music/track01.ogg" id="13_u0svo"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gra72"]
 emission_shape = 6
@@ -107,4 +108,6 @@ volume_db = -10.62
 bus = &"SFX"
 
 [node name="MusicAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_u0svo")
+autoplay = true
 bus = &"Music"
