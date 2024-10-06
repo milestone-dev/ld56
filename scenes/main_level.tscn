@@ -64,10 +64,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.61122, 0.898637, -8.44065)
 ui = NodePath("../UI")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.442858, 0)
 navigation_mesh = SubResource("NavigationMesh_w3pkp")
 
 [node name="apartment" parent="NavigationRegion3D" instance=ExtResource("3_4u18w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.76837e-07, -1.90735e-06)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.442858, -1.90735e-06)
 
 [node name="Roombas" type="Node3D" parent="."]
 
