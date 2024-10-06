@@ -47,7 +47,6 @@ func flash_pain():
 	pain_flash_tween.tween_property(pain_flash_rect, "modulate", Color.TRANSPARENT, time)
 
 func update(player:Player):
-
 	if !player.current_focused_object:
 		interact_pick_label.hide()
 		interact_deposit_label.hide()
@@ -97,5 +96,10 @@ func update(player:Player):
 	spray_sprite.visible = player.current_tool == Player.Tool.SPRAYER
 	pick_sprite.visible = player.current_tool == Player.Tool.PICKER
 
-	kitten_pool_label.text = "Kitten Pool: %d Kittens Saved %d" % [player.kitten_pool, player.kitten_saved_count]
-	time_label.text = "Time: %d. Drop timer: %d" % [Progress.time_played, player.kitten_disappear_timer]
+	kitten_pool_label.text = "Kitten Pool: %d Kittens Saved %d Drop timer: %d" % [player.kitten_pool, player.kitten_saved_count,  player.kitten_disappear_timer]
+
+	var time_in_sec : int = Progress.time_played as int
+	var seconds = time_in_sec%60
+	var minutes = (time_in_sec/60)%60
+	var hours = (time_in_sec/60)/60
+	time_label.text =  "%02dh %02dm %02ds" % [hours, minutes, seconds]

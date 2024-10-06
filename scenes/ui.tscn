@@ -207,6 +207,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="InteractPickLabel" type="Label" parent="InteractionLabelContainer"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -227,6 +228,7 @@ text = "(E) Pick up Kittens"
 horizontal_alignment = 1
 
 [node name="InteractDepositLabel" type="Label" parent="InteractionLabelContainer"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -247,6 +249,7 @@ text = "(E) Deposit Kittens"
 horizontal_alignment = 1
 
 [node name="InteractChargeSprayLabel" type="Label" parent="InteractionLabelContainer"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -267,6 +270,7 @@ text = "(E) Refill Spray"
 horizontal_alignment = 1
 
 [node name="InteractResetRoomba" type="Label" parent="InteractionLabelContainer"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -287,6 +291,7 @@ text = "(E) Reset Roomba"
 horizontal_alignment = 1
 
 [node name="InteractUseLabel" type="Label" parent="InteractionLabelContainer"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -327,6 +332,7 @@ theme_override_font_sizes/font_size = 16
 text = "Time Played"
 
 [node name="KittenPoolLabel" type="Label" parent="MarginContainer3/VBoxContainer2"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
@@ -351,6 +357,7 @@ theme_override_constants/margin_bottom = 16
 layout_mode = 2
 
 [node name="ScanEnergyLabel" type="Label" parent="MarginContainer2/VBoxContainer2"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
@@ -361,6 +368,7 @@ text = "Scan Energy"
 horizontal_alignment = 2
 
 [node name="SprintEnergyLabel" type="Label" parent="MarginContainer2/VBoxContainer2"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
