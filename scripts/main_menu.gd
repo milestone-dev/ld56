@@ -21,14 +21,10 @@ func _ready() -> void:
 	music_slider.value = AudioServer.get_bus_volume_db(2)
 
 func sfx_volume_slider_value_changed(value:float):
-	print(value)
 	AudioServer.set_bus_volume_db(1, value)
 func music_volume_slider_value_changed(value:float):
-	print(value)
 	AudioServer.set_bus_volume_db(2, value)
 func mouse_sens_slider_value_changed(value:float):
-	print(value)
 	Settings.mouse_sensitivity = value
 func gfx_slider_value_changed(value:float):
-	print(value)
 	Settings.gfx_quality = (value as int)

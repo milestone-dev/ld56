@@ -30,11 +30,8 @@ func _ready() -> void:
 
 	default_knob_rotation = knob.rotation_degrees
 
-	print("There is a centrifuge in the scene")
-
 
 func interact(player : Player):
-	print("Centrifuge is interacted upon")
 	if speed_setting == SpinnerSetting.OFF:
 		speed_setting = SpinnerSetting.SPEED_ONE
 	elif speed_setting == SpinnerSetting.SPEED_ONE:

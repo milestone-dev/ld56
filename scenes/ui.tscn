@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://jqmhm7qjf7n5"]
+[gd_scene load_steps=22 format=3 uid="uid://jqmhm7qjf7n5"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_68hwl"]
 [ext_resource type="Texture2D" uid="uid://cya465556bqjx" path="res://assets/sprites/ui_catscan.png" id="2_f1ilk"]
@@ -8,12 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://bvrygo11g5lqu" path="res://assets/sprites/ui_spray2.png" id="4_gtxci"]
 [ext_resource type="Texture2D" uid="uid://duliddsehj0jx" path="res://assets/sprites/ui_pick1.png" id="6_c8owi"]
 [ext_resource type="Texture2D" uid="uid://dcsn03in83vpw" path="res://assets/sprites/ui_pick2.png" id="7_rriv4"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3cmu4"]
-bg_color = Color(1, 1, 1, 0.509804)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j35pd"]
-bg_color = Color(0.97, 0, 0, 0.686275)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vj72u"]
 atlas = ExtResource("3_k8bxg")
@@ -229,26 +223,6 @@ offset_right = 40.0
 grow_vertical = 0
 texture = ExtResource("2_f1ilk")
 
-[node name="KittenDetectionProgressBar" type="ProgressBar" parent="CatScannerTexture"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 27.62
-offset_top = -88.21
-offset_right = 74.66
-offset_bottom = -80.21
-grow_horizontal = 2
-grow_vertical = 2
-rotation = 0.37001
-theme_override_styles/background = SubResource("StyleBoxFlat_3cmu4")
-theme_override_styles/fill = SubResource("StyleBoxFlat_j35pd")
-value = 50.0
-show_percentage = false
-
 [node name="ScanEnergyBar" type="ProgressBar" parent="CatScannerTexture"]
 layout_mode = 0
 offset_left = 72.0
@@ -263,7 +237,6 @@ position = Vector2(192, 179)
 sprite_frames = SubResource("SpriteFrames_q48xm")
 
 [node name="CatPalmTexture" type="TextureRect" parent="."]
-visible = false
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -310,7 +283,6 @@ offset_bottom = 308.0
 theme_override_font_sizes/font_size = 16
 
 [node name="PickSprite" type="AnimatedSprite2D" parent="."]
-visible = false
 position = Vector2(895, 305)
 sprite_frames = SubResource("SpriteFrames_nwpjq")
 centered = false
