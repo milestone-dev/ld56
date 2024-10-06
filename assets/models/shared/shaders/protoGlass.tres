@@ -38,7 +38,7 @@ default_value_enabled = true
 default_value = 1.0
 
 [sub_resource type="VisualShaderNodeFresnel" id="VisualShaderNodeFresnel_8pfil"]
-default_input_values = [2, true, 3, 1.0]
+default_input_values = [2, true, 3, 0.2]
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_spdop"]
 operator = 2
@@ -117,7 +117,7 @@ void fragment() {
 
 
 // Fresnel:21
-	float n_in21p3 = 1.00000;
+	float n_in21p3 = 0.20000;
 	float n_out21p0 = pow(clamp(dot(NORMAL, VIEW), 0.0, 1.0), n_in21p3);
 
 
@@ -224,7 +224,7 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-1633.89, -498.389)
+graph_offset = Vector2(-1714.77, -518.027)
 modes/depth_draw = 1
 nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_ffw2d")
 nodes/fragment/2/position = Vector2(-1820, 60)
@@ -259,7 +259,7 @@ nodes/fragment/19/position = Vector2(-1580, -340)
 nodes/fragment/20/node = SubResource("VisualShaderNodeFloatParameter_7ens8")
 nodes/fragment/20/position = Vector2(-2360, -200)
 nodes/fragment/21/node = SubResource("VisualShaderNodeFresnel_8pfil")
-nodes/fragment/21/position = Vector2(-1220, -440)
+nodes/fragment/21/position = Vector2(-1320, -460)
 nodes/fragment/22/node = SubResource("VisualShaderNodeVectorOp_spdop")
 nodes/fragment/22/position = Vector2(-280, -160)
 nodes/fragment/23/node = SubResource("VisualShaderNodeMix_pspos")

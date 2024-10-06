@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://rs4k12y5gess"]
+[gd_scene load_steps=13 format=3 uid="uid://rs4k12y5gess"]
 
 [ext_resource type="PackedScene" uid="uid://jqmhm7qjf7n5" path="res://scenes/ui.tscn" id="1_cfovc"]
 [ext_resource type="PackedScene" uid="uid://ddw7qw2y8g0au" path="res://assets/maps/test.bsp" id="2_317oy"]
@@ -7,8 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://bgrnp25f5tyyt" path="res://assets/models/props/petri_dish/petri_dish.tscn" id="5_acile"]
 [ext_resource type="PackedScene" uid="uid://ctwdnitte857g" path="res://assets/models/props/centrifuge/centrifuge.tscn" id="6_vnj2j"]
 [ext_resource type="PackedScene" uid="uid://dtfeq3efdallg" path="res://assets/models/props/incubator/incubator.tscn" id="7_18doh"]
-[ext_resource type="Shader" uid="uid://rb0ou45ypa8b" path="res://assets/models/shared/shaders/protoShader.tres" id="8_006rw"]
-[ext_resource type="Shader" uid="uid://bkwsgy5n73jcv" path="res://assets/models/shared/shaders/protoGlass.tres" id="9_1f4ol"]
 [ext_resource type="PackedScene" uid="uid://vcw1lk4xv0us" path="res://assets/models/props/mascoll_table/mascoll_table.gltf" id="10_dmkfc"]
 [ext_resource type="PackedScene" uid="uid://c3gmui7jojnty" path="res://assets/models/props/erlenmeyer_flask/erlenmeyer_flask.tscn" id="11_4snwc"]
 
@@ -30,21 +28,6 @@ reflected_light_source = 2
 ssr_enabled = true
 glow_enabled = true
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_rt77w"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource("8_006rw")
-shader_parameter/EmissiveStrength = 1.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6y2q6"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource("9_1f4ol")
-shader_parameter/Refraction = 0.01
-shader_parameter/Opacity = 0.5
-shader_parameter/Fresnel = 0.5
-shader_parameter/EmissiveStrength = 1.0
-
 [node name="Main" type="Node3D"]
 
 [node name="UI" parent="." instance=ExtResource("1_cfovc")]
@@ -65,30 +48,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.077, -0.717175, -16.4167)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.077, 0.898638, -16.4167)
 ui = NodePath("../UI")
 
-[node name="microscope" parent="." instance=ExtResource("4_v2kpi")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21.5312, 0.845325, -18.4942)
-
-[node name="petri_dish" parent="." instance=ExtResource("5_acile")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.6375, 1.04531, -18.4978)
-
-[node name="petri_dish2" parent="." instance=ExtResource("5_acile")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.2352, 0.845325, -19.2146)
-
-[node name="centrifuge" parent="." instance=ExtResource("6_vnj2j")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21.475, 0.845325, -17.3962)
-
-[node name="incubator" parent="." instance=ExtResource("7_18doh")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21.4013, 0.845325, -15.8023)
-
-[node name="incubator" parent="incubator/incubator" index="0"]
-transform = Transform3D(1, 0, -3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 1, 0, -0.086728, 0)
-surface_material_override/0 = SubResource("ShaderMaterial_rt77w")
-surface_material_override/1 = SubResource("ShaderMaterial_6y2q6")
-
 [node name="mascoll_table2" parent="." instance=ExtResource("10_dmkfc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.2031, -0.217175, -11.7693)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 21.0051, -0.217175, -12.3491)
 
-[node name="erlenmeyer_flask" parent="." instance=ExtResource("11_4snwc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.6786, 0.845325, -16.6304)
+[node name="microscope" parent="mascoll_table2" instance=ExtResource("4_v2kpi")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.05025, 1.0625, -0.213323)
 
-[editable path="incubator"]
+[node name="petri_dish" parent="mascoll_table2" instance=ExtResource("5_acile")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.05385, 1.26249, -0.319623)
+
+[node name="petri_dish2" parent="mascoll_table2" instance=ExtResource("5_acile")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.77065, 1.0625, 0.0826769)
+
+[node name="centrifuge" parent="mascoll_table2" instance=ExtResource("6_vnj2j")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0477524, 1.0625, -0.157123)
+
+[node name="erlenmeyer_flask" parent="mascoll_table2" instance=ExtResource("11_4snwc")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.813522, 1.0625, -0.360736)
+
+[node name="incubator" parent="mascoll_table2" instance=ExtResource("7_18doh")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.64167, 1.0625, -0.0834265)
