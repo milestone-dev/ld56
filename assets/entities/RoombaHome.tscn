@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bkfs3kykwx6hv"]
+[gd_scene load_steps=4 format=3 uid="uid://c8s20xlrsxydo"]
+
+[ext_resource type="PackedScene" uid="uid://c52jkl633nwm0" path="res://assets/models/props/doomba/doomba_charge_station.gltf" id="1_18agf"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_vbep2"]
 size = Vector3(2, 0.25, 0.25)
@@ -10,12 +12,18 @@ size = Vector3(0.25, 1.25, 0.25)
 
 [node name="Roof" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0508891, -0.840537)
+visible = false
 mesh = SubResource("BoxMesh_vbep2")
 
 [node name="Leg1" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.85, -0.521257, -0.85)
+visible = false
 mesh = SubResource("BoxMesh_tyqfr")
 
 [node name="Leg2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.85, -0.521257, -0.85)
+visible = false
 mesh = SubResource("BoxMesh_tyqfr")
+
+[node name="doomba_charge_station2" parent="." instance=ExtResource("1_18agf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14782, 0)
