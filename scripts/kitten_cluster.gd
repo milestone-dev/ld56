@@ -25,13 +25,16 @@ func _ready() -> void:
 	sprite.modulate = FADED_OUT_COLOR;
 	particles.emitting = false
 	particles.draw_pass_1.material.texture = sprite.texture
+	particles.emitting = 0
+	particles.visible = false
 
 func _process(delta: float) -> void:
 	kitten_respawn_timer -= delta
-	particles.emitting = has_kittens()
 	particles.amount = kitten_count
-	if is_visible:
-		find_a_wall()
+	if is_visible && particles.visible != is_visible:
+		particles.restart()
+	particles.emitting = is_visible
+	particles.visible = is_visible
 		
 func _physics_process(delta: float) -> void:
 	if is_visible && !has_found_wall:
@@ -57,7 +60,7 @@ func find_a_wall():
 			var collider = $Particles/collider
 			collider.position = to_local(ray.position)
 			var mat = $Particles.process_material as ParticleProcessMaterial
-			mat.gravity = -ray.normal
+			mat.gravity = global_transform.basis * Vector3.BACK
 			break
 			
 	self.has_found_wall = true

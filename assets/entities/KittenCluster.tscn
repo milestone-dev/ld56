@@ -3,21 +3,10 @@
 [ext_resource type="Script" path="res://scripts/kitten_cluster.gd" id="1_1oip0"]
 [ext_resource type="Texture2D" uid="uid://bggqlfri1ag7" path="res://assets/sprites/kitten1.png" id="2_nfwxn"]
 [ext_resource type="Texture2D" uid="uid://bp0bfra7eckxa" path="res://assets/sprites/kitten3.png" id="3_1ugke"]
+[ext_resource type="Material" uid="uid://dkqsnxsajxc2c" path="res://assets/materials/KittenClusterParticleProcess.tres" id="3_g368t"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4uigm"]
 radius = 0.840449
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_163pu"]
-emission_shape = 1
-emission_sphere_radius = 1.0
-gravity = Vector3(0, 0, 0)
-scale_min = 0.1
-scale_max = 0.2
-turbulence_noise_strength = 4.83
-turbulence_noise_scale = 8.042
-collision_mode = 1
-collision_friction = 0.09
-collision_bounce = 0.66
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cblec"]
 transparency = 1
@@ -26,10 +15,10 @@ diffuse_mode = 3
 albedo_texture = ExtResource("3_1ugke")
 texture_filter = 0
 billboard_mode = 1
+billboard_keep_scale = true
 
 [sub_resource type="QuadMesh" id="QuadMesh_tsm84"]
 material = SubResource("StandardMaterial3D_cblec")
-size = Vector2(0.05, 0.05)
 
 [sub_resource type="BoxMesh" id="BoxMesh_kaium"]
 size = Vector3(2, 2, 0.1)
@@ -48,6 +37,7 @@ label = NodePath("Label3D")
 particles = NodePath("Particles")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
+visible = false
 pixel_size = 0.05
 billboard = 1
 texture_filter = 0
@@ -65,28 +55,39 @@ font_size = 64
 
 [node name="Particles" type="GPUParticles3D" parent="."]
 amount = 100
-lifetime = 439.72
-preprocess = 0.64
-explosiveness = 1.0
-process_material = SubResource("ParticleProcessMaterial_163pu")
+lifetime = 2.51
+preprocess = 6.17
+process_material = ExtResource("3_g368t")
 draw_pass_1 = SubResource("QuadMesh_tsm84")
 
-[node name="extractor" type="GPUParticlesAttractorSphere3D" parent="Particles"]
-strength = -0.1
-attenuation = 10.556
-
-[node name="attractor" type="GPUParticlesAttractorSphere3D" parent="Particles"]
-strength = 0.1
-attenuation = 0.0544095
-
 [node name="collider" type="GPUParticlesCollisionBox3D" parent="Particles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.146419)
 size = Vector3(2, 2, 0.1)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Particles/collider"]
+visible = false
 mesh = SubResource("BoxMesh_kaium")
+
+[node name="extractor" type="GPUParticlesAttractorSphere3D" parent="Particles/collider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0428438)
+strength = -1.0
+attenuation = 0.25
+
+[node name="attractor" type="GPUParticlesAttractorSphere3D" parent="Particles/collider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.118134)
+attenuation = 0.00222861
+directionality = 0.36
+radius = 1.5
+
+[node name="GPUParticlesAttractorBox3D" type="GPUParticlesAttractorBox3D" parent="Particles/collider"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -0.342053)
+strength = 10.0
+directionality = 1.0
+size = Vector3(2, 2, 1)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Particles"]
 transform = Transform3D(-0.999991, 0.00422364, -2.69069e-05, 0, -0.00637043, -0.99998, -0.00422372, -0.999971, 0.00637037, 0, 0, 0)
+visible = false
 mesh = SubResource("CylinderMesh_nhlfn")
 
 [node name="RayCast3D" type="RayCast3D" parent="Particles"]

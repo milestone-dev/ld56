@@ -1,0 +1,28 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=3 format=3 uid="uid://dkqsnxsajxc2c"]
+
+[sub_resource type="Curve" id="Curve_n8u8d"]
+_data = [Vector2(0.00600602, 0.64757), 0.0, 0.855476, 0, 0, Vector2(1, 1.01509), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_i7a6i"]
+curve = SubResource("Curve_n8u8d")
+
+[resource]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 0.0
+emission_ring_radius = 0.4
+emission_ring_inner_radius = 0.0
+direction = Vector3(0, 0, 1)
+spread = 0.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.1
+scale_over_velocity_max = 1.0
+scale_over_velocity_curve = SubResource("CurveTexture_i7a6i")
+turbulence_noise_strength = 4.83
+turbulence_noise_scale = 8.042
+collision_mode = 1
+collision_friction = 0.09
+collision_bounce = 0.66
