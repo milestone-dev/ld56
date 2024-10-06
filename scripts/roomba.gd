@@ -34,11 +34,19 @@ var attack_cooldown := 0.0
 @export var returning_texture : Texture2D
 @export var audio_stream_player : AudioStreamPlayer3D
 
+@export var model : MeshInstance3D
+var material : Material
+@onready var decal: Decal = $CollisionShape3D/doomba2/Decal
+
+
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player") as Player
 	home = get_parent_node_3d() as Node3D
 	modulate_color.a = 0.5
 	ring_sprite.modulate = modulate_color
+	
+	material = model.get_surface_override_material(1)
+	
 
 func hit_reset():
 	if state != State.SLEEPING:
@@ -52,6 +60,8 @@ func update_target(delta:float):
 			audio_stream_player.stream_paused = true
 			if player.kitten_saved_count >= awake_kittens_saved:
 				state = State.IDLE
+			material.set_shader_parameter("EmissiveColor", Color(1.0,1.0,1.0))
+			decal.modulate = Color(1.0,0.0,0.0)
 		State.IDLE:
 			state_sprite.texture = idle_texture
 			audio_stream_player.stream_paused = true
@@ -60,6 +70,8 @@ func update_target(delta:float):
 			else:
 				navigation_agent.target_position = NavigationServer3D.map_get_random_point(get_world_3d().navigation_map, 1, false)
 				state = State.ROAMING
+			material.set_shader_parameter("EmissiveColor", Color(1.0,1.0,0.0))
+			decal.modulate = Color(1.0,1.0,0.0)
 		State.ROAMING:
 			state_sprite.texture = roaming_texture
 			audio_stream_player.stream_paused = false
@@ -68,6 +80,8 @@ func update_target(delta:float):
 			elif navigation_agent.is_navigation_finished():
 				navigation_agent.target_position = NavigationServer3D.map_get_random_point(get_world_3d().navigation_map, 1, false)
 				state = State.ROAMING
+			material.set_shader_parameter("EmissiveColor", Color(0.5,1.0,0.5))
+			decal.modulate = Color(0.5,1.0,0.5)
 		State.RETURNING_HOME:
 			state_sprite.texture = returning_texture
 			audio_stream_player.stream_paused = false
@@ -80,6 +94,8 @@ func update_target(delta:float):
 					state = State.IDLE
 			else:
 				navigation_agent.target_position = home.global_position
+			material.set_shader_parameter("EmissiveColor", Color(0.0,1.0,0.0))
+			decal.modulate = Color(0.0,1.0,0.0)
 		State.CHASING_PLAYER:
 			state_sprite.texture = chasing_texture
 			audio_stream_player.stream_paused = false
@@ -91,6 +107,8 @@ func update_target(delta:float):
 						player.drop_kittens(1)
 			else:
 				state = State.IDLE
+			material.set_shader_parameter("EmissiveColor", Color(1.0,0.0,0.0))
+			decal.modulate = Color(1.0,0.0,0.0)
 
 func _physics_process(delta):
 	attack_cooldown -= delta
