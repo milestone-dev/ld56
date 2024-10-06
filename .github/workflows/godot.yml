@@ -11,8 +11,7 @@ env:
   ITCHIO_API_KEY: ${{ secrets.ITCHIO_API_KEY }}
   ITCHIO_USERNAME: ${{ secrets.ITCHIO_USERNAME }}
   ITCHIO_GAME: ${{ secrets.ITCHIO_GAME }}
-  LOG: 2>&1 | tee -a build.log
-
+  LOGFILE: build.log
 
 jobs:
   deploy:
@@ -35,27 +34,27 @@ jobs:
       - name: Run the bsp unfucker that also reimport any borked stuff
         run: |
           git config --global --add safe.directory '*' # workaround for 'fatal: detected dubious ownership in repository'
-          bash fixbsp.sh $LOG
+          bash fixbsp.sh 2>&1 | tee -a §LOGFILE
 
       - name: Web Build
         run: |
             mkdir -v -p build/web
-            godot --headless -v --export-release "Web" build/web/index.html $LOG
+            godot --headless -v --export-release "Web" build/web/index.html 2>&1 | tee -a §LOGFILE
 
       - name: Mac Build
         run: |
           mkdir -v -p build/mac
-          godot --headless --verbose --export-release "MacOS" build/mac/$EXPORT_NAME.zip $LOG
+          godot --headless --verbose --export-release "MacOS" build/mac/$EXPORT_NAME.zip 2>&1 | tee -a §LOGFILE
 
       - name: Windows Build
         run: |
           mkdir -v -p build/windows
-          godot --headless --verbose --export-release "Windows Desktop" build/windows/$EXPORT_NAME.zip $LOG
+          godot --headless --verbose --export-release "Windows Desktop" build/windows/$EXPORT_NAME.zip 2>&1 | tee -a §LOGFILE
 
       - name: Linux Build
         run: |
           mkdir -v -p build/linux
-          godot --headless --verbose --export-release "Linux" build/linux/$EXPORT_NAME.zip $LOG
+          godot --headless --verbose --export-release "Linux" build/linux/$EXPORT_NAME.zip 2>&1 | tee -a §LOGFILE
 
       - name: Upload Artifact web
         uses: actions/upload-artifact@v4

@@ -59,6 +59,7 @@ func hit_reset():
 		play_sfx(fall_asleep_audio_stream)
 		home_rest_timer = home_rest_timer_max
 		state = State.RETURNING_HOME
+		Progress.roombas_sent_home += 1
 
 func update_target(delta:float):
 	match state:
