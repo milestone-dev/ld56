@@ -61,14 +61,15 @@ text = "0"
 font_size = 64
 
 [node name="Particles" type="GPUParticles3D" parent="."]
-amount = 100
-lifetime = 2.51
-preprocess = 6.17
+amount = 5000
+lifetime = 2.75
+explosiveness = 1.0
 process_material = ExtResource("3_g368t")
 draw_pass_1 = SubResource("QuadMesh_tsm84")
 
 [node name="collider" type="GPUParticlesCollisionBox3D" parent="Particles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.146419)
+visible = false
 size = Vector3(2, 2, 0.1)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Particles/collider"]
@@ -77,17 +78,21 @@ mesh = SubResource("BoxMesh_kaium")
 
 [node name="extractor" type="GPUParticlesAttractorSphere3D" parent="Particles/collider"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0428438)
-strength = -1.0
-attenuation = 0.25
+visible = false
+strength = -0.5
+attenuation = 7.46428
+radius = 58.07
 
 [node name="attractor" type="GPUParticlesAttractorSphere3D" parent="Particles/collider"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.118134)
+visible = false
 attenuation = 0.00222861
 directionality = 0.36
 radius = 1.5
 
 [node name="GPUParticlesAttractorBox3D" type="GPUParticlesAttractorBox3D" parent="Particles/collider"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -0.342053)
+visible = false
 strength = 10.0
 directionality = 1.0
 size = Vector3(2, 2, 1)
