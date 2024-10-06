@@ -14,3 +14,8 @@ func _ready() -> void:
 		env.environment.reflected_light_source = Environment.REFLECTION_SOURCE_SKY
 	else:
 		env.environment.reflected_light_source = Environment.REFLECTION_SOURCE_DISABLED
+
+	lightningNodes.get_node("%Probes").visible = Settings.gfx_quality > 2
+	lightningNodes.get_node("%Spotlights").visible = Settings.gfx_quality > 1
+	lightningNodes.get_node("%CeilingLights").visible = Settings.gfx_quality > 1
+	lightningNodes.get_node("%GlobalLight").visible = Settings.gfx_quality < 2
