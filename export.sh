@@ -1,13 +1,16 @@
 EXPORT_NAME=OneMillionMicroscopicKittens
 
+godot="godot"
 # Find Godot app path
-godotapp=$(mdfind "kMDItemKind == 'Application' && kMDItemFSName == 'Godot*' && kMDItemContentTypeTree == 'public.executable'" | head -n 1)
-if [ -z "$godotapp" ]; then
-    echo "Error: Godot application not found."
+if [[ $(uname) == "Darwin" ]]; then
+    godotapp=$(mdfind "kMDItemKind == 'Application' && kMDItemFSName == 'Godot*' && kMDItemContentTypeTree == 'public.executable'" | head -n 1)
+    godot="$godotapp/Contents/MacOS/Godot"
+fi
+if [ -z "$godot" ]; then
+    echo "Error: Godot not found."
     exit 1
 fi
-godot="$godotapp/Contents/MacOS/Godot"
-echo "Godot app at: $godot"
+echo "Godot found at: $godot"
 
 ALL=(web mac windows linux)
 
