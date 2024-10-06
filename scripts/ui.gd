@@ -36,7 +36,7 @@ func update(player:Player):
 	var frame = ((dl as float) / (max_dl as float) * total_frames) as int
 
 	detection_progress_sprite.frame = frame
-	if player.kitten_detection_level < player.KITTEN_DETECTION_LEVEL_MAX:
+	if player.kitten_detection_level < player.KITTEN_DETECTION_LEVEL_MAX / 2:
 		detection_progress_sprite.frame = detection_progress_sprite.frame + randi_range(-1, 1)
 
 	spray_sprite.visible = player.current_tool == Player.Tool.SPRAYER

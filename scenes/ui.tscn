@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://jqmhm7qjf7n5"]
+[gd_scene load_steps=26 format=3 uid="uid://jqmhm7qjf7n5"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_68hwl"]
 [ext_resource type="Texture2D" uid="uid://cya465556bqjx" path="res://assets/sprites/ui_catscan.png" id="2_f1ilk"]
@@ -8,6 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://bvrygo11g5lqu" path="res://assets/sprites/ui_spray2.png" id="4_gtxci"]
 [ext_resource type="Texture2D" uid="uid://duliddsehj0jx" path="res://assets/sprites/ui_pick1.png" id="6_c8owi"]
 [ext_resource type="Texture2D" uid="uid://dcsn03in83vpw" path="res://assets/sprites/ui_pick2.png" id="7_rriv4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y178i"]
+bg_color = Color(0, 0, 0, 0.666667)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ca4ib"]
+bg_color = Color(1, 0.16, 0.174, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vj72u"]
 atlas = ExtResource("3_k8bxg")
@@ -103,6 +109,12 @@ animations = [{
 "name": &"default",
 "speed": 12.0
 }]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gqduk"]
+bg_color = Color(0, 0, 0, 0.690196)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h6ygn"]
+bg_color = Color(0.27451, 0.470588, 0.827451, 1)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nwpjq"]
 animations = [{
@@ -225,18 +237,23 @@ texture = ExtResource("2_f1ilk")
 
 [node name="ScanEnergyBar" type="ProgressBar" parent="CatScannerTexture"]
 layout_mode = 0
-offset_left = 72.0
-offset_top = 281.0
-offset_right = 241.0
-offset_bottom = 308.0
+offset_left = 173.0
+offset_top = 211.0
+offset_right = 223.0
+offset_bottom = 222.0
+rotation = -0.972881
 theme_override_font_sizes/font_size = 16
+theme_override_styles/background = SubResource("StyleBoxFlat_y178i")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ca4ib")
 value = 50.0
+show_percentage = false
 
 [node name="KittenDetectionSprite" type="AnimatedSprite2D" parent="CatScannerTexture"]
 position = Vector2(192, 179)
 sprite_frames = SubResource("SpriteFrames_q48xm")
 
 [node name="CatPalmTexture" type="TextureRect" parent="."]
+visible = false
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -276,11 +293,24 @@ sprite_frames = SubResource("SpriteFrames_27g81")
 centered = false
 
 [node name="SprayEnergyBar" type="ProgressBar" parent="SpraySprite"]
-offset_left = 72.0
-offset_top = 281.0
-offset_right = 241.0
-offset_bottom = 308.0
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -92.0
+offset_top = -40.5
+offset_right = -74.0
+offset_bottom = 4.5
+grow_horizontal = 0
+grow_vertical = 2
+rotation = -0.307178
 theme_override_font_sizes/font_size = 16
+theme_override_styles/background = SubResource("StyleBoxFlat_gqduk")
+theme_override_styles/fill = SubResource("StyleBoxFlat_h6ygn")
+value = 60.0
+fill_mode = 3
+show_percentage = false
 
 [node name="PickSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(895, 305)
