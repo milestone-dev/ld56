@@ -75,7 +75,7 @@ func update_target(delta:float):
 			state_sprite.texture = sleeping_texture
 			motor_audio_stream_player.stream_paused = true
 			if player.kitten_saved_count >= awake_kittens_saved:
-				awake_kittens_saved = awake_kittens_saved + (Settings.kitten_base_increment_after_sleep * this_one_sent_home)
+				awake_kittens_saved = awake_kittens_saved + (Settings.kitten_base_increment_after_sleep * (this_one_sent_home+1))
 				state = State.IDLE
 				motor_audio_stream_player.play()
 			material.set_shader_parameter("EmissiveColor", Color(1.0,1.0,1.0))
