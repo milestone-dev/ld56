@@ -79,7 +79,7 @@ func update_target(delta:float):
 			projection_material.set_shader_parameter("Color", Color(1.0,1.0,1.0))
 			decal.modulate = Color(0.0,0.0,0.0)
 			animation_player.stop()
-			print("Sleep")
+			#print("Sleep")
 		State.IDLE:
 			state_sprite.texture = idle_texture
 			motor_audio_stream_player.stream_paused = true
@@ -93,7 +93,7 @@ func update_target(delta:float):
 			projection_material.set_shader_parameter("Color", Color(1.0,1.0,0.0))
 			decal.modulate = Color(1.0,1.0,0.0)
 			animation_player.play("running",-1,1)
-			print("Idle")
+			#print("Idle")
 		State.ROAMING:
 			state_sprite.texture = roaming_texture
 			motor_audio_stream_player.stream_paused = false
@@ -107,7 +107,7 @@ func update_target(delta:float):
 			projection_material.set_shader_parameter("Color", Color(0.5,1.0,0.5))
 			decal.modulate = Color(0.5,1.0,0.5)
 			animation_player.play("running",-1,1.5)
-			print("Roaming")
+			#print("Roaming")
 		State.RETURNING_HOME:
 			state_sprite.texture = returning_texture
 			motor_audio_stream_player.stream_paused = false
@@ -158,7 +158,7 @@ func _physics_process(delta):
 
 	look_at(next_path_position, Vector3.UP)
 	global_position = global_position.move_toward(global_position + new_velocity, movement_delta)
-	
+
 	#print("Distance to target: " + str(self.position.distance_to(next_path_position)))
 
 

@@ -14,6 +14,9 @@ var fade_out_timer := 5.0
 var has_found_wall = false
 
 
+var excluded := false
+
+
 const KITTEN_RESPAWN_TIMER_MAX := 5.0
 var kitten_respawn_timer := 0.0
 
