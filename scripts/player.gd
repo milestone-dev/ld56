@@ -148,7 +148,7 @@ func _physics_process(delta: float) -> void:
 			sfx_meow_audio_player.volume_db = min(0, linear_to_db(kitten_disappear_timer/MEOW_SFX_TIMER_MAX))
 			sfx_meow_audio_player.play()
 			meow_sfx_timer = MEOW_SFX_TIMER_MAX * randf_range(0.7, 1.5)
-	if kitten_disappear_timer <= 0:
+	if kitten_disappear_timer <= 0.0:
 		drop_all_kittens()
 		kitten_disappear_timer = Settings.kitten_drop_timer_max
 

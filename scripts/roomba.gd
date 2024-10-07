@@ -103,7 +103,7 @@ func update_target(delta:float):
 			elif navigation_agent.is_navigation_finished():
 				navigation_agent.target_position = NavigationServer3D.map_get_random_point(get_world_3d().navigation_map, 1, false)
 				state = State.ROAMING
-			
+
 			set_state_colors(Color(0.5,1.0,0.5))
 			animation_player.play("running",-1,1.5)
 			#print("Roaming")
@@ -121,9 +121,9 @@ func update_target(delta:float):
 					play_sfx(become_idle_audio_stream)
 			else:
 				navigation_agent.target_position = home.global_position
-				
+
 			set_state_colors(Color(1.0,1.0,0.0))
-			
+
 			animation_player.play("running",-1,1)
 			#print("Returning Home")
 		State.CHASING_PLAYER:
@@ -137,7 +137,7 @@ func update_target(delta:float):
 						player.roomba_hit()
 			else:
 				state = State.IDLE
-				
+
 			set_state_colors(Color(1.0,0.0,0.0))
 			animation_player.play("running",-1,2)
 			#print("Chasing!")

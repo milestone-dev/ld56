@@ -18,6 +18,8 @@ class_name UI
 @export var pain_flash_rect : TextureRect
 @export var settings_menu : SettingsPage
 
+@export var kitten_hold_timer_progress_bar : TextureProgressBar
+
 @export var interact_pick_label : Label
 @export var interact_deposit_label : Label
 @export var interact_charge_spray_label : Label
@@ -89,7 +91,12 @@ func update(player:Player):
 
 
 
+
+
 	kittens_in_hand.visible = player.kitten_count > 0
+	kitten_hold_timer_progress_bar.visible = player.kitten_count > 0
+	kitten_hold_timer_progress_bar.max_value = Settings.kitten_drop_timer_max
+	kitten_hold_timer_progress_bar.value = player.kitten_disappear_timer
 	cat_palm_texture.visible = !player.scanner_showing
 	kitten_count_label.visible = player.kitten_count > 0
 	kitten_count_label.text = "%d" % player.kitten_count

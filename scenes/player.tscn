@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ab6ol"]
 [ext_resource type="AudioStream" uid="uid://curqsbajr0u0l" path="res://assets/sfx/step1.ogg" id="2_dlq0r"]
 [ext_resource type="AudioStream" uid="uid://cet766pcpsh5u" path="res://assets/sfx/spray.ogg" id="2_fiknb"]
-[ext_resource type="AudioStream" uid="uid://dyrrmv7414iyk" path="res://assets/sfx/sprayempty.ogg" id="3_j3pey"]
+[ext_resource type="AudioStream" uid="uid://cqushts8x21s3" path="res://assets/sfx/sprayempty.ogg" id="3_j3pey"]
 [ext_resource type="AudioStream" uid="uid://c2h7rapm3g88i" path="res://assets/sfx/pick.ogg" id="3_qhxb2"]
 [ext_resource type="AudioStream" uid="uid://b67dnihf2emsq" path="res://assets/sfx/step2.ogg" id="3_s1eir"]
 [ext_resource type="AudioStream" uid="uid://dm8o13aww2tpa" path="res://assets/sfx/switch.ogg" id="4_6lj0x"]

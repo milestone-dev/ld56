@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://jqmhm7qjf7n5"]
+[gd_scene load_steps=33 format=3 uid="uid://jqmhm7qjf7n5"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_68hwl"]
 [ext_resource type="Texture2D" uid="uid://cya465556bqjx" path="res://assets/sprites/ui_catscan.png" id="2_f1ilk"]
@@ -7,7 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://l7bo14mb54hn" path="res://assets/sprites/ui_spray.png" id="3_sordo"]
 [ext_resource type="Texture2D" uid="uid://bvrygo11g5lqu" path="res://assets/sprites/ui_spray2.png" id="4_gtxci"]
 [ext_resource type="PackedScene" path="res://scenes/kittens_in_hand.tscn" id="5_cs22l"]
+[ext_resource type="Texture2D" uid="uid://xpk88xodxmy1" path="res://assets/sprites/roomba_ring.png" id="6_34rhv"]
 [ext_resource type="Texture2D" uid="uid://duliddsehj0jx" path="res://assets/sprites/ui_pick1.png" id="6_c8owi"]
+[ext_resource type="Texture2D" uid="uid://i54wjp4tx4dn" path="res://assets/sprites/kittentimer.png" id="6_k63up"]
 [ext_resource type="Texture2D" uid="uid://dcsn03in83vpw" path="res://assets/sprites/ui_pick2.png" id="7_rriv4"]
 [ext_resource type="PackedScene" uid="uid://cyeynw1jfwgjl" path="res://scenes/settings_page.tscn" id="10_fqakn"]
 
@@ -146,7 +148,7 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("crosshair", "kitten_count_label", "tardigrade_count_label", "sprint_energy_label", "kitten_pool_label", "time_label", "cat_scanner_texture", "cat_palm_texture", "scan_energy_bar", "spray_energy_bar", "spray_sprite", "detection_progress_sprite", "pick_sprite", "kittens_in_hand", "pain_flash_rect", "settings_menu", "interact_pick_label", "interact_deposit_label", "interact_charge_spray_label", "interact_reset_roomba_label", "inteact_use_label", "warning_spray_label", "warning_drop_label")]
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("crosshair", "kitten_count_label", "tardigrade_count_label", "sprint_energy_label", "kitten_pool_label", "time_label", "cat_scanner_texture", "cat_palm_texture", "scan_energy_bar", "spray_energy_bar", "spray_sprite", "detection_progress_sprite", "pick_sprite", "kittens_in_hand", "pain_flash_rect", "settings_menu", "kitten_hold_timer_progress_bar", "interact_pick_label", "interact_deposit_label", "interact_charge_spray_label", "interact_reset_roomba_label", "inteact_use_label", "warning_spray_label", "warning_drop_label")]
 script = ExtResource("1_68hwl")
 crosshair = NodePath("Crosshair")
 kitten_count_label = NodePath("HandsContainer/CatPalmTexture/KittenCountLabel")
@@ -164,6 +166,7 @@ pick_sprite = NodePath("HandsContainer/PickSprite")
 kittens_in_hand = NodePath("HandsContainer/CatPalmTexture/SubViewportContainer/SubViewport/Node3D")
 pain_flash_rect = NodePath("PainFlashRect")
 settings_menu = NodePath("SettingsPage")
+kitten_hold_timer_progress_bar = NodePath("KittenTimerProgressBar")
 interact_pick_label = NodePath("InteractionLabelContainer/InteractPickLabel")
 interact_deposit_label = NodePath("InteractionLabelContainer/InteractDepositLabel")
 interact_charge_spray_label = NodePath("InteractionLabelContainer/InteractChargeSprayLabel")
@@ -171,6 +174,23 @@ interact_reset_roomba_label = NodePath("InteractionLabelContainer/InteractResetR
 inteact_use_label = NodePath("InteractionLabelContainer/InteractUseLabel")
 warning_spray_label = NodePath("InteractionLabelContainer/WarningSprayLabel")
 warning_drop_label = NodePath("InteractionLabelContainer/WarningDropLabel")
+
+[node name="CrosshairRect" type="TextureRect" parent="."]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+pivot_offset = Vector2(16, 16)
+texture = ExtResource("6_34rhv")
 
 [node name="PainFlashRect" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -182,6 +202,7 @@ mouse_filter = 2
 texture = SubResource("GradientTexture2D_7rc8u")
 
 [node name="Crosshair" type="ColorRect" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -193,6 +214,28 @@ offset_right = 8.0
 offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(8, 8)
+
+[node name="KittenTimerProgressBar" type="TextureProgressBar" parent="."]
+texture_filter = 1
+clip_contents = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.225, 0.225)
+pivot_offset = Vector2(64, 64)
+step = 0.1
+value = 100.0
+fill_mode = 5
+texture_progress = ExtResource("6_k63up")
 
 [node name="InteractionLabelContainer" type="Control" parent="."]
 layout_mode = 3
