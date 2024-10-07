@@ -99,7 +99,7 @@ func _ready() -> void:
 	music_audio_player.stream = music_track2
 	music_audio_player.play()
 	sfx_scan_audio_player.play()
-	sfx_scan_audio_player.stream_paused = !scanner_showing
+	sfx_scan_audio_player.stream_paused = true
 	ui.pick_sprite.animation_finished.connect(switch_to_spray_tool)
 
 func _input(event: InputEvent) -> void:
@@ -170,7 +170,8 @@ func _physics_process(delta: float) -> void:
 	scanner_showing = Input.is_action_pressed("tool_enable_scanner")
 	if scanner_showing:
 		update_scanner()
-	sfx_scan_audio_player.stream_paused = !scanner_showing
+	if sfx_scan_audio_player.stream_paused == scanner_showing:
+		sfx_scan_audio_player.stream_paused = !scanner_showing
 	var val := linear_to_db((kitten_detection_level as float / KITTEN_DETECTION_LEVEL_MAX as float))
 	sfx_scan_audio_player.volume_db = clampf(val, -80, 0)
 
