@@ -20,6 +20,7 @@ var attack_cooldown := 0.0
 
 @export var awake_kittens_saved : int = 10
 @export var movement_speed: float = 3.0
+@export var chase_movement_speed : float = 6.0
 @export var home_rest_timer_max : float = 30.0
 @export var kitten_destroy_timer: float = 0.3
 @export var modulate_color : Color = Color.WHITE
@@ -156,7 +157,9 @@ func _physics_process(delta):
 		return
 	if navigation_agent.is_navigation_finished():
 		return
-	movement_delta = movement_speed * delta
+
+	if state == State.CHASING_PLAYER: movement_delta = chase_movement_speed * delta
+	else: movement_delta = movement_speed * delta
 	var next_path_position: Vector3 = navigation_agent.get_next_path_position()
 	var new_velocity: Vector3 = global_position.direction_to(next_path_position) * movement_delta
 
