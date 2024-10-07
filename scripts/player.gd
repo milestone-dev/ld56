@@ -99,6 +99,7 @@ func _ready() -> void:
 	music_audio_player.stream = music_track2
 	music_audio_player.play()
 	sfx_scan_audio_player.play()
+	sfx_scan_audio_player.stream_paused = !scanner_showing
 	ui.pick_sprite.animation_finished.connect(switch_to_spray_tool)
 
 func _input(event: InputEvent) -> void:
