@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dtweho2ri4gm6"]
+[gd_scene load_steps=11 format=3 uid="uid://dtweho2ri4gm6"]
 
 [ext_resource type="Script" path="res://scripts/kitten_container.gd" id="1_1c83c"]
 [ext_resource type="PackedScene" uid="uid://b20cptcvcqfl7" path="res://assets/models/props/microscope/microscope.tscn" id="2_m22ti"]
 [ext_resource type="PackedScene" uid="uid://bgrnp25f5tyyt" path="res://assets/models/props/petri_dish/petri_dish.tscn" id="3_kk3tn"]
+[ext_resource type="PackedScene" uid="uid://bl2um15ef14qr" path="res://assets/models/fx/glow_cone.gltf" id="4_rh3wi"]
+[ext_resource type="Material" uid="uid://dqxcer53cf5sr" path="res://assets/models/fx/goal_glow_blue_mat.tres" id="5_fs72w"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_nurbt"]
 height = 1.0
@@ -69,3 +71,12 @@ libraries = {
 "": SubResource("AnimationLibrary_6b3rl")
 }
 speed_scale = 3.25
+
+[node name="glow_cone" parent="." instance=ExtResource("4_rh3wi")]
+transform = Transform3D(1.70028, 0, 0, 0, 1.70028, 0, 0, 0, 1.70028, -0.0726661, 0.234433, 0.0713867)
+
+[node name="goal_glow" parent="glow_cone" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.136888, 0)
+surface_material_override/0 = ExtResource("5_fs72w")
+
+[editable path="glow_cone"]

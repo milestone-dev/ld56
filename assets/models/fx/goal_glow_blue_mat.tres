@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dqxcer53cf5sr"]
+
+[ext_resource type="Shader" uid="uid://dq7sh7s6a2oe8" path="res://assets/models/shared/shaders/lightbeam.tres" id="1_xt5hj"]
+
+[resource]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_xt5hj")
+shader_parameter/Color = Color(3.46541e-06, 0.94652, 0.922375, 1)
+shader_parameter/Strength = 0.9

@@ -72,6 +72,7 @@ const SCAN_SFX_TIMER_MAX := 0.4
 var scan_sfx_timer := 0.0
 const SCAN_MAX_PITCH := 2.0
 
+var kitten_picked_up := false
 var kitten_saved_count := 0
 var kitten_count := 0;
 var tardigrade_count := 0;
@@ -89,6 +90,7 @@ const SCAN_RANGE_CUTOFF := 5.0
 const SPRAY_ENERGY_MAX := 100.0
 const SPRAY_ENERGY_COST := SPRAY_ENERGY_MAX/10.0
 var spray_energy := SPRAY_ENERGY_MAX
+var spray_empty := false
 
 var kitten_disappear_timer := Settings.kitten_drop_timer_max
 
@@ -221,6 +223,7 @@ func drop_all_kittens():
 	tardigrade_count = 0
 	play_sfx(sfx_drop_kittens)
 	kitten_disappear_timer = Settings.kitten_drop_timer_max
+	kitten_picked_up = false
 
 func update_scanner():
 	kitten_detection_level = 0
@@ -261,6 +264,7 @@ func manage_interactions():
 		if spray_energy > 0:
 			spray()
 		else:
+			spray_empty = true
 			ui.flash_oos()
 			play_sfx(sfx_spray_empty)
 
@@ -285,6 +289,7 @@ func manage_interactions():
 						ui.pick_sprite.play()
 						play_sfx(sfx_pick)
 						ui.hint_return()
+						kitten_picked_up = true
 
 	var collider = interaction_ray.get_collider()
 	if collider is Roomba:

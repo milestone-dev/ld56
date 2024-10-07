@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dq4q6xr62djhk"]
+[gd_scene load_steps=10 format=3 uid="uid://dq4q6xr62djhk"]
 
 [ext_resource type="Script" path="res://scripts/spray_recharger.gd" id="1_qp0ey"]
 [ext_resource type="PackedScene" uid="uid://c3gmui7jojnty" path="res://assets/models/props/erlenmeyer_flask/erlenmeyer_flask.tscn" id="2_tsnye"]
+[ext_resource type="PackedScene" uid="uid://bl2um15ef14qr" path="res://assets/models/fx/glow_cone.gltf" id="3_i1v1w"]
+[ext_resource type="Material" uid="uid://i34enm36d36p" path="res://assets/models/fx/goal_glow_green_mat.tres" id="4_64oev"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_nurbt"]
 height = 1.0
@@ -69,3 +71,12 @@ root_node = NodePath("../erlenmeyer_flask")
 libraries = {
 "": SubResource("AnimationLibrary_24r1y")
 }
+
+[node name="glow_cone" parent="." instance=ExtResource("3_i1v1w")]
+transform = Transform3D(1.19649, 0, 0, 0, 0.779265, 0, 0, 0, 1.07505, 0, 0, 0)
+
+[node name="goal_glow" parent="glow_cone" index="0"]
+transform = Transform3D(2.49879, 0, 0, 0, 2.49879, 0, 0, 0, 2.49879, 0.0032403, 0.336191, -0.0013712)
+surface_material_override/0 = ExtResource("4_64oev")
+
+[editable path="glow_cone"]
