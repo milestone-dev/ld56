@@ -12,4 +12,5 @@
 @PointClass color(255 125 125) size(-8 -8 -8, 8 8 8) = SprayRecharger : "" []
 @PointClass color(255 125 125) size(-8 -8 -8, 8 8 8) = ScannerRecharger : "" []
 
-@SolidClass color(204 204 204) base() = func_detail_illusionary : "" []
+@SolidClass = func_detail_illusionary : "" []
+@SolidClass = func_detail : "" []
