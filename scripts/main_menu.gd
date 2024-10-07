@@ -16,9 +16,14 @@ const preloaded_resources = [
 @export var test_level_scene : PackedScene
 @export var start_game_button : Button
 @export var settings_page : Control
+@export var loading_view : TextureRect
 
 func start_game():
 	Progress.reset()
+	loading_view.show()
+	call_deferred("start_level")
+
+func start_level():
 	get_tree().change_scene_to_packed(level_scene)
 
 func start_test_level():
@@ -28,6 +33,7 @@ func start_test_level():
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	start_game_button.grab_focus()
+	loading_view.hide()
 
 func go_to_settings():
 	settings_page.show()

@@ -46,7 +46,7 @@ corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3k10t"]
 
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("start_game_button", "settings_page")]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("start_game_button", "settings_page", "loading_view")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -58,6 +58,7 @@ level_scene = ExtResource("2_767qk")
 test_level_scene = ExtResource("3_ud258")
 start_game_button = NodePath("HBoxContainer/VBoxContainer/HBoxContainer/StartGameButton")
 settings_page = NodePath("SettingsPage")
+loading_view = NodePath("LoadingView")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -178,6 +179,36 @@ bus = &"Music"
 [node name="SettingsPage" parent="." instance=ExtResource("7_en5m6")]
 visible = false
 layout_mode = 1
+
+[node name="LoadingView" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_yjne6")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="LoadingLabel" type="Label" parent="LoadingView"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = 231.0
+offset_right = 56.0
+offset_bottom = 265.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.760784, 0.254902, 0.4, 1)
+theme_override_font_sizes/font_size = 24
+text = "Loading..."
+horizontal_alignment = 1
 
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/HBoxContainer/StartGameButton" to="." method="start_game"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/HBoxContainer/SettingsButton" to="." method="go_to_settings"]
