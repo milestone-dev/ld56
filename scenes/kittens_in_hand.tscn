@@ -1,46 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dvf0hoh1qm1qx"]
+[gd_scene load_steps=6 format=3 uid="uid://ba77xiyv3dywu"]
 
 [ext_resource type="Script" path="res://scripts/kittens_in_hand.gd" id="1_rg5u7"]
-[ext_resource type="Texture2D" uid="uid://bp0bfra7eckxa" path="res://assets/sprites/kitten3.png" id="2_6ekkh"]
-
-[sub_resource type="Curve" id="Curve_n8u8d"]
-_data = [Vector2(0.00600602, 0.64757), 0.0, 0.855476, 0, 0, Vector2(1, 1.01509), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_i7a6i"]
-curve = SubResource("Curve_n8u8d")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y7s7v"]
-emission_shape = 6
-emission_ring_axis = Vector3(0, 0, 1)
-emission_ring_height = 0.0
-emission_ring_radius = 0.4
-emission_ring_inner_radius = 0.0
-direction = Vector3(0, 0, 1)
-spread = 0.0
-initial_velocity_max = 1.0
-gravity = Vector3(0, 0, 0)
-scale_min = 0.1
-scale_max = 0.1
-scale_over_velocity_max = 1.0
-scale_over_velocity_curve = SubResource("CurveTexture_i7a6i")
-turbulence_noise_strength = 4.83
-turbulence_noise_scale = 8.042
-collision_mode = 1
-collision_friction = 0.09
-collision_bounce = 0.66
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cblec"]
-transparency = 1
-shading_mode = 0
-diffuse_mode = 3
-albedo_texture = ExtResource("2_6ekkh")
-texture_filter = 0
-billboard_mode = 1
-billboard_keep_scale = true
-
-[sub_resource type="QuadMesh" id="QuadMesh_dn307"]
-material = SubResource("StandardMaterial3D_cblec")
+[ext_resource type="Material" uid="uid://d2705xsg640w7" path="res://assets/materials/kittens_in_hand_particle_process.tres" id="2_5df2r"]
+[ext_resource type="QuadMesh" uid="uid://bal1vyc3v1rj0" path="res://assets/materials/kittens_in_hand_draw_pass.tres" id="3_chdtk"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_peqfi"]
 size = Vector3(2, 2, 0.1)
@@ -66,8 +28,8 @@ amount = 10000
 amount_ratio = 0.0
 lifetime = 2.51
 preprocess = 6.17
-process_material = SubResource("ParticleProcessMaterial_y7s7v")
-draw_pass_1 = SubResource("QuadMesh_dn307")
+process_material = ExtResource("2_5df2r")
+draw_pass_1 = ExtResource("3_chdtk")
 
 [node name="collider" type="GPUParticlesCollisionBox3D" parent="Particles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.146419)

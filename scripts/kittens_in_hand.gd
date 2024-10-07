@@ -3,7 +3,7 @@ class_name KittensInHand
 
 @export var particles: GPUParticles3D
 @export_range(0, 10000) var kitten_count: int = 0
-	
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

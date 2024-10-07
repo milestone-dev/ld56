@@ -1,5 +1,12 @@
 extends Control
 
+const a = preload("res://assets/materials/SprayBottleParticleProcess.tres")
+const b = preload("res://assets/materials/spray_draw_pass.tres")
+const c = preload("res://assets/materials/KittenClusterDrawPass.tres")
+const e = preload("res://assets/materials/KittenClusterParticleProcess.tres")
+const f = preload("res://assets/materials/kittens_in_hand_particle_process.tres")
+const g = preload("res://assets/materials/kittens_in_hand_draw_pass.tres")
+
 @export var level_scene : PackedScene
 @export var test_level_scene : PackedScene
 @export var start_game_button : Button

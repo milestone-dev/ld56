@@ -13,7 +13,7 @@ var _gfx_quality: int = 3
 		var level = 	get_tree().get_first_node_in_group("level") as Level
 		level.update_gfx_settings()
 
-var particle_amont_ratio: float: 
+var particle_amont_ratio: float:
 	get: return [0, 0.1, 0.3, 0.65, 1][gfx_quality]
 
 # Also putting balancing stuff in here for now
