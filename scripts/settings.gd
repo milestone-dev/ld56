@@ -21,6 +21,7 @@ var kitten_drop_timer_max := 15.0
 var kitten_spawn_min := 10000
 var kitten_spawn_max := 70000
 var kitten_base_increment_after_sleep := 25000
+var difficulty := 6.0
 
 @onready var defaultFullscreen: int = 3 # 3 = Borderless Fullscreen, 4 = Native Fullscreen
 

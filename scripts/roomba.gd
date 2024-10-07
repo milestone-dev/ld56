@@ -20,7 +20,9 @@ var attack_cooldown := 0.0
 
 @export var awake_kittens_saved : int = 10
 @export var movement_speed: float = 3.0
-@export var chase_movement_speed : float = 6.0
+var chase_movement_speed : float = 6.0
+@export var chase_speed_min : float = 6.0
+var chase_speed_max : float = 8.0 # Changed by settings slider
 @export var home_rest_timer_max : float = 30.0
 @export var kitten_destroy_timer: float = 0.3
 @export var modulate_color : Color = Color.WHITE
@@ -56,7 +58,11 @@ var projection_material : Material
 
 func can_be_reset(): return state != State.SLEEPING
 
+func set_roomba_speed():
+	pass
+
 func _ready() -> void:
+	chase_speed_max = Settings.difficulty
 	player = get_tree().get_first_node_in_group("player") as Player
 	home = get_parent_node_3d() as Node3D
 	modulate_color.a = 0.5
@@ -88,7 +94,7 @@ func update_target(delta:float):
 	
 	match state:
 		State.SLEEPING:
-			chase_movement_speed = remap(player.kitten_saved_count, 0, 1000000,6,8.9)
+			chase_movement_speed = remap(player.kitten_saved_count, 0, 1000000,chase_speed_min,chase_speed_max)
 			state_sprite.texture = sleeping_texture
 			motor_audio_stream_player.stream_paused = true
 			set_state_colors(Color(1.0,1.0,1.0))

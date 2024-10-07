@@ -47,3 +47,7 @@ func gfx_slider_value_changed(value:float):
 	Settings.gfx_quality = int(value) # slider start at 1
 	#var level = 	get_tree().get_first_node_in_group("level") as Level
 	#if level: level.update_gfx_settings()
+	
+
+func _on_difficulty_slider_value_changed(value: float) -> void:
+	Settings.difficulty = value
