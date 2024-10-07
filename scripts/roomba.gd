@@ -84,7 +84,7 @@ func update_target(delta:float):
 			#print("Sleep")
 		State.IDLE:
 			state_sprite.texture = idle_texture
-			motor_audio_stream_player.stream_paused = true
+			if !motor_audio_stream_player.stream_paused: motor_audio_stream_player.stream_paused = true
 			if player.kitten_count > 0:
 				state = State.CHASING_PLAYER
 				play_sfx(start_chasing_audio_stream)
@@ -96,7 +96,7 @@ func update_target(delta:float):
 			#print("Idle")
 		State.ROAMING:
 			state_sprite.texture = roaming_texture
-			motor_audio_stream_player.stream_paused = false
+			if motor_audio_stream_player.stream_paused: motor_audio_stream_player.stream_paused = false
 			if player.kitten_count > 0:
 				state = State.CHASING_PLAYER
 				play_sfx(start_chasing_audio_stream)
@@ -109,7 +109,7 @@ func update_target(delta:float):
 			#print("Roaming")
 		State.RETURNING_HOME:
 			state_sprite.texture = returning_texture
-			motor_audio_stream_player.stream_paused = false
+			if motor_audio_stream_player.stream_paused: motor_audio_stream_player.stream_paused = false
 			if global_position.distance_to(home.global_position) < 1.25:
 				home_rest_timer -= delta
 				state_sprite.texture = sleeping_texture
@@ -128,7 +128,7 @@ func update_target(delta:float):
 			#print("Returning Home")
 		State.CHASING_PLAYER:
 			state_sprite.texture = chasing_texture
-			motor_audio_stream_player.stream_paused = false
+			if motor_audio_stream_player.stream_paused: motor_audio_stream_player.stream_paused = false
 			if player.kitten_count > 0:
 				navigation_agent.target_position = player.global_position
 				if global_position.distance_to(player.global_position) < 1:
