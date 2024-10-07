@@ -3,3 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://bxw0kkg5bqwso" path="res://assets/models/props/cat_basket/cat_basket.gltf" id="1_ed14g"]
 
 [node name="cat_basket" instance=ExtResource("1_ed14g")]
+
+[node name="cat_basket" parent="cat_basket" index="0"]
+lod_bias = 0.33

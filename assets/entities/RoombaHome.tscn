@@ -10,6 +10,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000377297, -1.14571, -0.001
 
 [node name="doomba_charge_station" parent="doomba_charge_station2" index="0"]
 layers = 32768
+lod_bias = 0.25
 surface_material_override/0 = ExtResource("2_o07b2")
 
 [editable path="doomba_charge_station2"]

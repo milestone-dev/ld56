@@ -17,7 +17,9 @@ shader_parameter/EmissiveStrength = 0.0
 [node name="erlenmeyer_flask" instance=ExtResource("1_tg5i3")]
 
 [node name="erlenmeyer_flask" parent="erlenmeyer_flask" index="0"]
+lod_bias = 0.5
 surface_material_override/0 = SubResource("ShaderMaterial_jbrv5")
 
 [node name="erlenmeyer_flask_contents" parent="erlenmeyer_flask" index="1"]
+lod_bias = 0.25
 surface_material_override/0 = ExtResource("3_yfwjf")

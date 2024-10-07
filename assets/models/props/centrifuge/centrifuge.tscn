@@ -12,4 +12,14 @@ collision_layer = 5
 script = ExtResource("2_juc0m")
 
 [node name="centrifuge_base" parent="centrifuge_base" index="0"]
+lod_bias = 0.1
 surface_material_override/0 = ExtResource("2_vwk3c")
+
+[node name="centrifuge_knob" parent="centrifuge_base/centrifuge_knob" index="0"]
+lod_bias = 0.1
+
+[node name="centrifuge_lid" parent="centrifuge_base/centrifuge_spinner/centrifuge_lid" index="0"]
+lod_bias = 0.5
+
+[node name="centrifuge_spinner" parent="centrifuge_base/centrifuge_spinner" index="1"]
+lod_bias = 0.5

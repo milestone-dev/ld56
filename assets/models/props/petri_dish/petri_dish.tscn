@@ -7,4 +7,5 @@
 
 [node name="petri_dish" parent="." index="0"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+lod_bias = 0.5
 surface_material_override/0 = ExtResource("2_8mtab")
