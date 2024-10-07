@@ -31,6 +31,7 @@ const CROUCH_SIZE = 0.3
 @export var sfx_meow_audio_player : AudioStreamPlayer
 @export var sfx_crash_audio_player : AudioStreamPlayer
 @export var sfx_spray : AudioStream
+@export var sfx_spray_empty : AudioStream
 @export var sfx_pick : AudioStream
 @export var sfx_switch : AudioStream
 @export var sfx_jump : AudioStream
@@ -251,8 +252,11 @@ func manage_interactions():
 
 	# Always consume spray energy regardless of where you spray
 	if is_spray_pressed and current_tool == Tool.SPRAYER:
-		if spray_energy > 0:spray()
-		else: ui.flash_oos()
+		if spray_energy > 0:
+			spray()
+		else:
+			ui.flash_oos()
+			play_sfx(sfx_spray_empty)
 
 	current_focused_object = null
 
