@@ -44,6 +44,6 @@ func music_volume_slider_value_changed(value:float):
 func mouse_sens_slider_value_changed(value:float):
 	Settings.mouse_sensitivity = value
 func gfx_slider_value_changed(value:float):
-	Settings.gfx_quality = (value as int)
-	var level = 	get_tree().get_first_node_in_group("level") as Level
-	if level: level.update_gfx_settings()
+	Settings.gfx_quality = int(value) # slider start at 1
+	#var level = 	get_tree().get_first_node_in_group("level") as Level
+	#if level: level.update_gfx_settings()

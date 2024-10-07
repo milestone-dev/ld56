@@ -3,27 +3,25 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dj1n3j8f3akjc"
-path.s3tc="res://.godot/imported/kitten-Sheet.png-5d65e109a59ae30967df6c8f86def95c.s3tc.ctex"
-path.etc2="res://.godot/imported/kitten-Sheet.png-5d65e109a59ae30967df6c8f86def95c.etc2.ctex"
+path="res://.godot/imported/kitten-Sheet.png-5d65e109a59ae30967df6c8f86def95c.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/sprites/kitten-Sheet.png"
-dest_files=["res://.godot/imported/kitten-Sheet.png-5d65e109a59ae30967df6c8f86def95c.s3tc.ctex", "res://.godot/imported/kitten-Sheet.png-5d65e109a59ae30967df6c8f86def95c.etc2.ctex"]
+dest_files=["res://.godot/imported/kitten-Sheet.png-5d65e109a59ae30967df6c8f86def95c.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=2
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

@@ -36,6 +36,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	kitten_respawn_timer -= delta
+	particles.amount_ratio = Settings.particle_amont_ratio
 	particles.amount = 1 if kitten_count < 1 else kitten_count
 	if is_visible && particles.visible != is_visible:
 		particles.lifetime = fade_out_timer

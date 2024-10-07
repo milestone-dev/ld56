@@ -10,5 +10,6 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func _process(_delta: float) -> void:
-	particles.amount_ratio = min(kitten_count / float(particles.amount), 1)
+	particles.amount_ratio = Settings.particle_amont_ratio
+	particles.amount = max(1, kitten_count)
 	particles.emitting = kitten_count > 0
