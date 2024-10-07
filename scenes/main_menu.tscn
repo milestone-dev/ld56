@@ -79,13 +79,25 @@ test_level_scene = ExtResource("3_ud258")
 start_game_button = NodePath("HBoxContainer/VBoxContainer/HBoxContainer/StartGameButton")
 settings_page = NodePath("SettingsPage")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="BG" type="TextureRect" parent="."]
 texture_filter = 1
-layout_mode = 0
-offset_top = 3.0
-offset_right = 1282.0
-offset_bottom = 891.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("4_yjne6")
+expand_mode = 2
+stretch_mode = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -126,6 +138,11 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_cgfhm")
 theme_override_styles/normal = SubResource("StyleBoxFlat_6ouju")
 text = "Settings & Controls"
 
+[node name="VSeparator3" type="HSeparator" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxEmpty_3k10t")
+
 [node name="HBoxContainer5" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
@@ -144,9 +161,9 @@ texture = ExtResource("5_l0viq")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="VSeparator" type="VSeparator" parent="HBoxContainer/VBoxContainer"]
+[node name="VSeparator2" type="HSeparator" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 64
+theme_override_constants/separation = 48
 theme_override_styles/separator = SubResource("StyleBoxEmpty_3k10t")
 
 [node name="MusicAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
