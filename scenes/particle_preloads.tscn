@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://cssf82p7seqqr"]
+
+[ext_resource type="Material" uid="uid://d2705xsg640w7" path="res://assets/materials/kittens_in_hand_particle_process.tres" id="1_6fwaa"]
+[ext_resource type="QuadMesh" uid="uid://bal1vyc3v1rj0" path="res://assets/materials/kittens_in_hand_draw_pass.tres" id="2_nnk4q"]
+[ext_resource type="Material" uid="uid://crcawhw4okp4e" path="res://assets/materials/SprayBottleParticleProcess.tres" id="3_duwj5"]
+[ext_resource type="Texture2D" uid="uid://bsv7vyba7sykh" path="res://assets/materials/sphere_gradient.tres" id="4_efdhy"]
+[ext_resource type="Material" uid="uid://dkqsnxsajxc2c" path="res://assets/materials/KittenClusterParticleProcess.tres" id="5_bjhxb"]
+[ext_resource type="QuadMesh" uid="uid://jaradcal6vgm" path="res://assets/materials/KittenClusterDrawPass.tres" id="6_b3ei4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ybktn"]
+blend_mode = 1
+shading_mode = 0
+albedo_color = Color(0.25098, 0.831373, 0.396078, 1)
+albedo_texture = ExtResource("4_efdhy")
+texture_filter = 0
+texture_repeat = false
+billboard_mode = 1
+billboard_keep_scale = true
+grow_amount = 1.787
+
+[sub_resource type="QuadMesh" id="QuadMesh_lw6ct"]
+material = SubResource("StandardMaterial3D_ybktn")
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_t82jb"]
+
+[node name="Node3D2" type="Node3D"]
+
+[node name="KittenInHand" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.963755, 0.14249, -0.225549, -0.141267, -0.444616, -0.884511, -0.226317, 0.884315, -0.408372, 0.460063, -0.134083, -0.228077)
+emitting = false
+amount = 100
+one_shot = true
+process_material = ExtResource("1_6fwaa")
+draw_pass_1 = ExtResource("2_nnk4q")
+
+[node name="SprayParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.963755, 0.225549, 0.14249, -0.141267, 0.884511, -0.444616, -0.226317, 0.408372, 0.884315, 0.460063, -0.134083, 0.0511384)
+emitting = false
+amount = 100
+one_shot = true
+process_material = ExtResource("3_duwj5")
+draw_pass_1 = SubResource("QuadMesh_lw6ct")
+
+[node name="KittenCluster" type="GPUParticles3D" parent="."]
+transform = Transform3D(2.43, 0, 0, 0, 0.26, 0, 0, 0, 1, 0, 0, -0.788975)
+amount = 2
+process_material = ExtResource("5_bjhxb")
+draw_pass_1 = ExtResource("6_b3ei4")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 7.45058e-09, 0, 1, 0, -7.45058e-09, 0, 1, 0.133883, 0.0743949, 3.50735)
+projection = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("BoxMesh_t82jb")

@@ -5,6 +5,8 @@
 [sub_resource type="Shader" id="Shader_axaf8"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's StandardMaterial3D.
 
+
+
 shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_toon, specular_schlick_ggx, unshaded;
 
@@ -27,11 +29,33 @@ uniform vec3 uv2_offset;
 
 varying flat float index;
 
+
+float rand_from_seed(in uint seed) {
+  int k;
+  int s = int(seed);
+  if (s == 0)
+    s = 305420679;
+  k = s / 127773;
+  s = 16807 * (s - k * 127773) - 2836 * k;
+  if (s < 0)
+    s += 2147483647;
+  seed = uint(s);
+  return float(seed % uint(65536)) / 65535.0;
+}
+
+uint hash(uint x) {
+  x = ((x >> uint(16)) ^ x) * uint(73244475);
+  x = ((x >> uint(16)) ^ x) * uint(73244475);
+  x = (x >> uint(16)) ^ x;
+  return x;
+}
+
 void vertex() {
 	UV = UV * uv1_scale.xy + uv1_offset.xy;
 	UV.x *= 1./6.;
 	
-	index = float(INSTANCE_ID);
+	index = floor(6. * rand_from_seed(hash(uint(INSTANCE_ID))));
+	
 
 	// Billboard Mode: Enabled
 	MODELVIEW_MATRIX = VIEW_MATRIX * mat4(
@@ -52,7 +76,7 @@ void vertex() {
 void fragment() {
 	vec2 base_uv = UV;
 
-	vec4 albedo_tex = texture(texture_albedo, base_uv + vec2(1./16., 1.) * index);
+	vec4 albedo_tex = texture(texture_albedo, base_uv + vec2(1./6., 1.) * index);
 	ALBEDO = albedo.rgb * albedo_tex.rgb;
 
 	float metallic_tex = dot(texture(texture_metallic, base_uv), metallic_texture_channel);

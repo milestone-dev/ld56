@@ -1,18 +1,14 @@
-[gd_scene load_steps=21 format=3 uid="uid://4vinrd4h6yl2"]
+[gd_scene load_steps=13 format=3 uid="uid://4vinrd4h6yl2"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_6m8h0"]
-[ext_resource type="PackedScene" uid="uid://cpoa4d7l5tsv8" path="res://scenes/main_level.tscn" id="2_767qk"]
+[ext_resource type="PackedScene" uid="uid://cssf82p7seqqr" path="res://scenes/particle_preloads.tscn" id="3_b7g0j"]
 [ext_resource type="PackedScene" uid="uid://rs4k12y5gess" path="res://scenes/test_level.tscn" id="3_ud258"]
 [ext_resource type="Texture2D" uid="uid://dfnqyvangpg2l" path="res://assets/textures/logo_bckgrnd.png" id="4_yjne6"]
 [ext_resource type="Texture2D" uid="uid://depdjxb155j1x" path="res://assets/icons/dubpot.png" id="5_l0viq"]
 [ext_resource type="PackedScene" uid="uid://cyeynw1jfwgjl" path="res://scenes/settings_page.tscn" id="7_en5m6"]
-[ext_resource type="Material" uid="uid://d2705xsg640w7" path="res://assets/materials/kittens_in_hand_particle_process.tres" id="8_ps4hu"]
-[ext_resource type="QuadMesh" uid="uid://bal1vyc3v1rj0" path="res://assets/materials/kittens_in_hand_draw_pass.tres" id="9_p1k60"]
 [ext_resource type="AudioStream" uid="uid://dk7bwwvbxpxoa" path="res://assets/music/menu.ogg" id="9_qkbnx"]
-[ext_resource type="Material" uid="uid://crcawhw4okp4e" path="res://assets/materials/SprayBottleParticleProcess.tres" id="10_s5mpr"]
-[ext_resource type="Texture2D" uid="uid://bsv7vyba7sykh" path="res://assets/materials/sphere_gradient.tres" id="11_ejl1e"]
-[ext_resource type="Material" uid="uid://dkqsnxsajxc2c" path="res://assets/materials/KittenClusterParticleProcess.tres" id="12_07ckb"]
-[ext_resource type="QuadMesh" uid="uid://jaradcal6vgm" path="res://assets/materials/KittenClusterDrawPass.tres" id="13_1wmcc"]
+
+[sub_resource type="World3D" id="World3D_5ljqd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gju87"]
 content_margin_left = 32.0
@@ -49,23 +45,6 @@ corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3k10t"]
 
-[sub_resource type="World3D" id="World3D_5ljqd"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ybktn"]
-blend_mode = 1
-shading_mode = 0
-albedo_color = Color(0.25098, 0.831373, 0.396078, 1)
-albedo_texture = ExtResource("11_ejl1e")
-texture_filter = 0
-texture_repeat = false
-billboard_mode = 1
-billboard_keep_scale = true
-grow_amount = 1.787
-
-[sub_resource type="QuadMesh" id="QuadMesh_lw6ct"]
-material = SubResource("StandardMaterial3D_ybktn")
-size = Vector2(0.1, 0.1)
-
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("start_game_button", "settings_page")]
 layout_mode = 3
 anchors_preset = 15
@@ -74,7 +53,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6m8h0")
-level_scene = ExtResource("2_767qk")
 test_level_scene = ExtResource("3_ud258")
 start_game_button = NodePath("HBoxContainer/VBoxContainer/HBoxContainer/StartGameButton")
 settings_page = NodePath("SettingsPage")
@@ -98,6 +76,30 @@ grow_vertical = 2
 texture = ExtResource("4_yjne6")
 expand_mode = 2
 stretch_mode = 5
+
+[node name="ParticlePreloadSubviewPort" type="SubViewportContainer" parent="BG"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.002
+anchor_top = 0.003
+anchor_right = 0.996
+anchor_bottom = 1.0
+offset_left = -0.564
+offset_top = 0.336
+offset_right = 0.12793
+offset_bottom = 1.0
+mouse_filter = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="BG/ParticlePreloadSubviewPort"]
+world_3d = SubResource("World3D_5ljqd")
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1275, 886)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="Node3D2" parent="BG/ParticlePreloadSubviewPort/SubViewport" instance=ExtResource("3_b7g0j")]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -174,41 +176,6 @@ bus = &"Music"
 [node name="SettingsPage" parent="." instance=ExtResource("7_en5m6")]
 visible = false
 layout_mode = 1
-
-[node name="ParticlePreloadSubviewPort" type="SubViewportContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.328
-anchor_bottom = 0.353
-offset_left = 41.0
-offset_top = 651.0
-offset_right = -174.84
-offset_bottom = 496.6
-mouse_filter = 2
-
-[node name="SubViewport" type="SubViewport" parent="ParticlePreloadSubviewPort"]
-world_3d = SubResource("World3D_5ljqd")
-transparent_bg = true
-handle_input_locally = false
-size = Vector2i(128, 128)
-render_target_update_mode = 4
-
-[node name="KittenInHand" type="GPUParticles3D" parent="ParticlePreloadSubviewPort/SubViewport"]
-transform = Transform3D(0.963755, 0.14249, -0.225549, -0.141267, -0.444616, -0.884511, -0.226317, 0.884315, -0.408372, 0.460063, -0.134083, 1.98662)
-amount = 100
-process_material = ExtResource("8_ps4hu")
-draw_pass_1 = ExtResource("9_p1k60")
-
-[node name="SprayParticles" type="GPUParticles3D" parent="ParticlePreloadSubviewPort/SubViewport"]
-transform = Transform3D(0.963755, 0.225549, 0.14249, -0.141267, 0.884511, -0.444616, -0.226317, 0.408372, 0.884315, 0.460063, -0.134083, 1.98662)
-amount = 100
-process_material = ExtResource("10_s5mpr")
-draw_pass_1 = SubResource("QuadMesh_lw6ct")
-
-[node name="KittenCluster" type="GPUParticles3D" parent="ParticlePreloadSubviewPort/SubViewport"]
-amount = 100
-process_material = ExtResource("12_07ckb")
-draw_pass_1 = ExtResource("13_1wmcc")
 
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/HBoxContainer/StartGameButton" to="." method="start_game"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/HBoxContainer/SettingsButton" to="." method="go_to_settings"]

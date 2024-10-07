@@ -2,7 +2,7 @@ extends Node
 var mouse_sensitivity : float = 0.1
 
 var _gfx_quality: int = 3
-@export_range(1, 4) var gfx_quality : int = 3:
+@export_range(1, 4) var gfx_quality : int = 4:
 	get: return _gfx_quality
 	set(value):
 		print("_gfx_quality", value)
@@ -11,7 +11,7 @@ var _gfx_quality: int = 3
 			value = min(max(0, value), 4)
 		_gfx_quality = value
 		var level = 	get_tree().get_first_node_in_group("level") as Level
-		level.update_gfx_settings()
+		if level: level.update_gfx_settings()
 
 var particle_amont_ratio: float:
 	get: return [0, 0.1, 0.3, 0.65, 1][gfx_quality]
