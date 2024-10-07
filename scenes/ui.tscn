@@ -146,7 +146,7 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("crosshair", "kitten_count_label", "tardigrade_count_label", "sprint_energy_label", "kitten_pool_label", "time_label", "cat_scanner_texture", "cat_palm_texture", "scan_energy_bar", "spray_energy_bar", "spray_sprite", "detection_progress_sprite", "pick_sprite", "kittens_in_hand", "pain_flash_rect", "settings_menu", "interact_pick_label", "interact_deposit_label", "interact_charge_spray_label", "interact_reset_roomba_label", "inteact_use_label")]
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("crosshair", "kitten_count_label", "tardigrade_count_label", "sprint_energy_label", "kitten_pool_label", "time_label", "cat_scanner_texture", "cat_palm_texture", "scan_energy_bar", "spray_energy_bar", "spray_sprite", "detection_progress_sprite", "pick_sprite", "kittens_in_hand", "pain_flash_rect", "settings_menu", "interact_pick_label", "interact_deposit_label", "interact_charge_spray_label", "interact_reset_roomba_label", "inteact_use_label", "warning_spray_label", "warning_drop_label")]
 script = ExtResource("1_68hwl")
 crosshair = NodePath("Crosshair")
 kitten_count_label = NodePath("HandsContainer/CatPalmTexture/KittenCountLabel")
@@ -169,6 +169,8 @@ interact_deposit_label = NodePath("InteractionLabelContainer/InteractDepositLabe
 interact_charge_spray_label = NodePath("InteractionLabelContainer/InteractChargeSprayLabel")
 interact_reset_roomba_label = NodePath("InteractionLabelContainer/InteractResetRoomba")
 inteact_use_label = NodePath("InteractionLabelContainer/InteractUseLabel")
+warning_spray_label = NodePath("InteractionLabelContainer/WarningSprayLabel")
+warning_drop_label = NodePath("InteractionLabelContainer/WarningDropLabel")
 
 [node name="PainFlashRect" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -309,6 +311,48 @@ theme_override_constants/shadow_offset_y = 0
 theme_override_constants/shadow_outline_size = 3
 theme_override_font_sizes/font_size = 24
 text = "(E) Interact"
+horizontal_alignment = 1
+
+[node name="WarningSprayLabel" type="Label" parent="InteractionLabelContainer"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = -11.5
+offset_right = 69.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "Out of spray, refill in Lab!"
+horizontal_alignment = 1
+
+[node name="WarningDropLabel" type="Label" parent="InteractionLabelContainer"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = -11.5
+offset_right = 69.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "Kittens dropped!"
 horizontal_alignment = 1
 
 [node name="MarginContainer3" type="MarginContainer" parent="."]

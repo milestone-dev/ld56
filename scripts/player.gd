@@ -208,6 +208,7 @@ func _physics_process(delta: float) -> void:
 	ui.update(self)
 
 func drop_all_kittens():
+	ui.flash_kitten_drop()
 	var kittens_lost := kitten_count
 	Progress.kittens_leaked += kittens_lost
 	kitten_pool += kittens_lost
@@ -249,8 +250,9 @@ func manage_interactions():
 	var is_spray_pressed := Input.is_action_just_pressed("tool_spray")
 
 	# Always consume spray energy regardless of where you spray
-	if is_spray_pressed and current_tool == Tool.SPRAYER and spray_energy > 0:
-		spray()
+	if is_spray_pressed and current_tool == Tool.SPRAYER:
+		if spray_energy > 0:spray()
+		else: ui.flash_oos()
 
 	current_focused_object = null
 
