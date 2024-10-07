@@ -94,6 +94,7 @@ jobs:
 
       - name: Notify Discord of failure
         if: failure()
+        shell: bash
         run: |
           run_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           commit_url="${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}"
@@ -105,8 +106,9 @@ jobs:
       - name: Grep log for errors and send to discord
         if: always()
         continue-on-error: true
+        shell: bash
         run: |
-          ERRORS=$(grep "ERROR" build.log | sort -u)
+          ERRORS=$(grep "ERROR" build.log | sort -u | sed 's/\\/\\\\/g; s/"/\\"/g')
           if [ -n "$ERRORS" ]; then
             run_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
             commit_url="${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}"
