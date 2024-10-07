@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://jqmhm7qjf7n5"]
+[gd_scene load_steps=34 format=3 uid="uid://jqmhm7qjf7n5"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_68hwl"]
 [ext_resource type="Texture2D" uid="uid://cya465556bqjx" path="res://assets/sprites/ui_catscan.png" id="2_f1ilk"]
@@ -21,6 +21,17 @@ colors = PackedColorArray(0, 0, 0, 0, 1, 0, 0, 0.0235294, 1, 0, 0, 0.45098)
 gradient = SubResource("Gradient_0pe74")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ai4kh"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0, 0, 0, 0.168627)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y178i"]
 bg_color = Color(0, 0, 0, 0.666667)
@@ -148,7 +159,7 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("kitten_count_label", "tardigrade_count_label", "sprint_energy_label", "kitten_pool_label", "time_label", "cat_scanner_texture", "cat_palm_texture", "scan_energy_bar", "spray_energy_bar", "spray_sprite", "detection_progress_sprite", "pick_sprite", "kittens_in_hand", "pain_flash_rect", "settings_menu", "crosshair_rect", "kitten_hold_timer_progress_bar", "interact_pick_label", "interact_deposit_label", "interact_charge_spray_label", "interact_reset_roomba_label", "inteact_use_label", "warning_spray_label", "warning_drop_label")]
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("kitten_count_label", "tardigrade_count_label", "sprint_energy_label", "kitten_pool_label", "time_label", "cat_scanner_texture", "cat_palm_texture", "scan_energy_bar", "spray_energy_bar", "spray_sprite", "detection_progress_sprite", "pick_sprite", "kittens_in_hand", "pain_flash_rect", "settings_menu", "crosshair_rect", "kitten_hold_timer_progress_bar", "interact_pick_label", "interact_deposit_label", "interact_charge_spray_label", "interact_reset_roomba_label", "inteact_use_label", "warning_spray_label", "warning_drop_label", "hint_scan_label", "hint_spray_label", "hint_return_label")]
 script = ExtResource("1_68hwl")
 kitten_count_label = NodePath("HandsContainer/CatPalmTexture/KittenCountLabel")
 tardigrade_count_label = NodePath("HandsContainer/CatPalmTexture/TardigradeCountLabel")
@@ -174,6 +185,9 @@ interact_reset_roomba_label = NodePath("InteractionLabelContainer/InteractResetR
 inteact_use_label = NodePath("InteractionLabelContainer/InteractUseLabel")
 warning_spray_label = NodePath("InteractionLabelContainer/WarningSprayLabel")
 warning_drop_label = NodePath("InteractionLabelContainer/WarningDropLabel")
+hint_scan_label = NodePath("HintLabels/HintScanLabel")
+hint_spray_label = NodePath("HintLabels/HintSprayLabel")
+hint_return_label = NodePath("HintLabels/HintReturnLabel")
 
 [node name="CrosshairRect" type="TextureRect" parent="."]
 texture_filter = 1
@@ -200,6 +214,82 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("GradientTexture2D_7rc8u")
+
+[node name="HintLabels" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HintScanLabel" type="Label" parent="HintLabels"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 404.0
+offset_top = 75.0
+offset_right = 837.0
+offset_bottom = 178.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_ai4kh")
+text = "Hold [Right Mouse Button] or [Q] Key to Scan for kittens nearby"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="HintSprayLabel" type="Label" parent="HintLabels"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 312.0
+offset_top = 40.0
+offset_right = 930.0
+offset_bottom = 254.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_ai4kh")
+text = "Keep scanning and search until the meter is in the green and maxed out.
+
+Then press [Left Mouse Button] to Spray and reveal Kittens in front of you"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="HintReturnLabel" type="Label" parent="HintLabels"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 390.0
+offset_top = 113.0
+offset_right = 862.0
+offset_bottom = 216.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_ai4kh")
+text = "Return with the Kittens to the lab and drop them off with the [E] Key"
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="KittenTimerProgressBar" type="TextureProgressBar" parent="."]
 texture_filter = 1

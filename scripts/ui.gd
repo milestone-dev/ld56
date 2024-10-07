@@ -29,6 +29,14 @@ class_name UI
 @export var warning_spray_label : Label
 @export var warning_drop_label : Label
 
+@export var hint_scan_label : Label
+@export var hint_spray_label : Label
+@export var hint_return_label : Label
+
+var has_hinted_scan := false
+var has_hinted_spray := false
+var has_hinted_return := false
+
 var pain_flash_tween : Tween
 var warning_oos_tween : Tween
 var warning_drop_tween : Tween
@@ -49,6 +57,33 @@ func _ready() -> void:
 	warning_spray_label.show()
 	warning_drop_label.show()
 	settings_menu.hide()
+	hint_scan_label.hide()
+	hint_spray_label.hide()
+	hint_return_label.hide()
+	get_tree().create_timer(2).timeout.connect(hint_scan)
+
+func hint_scan():
+	if has_hinted_scan: return
+	hint_scan_label.show()
+	has_hinted_scan = true
+
+func hint_spray():
+	if has_hinted_spray: return
+	hint_scan_label.hide()
+	hint_spray_label.show()
+	has_hinted_spray = true
+
+func hint_return():
+	if has_hinted_return: return
+	hint_scan_label.hide()
+	hint_spray_label.hide()
+	hint_return_label.show()
+	has_hinted_return = true
+
+func end_hints():
+	hint_scan_label.hide()
+	hint_spray_label.hide()
+	hint_return_label.hide()
 
 func flash_pain():
 	var time := 0.15

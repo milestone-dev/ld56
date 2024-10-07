@@ -171,6 +171,7 @@ func _physics_process(delta: float) -> void:
 	manage_interactions()
 	scanner_showing = Input.is_action_pressed("tool_enable_scanner")
 	if scanner_showing:
+		get_tree().create_timer(2).timeout.connect(ui.hint_spray)
 		update_scanner()
 	if sfx_scan_audio_player.stream_paused == scanner_showing:
 		sfx_scan_audio_player.stream_paused = !scanner_showing
@@ -283,6 +284,7 @@ func manage_interactions():
 						ui.pick_sprite.stop()
 						ui.pick_sprite.play()
 						play_sfx(sfx_pick)
+						ui.hint_return()
 
 	var collider = interaction_ray.get_collider()
 	if collider is Roomba:
@@ -298,6 +300,7 @@ func manage_interactions():
 		if is_interact_pressed:
 			kitten_container.interact(self)
 			play_sfx(sfx_use)
+			ui.end_hints()
 			return
 	elif collider is TardigradeContainer:
 		var tardigrade_container := collider as TardigradeContainer
