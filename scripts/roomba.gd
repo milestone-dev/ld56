@@ -125,7 +125,7 @@ func update_target(delta:float):
 			set_state_colors(Color(1.0,1.0,0.0))
 
 			animation_player.play("running",-1,1)
-			#print("Returning Home!")
+			#print("Returning Home!!")
 		State.CHASING_PLAYER:
 			state_sprite.texture = chasing_texture
 			if motor_audio_stream_player.stream_paused: motor_audio_stream_player.stream_paused = false
