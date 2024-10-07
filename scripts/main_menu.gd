@@ -22,7 +22,7 @@ const preloaded_resources = [
 func start_game():
 	Progress.reset()
 	loading_view.show()
-	call_deferred("start_level")
+	get_tree().create_timer(0.5).timeout.connect(start_level)
 
 func start_level():
 	get_tree().change_scene_to_packed(level_scene)
@@ -35,7 +35,7 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	start_game_button.grab_focus()
 	loading_view.hide()
-	call_deferred("start_music")
+	get_tree().create_timer(0.5).timeout.connect(start_music)
 
 func start_music():
 	music_streaming_player.play()
