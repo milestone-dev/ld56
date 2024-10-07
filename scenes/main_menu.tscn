@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://4vinrd4h6yl2"]
+[gd_scene load_steps=21 format=3 uid="uid://4vinrd4h6yl2"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_6m8h0"]
 [ext_resource type="PackedScene" uid="uid://cpoa4d7l5tsv8" path="res://scenes/main_level.tscn" id="2_767qk"]
@@ -65,14 +65,6 @@ grow_amount = 1.787
 [sub_resource type="QuadMesh" id="QuadMesh_lw6ct"]
 material = SubResource("StandardMaterial3D_ybktn")
 size = Vector2(0.1, 0.1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_y2k62"]
-size = Vector3(2, 2, 0.1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_rhgjy"]
-top_radius = 0.0
-bottom_radius = 0.1
-height = 1.0
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("start_game_button", "settings_page")]
 layout_mode = 3
@@ -171,9 +163,11 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.328
 anchor_bottom = 0.353
-offset_top = 611.0
-offset_right = 44.032
-offset_bottom = 618.98
+offset_left = 41.0
+offset_top = 651.0
+offset_right = -174.84
+offset_bottom = 496.6
+mouse_filter = 2
 
 [node name="SubViewport" type="SubViewport" parent="ParticlePreloadSubviewPort"]
 world_3d = SubResource("World3D_5ljqd")
@@ -198,44 +192,6 @@ draw_pass_1 = SubResource("QuadMesh_lw6ct")
 amount = 100
 process_material = ExtResource("12_07ckb")
 draw_pass_1 = ExtResource("13_1wmcc")
-
-[node name="collider" type="GPUParticlesCollisionBox3D" parent="ParticlePreloadSubviewPort/SubViewport/KittenCluster"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.146419)
-visible = false
-size = Vector3(2, 2, 0.1)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="ParticlePreloadSubviewPort/SubViewport/KittenCluster/collider"]
-visible = false
-mesh = SubResource("BoxMesh_y2k62")
-
-[node name="extractor" type="GPUParticlesAttractorSphere3D" parent="ParticlePreloadSubviewPort/SubViewport/KittenCluster/collider"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0428438)
-visible = false
-strength = -0.5
-attenuation = 7.46428
-radius = 58.07
-
-[node name="attractor" type="GPUParticlesAttractorSphere3D" parent="ParticlePreloadSubviewPort/SubViewport/KittenCluster/collider"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.118134)
-visible = false
-attenuation = 0.00222861
-directionality = 0.36
-radius = 1.5
-
-[node name="GPUParticlesAttractorBox3D" type="GPUParticlesAttractorBox3D" parent="ParticlePreloadSubviewPort/SubViewport/KittenCluster/collider"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -0.342053)
-visible = false
-strength = 10.0
-directionality = 1.0
-size = Vector3(2, 2, 1)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="ParticlePreloadSubviewPort/SubViewport/KittenCluster"]
-transform = Transform3D(-0.999991, 0.00422364, -2.69069e-05, 0, -0.00637043, -0.99998, -0.00422372, -0.999971, 0.00637037, 0, 0, 0)
-visible = false
-mesh = SubResource("CylinderMesh_rhgjy")
-
-[node name="RayCast3D" type="RayCast3D" parent="ParticlePreloadSubviewPort/SubViewport/KittenCluster"]
-target_position = Vector3(0, 0, -1)
 
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/HBoxContainer/StartGameButton" to="." method="start_game"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/HBoxContainer/SettingsButton" to="." method="go_to_settings"]
