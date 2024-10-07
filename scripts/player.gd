@@ -58,6 +58,8 @@ var current_focused_object = null
 
 var debug_mode := false
 
+const MAX_KITTEN_CLUSTERS := 32
+
 const STEP_SFX_TIMER_MAX := 0.3
 const STEP_SRPING_SFX_TIMER_MAX := 0.15
 var step_sfx_timer := 0.0
@@ -331,8 +333,18 @@ func switch_to_spray_tool():
 	current_tool = Tool.SPRAYER
 
 func start_level():
+	# Cap kitten clusters at MAX_KITTEN_CLUSTERS
+	var all_kitten_clusters := get_tree().get_nodes_in_group("kitten_cluster")
+	all_kitten_clusters.shuffle()
+	for i in range (all_kitten_clusters.size()):
+		if i > MAX_KITTEN_CLUSTERS-1:
+			var kitten_cluster = all_kitten_clusters[i] as KittenCluster
+			kitten_cluster.excluded = true
+			kitten_cluster.queue_free()
+
 	for kitten_cluster : KittenCluster in get_tree().get_nodes_in_group("kitten_cluster"):
-		distribute_random_kittens(kitten_cluster)
+		if !kitten_cluster.excluded:
+			distribute_random_kittens(kitten_cluster)
 
 func distribute_random_kittens(kitten_cluster: KittenCluster):
 	var kitten_distriution_count = min(kitten_pool, randi_range(Settings.kitten_spawn_min, Settings.kitten_spawn_max))
@@ -344,7 +356,7 @@ func manage_level(delta:float):
 	if kitten_pool <= 0: return
 	for kitten_cluster : KittenCluster in get_tree().get_nodes_in_group("kitten_cluster"):
 		kitten_cluster.debug_label.visible = debug_mode
-		if kitten_cluster.kitten_count == 0 and kitten_cluster.kitten_respawn_timer <= 0:
+		if kitten_cluster.kitten_count == 0 and kitten_cluster.kitten_respawn_timer <= 0 and !kitten_cluster.excluded:
 			distribute_random_kittens(kitten_cluster)
 
 func play_sfx(sfx:AudioStream):
