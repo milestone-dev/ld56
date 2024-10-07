@@ -82,7 +82,7 @@ func hit_reset():
 
 func update_target(delta:float):
 	# Always check if we have reached 900k thresh
-	should_wait_while_sleeping = (player.kitten_saved_count <= 900000)
+	should_wait_while_sleeping = (player.kitten_saved_count >= 900000)
 
 	match state:
 		State.SLEEPING:
@@ -100,7 +100,8 @@ func update_target(delta:float):
 				chase_movement_speed = remap(player.kitten_saved_count, 0, 1000000,chase_speed_min,chase_speed_max)
 				# Set up a new time for next time we have to wait
 				wait_timer = randf_range(wait_min,wait_max)
-				awake_kittens_saved = min(900000, awake_kittens_saved + (Settings.kitten_base_increment_after_sleep * (this_one_sent_home+1)))
+				awake_kittens_saved = awake_kittens_saved + (Settings.kitten_base_increment_after_sleep * (this_one_sent_home+1))
+				awake_kittens_saved = clampf(sin(remap(awake_kittens_saved,0,1000000,0,0.5)),0.0,0.5) * 1000000
 				state = State.IDLE
 				play_sfx(become_idle_audio_stream)
 		State.IDLE:
