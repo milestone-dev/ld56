@@ -41,6 +41,10 @@ var attack_cooldown := 0.0
 @export var fall_asleep_audio_stream : AudioStream
 
 var this_one_sent_home : int
+var wait := false
+var wait_min := 5.0
+var wait_max := 15.0
+var random_wait := randf_range(wait_min,wait_max)
 
 @onready var model: MeshInstance3D = $CollisionShape3D/doomba2/doomba
 var material : Material
@@ -71,17 +75,29 @@ func hit_reset():
 		this_one_sent_home += 1
 
 func update_target(delta:float):
+	if (1000000 - player.kitten_saved_count) <= 100000:
+		wait = true
+	if wait == true and state == State.SLEEPING:
+		state_sprite.texture = sleeping_texture
+		motor_audio_stream_player.stream_paused = true
+		set_state_colors(Color(1.0,1.0,1.0))
+		decal.modulate = Color(0.0,0.0,0.0)
+		await get_tree().create_timer(random_wait).timeout
+		random_wait = randf_range(wait_min,wait_max)
+		wait == false
+	
 	match state:
 		State.SLEEPING:
+			chase_movement_speed = remap(player.kitten_saved_count, 0, 1000000,6,8.9)
 			state_sprite.texture = sleeping_texture
 			motor_audio_stream_player.stream_paused = true
-			if player.kitten_saved_count >= awake_kittens_saved or (1000000 - player.kitten_saved_count) < 100000:
-				awake_kittens_saved = awake_kittens_saved + (Settings.kitten_base_increment_after_sleep * (this_one_sent_home+1))
-				state = State.IDLE
-				motor_audio_stream_player.play()
 			set_state_colors(Color(1.0,1.0,1.0))
 			decal.modulate = Color(0.0,0.0,0.0)
 			animation_player.stop()
+			if player.kitten_saved_count >= awake_kittens_saved:
+				awake_kittens_saved = awake_kittens_saved + (Settings.kitten_base_increment_after_sleep * (this_one_sent_home+1))
+				state = State.IDLE
+				motor_audio_stream_player.play()
 			#print("Sleep")
 		State.IDLE:
 			state_sprite.texture = idle_texture
