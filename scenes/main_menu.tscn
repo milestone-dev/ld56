@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://4vinrd4h6yl2"]
+[gd_scene load_steps=12 format=3 uid="uid://4vinrd4h6yl2"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_6m8h0"]
 [ext_resource type="PackedScene" uid="uid://cpoa4d7l5tsv8" path="res://scenes/main_level.tscn" id="2_767qk"]
@@ -6,13 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dfnqyvangpg2l" path="res://assets/textures/logo_bckgrnd.png" id="4_yjne6"]
 [ext_resource type="Texture2D" uid="uid://depdjxb155j1x" path="res://assets/icons/dubpot.png" id="5_l0viq"]
 [ext_resource type="PackedScene" uid="uid://cyeynw1jfwgjl" path="res://scenes/settings_page.tscn" id="7_en5m6"]
-[ext_resource type="Material" uid="uid://d2705xsg640w7" path="res://assets/materials/kittens_in_hand_particle_process.tres" id="8_ps4hu"]
-[ext_resource type="QuadMesh" uid="uid://bal1vyc3v1rj0" path="res://assets/materials/kittens_in_hand_draw_pass.tres" id="9_p1k60"]
 [ext_resource type="AudioStream" uid="uid://dk7bwwvbxpxoa" path="res://assets/music/menu.ogg" id="9_qkbnx"]
-[ext_resource type="Material" uid="uid://crcawhw4okp4e" path="res://assets/materials/SprayBottleParticleProcess.tres" id="10_s5mpr"]
-[ext_resource type="Texture2D" uid="uid://bsv7vyba7sykh" path="res://assets/materials/sphere_gradient.tres" id="11_ejl1e"]
-[ext_resource type="Material" uid="uid://dkqsnxsajxc2c" path="res://assets/materials/KittenClusterParticleProcess.tres" id="12_07ckb"]
-[ext_resource type="QuadMesh" uid="uid://jaradcal6vgm" path="res://assets/materials/KittenClusterDrawPass.tres" id="13_1wmcc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gju87"]
 content_margin_left = 32.0
@@ -48,31 +42,6 @@ corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3k10t"]
-
-[sub_resource type="World3D" id="World3D_5ljqd"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ybktn"]
-blend_mode = 1
-shading_mode = 0
-albedo_color = Color(0.25098, 0.831373, 0.396078, 1)
-albedo_texture = ExtResource("11_ejl1e")
-texture_filter = 0
-texture_repeat = false
-billboard_mode = 1
-billboard_keep_scale = true
-grow_amount = 1.787
-
-[sub_resource type="QuadMesh" id="QuadMesh_lw6ct"]
-material = SubResource("StandardMaterial3D_ybktn")
-size = Vector2(0.1, 0.1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_y2k62"]
-size = Vector3(2, 2, 0.1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_rhgjy"]
-top_radius = 0.0
-bottom_radius = 0.1
-height = 1.0
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("start_game_button", "settings_page")]
 layout_mode = 3
@@ -165,77 +134,6 @@ bus = &"Music"
 [node name="SettingsPage" parent="." instance=ExtResource("7_en5m6")]
 visible = false
 layout_mode = 1
-
-[node name="ParticlePreloadSubviewPort" type="SubViewportContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.328
-anchor_bottom = 0.353
-offset_top = 611.0
-offset_right = 44.032
-offset_bottom = 618.98
-
-[node name="SubViewport" type="SubViewport" parent="ParticlePreloadSubviewPort"]
-world_3d = SubResource("World3D_5ljqd")
-transparent_bg = true
-handle_input_locally = false
-size = Vector2i(128, 128)
-render_target_update_mode = 4
-
-[node name="KittenInHand" type="GPUParticles3D" parent="ParticlePreloadSubviewPort/SubViewport"]
-transform = Transform3D(0.963755, 0.14249, -0.225549, -0.141267, -0.444616, -0.884511, -0.226317, 0.884315, -0.408372, 0.460063, -0.134083, 1.98662)
-amount = 100
-process_material = ExtResource("8_ps4hu")
-draw_pass_1 = ExtResource("9_p1k60")
-
-[node name="SprayParticles" type="GPUParticles3D" parent="ParticlePreloadSubviewPort/SubViewport"]
-transform = Transform3D(0.963755, 0.225549, 0.14249, -0.141267, 0.884511, -0.444616, -0.226317, 0.408372, 0.884315, 0.460063, -0.134083, 1.98662)
-amount = 100
-process_material = ExtResource("10_s5mpr")
-draw_pass_1 = SubResource("QuadMesh_lw6ct")
-
-[node name="KittenCluster" type="GPUParticles3D" parent="ParticlePreloadSubviewPort/SubViewport"]
-amount = 100
-process_material = ExtResource("12_07ckb")
-draw_pass_1 = ExtResource("13_1wmcc")
-
-[node name="collider" type="GPUParticlesCollisionBox3D" parent="ParticlePreloadSubviewPort/SubViewport/KittenCluster"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.146419)
-visible = false
-size = Vector3(2, 2, 0.1)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="ParticlePreloadSubviewPort/SubViewport/KittenCluster/collider"]
-visible = false
-mesh = SubResource("BoxMesh_y2k62")
-
-[node name="extractor" type="GPUParticlesAttractorSphere3D" parent="ParticlePreloadSubviewPort/SubViewport/KittenCluster/collider"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0428438)
-visible = false
-strength = -0.5
-attenuation = 7.46428
-radius = 58.07
-
-[node name="attractor" type="GPUParticlesAttractorSphere3D" parent="ParticlePreloadSubviewPort/SubViewport/KittenCluster/collider"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.118134)
-visible = false
-attenuation = 0.00222861
-directionality = 0.36
-radius = 1.5
-
-[node name="GPUParticlesAttractorBox3D" type="GPUParticlesAttractorBox3D" parent="ParticlePreloadSubviewPort/SubViewport/KittenCluster/collider"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -0.342053)
-visible = false
-strength = 10.0
-directionality = 1.0
-size = Vector3(2, 2, 1)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="ParticlePreloadSubviewPort/SubViewport/KittenCluster"]
-transform = Transform3D(-0.999991, 0.00422364, -2.69069e-05, 0, -0.00637043, -0.99998, -0.00422372, -0.999971, 0.00637037, 0, 0, 0)
-visible = false
-mesh = SubResource("CylinderMesh_rhgjy")
-
-[node name="RayCast3D" type="RayCast3D" parent="ParticlePreloadSubviewPort/SubViewport/KittenCluster"]
-target_position = Vector3(0, 0, -1)
 
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/HBoxContainer/StartGameButton" to="." method="start_game"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/HBoxContainer/SettingsButton" to="." method="go_to_settings"]
