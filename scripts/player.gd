@@ -101,8 +101,8 @@ func _ready() -> void:
 	sfx_scan_audio_player.play()
 	sfx_scan_audio_player.stream_paused = true
 	ui.pick_sprite.animation_finished.connect(switch_to_spray_tool)
-	spray_particles.emitting = true
-	spray_particles.visible = false
+	#spray_particles.emitting = true
+	#spray_particles.visible = false
 
 func _input(event: InputEvent) -> void:
 	if !ui.is_menu_open():
@@ -237,7 +237,7 @@ func update_scanner():
 			kitten_detection_level = KITTEN_DETECTION_LEVEL_MAX
 
 func spray():
-	spray_particles.visible = true
+	#spray_particles.visible = true
 	var s = spray_particles.duplicate() as GPUParticles3D
 	get_tree().root.add_child(s)
 	s.global_transform = spray_particles.global_transform
