@@ -42,11 +42,11 @@ var chase_speed_max : float = 8.0 # Changed by settings slider
 @export var become_idle_audio_stream : AudioStream
 @export var fall_asleep_audio_stream : AudioStream
 
-var this_one_sent_home : int
-var wait := false
+var this_one_sent_home : int = 0
+var should_wait_while_sleeping := true
 var wait_min := 5.0
 var wait_max := 15.0
-var random_wait := randf_range(wait_min,wait_max)
+var wait_timer := wait_min # First wait is wait_min
 
 @onready var model: MeshInstance3D = $CollisionShape3D/doomba2/doomba
 var material : Material
@@ -75,36 +75,34 @@ func _ready() -> void:
 func hit_reset():
 	if can_be_reset():
 		play_sfx(fall_asleep_audio_stream)
-		home_rest_timer = home_rest_timer_max
+		#home_rest_timer = home_rest_timer_max
 		state = State.RETURNING_HOME
 		Progress.roombas_sent_home += 1
 		this_one_sent_home += 1
 
 func update_target(delta:float):
-	if (1000000 - player.kitten_saved_count) <= 100000:
-		wait = true
-	if wait == true and state == State.SLEEPING:
-		state_sprite.texture = sleeping_texture
-		motor_audio_stream_player.stream_paused = true
-		set_state_colors(Color(1.0,1.0,1.0))
-		decal.modulate = Color(0.0,0.0,0.0)
-		await get_tree().create_timer(random_wait).timeout
-		random_wait = randf_range(wait_min,wait_max)
-		wait == false
-	
+	# Always check if we have reached 900k thresh
+	should_wait_while_sleeping = (player.kitten_saved_count <= 900000)
+
 	match state:
 		State.SLEEPING:
-			chase_movement_speed = remap(player.kitten_saved_count, 0, 1000000,chase_speed_min,chase_speed_max)
 			state_sprite.texture = sleeping_texture
 			motor_audio_stream_player.stream_paused = true
 			set_state_colors(Color(1.0,1.0,1.0))
 			decal.modulate = Color(0.0,0.0,0.0)
 			animation_player.stop()
-			if player.kitten_saved_count >= awake_kittens_saved:
+			# Decrement wait_timer while sleeping
+			if wait_timer > 0.0: wait_timer -= delta
+			# If not wait, zero it out
+			if !should_wait_while_sleeping: wait_timer = 0.0
+			# Activate when timer is zero and saved kitten threshold is reached
+			if wait_timer <= 0 and player.kitten_saved_count >= awake_kittens_saved:
+				chase_movement_speed = remap(player.kitten_saved_count, 0, 1000000,chase_speed_min,chase_speed_max)
+				# Set up a new time for next time we have to wait
+				wait_timer = randf_range(wait_min,wait_max)
 				awake_kittens_saved = awake_kittens_saved + (Settings.kitten_base_increment_after_sleep * (this_one_sent_home+1))
 				state = State.IDLE
-				motor_audio_stream_player.play()
-			#print("Sleep")
+				play_sfx(become_idle_audio_stream)
 		State.IDLE:
 			state_sprite.texture = idle_texture
 			if !motor_audio_stream_player.stream_paused: motor_audio_stream_player.stream_paused = true
@@ -116,7 +114,6 @@ func update_target(delta:float):
 				state = State.ROAMING
 			set_state_colors(Color(0.5,0.5,1.0))
 			animation_player.play("running",-1,1)
-			#print("Idle")
 		State.ROAMING:
 			state_sprite.texture = roaming_texture
 			if motor_audio_stream_player.stream_paused: motor_audio_stream_player.stream_paused = false
@@ -129,26 +126,24 @@ func update_target(delta:float):
 
 			set_state_colors(Color(0.5,1.0,0.5))
 			animation_player.play("running",-1,1.5)
-			#print("Roaming")
 		State.RETURNING_HOME:
 			state_sprite.texture = returning_texture
 			if motor_audio_stream_player.stream_paused: motor_audio_stream_player.stream_paused = false
 			if global_position.distance_to(home.global_position) < 1.25:
-				home_rest_timer -= delta
 				state_sprite.texture = sleeping_texture
 				motor_audio_stream_player.stream_paused = true
 				state = State.SLEEPING
-				if home_rest_timer < 0:
-					home_rest_timer = home_rest_timer_max
-					state = State.IDLE
-					play_sfx(become_idle_audio_stream)
+				#home_rest_timer -= delta
+				#if home_rest_timer < 0:
+					#home_rest_timer = home_rest_timer_max
+					#state = State.IDLE
+					#play_sfx(become_idle_audio_stream)
 			else:
 				navigation_agent.target_position = home.global_position
 
 			set_state_colors(Color(1.0,1.0,0.0))
 
 			animation_player.play("running",-1,1)
-			#print("Returning Home!!")
 		State.CHASING_PLAYER:
 			state_sprite.texture = chasing_texture
 			if motor_audio_stream_player.stream_paused: motor_audio_stream_player.stream_paused = false
@@ -163,7 +158,6 @@ func update_target(delta:float):
 
 			set_state_colors(Color(1.0,0.0,0.0))
 			animation_player.play("running",-1,2)
-			#print("Chasing!")
 
 func set_state_colors(state_color : Color) -> void:
 	material.set_shader_parameter("EmissiveColor", state_color)
