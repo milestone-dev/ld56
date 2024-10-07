@@ -7,12 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://ukcaa2rr4i5m" path="res://assets/sprites/kitten4.png" id="8_oj67b"]
 [ext_resource type="AudioStream" uid="uid://t4uy58qil582" path="res://assets/sfx/meow2.ogg" id="11_4idhx"]
 
-[sub_resource type="Gradient" id="Gradient_us6km"]
+[sub_resource type="Gradient" id="Gradient_n36g1"]
 offsets = PackedFloat32Array(0, 0.994709)
 colors = PackedColorArray(0.662526, 0.609311, 0.588344, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_p6ihf"]
-gradient = SubResource("Gradient_us6km")
+gradient = SubResource("Gradient_n36g1")
 fill_from = Vector2(0.683761, 1)
 fill_to = Vector2(0.344017, 0.0534188)
 

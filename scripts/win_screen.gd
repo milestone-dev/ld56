@@ -12,12 +12,6 @@ extends Control
 @export var stat_4_t : Label
 @export var stat_4_d : Label
 
-@export var stat_5_t : Label
-@export var stat_5_d : Label
-
-@export var stat_6_t : Label
-@export var stat_6_d : Label
-
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
