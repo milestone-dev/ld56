@@ -1,11 +1,16 @@
 extends Control
 
-const a = preload("res://assets/materials/SprayBottleParticleProcess.tres")
-const b = preload("res://assets/materials/spray_draw_pass.tres")
-const c = preload("res://assets/materials/KittenClusterDrawPass.tres")
-const e = preload("res://assets/materials/KittenClusterParticleProcess.tres")
-const f = preload("res://assets/materials/kittens_in_hand_particle_process.tres")
-const g = preload("res://assets/materials/kittens_in_hand_draw_pass.tres")
+const preloaded_resources = [
+	preload("res://assets/materials/SprayBottleParticleProcess.tres"),
+	preload("res://assets/materials/spray_draw_pass.tres"),
+	preload("res://assets/materials/KittenClusterDrawPass.tres"),
+	preload("res://assets/materials/KittenClusterParticleProcess.tres"),
+	preload("res://assets/materials/kittens_in_hand_particle_process.tres"),
+	preload("res://assets/materials/kittens_in_hand_draw_pass.tres"),
+	preload("res://assets/sfx/spray.ogg"),
+	preload("res://assets/sfx/purr4.ogg"),
+	preload("res://assets/sfx/roombadrive.ogg"),
+]
 
 @export var level_scene : PackedScene
 @export var test_level_scene : PackedScene
