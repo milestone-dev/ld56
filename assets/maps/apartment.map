@@ -2133,12 +2133,12 @@
 }
 // brush 236
 {
-( 799 -866 0 ) ( 799 -865 0 ) ( 799 -866 1 ) clr_14 [ 0 -1 0 -1 ] [ 0 0 -1 0 ] 0 1 1
-( 799 -874 0 ) ( 799 -874 1 ) ( 800 -874 0 ) clr_14 [ 1 0 0 -32 ] [ 0 0 -1 0 ] 0 1 1
-( 799 -866 0 ) ( 800 -866 0 ) ( 799 -865 0 ) clr_14 [ -1 0 0 32 ] [ 0 -1 0 -1 ] 0 1 1
-( 800 -801 110 ) ( 800 -800 110 ) ( 801 -801 110 ) clr_14 [ 1 0 0 -32 ] [ 0 -1 0 -1 ] 0 1 1
-( 800 -801 43 ) ( 801 -801 43 ) ( 800 -801 44 ) clr_14 [ -1 0 0 32 ] [ 0 0 -1 0 ] 0 1 1
-( 801 -801 43 ) ( 801 -801 44 ) ( 801 -800 43 ) clr_14 [ 0 1 0 1 ] [ 0 0 -1 0 ] 0 1 1
+( 799 -846 0 ) ( 799 -845 0 ) ( 799 -846 1 ) clr_14 [ 0 -1 0 -1 ] [ 0 0 -1 0 ] 0 1 1
+( 799 -854 0 ) ( 799 -854 1 ) ( 800 -854 0 ) clr_14 [ 1 0 0 -32 ] [ 0 0 -1 0 ] 0 1 1
+( 799 -846 0 ) ( 800 -846 0 ) ( 799 -845 0 ) clr_14 [ -1 0 0 32 ] [ 0 -1 0 -1 ] 0 1 1
+( 800 -781 110 ) ( 800 -780 110 ) ( 801 -781 110 ) clr_14 [ 1 0 0 -32 ] [ 0 -1 0 -1 ] 0 1 1
+( 800 -792 43 ) ( 801 -792 43 ) ( 800 -792 44 ) clr_14 [ -1 0 0 32 ] [ 0 0 -1 0 ] 0 1 1
+( 801 -781 43 ) ( 801 -781 44 ) ( 801 -780 43 ) clr_14 [ 0 1 0 1 ] [ 0 0 -1 0 ] 0 1 1
 }
 // brush 237
 {
@@ -2214,12 +2214,12 @@
 }
 // brush 245
 {
-( 799 -874 0 ) ( 799 -874 1 ) ( 799 -875 0 ) clr_36 [ 6.123233995736766e-17 -1 0 -43 ] [ 0 0 -1 0 ] 0 1 1
-( 872 -875 43 ) ( 872 -875 44 ) ( 873 -875 43 ) clr_36 [ 1 6.123233995736766e-17 0 -8 ] [ 0 0 -1 0 ] 0 1 1
-( 807 -874 0 ) ( 807 -875 0 ) ( 808 -874 0 ) clr_36 [ -6.123233995736766e-17 1 0 43 ] [ -1 -6.123233995736766e-17 0 8 ] 270 1 1
-( 872 -875 110 ) ( 873 -875 110 ) ( 872 -876 110 ) clr_36 [ 6.123233995736766e-17 -1 0 -43 ] [ -1 -6.123233995736766e-17 0 8 ] 90 1 1
-( 807 -874 0 ) ( 808 -874 0 ) ( 807 -874 1 ) clr_36 [ -1 -6.123233995736766e-17 0 8 ] [ 0 0 -1 0 ] 0 1 1
-( 801 -875 43 ) ( 801 -876 43 ) ( 801 -875 44 ) clr_36 [ -6.123233995736766e-17 1 0 43 ] [ 0 0 -1 0 ] 0 1 1
+( 799 -854 0 ) ( 799 -854 1 ) ( 799 -855 0 ) clr_36 [ 6.123233995736766e-17 -1 0 -43 ] [ 0 0 -1 0 ] 0 1 1
+( 872 -855 43 ) ( 872 -855 44 ) ( 873 -855 43 ) clr_36 [ 1 6.123233995736766e-17 0 -8 ] [ 0 0 -1 0 ] 0 1 1
+( 807 -854 0 ) ( 807 -855 0 ) ( 808 -854 0 ) clr_36 [ -6.123233995736766e-17 1 0 43 ] [ -1 -6.123233995736766e-17 0 8 ] 270 1 1
+( 872 -855 110 ) ( 873 -855 110 ) ( 872 -856 110 ) clr_36 [ 6.123233995736766e-17 -1 0 -43 ] [ -1 -6.123233995736766e-17 0 8 ] 90 1 1
+( 807 -854 0 ) ( 808 -854 0 ) ( 807 -854 1 ) clr_36 [ -1 -6.123233995736766e-17 0 8 ] [ 0 0 -1 0 ] 0 1 1
+( 801 -855 43 ) ( 801 -856 43 ) ( 801 -855 44 ) clr_36 [ -6.123233995736766e-17 1 0 43 ] [ 0 0 -1 0 ] 0 1 1
 }
 // brush 246
 {
@@ -2810,7 +2810,7 @@
 // entity 4
 {
 "classname" "KittenCluster"
-"origin" "266 -138 8"
+"origin" "190 -66 8"
 }
 // entity 5
 {
@@ -2855,7 +2855,7 @@
 // entity 13
 {
 "classname" "KittenCluster"
-"origin" "701 -847.5 7"
+"origin" "711 -805.5 7"
 }
 // entity 14
 {
@@ -2865,7 +2865,7 @@
 // entity 15
 {
 "classname" "KittenCluster"
-"origin" "107 -925.5 7"
+"origin" "107 -909.5 7"
 }
 // entity 16
 {
@@ -33197,7 +33197,7 @@
 // entity 788
 {
 "classname" "KittenCluster"
-"origin" "408 -296 41"
+"origin" "412 -280 119"
 }
 // entity 789
 {
@@ -33207,7 +33207,7 @@
 // entity 790
 {
 "classname" "KittenCluster"
-"origin" "824 -856 8"
+"origin" "828 -830 8"
 "angle" "15"
 }
 // entity 791
@@ -33218,7 +33218,7 @@
 // entity 792
 {
 "classname" "KittenCluster"
-"origin" "248 -312 41"
+"origin" "254 -286 37"
 }
 // entity 793
 {
@@ -33302,10 +33302,488 @@
 // entity 799
 {
 "classname" "KittenCluster"
-"origin" "928 -868 8"
+"origin" "1002 -834 8"
 }
 // entity 800
 {
 "classname" "KittenCluster"
-"origin" "652 -1061 10"
+"origin" "656 -1037 10"
+}
+// entity 801
+{
+"classname" "KittenCluster"
+"origin" "36 -148 8"
+}
+// entity 802
+{
+"classname" "KittenCluster"
+"origin" "84 -282 8"
+}
+// entity 803
+{
+"classname" "KittenCluster"
+"origin" "294 -252 113"
+}
+// entity 804
+{
+"classname" "KittenCluster"
+"origin" "46 -464 8"
+}
+// entity 805
+{
+"classname" "KittenCluster"
+"origin" "166 -378 8"
+}
+// entity 806
+{
+"classname" "KittenCluster"
+"origin" "210 -364 104"
+}
+// entity 807
+{
+"classname" "KittenCluster"
+"origin" "256 -515 8"
+}
+// entity 808
+{
+"classname" "KittenCluster"
+"origin" "366 -509 8"
+}
+// entity 809
+{
+"classname" "KittenCluster"
+"origin" "306 -489 104"
+}
+// entity 810
+{
+"classname" "KittenCluster"
+"origin" "332 -572 41"
+}
+// entity 811
+{
+"classname" "KittenCluster"
+"origin" "376 -570 41"
+}
+// entity 812
+{
+"classname" "KittenCluster"
+"origin" "412 -572 41"
+}
+// entity 813
+{
+"classname" "KittenCluster"
+"origin" "368 -292 41"
+}
+// entity 814
+{
+"classname" "KittenCluster"
+"origin" "380 -278 119"
+}
+// entity 815
+{
+"classname" "KittenCluster"
+"origin" "342 -280 119"
+}
+// entity 816
+{
+"classname" "KittenCluster"
+"origin" "527 -281 119"
+}
+// entity 817
+{
+"classname" "KittenCluster"
+"origin" "637 -279 119"
+}
+// entity 818
+{
+"classname" "KittenCluster"
+"origin" "693 -283 119"
+}
+// entity 819
+{
+"classname" "KittenCluster"
+"origin" "623 -290.5 33.5"
+}
+// entity 820
+{
+"classname" "KittenCluster"
+"origin" "711 -328.5 27.5"
+}
+// entity 821
+{
+"classname" "KittenCluster"
+"origin" "471 -288.5 41.5"
+}
+// entity 822
+{
+"classname" "KittenCluster"
+"origin" "537 -290.5 41.5"
+}
+// entity 823
+{
+"classname" "KittenCluster"
+"origin" "575 -288.5 41.5"
+}
+// entity 824
+{
+"classname" "KittenCluster"
+"origin" "579 -576 40"
+}
+// entity 825
+{
+"classname" "KittenCluster"
+"origin" "659 -574 40"
+}
+// entity 826
+{
+"classname" "KittenCluster"
+"origin" "699 -491 41"
+}
+// entity 827
+{
+"classname" "KittenCluster"
+"origin" "645 -416 8"
+}
+// entity 828
+{
+"classname" "KittenCluster"
+"origin" "522 -536 31"
+}
+// entity 829
+{
+"classname" "KittenCluster"
+"origin" "476 -411 7"
+}
+// entity 830
+{
+"classname" "KittenCluster"
+"origin" "408 -359 7"
+}
+// entity 831
+{
+"classname" "KittenCluster"
+"origin" "368 -449 7"
+}
+// entity 832
+{
+"classname" "KittenCluster"
+"origin" "589 -440 8"
+}
+// entity 833
+{
+"classname" "KittenCluster"
+"origin" "778 -380 8"
+}
+// entity 834
+{
+"classname" "KittenCluster"
+"origin" "912 -344 46"
+}
+// entity 835
+{
+"classname" "KittenCluster"
+"origin" "1028 -466 36"
+}
+// entity 836
+{
+"classname" "KittenCluster"
+"origin" "1018 -516 8"
+}
+// entity 837
+{
+"classname" "KittenCluster"
+"origin" "950 -476 8"
+}
+// entity 838
+{
+"classname" "KittenCluster"
+"origin" "850 -562 8"
+}
+// entity 839
+{
+"classname" "KittenCluster"
+"origin" "924 -624 8"
+}
+// entity 840
+{
+"classname" "KittenCluster"
+"origin" "850 -660 8"
+}
+// entity 841
+{
+"classname" "KittenCluster"
+"origin" "900 -764 8"
+}
+// entity 842
+{
+"classname" "KittenCluster"
+"origin" "1025.5 -596.5 44"
+}
+// entity 843
+{
+"classname" "KittenCluster"
+"origin" "1001.5 -662.5 8"
+}
+// entity 844
+{
+"classname" "KittenCluster"
+"origin" "1031.5 -680.5 114"
+}
+// entity 845
+{
+"classname" "KittenCluster"
+"origin" "1035.5 -900.5 46"
+}
+// entity 846
+{
+"classname" "KittenCluster"
+"origin" "916 -958 30"
+}
+// entity 847
+{
+"classname" "KittenCluster"
+"origin" "906 -848 8"
+}
+// entity 848
+{
+"classname" "KittenCluster"
+"origin" "950 -898 8"
+}
+// entity 849
+{
+"classname" "KittenCluster"
+"origin" "772 -934 8"
+"angle" "15"
+}
+// entity 850
+{
+"classname" "KittenCluster"
+"origin" "766 -818 96"
+"angle" "15"
+}
+// entity 851
+{
+"classname" "KittenCluster"
+"origin" "760 -860 8"
+"angle" "15"
+}
+// entity 852
+{
+"classname" "KittenCluster"
+"origin" "802 -763 8"
+}
+// entity 853
+{
+"classname" "KittenCluster"
+"origin" "587 -613 54"
+}
+// entity 854
+{
+"classname" "KittenCluster"
+"origin" "431 -615 20"
+}
+// entity 855
+{
+"classname" "KittenCluster"
+"origin" "433 -613 102"
+}
+// entity 856
+{
+"classname" "KittenCluster"
+"origin" "377 -617 102"
+}
+// entity 857
+{
+"classname" "KittenCluster"
+"origin" "474 -684 8"
+}
+// entity 858
+{
+"classname" "KittenCluster"
+"origin" "532 -768 8"
+}
+// entity 859
+{
+"classname" "KittenCluster"
+"origin" "421.5 -947 32.5"
+}
+// entity 860
+{
+"classname" "KittenCluster"
+"origin" "397.5 -887 32.5"
+}
+// entity 861
+{
+"classname" "KittenCluster"
+"origin" "361.5 -923 32.5"
+}
+// entity 862
+{
+"classname" "KittenCluster"
+"origin" "439.5 -919 42.5"
+}
+// entity 863
+{
+"classname" "KittenCluster"
+"origin" "248.5 -1010 8"
+}
+// entity 864
+{
+"classname" "KittenCluster"
+"origin" "350.5 -1024 8"
+}
+// entity 865
+{
+"classname" "KittenCluster"
+"origin" "350 -1093 42"
+}
+// entity 866
+{
+"classname" "KittenCluster"
+"origin" "326 -1095 62"
+}
+// entity 867
+{
+"classname" "KittenCluster"
+"origin" "378 -1089 92"
+}
+// entity 868
+{
+"classname" "KittenCluster"
+"origin" "428.5 -1018 8"
+}
+// entity 869
+{
+"classname" "KittenCluster"
+"origin" "466.5 -1096 48"
+}
+// entity 870
+{
+"classname" "KittenCluster"
+"origin" "464.5 -1094 48"
+}
+// entity 871
+{
+"classname" "KittenCluster"
+"origin" "464.5 -1096 114"
+}
+// entity 872
+{
+"classname" "KittenCluster"
+"origin" "576.5 -1092 102"
+}
+// entity 873
+{
+"classname" "KittenCluster"
+"origin" "488.5 -1054 112"
+}
+// entity 874
+{
+"classname" "KittenCluster"
+"origin" "526.5 -1046 8"
+}
+// entity 875
+{
+"classname" "KittenCluster"
+"origin" "604.5 -1096 8"
+}
+// entity 876
+{
+"classname" "KittenCluster"
+"origin" "712 -1035 92"
+}
+// entity 877
+{
+"classname" "KittenCluster"
+"origin" "704 -955 102"
+}
+// entity 878
+{
+"classname" "KittenCluster"
+"origin" "706 -907 100"
+}
+// entity 879
+{
+"classname" "KittenCluster"
+"origin" "712 -933 8"
+}
+// entity 880
+{
+"classname" "KittenCluster"
+"origin" "713 -843.5 85"
+}
+// entity 881
+{
+"classname" "KittenCluster"
+"origin" "324 -814 8"
+}
+// entity 882
+{
+"classname" "KittenCluster"
+"origin" "446 -800 8"
+}
+// entity 883
+{
+"classname" "KittenCluster"
+"origin" "151 -827.5 23"
+}
+// entity 884
+{
+"classname" "KittenCluster"
+"origin" "193 -915.5 25"
+}
+// entity 885
+{
+"classname" "KittenCluster"
+"origin" "25 -913.5 65"
+}
+// entity 886
+{
+"classname" "KittenCluster"
+"origin" "5 -939.5 81"
+}
+// entity 887
+{
+"classname" "KittenCluster"
+"origin" "87 -951.5 23"
+}
+// entity 888
+{
+"classname" "KittenCluster"
+"origin" "103 -1085.5 7"
+}
+// entity 889
+{
+"classname" "KittenCluster"
+"origin" "60 -770 8"
+}
+// entity 890
+{
+"classname" "KittenCluster"
+"origin" "134 -670 8"
+}
+// entity 891
+{
+"classname" "KittenCluster"
+"origin" "28 -764 114"
+}
+// entity 892
+{
+"classname" "KittenCluster"
+"origin" "24 -550 100"
+}
+// entity 893
+{
+"classname" "KittenCluster"
+"origin" "48 -552 42"
+}
+// entity 894
+{
+"classname" "KittenCluster"
+"origin" "236 -692 8"
+}
+// entity 895
+{
+"classname" "KittenCluster"
+"origin" "252 -322 41"
 }

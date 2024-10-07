@@ -23,8 +23,12 @@ class_name UI
 @export var interact_charge_spray_label : Label
 @export var interact_reset_roomba_label : Label
 @export var inteact_use_label : Label
+@export var warning_spray_label : Label
+@export var warning_drop_label : Label
 
 var pain_flash_tween : Tween
+var warning_oos_tween : Tween
+var warning_drop_tween : Tween
 
 func is_menu_open(): return settings_menu.visible
 
@@ -37,6 +41,10 @@ func toggle_ingame_menu():
 
 func _ready() -> void:
 	pain_flash_rect.modulate = Color.TRANSPARENT
+	warning_spray_label.modulate = Color.TRANSPARENT
+	warning_drop_label.modulate = Color.TRANSPARENT
+	warning_spray_label.show()
+	warning_drop_label.show()
 	settings_menu.hide()
 
 func flash_pain():
@@ -45,6 +53,20 @@ func flash_pain():
 	pain_flash_rect.modulate = Color.WHITE
 	pain_flash_tween = get_tree().create_tween()
 	pain_flash_tween.tween_property(pain_flash_rect, "modulate", Color.TRANSPARENT, time)
+
+func flash_kitten_drop():
+	var time := 1.5
+	if warning_drop_tween: warning_drop_tween.stop()
+	warning_drop_label.modulate = Color.WHITE
+	warning_drop_tween = get_tree().create_tween()
+	warning_drop_tween.tween_property(warning_drop_label, "modulate", Color.TRANSPARENT, time)
+
+func flash_oos():
+	var time := 1.5
+	if warning_oos_tween: warning_oos_tween.stop()
+	warning_spray_label.modulate = Color.WHITE
+	warning_oos_tween = get_tree().create_tween()
+	warning_oos_tween.tween_property(warning_spray_label, "modulate", Color.TRANSPARENT, time)
 
 func update(player:Player):
 	if !player.current_focused_object:

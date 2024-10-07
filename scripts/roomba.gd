@@ -125,7 +125,7 @@ func update_target(delta:float):
 			set_state_colors(Color(1.0,1.0,0.0))
 			
 			animation_player.play("running",-1,1)
-			print("Returning Home")
+			#print("Returning Home")
 		State.CHASING_PLAYER:
 			state_sprite.texture = chasing_texture
 			motor_audio_stream_player.stream_paused = false
@@ -140,7 +140,7 @@ func update_target(delta:float):
 				
 			set_state_colors(Color(1.0,0.0,0.0))
 			animation_player.play("running",-1,2)
-			print("Chasing!")
+			#print("Chasing!")
 
 func set_state_colors(state_color : Color) -> void:
 	material.set_shader_parameter("EmissiveColor", state_color)
