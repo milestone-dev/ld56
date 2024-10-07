@@ -129,7 +129,7 @@ func update_target(delta:float):
 			projection_material.set_shader_parameter("Color", Color(1.0,1.0,0.0))
 			decal.modulate = Color(1.0,1.0,0.0)
 			animation_player.play("running",-1,1)
-			print("Returning Home")
+			#print("Returning Home")
 		State.CHASING_PLAYER:
 			state_sprite.texture = chasing_texture
 			motor_audio_stream_player.stream_paused = false
@@ -145,7 +145,7 @@ func update_target(delta:float):
 			projection_material.set_shader_parameter("Color", Color(1.0,0.0,0.0))
 			decal.modulate = Color(1.0,0.0,0.0)
 			animation_player.play("running",-1,2)
-			print("Chasing!")
+			#print("Chasing!")
 
 
 func _physics_process(delta):
