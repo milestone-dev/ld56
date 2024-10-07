@@ -1,8 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://wtv1ym4laxh8"]
+[gd_scene load_steps=30 format=3 uid="uid://wtv1ym4laxh8"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ab6ol"]
 [ext_resource type="AudioStream" uid="uid://curqsbajr0u0l" path="res://assets/sfx/step1.ogg" id="2_dlq0r"]
 [ext_resource type="AudioStream" uid="uid://cet766pcpsh5u" path="res://assets/sfx/spray.ogg" id="2_fiknb"]
+[ext_resource type="AudioStream" uid="uid://dyrrmv7414iyk" path="res://assets/sfx/sprayempty.ogg" id="3_j3pey"]
 [ext_resource type="AudioStream" uid="uid://c2h7rapm3g88i" path="res://assets/sfx/pick.ogg" id="3_qhxb2"]
 [ext_resource type="AudioStream" uid="uid://b67dnihf2emsq" path="res://assets/sfx/step2.ogg" id="3_s1eir"]
 [ext_resource type="AudioStream" uid="uid://dm8o13aww2tpa" path="res://assets/sfx/switch.ogg" id="4_6lj0x"]
@@ -26,7 +27,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ybktn"]
 blend_mode = 1
 shading_mode = 0
-albedo_color = Color(1.34766e-06, 0.775954, 0.776501, 1)
+albedo_color = Color(0.25098, 0.831373, 0.396078, 1)
 albedo_texture = ExtResource("13_uy7il")
 texture_filter = 0
 texture_repeat = false
@@ -65,6 +66,7 @@ sfx_scan_audio_player = NodePath("SFXScanAudioStreamPlayer")
 sfx_meow_audio_player = NodePath("SFXMeowAudioStreamPlayer")
 sfx_crash_audio_player = NodePath("SFXCrashAudioStreamPlayer")
 sfx_spray = ExtResource("2_fiknb")
+sfx_spray_empty = ExtResource("3_j3pey")
 sfx_pick = ExtResource("3_qhxb2")
 sfx_switch = ExtResource("4_6lj0x")
 sfx_jump = ExtResource("5_vts3l")
