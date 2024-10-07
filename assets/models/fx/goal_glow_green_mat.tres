@@ -1,10 +1,10 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://i34enm36d36p"]
 
-[ext_resource type="Shader" uid="uid://dq7sh7s6a2oe8" path="res://assets/models/shared/shaders/lightbeam.tres" id="1_sirsj"]
+[ext_resource type="Shader" uid="uid://ebmjymr47ibg" path="res://assets/models/shared/shaders/glow_cone.tres" id="1_r4w1v"]
 
 [resource]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource("1_sirsj")
+shader = ExtResource("1_r4w1v")
 shader_parameter/Color = Color(0, 1, 0, 1)
 shader_parameter/Strength = 0.9

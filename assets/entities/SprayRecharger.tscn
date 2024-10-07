@@ -73,7 +73,7 @@ libraries = {
 }
 
 [node name="glow_cone" parent="." instance=ExtResource("3_i1v1w")]
-transform = Transform3D(1.19649, 0, 0, 0, 0.779265, 0, 0, 0, 1.07505, 0, 0, 0)
+transform = Transform3D(1.09008, 0, 0, 0, 0.705023, 0, 0, 0, 0.979442, 0, 0.00143899, 0)
 
 [node name="goal_glow" parent="glow_cone" index="0"]
 transform = Transform3D(2.49879, 0, 0, 0, 2.49879, 0, 0, 0, 2.49879, 0.0032403, 0.336191, -0.0013712)
