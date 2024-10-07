@@ -56,7 +56,7 @@ var projection_material : Material
 
 @onready var animation_player: AnimationPlayer = $CollisionShape3D/doomba2/AnimationPlayer
 
-func can_be_reset(): return state != State.SLEEPING
+func can_be_reset(): return state != State.SLEEPING and state != State.RETURNING_HOME
 
 func set_roomba_speed():
 	pass
