@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crfh73uvex1p"
-path="res://.godot/imported/orangecarpetfloor.png-4ee519087b1ba1f1f94b16ef23202ba9.ctex"
+uid="uid://ct46s3eoqto1f"
+path="res://.godot/imported/orangecarpetflo.png-7586168a173d99d3cd87c28932a108ac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/orangecarpetfloor.png"
-dest_files=["res://.godot/imported/orangecarpetfloor.png-4ee519087b1ba1f1f94b16ef23202ba9.ctex"]
+source_file="res://assets/textures/orangecarpetflo.png"
+dest_files=["res://.godot/imported/orangecarpetflo.png-7586168a173d99d3cd87c28932a108ac.ctex"]
 
 [params]
 

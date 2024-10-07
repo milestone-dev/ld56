@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhuh6o7ekgu1n"
-path="res://.godot/imported/greencarpetfloor.png-9415f33a9786d188a63ad5085aa4ef52.ctex"
+uid="uid://5lqoaxoxhhiu"
+path="res://.godot/imported/greencarpetfloo.png-15b7aa11131b1f45240f33f64ad4285a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/greencarpetfloor.png"
-dest_files=["res://.godot/imported/greencarpetfloor.png-9415f33a9786d188a63ad5085aa4ef52.ctex"]
+source_file="res://assets/textures/greencarpetfloo.png"
+dest_files=["res://.godot/imported/greencarpetfloo.png-15b7aa11131b1f45240f33f64ad4285a.ctex"]
 
 [params]
 
