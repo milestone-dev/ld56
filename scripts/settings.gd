@@ -24,4 +24,4 @@ var kitten_base_increment_after_sleep := 25000
 
 func _ready() -> void:
 	if OS.has_feature("web"):
-		gfx_quality = 2
+		gfx_quality = 3
