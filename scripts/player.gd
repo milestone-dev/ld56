@@ -135,12 +135,14 @@ func _physics_process(delta: float) -> void:
 		debug_mode = !debug_mode
 		for kitten_cluster : KittenCluster in get_tree().get_nodes_in_group("kitten_cluster"):
 			kitten_cluster.debug_label.visible = debug_mode
-	if Input.is_action_pressed("debug_add_kittens"):
-		var kitten_cluster : KittenCluster = get_tree().get_nodes_in_group("kitten_cluster").pick_random()
-		kitten_cluster.spray(self)
-		kitten_cluster.retrieve(self)
-		kitten_cluster.kitten_respawn_timer = 0.5
-		play_sfx(sfx_pick)
+	if Input.is_action_just_pressed("debug_add_kittens"):
+		for kitten_cluster : KittenCluster in get_tree().get_nodes_in_group("kitten_cluster"):
+			if kitten_cluster.kitten_count == 0: continue
+			kitten_cluster.spray(self)
+			kitten_cluster.retrieve(self)
+			kitten_cluster.kitten_respawn_timer = 0.5
+			play_sfx(sfx_pick)
+			break;
 
 	# make kittens and tardigrades fall out of your hand
 	# placeholder impl for now
