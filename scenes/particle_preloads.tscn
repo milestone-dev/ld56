@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cssf82p7seqqr"]
+[gd_scene load_steps=10 format=3 uid="uid://b8mfog3h5r5d7"]
 
 [ext_resource type="Material" uid="uid://d2705xsg640w7" path="res://assets/materials/kittens_in_hand_particle_process.tres" id="1_6fwaa"]
 [ext_resource type="QuadMesh" uid="uid://bal1vyc3v1rj0" path="res://assets/materials/kittens_in_hand_draw_pass.tres" id="2_nnk4q"]
