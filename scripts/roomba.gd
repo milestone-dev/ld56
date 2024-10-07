@@ -78,8 +78,7 @@ func update_target(delta:float):
 				awake_kittens_saved = awake_kittens_saved + (Settings.kitten_base_increment_after_sleep * (this_one_sent_home+1))
 				state = State.IDLE
 				motor_audio_stream_player.play()
-			material.set_shader_parameter("EmissiveColor", Color(1.0,1.0,1.0))
-			projection_material.set_shader_parameter("Color", Color(1.0,1.0,1.0))
+			set_state_colors(Color(1.0,1.0,1.0))
 			decal.modulate = Color(0.0,0.0,0.0)
 			animation_player.stop()
 			#print("Sleep")
@@ -92,9 +91,7 @@ func update_target(delta:float):
 			else:
 				navigation_agent.target_position = NavigationServer3D.map_get_random_point(get_world_3d().navigation_map, 1, false)
 				state = State.ROAMING
-			material.set_shader_parameter("EmissiveColor", Color(1.0,1.0,0.0))
-			projection_material.set_shader_parameter("Color", Color(1.0,1.0,0.0))
-			decal.modulate = Color(1.0,1.0,0.0)
+			set_state_colors(Color(0.5,0.5,1.0))
 			animation_player.play("running",-1,1)
 			#print("Idle")
 		State.ROAMING:
@@ -106,9 +103,8 @@ func update_target(delta:float):
 			elif navigation_agent.is_navigation_finished():
 				navigation_agent.target_position = NavigationServer3D.map_get_random_point(get_world_3d().navigation_map, 1, false)
 				state = State.ROAMING
-			material.set_shader_parameter("EmissiveColor", Color(0.5,1.0,0.5))
-			projection_material.set_shader_parameter("Color", Color(0.5,1.0,0.5))
-			decal.modulate = Color(0.5,1.0,0.5)
+			
+			set_state_colors(Color(0.5,1.0,0.5))
 			animation_player.play("running",-1,1.5)
 			#print("Roaming")
 		State.RETURNING_HOME:
@@ -125,9 +121,9 @@ func update_target(delta:float):
 					play_sfx(become_idle_audio_stream)
 			else:
 				navigation_agent.target_position = home.global_position
-			material.set_shader_parameter("EmissiveColor", Color(1.0,1.0,0.0))
-			projection_material.set_shader_parameter("Color", Color(1.0,1.0,0.0))
-			decal.modulate = Color(1.0,1.0,0.0)
+				
+			set_state_colors(Color(1.0,1.0,0.0))
+			
 			animation_player.play("running",-1,1)
 			print("Returning Home")
 		State.CHASING_PLAYER:
@@ -141,12 +137,16 @@ func update_target(delta:float):
 						player.roomba_hit()
 			else:
 				state = State.IDLE
-			material.set_shader_parameter("EmissiveColor", Color(1.0,0.0,0.0))
-			projection_material.set_shader_parameter("Color", Color(1.0,0.0,0.0))
-			decal.modulate = Color(1.0,0.0,0.0)
+				
+			set_state_colors(Color(1.0,0.0,0.0))
 			animation_player.play("running",-1,2)
 			print("Chasing!")
 
+func set_state_colors(state_color : Color) -> void:
+	material.set_shader_parameter("EmissiveColor", state_color)
+	projection_material.set_shader_parameter("Color", state_color)
+	decal.modulate = state_color
+	ring_sprite.modulate = state_color
 
 func _physics_process(delta):
 	attack_cooldown -= delta
