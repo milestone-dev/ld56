@@ -39,6 +39,7 @@ var attack_cooldown := 0.0
 @export var become_idle_audio_stream : AudioStream
 @export var fall_asleep_audio_stream : AudioStream
 
+var this_one_sent_home : int
 
 @onready var model: MeshInstance3D = $CollisionShape3D/doomba2/doomba
 var material : Material
@@ -66,6 +67,7 @@ func hit_reset():
 		home_rest_timer = home_rest_timer_max
 		state = State.RETURNING_HOME
 		Progress.roombas_sent_home += 1
+		this_one_sent_home += 1
 
 func update_target(delta:float):
 	match state:
@@ -73,6 +75,7 @@ func update_target(delta:float):
 			state_sprite.texture = sleeping_texture
 			motor_audio_stream_player.stream_paused = true
 			if player.kitten_saved_count >= awake_kittens_saved:
+				awake_kittens_saved = awake_kittens_saved + (Settings.kitten_base_increment_after_sleep * this_one_sent_home)
 				state = State.IDLE
 				motor_audio_stream_player.play()
 			material.set_shader_parameter("EmissiveColor", Color(1.0,1.0,1.0))
@@ -115,15 +118,16 @@ func update_target(delta:float):
 				home_rest_timer -= delta
 				state_sprite.texture = sleeping_texture
 				motor_audio_stream_player.stream_paused = true
+				state = State.SLEEPING
 				if home_rest_timer < 0:
 					home_rest_timer = home_rest_timer_max
 					state = State.IDLE
 					play_sfx(become_idle_audio_stream)
 			else:
 				navigation_agent.target_position = home.global_position
-			material.set_shader_parameter("EmissiveColor", Color(0.0,1.0,0.0))
-			projection_material.set_shader_parameter("Color", Color(0.0,1.0,0.0))
-			decal.modulate = Color(0.0,1.0,0.0)
+			material.set_shader_parameter("EmissiveColor", Color(1.0,1.0,0.0))
+			projection_material.set_shader_parameter("Color", Color(1.0,1.0,0.0))
+			decal.modulate = Color(1.0,1.0,0.0)
 			animation_player.play("running",-1,1)
 			print("Returning Home")
 		State.CHASING_PLAYER:
@@ -158,9 +162,8 @@ func _physics_process(delta):
 
 	look_at(next_path_position, Vector3.UP)
 	global_position = global_position.move_toward(global_position + new_velocity, movement_delta)
-
 	#print("Distance to target: " + str(self.position.distance_to(next_path_position)))
-
+	#print("Home rest timer: " + str(home_rest_timer))
 
 func play_sfx(sfx:AudioStream):
 	sfx_audio_stream_player.stream = sfx
