@@ -50,9 +50,11 @@ text = "0"
 font_size = 64
 
 [node name="Particles" type="GPUParticles3D" parent="."]
+emitting = false
 amount = 5000
 lifetime = 2.75
 explosiveness = 1.0
+fixed_fps = 12
 process_material = ExtResource("3_g368t")
 draw_pass_1 = ExtResource("9_lsjim")
 
