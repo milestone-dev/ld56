@@ -22,6 +22,32 @@ var kitten_spawn_min := 10000
 var kitten_spawn_max := 70000
 var kitten_base_increment_after_sleep := 25000
 
+@onready var defaultFullscreen: int = 3 # 3 = Borderless Fullscreen, 4 = Native Fullscreen
+
+func _shortcut_input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if event.pressed:
+			if event.is_action("toggle_fullscreen"):
+				toggle_fullscreen()
+			elif event.is_action("maximize_window"):
+				maximize_window()
+
 func _ready() -> void:
 	if OS.has_feature("web"):
 		gfx_quality = 3
+
+func toggle_fullscreen() -> void:
+	if DisplayServer.window_get_mode(0) != defaultFullscreen:
+		DisplayServer.window_set_mode(defaultFullscreen)
+	else:
+		DisplayServer.window_set_mode(0)
+		DisplayServer.window_set_flag(1, false, 0)
+
+
+func maximize_window() -> void:
+	if DisplayServer.window_get_mode(0) != 2:
+		DisplayServer.window_set_mode(2)
+		DisplayServer.window_set_flag(1, false, 0)
+	else:
+		DisplayServer.window_set_mode(0)
+		DisplayServer.window_set_flag(1, false, 0)
