@@ -17,6 +17,7 @@ const preloaded_resources = [
 @export var start_game_button : Button
 @export var settings_page : Control
 @export var loading_view : TextureRect
+@export var music_streaming_player : AudioStreamPlayer
 
 func start_game():
 	Progress.reset()
@@ -34,6 +35,10 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	start_game_button.grab_focus()
 	loading_view.hide()
+	call_deferred("start_music")
+
+func start_music():
+	music_streaming_player.play()
 
 func go_to_settings():
 	settings_page.show()

@@ -142,5 +142,4 @@ stream = ExtResource("10_uqv5g")
 bus = &"SFX"
 
 [node name="MusicAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-autoplay = true
 bus = &"Music"
