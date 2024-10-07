@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scripts/win_screen.gd" id="1_oipbh"]
 [ext_resource type="Texture2D" uid="uid://b2lg5sqbahjk7" path="res://assets/textures/logo_free.png" id="2_kxx7r"]
 [ext_resource type="Texture2D" uid="uid://cp041g5rm1xjt" path="res://assets/sprites/kitten6-anim-sheet.png" id="3_pa3yy"]
+[ext_resource type="AudioStream" uid="uid://dk7bwwvbxpxoa" path="res://assets/music/menu.ogg" id="5_gtnrm"]
 [ext_resource type="Texture2D" uid="uid://depdjxb155j1x" path="res://assets/icons/dubpot.png" id="5_kgkui"]
-[ext_resource type="AudioStream" uid="uid://t4uy58qil582" path="res://assets/sfx/meow2.ogg" id="10_e0lpc"]
 
 [sub_resource type="Gradient" id="Gradient_us6km"]
 offsets = PackedFloat32Array(0, 0.994709)
@@ -103,7 +103,7 @@ texture = SubResource("GradientTexture2D_ivwa1")
 
 [node name="KittenAnim" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(905, 380)
+position = Vector2(905, 362)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_i46xo")
 autoplay = "default"
@@ -304,8 +304,9 @@ texture = ExtResource("5_kgkui")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="SFXAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_e0lpc")
-bus = &"SFX"
+[node name="MusicAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_gtnrm")
+autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="Left/VBoxContainer/StartGameButton2" to="." method="continue_clicked"]
