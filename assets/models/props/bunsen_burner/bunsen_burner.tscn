@@ -3,3 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://ra2knouaqhss" path="res://assets/models/props/bunsen_burner/bunsen_burner.gltf" id="1_x0qoo"]
 
 [node name="bunsen_burner" instance=ExtResource("1_x0qoo")]
+
+[node name="bunsen_burner" parent="bunsen_burner" index="0"]
+lod_bias = 0.05
+
+[node name="bunsen_burner_valve" parent="bunsen_burner" index="1"]
+lod_bias = 0.05

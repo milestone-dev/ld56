@@ -6,4 +6,5 @@
 [node name="gas_canister" instance=ExtResource("1_7yjlb")]
 
 [node name="gas_canister" parent="gas_canister" index="0"]
+lod_bias = 0.33
 surface_material_override/0 = ExtResource("2_tgtgv")

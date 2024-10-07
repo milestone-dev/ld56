@@ -6,3 +6,6 @@
 
 [node name="microscope_base" parent="." index="0"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="microscope" parent="microscope_base" index="0"]
+lod_bias = 0.75

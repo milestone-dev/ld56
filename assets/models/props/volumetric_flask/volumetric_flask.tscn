@@ -10,4 +10,5 @@
 surface_material_override/0 = ExtResource("2_e004c")
 
 [node name="volumetric_flask_liquid" parent="volumetric_flask" index="1"]
+lod_bias = 0.5
 surface_material_override/0 = ExtResource("2_14fkq")

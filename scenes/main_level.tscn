@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cpoa4d7l5tsv8"]
+[gd_scene load_steps=25 format=3 uid="uid://cpoa4d7l5tsv8"]
 
 [ext_resource type="PackedScene" uid="uid://jqmhm7qjf7n5" path="res://scenes/ui.tscn" id="1_11mfm"]
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_quftm"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://bu4kegs7xjfjm" path="res://assets/models/props/gas_canister/gas_canister.gltf" id="17_jrpkp"]
 [ext_resource type="PackedScene" uid="uid://cfxinyypstccx" path="res://assets/models/props/dubious_potion/dubious_potion.tscn" id="18_74vnd"]
 [ext_resource type="PackedScene" uid="uid://dmmw6xmjrnkn2" path="res://assets/models/props/test_tubes/test_tubes.tscn" id="19_eutsm"]
+[ext_resource type="PackedScene" uid="uid://b8fjlpyibeb53" path="res://assets/occluders.tscn" id="20_vtaby"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x7yap"]
 
@@ -153,3 +154,5 @@ transform = Transform3D(0.102081, 0, -0.994776, 0, 1, 0, 0.994776, 0, 0.102081, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.654396, 0)
 
 [node name="gas_canister2" parent="Lab_Stuff/bunsen_burner" instance=ExtResource("17_jrpkp")]
+
+[node name="Occluders" parent="." instance=ExtResource("20_vtaby")]

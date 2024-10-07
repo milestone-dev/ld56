@@ -20,9 +20,11 @@ shader_parameter/EmissiveStrength = 1.0
 [node name="dubious_potion" instance=ExtResource("1_ubyj8")]
 
 [node name="dubious_potion_flask" parent="dubious_potion_flask" index="0"]
+lod_bias = 0.5
 surface_material_override/0 = SubResource("ShaderMaterial_jxa4v")
 
 [node name="dubious_potion_liquid" parent="dubious_potion_flask" index="1"]
+lod_bias = 0.33
 surface_material_override/0 = ExtResource("2_rjdpl")
 
 [node name="test_plane_for_placing_paws" type="MeshInstance3D" parent="." index="1"]

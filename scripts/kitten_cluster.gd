@@ -30,7 +30,7 @@ var is_visible: bool:
 
 func _ready() -> void:
 	sprite.modulate = FADED_OUT_COLOR;
-	particles.emitting = false
+	particles.emitting = true
 	particles.emitting = 0
 	particles.visible = false
 
