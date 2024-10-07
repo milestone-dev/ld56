@@ -29,7 +29,7 @@ size = Vector2(0.1, 0.1)
 script = ExtResource("1_36ve5")
 
 [node name="KittenInHand" type="GPUParticles3D" parent="."]
-transform = Transform3D(0.963755, 0.14249, -0.225549, -0.141267, -0.444616, -0.884511, -0.226317, 0.884315, -0.408372, 0.460063, -0.134083, -0.228077)
+transform = Transform3D(9.63755, 1.42491, -2.25549, -1.41267, -4.44616, -8.84511, -2.26317, 8.84315, -4.08372, 0.460063, -0.134083, -0.228077)
 emitting = false
 amount = 100
 one_shot = true
