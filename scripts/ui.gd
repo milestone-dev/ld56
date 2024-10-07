@@ -17,6 +17,7 @@ class_name UI
 @export var kittens_in_hand: KittensInHand
 @export var pain_flash_rect : TextureRect
 @export var settings_menu : SettingsPage
+@export var crosshair_rect : TextureRect
 
 @export var kitten_hold_timer_progress_bar : TextureProgressBar
 
@@ -92,7 +93,7 @@ func update(player:Player):
 
 
 
-
+	crosshair_rect.visible = player.kitten_count == 0
 	kittens_in_hand.visible = player.kitten_count > 0
 	kitten_hold_timer_progress_bar.visible = player.kitten_count > 0
 	kitten_hold_timer_progress_bar.max_value = Settings.kitten_drop_timer_max

@@ -150,7 +150,6 @@ func _physics_process(delta: float) -> void:
 			meow_sfx_timer = MEOW_SFX_TIMER_MAX * randf_range(0.7, 1.5)
 	if kitten_disappear_timer <= 0.0:
 		drop_all_kittens()
-		kitten_disappear_timer = Settings.kitten_drop_timer_max
 
 	# fall, land, jump, crouch
 	if not is_on_floor(): velocity += get_gravity() * delta
@@ -216,6 +215,7 @@ func drop_all_kittens():
 	kitten_count = max(0, kitten_count - kittens_lost)
 	tardigrade_count = 0
 	play_sfx(sfx_drop_kittens)
+	kitten_disappear_timer = Settings.kitten_drop_timer_max
 
 func update_scanner():
 	kitten_detection_level = 0

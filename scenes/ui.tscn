@@ -148,9 +148,9 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("crosshair", "kitten_count_label", "tardigrade_count_label", "sprint_energy_label", "kitten_pool_label", "time_label", "cat_scanner_texture", "cat_palm_texture", "scan_energy_bar", "spray_energy_bar", "spray_sprite", "detection_progress_sprite", "pick_sprite", "kittens_in_hand", "pain_flash_rect", "settings_menu", "kitten_hold_timer_progress_bar", "interact_pick_label", "interact_deposit_label", "interact_charge_spray_label", "interact_reset_roomba_label", "inteact_use_label", "warning_spray_label", "warning_drop_label")]
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("crosshair", "kitten_count_label", "tardigrade_count_label", "sprint_energy_label", "kitten_pool_label", "time_label", "cat_scanner_texture", "cat_palm_texture", "scan_energy_bar", "spray_energy_bar", "spray_sprite", "detection_progress_sprite", "pick_sprite", "kittens_in_hand", "pain_flash_rect", "settings_menu", "crosshair_rect", "kitten_hold_timer_progress_bar", "interact_pick_label", "interact_deposit_label", "interact_charge_spray_label", "interact_reset_roomba_label", "inteact_use_label", "warning_spray_label", "warning_drop_label")]
 script = ExtResource("1_68hwl")
-crosshair = NodePath("Crosshair")
+crosshair = NodePath("")
 kitten_count_label = NodePath("HandsContainer/CatPalmTexture/KittenCountLabel")
 tardigrade_count_label = NodePath("HandsContainer/CatPalmTexture/TardigradeCountLabel")
 sprint_energy_label = NodePath("MarginContainer2/VBoxContainer2/SprintEnergyLabel")
@@ -166,6 +166,7 @@ pick_sprite = NodePath("HandsContainer/PickSprite")
 kittens_in_hand = NodePath("HandsContainer/CatPalmTexture/SubViewportContainer/SubViewport/Node3D")
 pain_flash_rect = NodePath("PainFlashRect")
 settings_menu = NodePath("SettingsPage")
+crosshair_rect = NodePath("CrosshairRect")
 kitten_hold_timer_progress_bar = NodePath("KittenTimerProgressBar")
 interact_pick_label = NodePath("InteractionLabelContainer/InteractPickLabel")
 interact_deposit_label = NodePath("InteractionLabelContainer/InteractDepositLabel")
@@ -200,21 +201,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("GradientTexture2D_7rc8u")
-
-[node name="Crosshair" type="ColorRect" parent="."]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -8.0
-offset_top = -8.0
-offset_right = 8.0
-offset_bottom = 8.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(8, 8)
 
 [node name="KittenTimerProgressBar" type="TextureProgressBar" parent="."]
 texture_filter = 1
@@ -547,9 +533,9 @@ offset_left = 56.0
 offset_top = 209.0
 offset_right = 184.0
 offset_bottom = 305.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 6
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.811765)
+theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 32
 text = "100000"
 horizontal_alignment = 1
