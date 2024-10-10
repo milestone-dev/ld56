@@ -4,6 +4,7 @@ class_name KittenContainer
 @export var label : Label3D
 
 var count := 0
+var show_cone := false
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var glow_cone: Node3D = $glow_cone
@@ -29,5 +30,10 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if player1.kitten_picked_up == true:
-		
-		glow_cone.visible = true
+		show_cone = true
+	
+	if player1.kittens_dropped == true:
+		show_cone = false
+		player1.kittens_dropped = false
+	
+	glow_cone.visible = show_cone

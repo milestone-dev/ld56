@@ -49,6 +49,8 @@ const CROUCH_SIZE = 0.3
 @export var music_track1 : AudioStream
 @export var music_track2 : AudioStream
 
+
+
 var current_tool := Tool.PICKER
 var mouse_input : Vector2
 var scanner_showing := false
@@ -78,6 +80,7 @@ var kitten_count := 0;
 var tardigrade_count := 0;
 var kitten_detection_level := 0
 const KITTEN_DETECTION_LEVEL_MAX := 1000
+var kittens_dropped : bool = false
 
 const SPRINT_ENERGY_MAX := 5.0
 var sprint_energy := SPRINT_ENERGY_MAX
@@ -156,6 +159,7 @@ func _physics_process(delta: float) -> void:
 			sfx_meow_audio_player.play()
 			meow_sfx_timer = MEOW_SFX_TIMER_MAX * randf_range(0.7, 1.5)
 	if kitten_disappear_timer <= 0.0:
+		kittens_dropped = true
 		drop_all_kittens()
 
 	# fall, land, jump, crouch
@@ -296,11 +300,12 @@ func manage_interactions():
 	var collider = interaction_ray.get_collider()
 	if collider is Roomba:
 		var roomba := collider as Roomba
-		if roomba.can_be_reset():
-			current_focused_object = roomba
-			if is_interact_pressed:
-				roomba.hit_reset()
-				return
+		if roomba.state != roomba.State.CHASING_PLAYER:
+			if roomba.can_be_reset():
+				current_focused_object = roomba
+				if is_interact_pressed:
+					roomba.hit_reset()
+					return
 	elif collider is KittenContainer:
 		var kitten_container := collider as KittenContainer
 		current_focused_object = kitten_container
@@ -396,6 +401,8 @@ func update_music():
 		music_audio_player.play(pos)
 
 func roomba_hit():
+	kittens_dropped = true
 	sfx_crash_audio_player.play()
 	ui.flash_pain()
 	drop_all_kittens()
+	

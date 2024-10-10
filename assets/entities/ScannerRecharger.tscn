@@ -11,7 +11,7 @@ height = 0.886301
 radius = 0.78312
 
 [node name="ScannerRecharger" type="StaticBody3D"]
-collision_layer = 4
+collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_5mene")
 

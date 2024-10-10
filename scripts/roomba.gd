@@ -47,6 +47,8 @@ var should_wait_while_sleeping := true
 var wait_min := 5.0
 var wait_max := 15.0
 var wait_timer := wait_min # First wait is wait_min
+var wait_early_game_min := 1.0
+var wait_early_game_max := 5.0
 
 @onready var model: MeshInstance3D = $CollisionShape3D/doomba2/doomba
 var material : Material
@@ -62,12 +64,13 @@ func set_roomba_speed():
 	pass
 
 func _ready() -> void:
+	should_wait_while_sleeping = true 
 	chase_speed_max = Settings.difficulty
 	player = get_tree().get_first_node_in_group("player") as Player
 	home = get_parent_node_3d() as Node3D
 	modulate_color.a = 0.5
 	ring_sprite.modulate = modulate_color
-
+	
 	material = model.get_surface_override_material(1)
 	projection_material = doomba_projection_glow.get_surface_override_material(0)
 
@@ -80,9 +83,10 @@ func hit_reset():
 		Progress.roombas_sent_home += 1
 		this_one_sent_home += 1
 
+
 func update_target(delta:float):
 	# Always check if we have reached 900k thresh
-	should_wait_while_sleeping = (player.kitten_saved_count >= 900000)
+	# should_wait_while_sleeping = (player.kitten_saved_count >= 900000)
 
 	match state:
 		State.SLEEPING:
@@ -99,7 +103,9 @@ func update_target(delta:float):
 			if wait_timer <= 0 and player.kitten_saved_count >= awake_kittens_saved:
 				chase_movement_speed = remap(player.kitten_saved_count, 0, 1000000,chase_speed_min,chase_speed_max)
 				# Set up a new time for next time we have to wait
-				wait_timer = randf_range(wait_min,wait_max)
+				wait_timer = randf_range(
+					remap(player.kitten_saved_count,0,1000000,wait_early_game_min, wait_min), # Increase wait_min time as roombas get more aggressive
+					remap(player.kitten_saved_count,0,1000000,wait_early_game_max, wait_max)) # Increase wait_max  time as roombas get more aggressive
 				awake_kittens_saved = awake_kittens_saved + (Settings.kitten_base_increment_after_sleep * (this_one_sent_home+1))
 				awake_kittens_saved = clampf(sin(remap(awake_kittens_saved,0,1000000,0,0.5)),0.0,0.5) * 1000000
 				state = State.IDLE
@@ -146,6 +152,7 @@ func update_target(delta:float):
 
 			animation_player.play("running",-1,1)
 		State.CHASING_PLAYER:
+			
 			state_sprite.texture = chasing_texture
 			if motor_audio_stream_player.stream_paused: motor_audio_stream_player.stream_paused = false
 			if player.kitten_count > 0:
@@ -154,6 +161,8 @@ func update_target(delta:float):
 					if attack_cooldown < 0:
 						attack_cooldown = kitten_destroy_timer
 						player.roomba_hit()
+						
+						
 			else:
 				state = State.IDLE
 
@@ -176,7 +185,7 @@ func _physics_process(delta):
 		return
 
 	if state == State.CHASING_PLAYER: movement_delta = chase_movement_speed * delta
-	else: movement_delta = movement_speed * delta
+	else: movement_delta = movement_speed * delta * (player.kitten_saved_count / 1000000 + 1) # Speed increases up to double @ 1m kittens saved
 	var next_path_position: Vector3 = navigation_agent.get_next_path_position()
 	var new_velocity: Vector3 = global_position.direction_to(next_path_position) * movement_delta
 
